@@ -3,18 +3,16 @@ package revenue.core.bond;
 import java.util.Collections;
 import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.Years;
+
 import revenue.core.util.DateComparator;
 import revenue.entities.BondHeader;
 
 public class Bond
 {
 
-	public static final byte InterestIntervall_Yearly = 1;
-	public static final byte InterestIntervall_HalfYearly = 2;
-	public static final byte InterestIntervall_Quarterly = 4;
-	public static final byte InterestIntervall_Monthly = 12;
-
-	private BondHeader Bond;
+	private BondHeader bond;
 
 	public Bond()
 	{
@@ -22,15 +20,14 @@ public class Bond
 
 	public Bond(BondHeader bond)
 	{
-		Bond = bond;
+		this.bond = bond;
 	}
 
 	public void calReturnTimeline()
 	{
 
-		//get runtime dates (first buy date, due date)
-		Date locFirstBuyDate = getFirstBuyDate();
-		
+		// get runtime dates (first buy date, due date)
+		// Date locFirstBuyDate = getFirstBuyDate();
 
 		// 2. Rendite pro Tag
 
@@ -38,20 +35,29 @@ public class Bond
 
 	}
 
-	private Date getDueDate()
+	private DateTime getDueDate()
 	{
-		return Bond.getDueDate();
+		return bond.getDueDate();
 	}
 
-	private Date getFirstBuyDate()
+	public DateTime getFirstBuyDate()
 	{
-
 		// sort items ascending by buy date
-		Collections.sort(Bond.getBondItemsBuy(), new DateComparator());
+		Collections.sort(bond.getBondItemsBuy(), new DateComparator());
 
 		// return first buy date
+		return bond.getBondItemsBuy().get(0).getBuyDate();
+	}
 
-		return new Date();
+	private DateTime getPreviousInterestDate()
+	{
+		DateTime locFirstBuyDate = getFirstBuyDate();
+//		
+//		bond.getInterestDate()
+//		bond.getInterestIntervall()
+		
+		return new DateTime();
+		
 	}
 
 	private void calReturnPerDay()

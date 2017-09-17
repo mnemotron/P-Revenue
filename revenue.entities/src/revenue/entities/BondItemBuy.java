@@ -1,17 +1,27 @@
 package revenue.entities;
 
 import java.util.ArrayList;
-import java.util.Currency;
-import java.util.Date;
+
+import org.joda.time.DateTime;
 
 public class BondItemBuy
 {
 
 	private double nominalValue;
-	private Date buyDate;
+	private DateTime buyDate;
 	private double buyPercent;
 	private ArrayList<Fee> buyFees;
 	private ArrayList<BondSubItemSell> bondSubItemsSell;
+
+	public BondItemBuy(double nominalValue, DateTime buyDate, double buyPercent, ArrayList<Fee> buyFees,
+			ArrayList<BondSubItemSell> bondSubItemsSell)
+	{
+		this.nominalValue = nominalValue;
+		this.buyDate = buyDate;
+		this.buyPercent = buyPercent;
+		this.buyFees = buyFees;
+		this.bondSubItemsSell = bondSubItemsSell;
+	}
 
 	public double getNominalValue()
 	{
@@ -23,39 +33,29 @@ public class BondItemBuy
 		this.nominalValue = nominalValue;
 	}
 
-	public Date getBuyDate()
+	public DateTime getBuyDate()
 	{
 		return buyDate;
 	}
 
-	public void setBuyDate(Date buyDate)
+	public void setBuyDate(DateTime buyDate)
 	{
 		this.buyDate = buyDate;
-	}
-
-	public double getBuyPrice()
-	{
-		return buyPrice;
-	}
-
-	public void setBuyPrice(double buyPrice)
-	{
-		this.buyPrice = buyPrice;
-	}
-
-	public Currency getBuyPriceUnit()
-	{
-		return buyPriceUnit;
-	}
-
-	public void setBuyPriceUnit(Currency buyPriceUnit)
-	{
-		this.buyPriceUnit = buyPriceUnit;
 	}
 
 	public ArrayList<Fee> getBuyFees()
 	{
 		return buyFees;
+	}
+
+	public double getBuyPercent()
+	{
+		return buyPercent;
+	}
+
+	public void setBuyPercent(double buyPercent)
+	{
+		this.buyPercent = buyPercent;
 	}
 
 	public void setBuyFees(ArrayList<Fee> buyFees)
