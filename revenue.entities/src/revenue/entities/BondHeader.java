@@ -3,8 +3,6 @@ package revenue.entities;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.joda.time.DateTime;
-
 public class BondHeader
 {
 	public static final byte InterestIntervallYearly = 1;
@@ -18,12 +16,12 @@ public class BondHeader
 	private String isin;
 	private double interestPerYear; // %
 	private byte interestIntervall;
-	private DateTime interestDate;
-	private DateTime dueDate;
+	private Date interestDate;
+	private Date dueDate;
 	private ArrayList<BondItemBuy> bondItemsBuy;
 
 	public BondHeader(String name, String area, String wkn, String isin, double interestPerYear, byte interestIntervall,
-			DateTime interestDate, DateTime dueDate, ArrayList<BondItemBuy> bondItemsBuy)
+			Date interestDate, Date dueDate, ArrayList<BondItemBuy> bondItemsBuy)
 	{
 		this.name = name;
 		this.area = area;
@@ -96,22 +94,22 @@ public class BondHeader
 		this.interestIntervall = interestIntervall;
 	}
 
-	public DateTime getInterestDate()
+	public Date getInterestDate()
 	{
 		return interestDate;
 	}
 
-	public void setInterestDate(DateTime interestDate)
+	public void setInterestDate(Date interestDate)
 	{
 		this.interestDate = interestDate;
 	}
 
-	public DateTime getDueDate()
+	public Date getDueDate()
 	{
 		return dueDate;
 	}
 
-	public void setDueDate(DateTime dueDate)
+	public void setDueDate(Date dueDate)
 	{
 		this.dueDate = dueDate;
 	}

@@ -1,19 +1,18 @@
 package revenue.entities;
 
 import java.util.ArrayList;
-
-import org.joda.time.DateTime;
+import java.util.Date;
 
 public class BondItemBuy
 {
 
 	private double nominalValue;
-	private DateTime buyDate;
+	private Date buyDate;
 	private double buyPercent;
 	private ArrayList<Fee> buyFees;
 	private ArrayList<BondSubItemSell> bondSubItemsSell;
 
-	public BondItemBuy(double nominalValue, DateTime buyDate, double buyPercent, ArrayList<Fee> buyFees,
+	public BondItemBuy(double nominalValue, Date buyDate, double buyPercent, ArrayList<Fee> buyFees,
 			ArrayList<BondSubItemSell> bondSubItemsSell)
 	{
 		this.nominalValue = nominalValue;
@@ -33,12 +32,12 @@ public class BondItemBuy
 		this.nominalValue = nominalValue;
 	}
 
-	public DateTime getBuyDate()
+	public Date getBuyDate()
 	{
 		return buyDate;
 	}
 
-	public void setBuyDate(DateTime buyDate)
+	public void setBuyDate(Date buyDate)
 	{
 		this.buyDate = buyDate;
 	}
