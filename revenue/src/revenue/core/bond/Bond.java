@@ -55,53 +55,49 @@ public class Bond {
 		return 12 / intervall;
 	}
 
-	private ArrayList<Date> getNextInterestDates(Date buyDate, Date interestDate, Date dueDate,
-			byte interestIntervall) {
+	public ArrayList<Date> getNextInterestDates(Date buyDate, Date interestDate, Date dueDate, byte interestIntervall) {
 
 		ArrayList<Date> locInterestDates = new ArrayList<Date>();
 
-		Calendar locCalIntDate = Calendar.getInstance();
-
 		int locMonthIntervall = calMonthsIntervall(interestIntervall);
 
-		locCalIntDate.setTime(interestDate);
-
-		locCalIntDate.add(Calendar.MONTH, locMonthIntervall);
-
+		Calendar locCalIntDate = Calendar.getInstance();
 		Calendar locCalBuyDate = Calendar.getInstance();
-		// Calendar locCalIntDate = Calendar.getInstance();
-		//
+		Calendar locCalDueDate = Calendar.getInstance();
+		Calendar locCalIntDateOrigin = null;
+
+		locCalIntDate.setTime(interestDate);
 		locCalBuyDate.setTime(buyDate);
-		// locCalIntDate.setTime(interestDate);
-		//
-		int locBuyDateMonth = locCalBuyDate.get(Calendar.DAY_OF_MONTH);
-		int locIntDateMonth = locCalIntDate.get(Calendar.DAY_OF_MONTH);
+		locCalDueDate.setTime(dueDate);
 
-		// Intervall 2 -> interestDate 12Monate / 2 = 6 Monate
-		// InterestDate+/-6Monate
+		// set initial interest date after buy date
+		locCalIntDate.set(Calendar.YEAR, locCalBuyDate.get(Calendar.YEAR));
 
-		if (locBuyDateMonth == locIntDateMonth) {
-
-		} else if (locBuyDateMonth < locIntDateMonth) {
-			
-			
-
-		} else if (locBuyDateMonth > locIntDateMonth) {
-
+		if (locCalIntDate.before(locCalBuyDate)) {
+			locCalIntDate.add(Calendar.YEAR, 1);
 		}
 
-		// int locDateOrder = buyDate.compareTo(interestDate);
-		//
-		// if (locDateOrder == 0) // equal
-		// {
-		//
-		// } else if (locDateOrder < 0) // buy date before interest date
-		// {
-		//
-		// } else if (locDateOrder > 0) // buy date after interest date
-		// {
-		//
-		// }
+		locCalIntDateOrigin = (Calendar) locCalIntDate.clone();
+		locInterestDates.add(locCalIntDate.getTime());
+
+		// get next interest dates after initial interest date
+		while (locCalIntDate.before(locCalDueDate)) {
+			locCalIntDate.add(Calendar.MONTH, locMonthIntervall);
+			locInterestDates.add(locCalIntDate.getTime());
+		}
+
+		// get next interest dates before initial interest date
+		while (locCalIntDateOrigin.after(locCalBuyDate)) {
+			locCalIntDateOrigin.add(Calendar.MONTH, -locMonthIntervall);
+
+			if (locCalIntDateOrigin.after(locCalBuyDate)) {
+				locInterestDates.add(locCalIntDateOrigin.getTime());
+			}
+
+		}
+		
+		// sort items ascending by buy date
+		Collections.sort(locInterestDates);
 
 		return locInterestDates;
 	}
