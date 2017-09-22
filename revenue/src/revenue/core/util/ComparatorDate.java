@@ -1,9 +1,10 @@
 package revenue.core.util;
 
 import java.util.Comparator;
-import revenue.entities.BondItemBuy;
 
-public class DateComparator implements Comparator<BondItemBuy>
+import revenue.entity.BondItemBuy;
+
+public class ComparatorDate implements Comparator<BondItemBuy>
 {
 
 	@Override

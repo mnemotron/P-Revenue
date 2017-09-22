@@ -1,4 +1,4 @@
-package revenue.entities;
+package revenue.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,15 +1,15 @@
-package revenue.entities;
+package revenue.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class BondHeader
 {
-	public static final byte InterestIntervallYearly = 1;
-	public static final byte InterestIntervallHalfYearly = 2;
-	public static final byte InterestIntervallQuarterly = 4;
-	public static final byte InterestIntervallMonthly = 12;
-	
+	public static final byte INTEREST_INTERVALL_YEARLY = 1;
+	public static final byte INTEREST_INTERVALL_HALF_YEARLY = 2;
+	public static final byte INTEREST_INTERVALL_QUARTERLY = 4;
+	public static final byte INTEREST_INTERVALL_MONTHLY = 12;
+
 	private String name;
 	private String area;
 	private String wkn;
@@ -20,8 +20,7 @@ public class BondHeader
 	private Date dueDate;
 	private ArrayList<BondItemBuy> bondItemsBuy;
 
-	public BondHeader(String name, String area, String wkn, String isin, double interestPerYear, byte interestIntervall,
-			Date interestDate, Date dueDate, ArrayList<BondItemBuy> bondItemsBuy)
+	public BondHeader(String name, String area, String wkn, String isin, double interestPerYear, byte interestIntervall, Date interestDate, Date dueDate, ArrayList<BondItemBuy> bondItemsBuy)
 	{
 		this.name = name;
 		this.area = area;
