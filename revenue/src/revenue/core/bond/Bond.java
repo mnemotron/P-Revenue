@@ -18,72 +18,73 @@ public class Bond
 	// TODO: Stückzinsen: Stückzins = Nominalwert × Zinssatz × Tage/360
 	private static final int MONTH_OF_YEAR = 12;
 
-	private BondHeaderResult bond;
+	private ArrayList<BondHeaderResult> bonds;
 
 	public Bond()
 	{
-
+		this.bonds = new ArrayList<BondHeaderResult>();
 	}
 
-	public Bond(BondHeader bond)
+	public void addBond(BondHeader bond)
 	{
-		this.bond = new BondHeaderResult();
+		BondHeaderResult locBondHeaderResult = new BondHeaderResult();
 
 		// add header to result
-		this.bond.setBondHeader(bond);
+		locBondHeaderResult.setBondHeader(bond);
 
 		// add bond buy items to result
-		this.addBondItemsToResult(bond.getBondItemsBuy());
+		this.addBondItemsToResult(locBondHeaderResult, bond.getBondItemsBuy());
 	}
 
 	public void calReturnTimeline()
 	{
-		ArrayList<BondItemResult> locBondItemsResult = this.bond.getBondItemResult();
-
-		double locInterestPerYear = this.bond.getBondHeader().getInterestPerYear();
-
-		// get due date
-		Date locDueDate = this.getDueDate();
-
-		// get interest date
-		Date locInterestDate = this.bond.getBondHeader().getInterestDate();
-
-		// get interest intervall
-		byte locInterestIntervall = this.bond.getBondHeader().getInterestIntervall();
-		
-		// calculate return for each bond item
-		for (BondItemResult bondItemResult : locBondItemsResult)
+		for (BondHeaderResult locBond : this.bonds)
 		{
+			ArrayList<BondItemResult> locBondItemsResult = locBond.getBondItemResult();
 
-			ArrayList<BondInterestResult> locBondInterestDates = new ArrayList<BondInterestResult>();
-			
-			Date locBuyDate = bondItemResult.getBondItemBuy().getBuyDate();
+			double locInterestPerYear = locBond.getBondHeader().getInterestPerYear();
 
-			// determine interest dates based on buy date
-			ArrayList<Date> locNextInterestDates = this.getNextInterestDates(locBuyDate, locInterestDate, locDueDate, locInterestIntervall);
+			// get due date
+			Date locDueDate = this.getDueDate(locBond.getBondHeader());
 
-			for (Date interestDate : locNextInterestDates)
+			// get interest date
+			Date locInterestDate = locBond.getBondHeader().getInterestDate();
+
+			// get interest intervall
+			byte locInterestIntervall = locBond.getBondHeader().getInterestIntervall();
+
+			// calculate return for each bond item
+			for (BondItemResult bondItemResult : locBondItemsResult)
 			{
-				int locDaysPerYear = this.calcDaysPerYear(interestDate);
 
-				double locReturnPerYearIntervall = this.calcReturnPerYearWithIntervall(bondItemResult.getBondItemBuy().getNominalValue(), locInterestPerYear, locInterestIntervall, locDaysPerYear);
-			
-				BondInterestResult locBondInterestDate = new BondInterestResult();
-				
-				locBondInterestDate.setInterestDate(interestDate);
-				locBondInterestDate.setInterest(locReturnPerYearIntervall);
-				
-				locBondInterestDates.add(locBondInterestDate);
-				
+				ArrayList<BondInterestResult> locBondInterestDates = new ArrayList<BondInterestResult>();
+
+				Date locBuyDate = bondItemResult.getBondItemBuy().getBuyDate();
+
+				// determine interest dates based on buy date
+				ArrayList<Date> locNextInterestDates = this.getNextInterestDates(locBuyDate, locInterestDate, locDueDate, locInterestIntervall);
+
+				for (Date interestDate : locNextInterestDates)
+				{
+					int locDaysPerYear = this.calcDaysPerYear(interestDate);
+
+					double locReturnPerYearIntervall = this.calcReturnPerYearWithIntervall(bondItemResult.getBondItemBuy().getNominalValue(), locInterestPerYear, locInterestIntervall, locDaysPerYear);
+
+					BondInterestResult locBondInterestDate = new BondInterestResult();
+
+					locBondInterestDate.setInterestDate(interestDate);
+					locBondInterestDate.setInterest(locReturnPerYearIntervall);
+
+					locBondInterestDates.add(locBondInterestDate);
+
+				}
+
+				bondItemResult.setBondInterestDates(locBondInterestDates);
 			}
-			
-			bondItemResult.setBondInterestDates(locBondInterestDates);
-			
 		}
-		
 	}
 
-	private void addBondItemsToResult(ArrayList<BondItemBuy> bondItemsBuy)
+	private void addBondItemsToResult(BondHeaderResult bondHeaderResult, ArrayList<BondItemBuy> bondItemsBuy)
 	{
 		ArrayList<BondItemResult> locBondItemsResult = new ArrayList<BondItemResult>();
 
@@ -94,7 +95,7 @@ public class Bond
 			locBondItemsResult.add(locBondItemResult);
 		}
 
-		this.bond.setBondItemResult(locBondItemsResult);
+		bondHeaderResult.setBondItemResult(locBondItemsResult);
 	}
 
 	private int calcDaysPerYear(Date date)
@@ -105,18 +106,18 @@ public class Bond
 		return locCal.get(Calendar.DAY_OF_YEAR);
 	}
 
-	private Date getDueDate()
+	private Date getDueDate(BondHeader bondHeader)
 	{
-		return this.bond.getBondHeader().getDueDate();
+		return bondHeader.getDueDate();
 	}
 
-	private Date getFirstBuyDate()
+	private Date getFirstBuyDate(BondHeader bondHeader)
 	{
 		// sort items ascending by buy date
-		Collections.sort(this.bond.getBondHeader().getBondItemsBuy(), new ComparatorDate());
+		Collections.sort(bondHeader.getBondItemsBuy(), new ComparatorDate());
 
 		// return first buy date
-		return bond.getBondHeader().getBondItemsBuy().get(0).getBuyDate();
+		return bondHeader.getBondItemsBuy().get(0).getBuyDate();
 	}
 
 	private double calcReturnPerYearWithIntervall(double nominalValue, double interestPerYear, byte interestIntervall, int daysPerYear)
@@ -183,16 +184,6 @@ public class Bond
 		Collections.sort(locInterestDates);
 
 		return locInterestDates;
-	}
-
-	public BondHeaderResult getBond()
-	{
-		return bond;
-	}
-
-	public void setBond(BondHeaderResult bond)
-	{
-		this.bond = bond;
 	}
 
 }
