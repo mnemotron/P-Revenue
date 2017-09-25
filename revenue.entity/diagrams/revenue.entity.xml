@@ -1,3 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<entities>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
+	<entity>
+		<entity-name>revenue.entity.Portfolio</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>20</entity-X-Coordinate>
+		<entity-Y-Coordinate>14</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.BondItemBuy</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>206</entity-height>
+		<entity-X-Coordinate>621</entity-X-Coordinate>
+		<entity-Y-Coordinate>428</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.Fee</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>314</entity-X-Coordinate>
+		<entity-Y-Coordinate>335</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.Depot</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>306</entity-X-Coordinate>
+		<entity-Y-Coordinate>33</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.BondHeader</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>306</entity-height>
+		<entity-X-Coordinate>620</entity-X-Coordinate>
+		<entity-Y-Coordinate>45</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
 </entities>
