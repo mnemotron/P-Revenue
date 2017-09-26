@@ -4,13 +4,22 @@ import java.io.Serializable;
 import javax.persistence.*;
 import revenue.entity.Depot;
 import revenue.entity.BondItemBuy;
-import java.util.Collection;
 
-@Entity
-@Table(name = "BondHeader")
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import revenue.entity.Interest;
+
+@Entity(name = "BondHeader")
+@Table(name = "T_BONDHEADER")
 public class BondHeader implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final byte INTEREST_INTERVALL_YEARLY = 1;
+	public static final byte INTEREST_INTERVALL_HALF_YEARLY = 2;
+	public static final byte INTEREST_INTERVALL_QUARTERLY = 4;
+	public static final byte INTEREST_INTERVALL_MONTHLY = 12;
 
 	public BondHeader() {
 	}
@@ -18,18 +27,33 @@ public class BondHeader implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	@ManyToOne
 	private Depot depot;
+	
 	@OneToMany(mappedBy = "bondHeader")
-	private Collection<BondItemBuy> bondItemBuy;
+	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
+	
 	private String name;
+	
 	private String isin;
+	
 	private String wkn;
+	
 	private String area;
-	private String dueDate;
-	private String interestIntervall;
-	private String interestDate;
-	private String interestPerYear;
+	
+	@Basic
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dueDate;
+	
+	private byte interestIntervall;
+	
+	@Basic
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date interestDate;
+
+	@OneToMany
+	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	public long getId() {
 		return id;
@@ -87,36 +111,36 @@ public class BondHeader implements Serializable {
 		this.area = param;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String param) {
+	public void setDueDate(Date param) {
 		this.dueDate = param;
 	}
 
-	public String getInterestIntervall() {
+	public byte getInterestIntervall() {
 		return interestIntervall;
 	}
 
-	public void setInterestIntervall(String param) {
+	public void setInterestIntervall(byte param) {
 		this.interestIntervall = param;
 	}
 
-	public String getInterestDate() {
+	public Date getInterestDate() {
 		return interestDate;
 	}
 
-	public void setInterestDate(String param) {
+	public void setInterestDate(Date param) {
 		this.interestDate = param;
 	}
 
-	public String getInterestPerYear() {
-		return interestPerYear;
+	public Collection<Interest> getInterest() {
+	    return interest;
 	}
 
-	public void setInterestPerYear(String param) {
-		this.interestPerYear = param;
+	public void setInterest(Collection<Interest> param) {
+	    this.interest = param;
 	}
 
 }

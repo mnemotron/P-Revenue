@@ -1,11 +1,15 @@
 package revenue.entity;
 
 import java.io.Serializable;
+import java.util.Currency;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Fee")
+@Table(name = "T_FEE")
 public class Fee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,9 +20,12 @@ public class Fee implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	private String description;
-	private String unit;
-	private String fee;
+	
+	private Currency unit;
+	
+	private double fee;
 
 	public long getId() {
 		return id;
@@ -36,19 +43,19 @@ public class Fee implements Serializable {
 		this.description = param;
 	}
 
-	public String getUnit() {
+	public Currency getUnit() {
 		return unit;
 	}
 
-	public void setUnit(String param) {
+	public void setUnit(Currency param) {
 		this.unit = param;
 	}
 
-	public String getFee() {
+	public double getFee() {
 		return fee;
 	}
 
-	public void setFee(String param) {
+	public void setFee(double param) {
 		this.fee = param;
 	}
 

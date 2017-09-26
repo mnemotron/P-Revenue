@@ -8,10 +8,14 @@ import javax.persistence.Id;
 import revenue.entity.Portfolio;
 import javax.persistence.ManyToOne;
 import revenue.entity.BondHeader;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@Entity
+@Entity(name = "Depot")
+@Table(name = "T_DEPOT")
 public class Depot implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +31,7 @@ public class Depot implements Serializable {
 	private Portfolio portfolio;
 
 	@OneToMany(mappedBy = "depot")
-	private Collection<BondHeader> bondHeader;
+	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
 
 	private String name;
 

@@ -1,13 +1,25 @@
 package revenue.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import revenue.entity.BondHeader;
 import revenue.entity.Fee;
-import java.util.Collection;
 
-@Entity
-@Table(name = "BondHeader")
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity(name = "BondItemBuy")
+@Table(name = "T_BONDITEMBUY")
 public class BondItemBuy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,13 +30,20 @@ public class BondItemBuy implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	@ManyToOne
 	private BondHeader bondHeader;
-	private String buyDate;
-	private String buyPercent;
-	private String nominalValue;
+	
+	@Basic
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date buyDate;
+	
+	private double buyPercent;
+	
+	private double nominalValue;
+	
 	@OneToMany
-	private Collection<Fee> fee;
+	private Collection<Fee> fee = new ArrayList<Fee>();
 
 	public long getId() {
 		return id;
@@ -42,27 +61,27 @@ public class BondItemBuy implements Serializable {
 		this.bondHeader = param;
 	}
 
-	public String getBuyDate() {
+	public Date getBuyDate() {
 		return buyDate;
 	}
 
-	public void setBuyDate(String param) {
+	public void setBuyDate(Date param) {
 		this.buyDate = param;
 	}
 
-	public String getBuyPercent() {
+	public double getBuyPercent() {
 		return buyPercent;
 	}
 
-	public void setBuyPercent(String param) {
+	public void setBuyPercent(double param) {
 		this.buyPercent = param;
 	}
 
-	public String getNominalValue() {
+	public double getNominalValue() {
 		return nominalValue;
 	}
 
-	public void setNominalValue(String param) {
+	public void setNominalValue(double param) {
 		this.nominalValue = param;
 	}
 
