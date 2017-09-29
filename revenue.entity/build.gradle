@@ -1,0 +1,30 @@
+// PLUGINS
+apply plugin: 'java'
+
+// PARAMETER
+version='1.0'
+
+// MANIFEST
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name,
+                   "Implementation-Version": version)
+    }
+}
+
+// DEPENDENCIES
+dependencies {
+	compile fileTree(dir: 'libs/eclipselink-2.5.2', include: ['*.jar'])
+}
+
+// SOURCE SETS
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+        	srcDir 'src'
+        }
+    }
+}
