@@ -5,6 +5,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import revenue.entity.Depot;
@@ -29,7 +30,7 @@ public class Portfolio implements Serializable {
 	@GeneratedValue
 	private long id;
 	
-	@OneToMany(mappedBy = "portfolio")
+	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER)
 	private Collection<Depot> depot = new ArrayList<Depot>();
 	
 	private String name;

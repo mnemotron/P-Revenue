@@ -3,6 +3,7 @@ package revenue.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import revenue.entity.Portfolio;
@@ -30,7 +31,7 @@ public class Depot implements Serializable {
 	@ManyToOne
 	private Portfolio portfolio;
 
-	@OneToMany(mappedBy = "depot")
+	@OneToMany(mappedBy = "depot", fetch = FetchType.EAGER)
 	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
 
 	private String name;

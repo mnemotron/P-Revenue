@@ -31,7 +31,7 @@ public class BondHeader implements Serializable {
 	@ManyToOne
 	private Depot depot;
 	
-	@OneToMany(mappedBy = "bondHeader")
+	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)
 	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
 	
 	private String name;
@@ -52,7 +52,7 @@ public class BondHeader implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date interestDate;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	public long getId() {
