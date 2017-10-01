@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE hibernate-configuration PUBLIC   
+        "-//Hibernate/Hibernate Configuration DTD//EN"  
+        "http://www.hibernate.org/dtd/hibernate-configuration">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Settings for a local HSQL (testing) database. -->
+		<!-- <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property> -->
+		<!-- <property name="hibernate.connection.driver_class">org.hsqldb.jdbc.JDBCDriver</property> -->
+		<!-- <property name="connection.url">jdbc:hsqldb:hsql://localhost:9001/revenue</property> -->
+		<!-- <property name="connection.username">sa</property> -->
+		<!-- <property name="connection.password"></property> -->
+
+		<!-- Use the C3P0 connection pool. -->
+		<!-- <property name="c3p0.min_size">3</property> -->
+		<!-- <property name="c3p0.max_size">5</property> -->
+		<!-- <property name="c3p0.timeout">1800</property> -->
+
+		<!-- Disable second-level cache. -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="cache.use_query_cache">false</property>
+		<property name="cache.use_minimal_puts">false</property>
+		<property name="max_fetch_depth">3</property>
+
+		<!-- Print SQL to stdout. -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+
+		<!-- Drop and then re-create schema on SessionFactory build, for testing. -->
+		<!-- <property name="hbm2ddl.auto">create</property> -->
+
+		<!-- Bind the getCurrentSession() method to the thread. -->
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<property name="hibernate.connection.datasource">java:comp/env/jdbc/revenue</property>
+
+		<mapping class="revenue.entity.Fee" />
+		<mapping class="revenue.entity.Interest" />
+		<mapping class="revenue.entity.BondItemBuy" />
+		<mapping class="revenue.entity.BondHeader" />
+		<mapping class="revenue.entity.Depot" />
+		<mapping class="revenue.entity.Portfolio" />
+
+	</session-factory>
+
+</hibernate-configuration>  
