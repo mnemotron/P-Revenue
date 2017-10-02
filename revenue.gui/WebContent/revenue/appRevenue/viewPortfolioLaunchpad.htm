@@ -1,24 +1,29 @@
 <div ng-controller="ctrlViewPortfolioLaunchpad">
 	<div class="container">
+		<div class="row">&nbsp;</div>
 		<div class="row ">
 			<div class="col" ng-repeat="portfolio in portfolios">
-				<div class="card border-dark mb-3">
-					<div class="card-header">{{portfolio.name}}</div>
-					<div class="card-body text-dark">
-						<div class="card-title"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card border-dark mb-3">
-					<div class="card-header">Create Portfolio</div>
-					<div class="card-body text-dark">
-						<div class="card-title">
-							<img src="icon/plus-4x.png" class="mx-auto d-block"
-								alt="Create Portfolio" />
+				<a href="#">
+					<div class="card text-white mb-3" style="max-width: 20rem;">
+						<div class="card-header bg-primary">{{portfolio.name}}</div>
+						<div class="card-body bg-light">
+							<div class="card-title"></div>
 						</div>
 					</div>
-				</div>
+				</a>
+			</div>
+			<div class="col">
+				<a href="#!viewCreatePortfolio">
+					<div class="card text-white mb-3" style="max-width: 20rem;">
+						<div class="card-header bg-primary">Create Portfolio</div>
+						<div class="card-body bg-light">
+							<div class="card-title">
+								<img src="icon/plus-4x.png" class="mx-auto d-block"
+									alt="Create Portfolio" />
+							</div>
+						</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
