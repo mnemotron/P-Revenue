@@ -29,3 +29,4 @@ appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
 			});
 
 });
+
