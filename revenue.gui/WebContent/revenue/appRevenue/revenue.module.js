@@ -3,7 +3,7 @@
  */
 
 // MODULE
-var appRevenue = angular.module('appRevenue', [ 'ngRoute' ]);
+var appRevenue = angular.module('appRevenue', [ 'ngRoute', 'ngSanitize', 'pascalprecht.translate' ]);
 
 // CONFIG
 appRevenue.config(function($routeProvider) {
@@ -15,7 +15,33 @@ appRevenue.config(function($routeProvider) {
 	});
 });
 
+appRevenue.config(function($translateProvider) {
+	
+	$translateProvider.useStaticFilesLoader({
+	    prefix: '../lang/lang-',
+	    suffix: '.json'
+	  });
+
+	  $translateProvider.preferredLanguage('de_DE');
+	  
+	  $translateProvider.useSanitizeValueStrategy('sanitize');
+	  
+});
+
 // CONTROLLER
+appRevenue.controller('ctrlTranslate', function($scope, $translate) {
+
+	$scope.changeLang = function (key) {
+  $translate.use(key)
+//  .then(function (key) {
+//    console.log("Sprache zu " + key + " gewechselt.");
+//  }, function (key) {
+//    console.log("Irgendwas lief schief.");
+//  });
+};
+
+});
+
 appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
 
 	$http.get(
@@ -26,10 +52,10 @@ appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
 
 });
 
-appRevenue.controller('ctrlViewCreatePortfolio', function($scope, $http) {
+appRevenue.controller('ctrlViewCreatePortfolio',function($scope, $http) {
 
-	$scope.createPortfolio = function() {
-		$http.post('http://localhost:8080/revenue.service/portfolio/createPortfolio', $scope.portfolio);
-	};
+					$scope.createPortfolio = function() {
+						$http.post('http://localhost:8080/revenue.service/portfolio/createPortfolio', $scope.portfolio);
+					};
 
 });

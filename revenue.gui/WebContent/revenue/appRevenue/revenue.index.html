@@ -18,21 +18,38 @@
 
 <!-- Scripts -->
 <script src="../lib/angular_1.6.6/js/angular.min.js"></script>
+<script src="../lib/angular_1.6.6/js/angular-sanitize.min.js"></script>
 <script src="../lib/angular_1.6.6/js/angular-route.min.js"></script>
-<script src="revenue.module.js"></script>
+<script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
+<script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-static-files.min.js"></script>
+<script src="revenue.module.js"></script>	
 
 </head>
 
 <!-- Body -->
-<body ng-app="appRevenue">
+<body ng-app="appRevenue" ng-controller="ctrlTranslate">
 	<nav class="navbar navbar-dark bg-primary navbar-fixed-top">
 		<div class="container-fluid">
 <!-- 			<h4 class="navbar-brand"> -->
 			  <a class="navbar-brand" href="#"><b>Revenue</b></a>
 <!-- 			</h4> -->
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="text-white nav-link" href="#">DE</a></li>
+				<li><a class="text-white nav-link" href="#" ng-click="changeLang('de_DE')">DE</a></li>
+				<li><a class="text-white nav-link" href="#" ng-click="changeLang('en_EN')">EN</a></li>
 			</ul>
+
+
+<!-- <li class="nav-item dropdown"> -->
+<!--     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a> -->
+<!--     <div class="dropdown-menu"> -->
+<!--       <a class="dropdown-item" href="#">Action</a> -->
+<!--       <a class="dropdown-item" href="#">Another action</a> -->
+<!--       <a class="dropdown-item" href="#">Something else here</a> -->
+<!--       <div class="dropdown-divider"></div> -->
+<!--       <a class="dropdown-item" href="#">Separated link</a> -->
+<!--     </div> -->
+<!--    </li> -->
+
 		</div>
 	</nav>
 <!-- 	<div class="container-fluid bg-primary"> -->
@@ -48,7 +65,8 @@
 		<div class="container-fluid">
 			<h6 class="text-white nav-item">Made by mnemotron.</h6>
 		</div>
-	</nav>
+	</nav>	
+	
 </body>
 
 </html>
