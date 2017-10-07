@@ -12,10 +12,6 @@ appRevenue.config(function($routeProvider) {
 		controller : 'ctrlViewPortfolioLaunchpad'
 	}).when('/viewCreatePortfolio', {
 		templateUrl : 'viewCreatePortfolio.htm'
-	// }).when("/green", {
-	// templateUrl : "green.htm"
-	// }).when("/blue", {
-	// templateUrl : "blue.htm"
 	});
 });
 
@@ -27,5 +23,13 @@ appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
 			.then(function(response) {
 				$scope.portfolios = response.data
 			});
+
+});
+
+appRevenue.controller('ctrlViewCreatePortfolio', function($scope, $http) {
+
+	$scope.createPortfolio = function() {
+		$http.post('http://localhost:8080/revenue.service/portfolio/createPortfolio', $scope.portfolio);
+	};
 
 });

@@ -1,6 +1,5 @@
 package revenue.entity;
 
-
 import static javax.persistence.TemporalType.TIMESTAMP;
 
 import java.io.Serializable;
@@ -10,8 +9,11 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import revenue.entity.Depot;
 
 import java.util.ArrayList;
@@ -21,19 +23,24 @@ import javax.persistence.FetchType;
 
 @Entity(name = "Portfolio")
 @Table(name = "T_PORTFOLIO")
-public class Portfolio implements Serializable {
+@XmlRootElement
+public class Portfolio implements Serializable
+{
 
 	private static final long serialVersionUID = 1L;
 
-	public Portfolio() {
+	public Portfolio()
+	{
 	}
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
+	@Basic
+	@Lob
 	private String name;
-	
+
 	@Basic
 	@Temporal(TIMESTAMP)
 	private Date creationDate;
@@ -41,36 +48,56 @@ public class Portfolio implements Serializable {
 	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER)
 	private Collection<Depot> depot = new ArrayList<Depot>();
 
-	public long getId() {
+	private String description;
+
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String param) {
+	public void setName(String param)
+	{
 		this.name = param;
 	}
 
-	public Date getCreationDate() {
+	public Date getCreationDate()
+	{
 		return creationDate;
 	}
 
-	public void setCreationDate(Date param) {
+	public void setCreationDate(Date param)
+	{
 		this.creationDate = param;
 	}
 
-	public Collection<Depot> getDepot() {
-	    return depot;
+	public Collection<Depot> getDepot()
+	{
+		return depot;
 	}
 
-	public void setDepot(Collection<Depot> param) {
-	    this.depot = param;
+	public void setDepot(Collection<Depot> param)
+	{
+		this.depot = param;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String param)
+	{
+		this.description = param;
 	}
 
 }

@@ -53,7 +53,7 @@ public class BondHeader implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date interestDate;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
 	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)

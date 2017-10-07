@@ -7,7 +7,6 @@ import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -38,7 +37,7 @@ public class BondItemBuy implements Serializable {
 	
 	private double nominalValue;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
 	private Collection<Fee> fee = new ArrayList<Fee>();
 
 	@ManyToOne
