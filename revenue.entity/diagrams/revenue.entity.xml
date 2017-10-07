@@ -47,8 +47,8 @@
 		<entity-name>revenue.entity.Depot</entity-name>
 		<entity-width>171</entity-width>
 		<entity-height>166</entity-height>
-		<entity-X-Coordinate>306</entity-X-Coordinate>
-		<entity-Y-Coordinate>33</entity-Y-Coordinate>
+		<entity-X-Coordinate>332</entity-X-Coordinate>
+		<entity-Y-Coordinate>56</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
