@@ -1,14 +1,21 @@
 package revenue.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import revenue.entity.Depot;
-import revenue.entity.BondItemBuy;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import revenue.entity.Interest;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import revenue.entity.Depot;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "BondHeader")
 @Table(name = "T_BONDHEADER")
@@ -27,12 +34,6 @@ public class BondHeader implements Serializable {
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	@ManyToOne
-	private Depot depot;
-	
-	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)
-	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
 	
 	private String name;
 	
@@ -55,20 +56,18 @@ public class BondHeader implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER)
 	private Collection<Interest> interest = new ArrayList<Interest>();
 
+	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)
+	private Collection<BondItemBuy> bondItemBuy;
+
+	@ManyToOne
+	private Depot depot;
+
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Depot getDepot() {
-		return depot;
-	}
-
-	public void setDepot(Depot param) {
-		this.depot = param;
 	}
 
 	public Collection<BondItemBuy> getBondItem() {
@@ -141,6 +140,22 @@ public class BondHeader implements Serializable {
 
 	public void setInterest(Collection<Interest> param) {
 	    this.interest = param;
+	}
+
+	public Collection<BondItemBuy> getBondItemBuy() {
+	    return bondItemBuy;
+	}
+
+	public void setBondItemBuy(Collection<BondItemBuy> param) {
+	    this.bondItemBuy = param;
+	}
+
+	public Depot getDepot() {
+	    return depot;
+	}
+
+	public void setDepot(Depot param) {
+	    this.depot = param;
 	}
 
 }

@@ -3,17 +3,16 @@ package revenue.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import revenue.entity.Portfolio;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import revenue.entity.BondHeader;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
 
 @Entity(name = "Depot")
 @Table(name = "T_DEPOT")
@@ -28,13 +27,13 @@ public class Depot implements Serializable {
 	@GeneratedValue
 	private long id;
 
+	private String name;
+
 	@ManyToOne
 	private Portfolio portfolio;
 
 	@OneToMany(mappedBy = "depot", fetch = FetchType.EAGER)
 	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
-
-	private String name;
 
 	public long getId() {
 		return id;
@@ -44,28 +43,28 @@ public class Depot implements Serializable {
 		this.id = id;
 	}
 
-	public Portfolio getPortfolio() {
-		return portfolio;
-	}
-
-	public void setPortfolio(Portfolio param) {
-		this.portfolio = param;
-	}
-
-	public Collection<BondHeader> getBondHeader() {
-		return bondHeader;
-	}
-
-	public void setBondHeader(Collection<BondHeader> param) {
-		this.bondHeader = param;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String param) {
 		this.name = param;
+	}
+
+	public Portfolio getPortfolio() {
+	    return portfolio;
+	}
+
+	public void setPortfolio(Portfolio param) {
+	    this.portfolio = param;
+	}
+
+	public Collection<BondHeader> getBondHeader() {
+	    return bondHeader;
+	}
+
+	public void setBondHeader(Collection<BondHeader> param) {
+	    this.bondHeader = param;
 	}
 
 }
