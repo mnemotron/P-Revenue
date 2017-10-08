@@ -5,27 +5,27 @@
 			<div class="col">
 				<div class="card text-white mb-3">
 					<div class="card-header bg-primary">
-						<b>Create Portfolio</b>
+						<b translate="viewCreatePortfolio.form.title"></b>
 					</div>
 					<div class="card-body bg-light">
 						<form>
 							<div class="form-group">
-								<label for="portfolioName" class="text-dark">Name</label> <input
+								<label for="portfolioName" class="text-dark" translate="viewCreatePortfolio.form.label.name"></label> <input
 									ng-model="portfolio.name" type="portfolioName"
 									class="form-control" id="portfolioName"
 									aria-describedby="portfolioNameHelp"
-									placeholder="Enter the portfolio name">
+									placeholder="{{ 'viewCreatePortfolio.form.input.name.placeholder' | translate }}">
 							</div>
 							<div class="form-group">
-								<label for="portfolioDescription" class="text-dark">Description</label>
+								<label for="portfolioDescription" class="text-dark" translate="viewCreatePortfolio.form.label.description"></label>
 								<textarea ng-model="portfolio.description" class="form-control" id="portfolioDescription"
 									rows="3" aria-describedby="portfolioDescriptionHelp"
-									placeholder="Enter the portfolio description"></textarea>
+									placeholder="{{ 'viewCreatePortfolio.form.input.description.placeholder' | translate }}"></textarea>
 							</div>
 							<div class="form-group">
 								<button ng-click="createPortfolio()" type="submit"
-									class="btn btn-success">Create</button>
-								<a class="btn btn-danger" href="#" role="button">Cancel</a>
+									class="btn btn-success" translate="viewCreatePortfolio.form.button.create"></button>
+								<a class="btn btn-danger" href="#" role="button" translate="viewCreatePortfolio.form.button.cancel"></a>
 							</div>
 						</form>
 					</div>

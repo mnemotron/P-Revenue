@@ -1,3 +1,13 @@
 {
-	"portfolio.launchpad.create.title": "Create Portfolio"
+	"viewIndex.language.de": "German",
+	"viewIndex.language.en": "English",
+	"viewPortfolioLaunchpad.create.title": "Create Portfolio",
+	"viewPortfolioLaunchpad.exist.title": "Portfolio",
+	"viewCreatePortfolio.form.title": "Create Portfolio",
+	"viewCreatePortfolio.form.label.name": "Name",
+	"viewCreatePortfolio.form.label.description": "Description",
+	"viewCreatePortfolio.form.button.create": "Create",
+	"viewCreatePortfolio.form.button.cancel": "Cancel",
+	"viewCreatePortfolio.form.input.description.placeholder": "Enter the portfolio description",
+	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name"
 }
