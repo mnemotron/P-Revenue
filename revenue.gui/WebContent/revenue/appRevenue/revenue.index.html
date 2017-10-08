@@ -13,60 +13,68 @@
 <meta charset="UTF-8">
 
 <!-- Links -->
-<link rel="stylesheet"
-	href="../lib/bootstrap_4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../lib/bootstrap-4.0.0/css/bootstrap.min.css">
 
 <!-- Scripts -->
-<script src="../lib/angular_1.6.6/js/angular.min.js"></script>
-<script src="../lib/angular_1.6.6/js/angular-sanitize.min.js"></script>
-<script src="../lib/angular_1.6.6/js/angular-route.min.js"></script>
+<script src="../lib/angular-1.6.6/js/angular.min.js"></script>
+<script src="../lib/angular-1.6.6/js/angular-sanitize.min.js"></script>
+<script src="../lib/angular-1.6.6/js/angular-route.min.js"></script>
 <script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
 <script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-static-files.min.js"></script>
-<script src="revenue.module.js"></script>	
+<script src="../lib/jquery-3.2.1/js/jquery-3.2.1.min.js"></script>
+<script src="../lib/popper-1.11.0/js/popper.min.js"></script>
+<script src="../lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+<script src="revenue.module.js"></script>
 
 </head>
 
 <!-- Body -->
 <body ng-app="appRevenue" ng-controller="ctrlTranslate">
-	<nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+
+	<nav class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
 		<div class="container-fluid">
-<!-- 			<h4 class="navbar-brand"> -->
-			  <a class="navbar-brand" href="#"><b>Revenue</b></a>
-<!-- 			</h4> -->
-			<ul class="nav navbar-nav navbar-right">
-				<li><a class="text-white nav-link" href="#" ng-click="changeLang('de_DE')">DE</a></li>
-				<li><a class="text-white nav-link" href="#" ng-click="changeLang('en_EN')">EN</a></li>
-			</ul>
 
+			<a class="navbar-brand" href="#"><b>Revenue</b></a>
 
-<!-- <li class="nav-item dropdown"> -->
-<!--     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a> -->
-<!--     <div class="dropdown-menu"> -->
-<!--       <a class="dropdown-item" href="#">Action</a> -->
-<!--       <a class="dropdown-item" href="#">Another action</a> -->
-<!--       <a class="dropdown-item" href="#">Something else here</a> -->
-<!--       <div class="dropdown-divider"></div> -->
-<!--       <a class="dropdown-item" href="#">Separated link</a> -->
-<!--     </div> -->
-<!--    </li> -->
-
+			<div class="collapse navbar-collapse" id="nav-content">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" data-toggle="dropdown" id="language" href="#" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
+						<div class="dropdown-menu" aria-labelledby="Preview">
+							<a ng-click="changeLang('de_DE')" class="dropdown-item" href="#">
+							<img src="icon/DE.png"></img>
+							<span>DE</span>
+							</a> 
+							
+							<a ng-click="changeLang('en_EN')" class="dropdown-item" href="#">
+							<img src="icon/GB.png"></img> 
+							<span>EN</span>
+							</a>
+						</div></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
-<!-- 	<div class="container-fluid bg-primary"> -->
-<!-- 		<nav class="breadcrumb bg-primary"> -->
-<!-- 			<a class="breadcrumb-item text-white" href="#">Home</a> <a -->
-<!-- 				class="breadcrumb-item text-white" href="#">Library</a> <a -->
-<!-- 				class="breadcrumb-item text-white" href="#">Data</a> <span -->
-<!-- 				class="breadcrumb-item text-white active">Bootstrap</span> -->
-<!-- 		</nav> -->
-<!-- 	</div> -->
+
 	<div ng-view></div>
-	<nav class="navbar navbar-dark bg-primary fixed-bottom">
+
+	<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-bottom">
 		<div class="container-fluid">
-			<h6 class="text-white nav-item">Made by mnemotron.</h6>
+
+			<!-- 			<div class="collapse navbar-collapse" id="nav-content"> -->
+			<!-- 				<ul class="nav navbar-nav"> -->
+			<!-- 					<li class="nav-item dropup"><a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Dropdown </a> -->
+			<!-- 						<div class="dropdown-menu" aria-labelledby="Preview"> -->
+			<!-- 							<a class="dropdown-item" href="#">Dropdown Link 1</a> <a class="dropdown-item" href="#">Dropdown Link 2</a> <a class="dropdown-item" href="#">Dropdown Link 3</a> -->
+			<!-- 						</div></li> -->
+			<!-- 				</ul> -->
+			<!-- 			</div> -->
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><h6 class="text-white nav-item">Made by mnemotron.</h6></li>
+			</ul>
 		</div>
-	</nav>	
-	
+	</nav>
+
 </body>
 
 </html>
