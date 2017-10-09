@@ -37,6 +37,11 @@ public class DepotService
 //		locQuery.setParameter(":portfolio_id", portfolioId);
 
 		ArrayList<Depot> locDepotList = (ArrayList<Depot>) locQuery.list();
+		
+		for (Depot depot : locDepotList)
+		{
+			depot.setPortfolio(null);
+		}
 
 		// locTransaction.commit();
 

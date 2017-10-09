@@ -36,9 +36,14 @@ public class PortfolioService
 
 		Query locQuery = locSession.createQuery("from Portfolio");
 
-		ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.list();
-
+		ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.getResultList();
+		
 		// locTransaction.commit();
+		
+		for (Portfolio portfolio : locPortfolioList)
+		{
+			portfolio.setDepot(null);
+		}
 
 		locSession.close();
 
