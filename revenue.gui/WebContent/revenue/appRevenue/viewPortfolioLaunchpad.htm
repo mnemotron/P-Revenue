@@ -3,7 +3,7 @@
 	<div class="row">&nbsp;</div>
 		<div class="row">
 			<div class="col" ng-repeat="portfolio in portfolios">
-				<a href="#!viewPortfolio" class="nav-link">
+				<a ng-click="selectPortfolio($index)" href="#!viewPortfolio" class="nav-link">
 					<div class="card text-white" >
 						<div class="card-header bg-primary"><b translate="viewPortfolioLaunchpad.exist.title"></b></div>
 						<div class="card-body bg-light">

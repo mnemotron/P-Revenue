@@ -15,7 +15,11 @@ appRevenue.config(function($routeProvider){
 		templateUrl : 'viewCreatePortfolio.htm',
 		controller : 'ctrlViewCreatePortfolio'
 	}).when('/viewPortfolio', {
-		templateUrl : 'viewPortfolio.htm'
+		templateUrl : 'viewPortfolio.htm',
+		controller : 'ctrlViewPortfolio'
+	}).when('/viewCreateDepot', {
+		templateUrl : 'viewCreateDepot.htm',
+		controller : 'ctrlViewCreateDepot'
 	});
 });
 
@@ -32,6 +36,28 @@ appRevenue.config(function($translateProvider) {
 
 });
 
+// SERVICE
+appRevenue.factory("serviceSelectPortfolio", function(){
+	
+	var portfolio;
+	
+	function setPortfolio(locPortfolio)
+	{
+		portfolio = locPortfolio;
+	}
+	
+	function getPortfolio()
+	{
+		return portfolio;
+	}
+	
+	return{
+		setPortfolio: setPortfolio,
+		getPortfolio: getPortfolio
+	};
+	
+});
+
 // CONTROLLER
 appRevenue.controller('ctrlTranslate', function($scope, $translate) {
 
@@ -46,10 +72,16 @@ appRevenue.controller('ctrlTranslate', function($scope, $translate) {
 
 });
 
-appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
+appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, serviceSelectPortfolio) {
+	
+			$scope.selectPortfolio = function(index) {
+				
+				console.log($scope.portfolios[index].name);
+				
+				serviceSelectPortfolio.setPortfolio($scope.portfolios[index])
+			};
 
-			$http
-					.get('http://localhost:8080/revenue.service/portfolio/getPortfolioList')
+			$http.get('http://localhost:8080/revenue.service/portfolio/service/getPortfolioList')
 					.then(function(response) {
 						$scope.portfolios = response.data
 					});
@@ -59,8 +91,26 @@ appRevenue.controller('ctrlViewPortfolioLaunchpad', function($scope, $http) {
 appRevenue.controller('ctrlViewCreatePortfolio', function($scope, $http) {
 
 			$scope.createPortfolio = function() {
-				$http
-						.post('http://localhost:8080/revenue.service/portfolio/createPortfolio', $scope.portfolio);
+				$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio);
 			};
 
 		});
+
+appRevenue.controller('ctrlViewPortfolio', function($scope, $http, serviceSelectPortfolio) {
+
+	$scope.selectedPortfolio = serviceSelectPortfolio.getPortfolio();
+	
+	$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params: {id: $scope.selectedPortfolio.id}})
+	.then(function(response) {
+		$scope.depots = response.data
+	});
+	
+});
+
+appRevenue.controller('ctrlViewCreateDepot', function($scope, $http) {
+
+	$scope.createDepot = function() {
+//		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio);
+	};
+
+});

@@ -9,5 +9,10 @@
 	"viewCreatePortfolio.form.button.create": "Create",
 	"viewCreatePortfolio.form.button.cancel": "Cancel",
 	"viewCreatePortfolio.form.input.description.placeholder": "Enter the portfolio description",
-	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name"
+	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name",
+	"viewCreateDepot.form.title": "Create Depot",
+	"viewCreateDepot.form.label.name": "Name",
+	"viewCreateDepot.form.input.name.placeholder": "Enter the depot name",
+	"viewCreateDepot.form.button.create": "Create",
+	"viewCreateDepot.form.button.cancel": "Cancel"
 }

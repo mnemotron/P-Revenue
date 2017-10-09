@@ -3,9 +3,6 @@ package revenue.service.portfolio;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.annotation.Resource;
-import javax.json.JsonObject;
-import javax.sql.DataSource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,7 +17,7 @@ import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.entity.Response;
 
-@Path("/portfolio")
+@Path("/service")
 public class PortfolioService
 {
 
@@ -29,8 +26,7 @@ public class PortfolioService
 
 	// HTTP-GET: read, query
 	@GET
-	@Produces(
-	{ MediaType.APPLICATION_JSON })
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getPortfolioList")
 	public ArrayList<Portfolio> getPortfolioList()
 	{
@@ -67,7 +63,7 @@ public class PortfolioService
 		locSession.save(portfolio);
 
 		locTransaction.commit();
-		
+
 		locSession.close();
 
 		return locResponse;
