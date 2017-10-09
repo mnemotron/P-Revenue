@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import revenue.entity.BondHeader;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import javax.persistence.FetchType;
 
 @Entity(name = "Depot")
 @Table(name = "T_DEPOT")
+@XmlRootElement
 public class Depot implements Serializable {
 
 	private static final long serialVersionUID = 1L;
