@@ -28,22 +28,3 @@ portfolioConfig.config(function($routeProvider){
 			controller : 'ctrlViewCreateDepot'
 		});
 });
-
-portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http) {
-
-	$scope.createPortfolio = function() {
-		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio);
-	};
-
-});
-
-portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, serviceSelectPortfolio) {
-
-$scope.selectedPortfolio = serviceSelectPortfolio.getPortfolio();
-
-$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params: {id: $scope.selectedPortfolio.id}})
-.then(function(response) {
-$scope.depots = response.data
-});
-
-});
