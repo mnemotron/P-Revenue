@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!-- HTML -->
-<html>
+<html ng-app="appRevenue">
 
 <!-- Head -->
 <head>
@@ -13,23 +13,13 @@
 <meta charset="UTF-8">
 
 <!-- Links -->
+<!-- <link rel="shortcut icon" type="image/png" href="favicon.ico"> -->
 <link rel="stylesheet" href="../lib/bootstrap-4.0.0/css/bootstrap.min.css">
-
-<!-- Scripts -->
-<script src="../lib/angular-1.6.6/js/angular.min.js"></script>
-<script src="../lib/angular-1.6.6/js/angular-sanitize.min.js"></script>
-<script src="../lib/angular-1.6.6/js/angular-route.min.js"></script>
-<script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
-<script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-static-files.min.js"></script>
-<script src="../lib/jquery-3.2.1/js/jquery-3.2.1.min.js"></script>
-<script src="../lib/popper-1.11.0/js/popper.min.js"></script>
-<script src="../lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>
-<script src="revenue.module.js"></script>
 
 </head>
 
 <!-- Body -->
-<body ng-app="appRevenue" ng-controller="ctrlTranslate">
+<body ng-controller="ctrlTranslate">
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
 		<div class="container-fluid">
@@ -78,6 +68,25 @@
 			</ul>
 		</div>
 	</nav>
+
+<!-- Vendor Scripts -->
+<script src="../lib/angular-1.6.6/js/angular.min.js"></script>
+<script src="../lib/angular-1.6.6/js/angular-sanitize.min.js"></script>
+<script src="../lib/angular-1.6.6/js/angular-route.min.js"></script>
+<script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
+<script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-static-files.min.js"></script>
+<script src="../lib/jquery-3.2.1/js/jquery-3.2.1.min.js"></script>
+<script src="../lib/popper-1.11.0/js/popper.min.js"></script>
+<script src="../lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+
+<!--  Customs Scripts -->
+<script src="revenue.module.js"></script>
+<script src="config/revenue.config.js"></script>
+<script src="service/selectPortfolio.service.js"></script>
+<script src="module/portfolio/config/portfolio.config.js"></script>
+<script src="module/portfolio/portfolio.module.js"></script>
+<script src="module/depot/config/depot.config.js"></script>
+<script src="module/depot/depot.module.js"></script>
 
 </body>
 
