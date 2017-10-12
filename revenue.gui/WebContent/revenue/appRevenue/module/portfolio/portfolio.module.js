@@ -19,11 +19,19 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 
 });
 
-portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http) {
+portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $location) {
 
 	$scope.createPortfolio = function() {
-		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio);
-	};
+		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio)
+		
+			.then(function successCallback(response) {
+				  $location.path( '/' );
+			}, 
+			
+			function errorCallback(response) {
+				
+			});
+	}
 
 });
 

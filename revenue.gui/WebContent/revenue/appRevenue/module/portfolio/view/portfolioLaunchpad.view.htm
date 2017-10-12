@@ -2,9 +2,9 @@
 	<div class="container">
 	<div class="row">&nbsp;</div>
 		<div class="row">
-			<div class="col" ng-repeat="portfolio in portfolios">
+			<div class="col col-lg-4" ng-repeat="portfolio in portfolios">
 				<a ng-click="selectPortfolio($index)" href="#!viewPortfolio" class="nav-link">
-					<div class="card text-white" >
+					<div class="card text-white" style="height: 12rem;">
 						<div class="card-header bg-primary"><b translate="viewPortfolioLaunchpad.exist.title"></b></div>
 						<div class="card-body bg-light">
 							<h4 class="card-title text-dark">{{portfolio.name}}</h4>
@@ -13,7 +13,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="col">
+			<div class="col col-lg-4">
 				<a href="#!viewCreatePortfolio" class="nav-link">
 					<div class="card text-white">
 						<div class="card-header bg-secondary"><b translate="viewPortfolioLaunchpad.create.title"></b></div>

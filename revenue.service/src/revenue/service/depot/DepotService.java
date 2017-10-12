@@ -17,6 +17,7 @@ import org.hibernate.query.Query;
 import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
+import revenue.service.entity.Response;
 
 @Path("/service")
 public class DepotService
@@ -34,10 +35,10 @@ public class DepotService
 
 		Query locQuery = locSession.createQuery("from Depot where portfolio_id = " + portfolioId);
 
-//		locQuery.setParameter(":portfolio_id", portfolioId);
+		// locQuery.setParameter(":portfolio_id", portfolioId);
 
 		ArrayList<Depot> locDepotList = (ArrayList<Depot>) locQuery.list();
-		
+
 		for (Depot depot : locDepotList)
 		{
 			depot.setPortfolio(null);
@@ -51,29 +52,28 @@ public class DepotService
 	}
 
 	// HTTP-POST: create
-	// @POST
-	// @Produces(MediaType.APPLICATION_JSON)
-	// @Consumes(MediaType.APPLICATION_JSON)
-	// @Path("/createPortfolio")
-	// public Response createPortfolio(Portfolio portfolio)
-	// {
-	// Response locResponse = new Response();
-	//
-	// portfolio.setCreationDate(new Date());
-	//
-	// Session locSession =
-	// HibernateSessionFactory.getSessionFactory().getCurrentSession();
-	//
-	// Transaction locTransaction = locSession.beginTransaction();
-	//
-	// locSession.save(portfolio);
-	//
-	// locTransaction.commit();
-	//
-	// locSession.close();
-	//
-	// return locResponse;
-	// }
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/createPortfolio")
+	public Response createPortfolio(Depot depot)
+	{
+		Response locResponse = new Response();
+//
+//		depot.setCreationDate(new Date());
+//
+//		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+//
+//		Transaction locTransaction = locSession.beginTransaction();
+//
+//		locSession.save(portfolio);
+//
+//		locTransaction.commit();
+//
+//		locSession.close();
+//
+		return locResponse;
+	}
 
 	// HTTP-PUT: update
 
