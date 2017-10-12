@@ -1,7 +1,6 @@
 package revenue.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -10,12 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import revenue.entity.Depot;
-import javax.persistence.ManyToOne;
+import revenue.entity.Interest;
 
 @Entity(name = "BondHeader")
 @Table(name = "T_BONDHEADER")
@@ -53,14 +53,17 @@ public class BondHeader implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date interestDate;
 
-	@OneToMany
-	private Collection<Interest> interest = new ArrayList<Interest>();
-
 	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)
 	private Collection<BondItemBuy> bondItemBuy;
 
 	@ManyToOne
 	private Depot depot;
+
+	@OneToOne
+	private Portfolio portfolio;
+
+	@OneToMany(mappedBy = "bondHeader")
+	private Collection<Interest> interest;
 
 	public long getId() {
 		return id;
@@ -134,14 +137,6 @@ public class BondHeader implements Serializable {
 		this.interestDate = param;
 	}
 
-	public Collection<Interest> getInterest() {
-	    return interest;
-	}
-
-	public void setInterest(Collection<Interest> param) {
-	    this.interest = param;
-	}
-
 	public Collection<BondItemBuy> getBondItemBuy() {
 	    return bondItemBuy;
 	}
@@ -156,6 +151,22 @@ public class BondHeader implements Serializable {
 
 	public void setDepot(Depot param) {
 	    this.depot = param;
+	}
+
+	public Portfolio getPortfolio() {
+	    return portfolio;
+	}
+
+	public void setPortfolio(Portfolio param) {
+	    this.portfolio = param;
+	}
+
+	public Collection<Interest> getInterest() {
+	    return interest;
+	}
+
+	public void setInterest(Collection<Interest> param) {
+	    this.interest = param;
 	}
 
 }

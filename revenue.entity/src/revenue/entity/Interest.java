@@ -9,8 +9,11 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import revenue.entity.BondHeader;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "Interest")
 @Table(name = "T_INTEREST")
@@ -34,6 +37,15 @@ public class Interest implements Serializable {
 	@Basic
 	@Temporal(TIMESTAMP)
 	private Date validTo;
+
+	@OneToOne
+	private Portfolio portfolio;
+
+	@OneToOne
+	private Depot depot;
+
+	@ManyToOne
+	private BondHeader bondHeader;
 
 	public long getId() {
 		return id;
@@ -65,6 +77,30 @@ public class Interest implements Serializable {
 
 	public void setInterest(double param) {
 		this.interest = param;
+	}
+
+	public Portfolio getPortfolio() {
+	    return portfolio;
+	}
+
+	public void setPortfolio(Portfolio param) {
+	    this.portfolio = param;
+	}
+
+	public Depot getDepot() {
+	    return depot;
+	}
+
+	public void setDepot(Depot param) {
+	    this.depot = param;
+	}
+
+	public BondHeader getBondHeader() {
+	    return bondHeader;
+	}
+
+	public void setBondHeader(BondHeader param) {
+	    this.bondHeader = param;
 	}
 
 }

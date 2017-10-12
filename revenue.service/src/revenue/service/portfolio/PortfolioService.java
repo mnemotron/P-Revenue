@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.entity.Response;

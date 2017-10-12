@@ -1,20 +1,20 @@
 package revenue.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import revenue.entity.BondHeader;
-import javax.persistence.ManyToOne;
+import revenue.entity.Fee;
+import java.util.Collection;
+import javax.persistence.OneToMany;
 
 @Entity(name = "BondItemBuy")
 @Table(name = "T_BONDITEMBUY")
@@ -37,11 +37,17 @@ public class BondItemBuy implements Serializable {
 	
 	private double nominalValue;
 	
-	@OneToMany
-	private Collection<Fee> fee = new ArrayList<Fee>();
-
 	@ManyToOne
 	private BondHeader bondHeader;
+
+	@OneToOne
+	private Portfolio portfolio;
+
+	@OneToOne
+	private Depot depot;
+
+	@OneToMany(mappedBy = "bondItemBuy")
+	private Collection<Fee> fee;
 
 	public long getId() {
 		return id;
@@ -75,20 +81,36 @@ public class BondItemBuy implements Serializable {
 		this.nominalValue = param;
 	}
 
-	public Collection<Fee> getFee() {
-	    return fee;
-	}
-
-	public void setFee(Collection<Fee> param) {
-	    this.fee = param;
-	}
-
 	public BondHeader getBondHeader() {
 	    return bondHeader;
 	}
 
 	public void setBondHeader(BondHeader param) {
 	    this.bondHeader = param;
+	}
+
+	public Portfolio getPortfolio() {
+	    return portfolio;
+	}
+
+	public void setPortfolio(Portfolio param) {
+	    this.portfolio = param;
+	}
+
+	public Depot getDepot() {
+	    return depot;
+	}
+
+	public void setDepot(Depot param) {
+	    this.depot = param;
+	}
+
+	public Collection<Fee> getFee() {
+	    return fee;
+	}
+
+	public void setFee(Collection<Fee> param) {
+	    this.fee = param;
 	}
 
 }
