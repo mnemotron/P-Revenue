@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -38,9 +40,9 @@ public class PortfolioService
 		Query locQuery = locSession.createQuery("from Portfolio");
 
 		ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.getResultList();
-		
+
 		// locTransaction.commit();
-		
+
 		for (Portfolio portfolio : locPortfolioList)
 		{
 			portfolio.setDepot(null);
@@ -78,5 +80,28 @@ public class PortfolioService
 	// HTTP-PUT: update
 
 	// HTP-DELETE: delete
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/deletePortfolio")
+	public Response deletePortfolio(@QueryParam("id") long portfolioId)
+	{
+		Response locResponse = new Response();
+		
+		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+		
+		Transaction locTransaction = locSession.beginTransaction();
+		
+		Query locQuery = locSession.createQuery("from Portfolio where id = " + portfolioId);
+		
+		Portfolio locPortfolio = (Portfolio) locQuery.getSingleResult();
+
+		locSession.delete(locPortfolio);
+
+		locTransaction.commit();
+
+		locSession.close();
+
+		return locResponse;
+	}
 
 }

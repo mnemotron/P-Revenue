@@ -55,8 +55,8 @@ public class DepotService
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/createPortfolio")
-	public Response createPortfolio(Depot depot)
+	@Path("/createDepot")
+	public Response createDepot(Depot depot)
 	{
 		Response locResponse = new Response();
 //

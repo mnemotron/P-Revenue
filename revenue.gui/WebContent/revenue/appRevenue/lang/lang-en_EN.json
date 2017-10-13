@@ -1,7 +1,8 @@
 {
 	"viewIndex.language.de": "German",
 	"viewIndex.language.en": "English",
-	"viewPortfolioLaunchpad.create.title": "Create Portfolio",
+	"viewPortfolioLaunchpad.create.header": "Portfolio",
+	"viewPortfolioLaunchpad.create.title": "Create a portfolio",
 	"viewPortfolioLaunchpad.exist.title": "Portfolio",
 	"viewCreatePortfolio.form.title": "Create Portfolio",
 	"viewCreatePortfolio.form.label.name": "Name",
