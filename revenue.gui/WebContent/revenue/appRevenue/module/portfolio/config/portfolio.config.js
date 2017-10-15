@@ -4,7 +4,7 @@
 
 var portfolioConfig = angular.module('portfolio.config',[
 	'ngRoute', 
-	'selectPortfolio.service',
+	'storage.service',
 	'depot.module'
 	]);
 

@@ -3,8 +3,9 @@
  */
 
 var appRevenueConfig = angular.module('appRevenue.config',[
+	    'ngStorage',
 		'pascalprecht.translate', 
-		'selectPortfolio.service',
+		'storage.service',
 		'portfolio.module'
 		]);
 
