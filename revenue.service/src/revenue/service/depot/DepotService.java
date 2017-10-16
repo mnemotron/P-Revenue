@@ -59,19 +59,17 @@ public class DepotService
 	public Response createDepot(Depot depot)
 	{
 		Response locResponse = new Response();
-//
-//		depot.setCreationDate(new Date());
-//
-//		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-//
-//		Transaction locTransaction = locSession.beginTransaction();
-//
-//		locSession.save(portfolio);
-//
-//		locTransaction.commit();
-//
-//		locSession.close();
-//
+
+		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+
+		Transaction locTransaction = locSession.beginTransaction();
+
+		locSession.save(depot);
+
+		locTransaction.commit();
+
+		locSession.close();
+
 		return locResponse;
 	}
 

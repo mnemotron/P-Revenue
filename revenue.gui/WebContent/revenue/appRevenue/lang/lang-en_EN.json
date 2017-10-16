@@ -15,5 +15,13 @@
 	"viewCreateDepot.form.label.name": "Name",
 	"viewCreateDepot.form.input.name.placeholder": "Enter the depot name",
 	"viewCreateDepot.form.button.create": "Create",
-	"viewCreateDepot.form.button.cancel": "Cancel"
+	"viewCreateDepot.form.button.cancel": "Cancel",
+	"viewPortfolio.portfolio.menu.title": "Portfolio:",
+	"viewPortfolio.portfolio.menu.admin": "Administration",
+	"viewPortfolio.portfolio.menu.admin.delete": "Delete",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.title": "Portfolio:",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.question": "Do you want to delete the portfolio?",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Delete",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Cancel",
+	"viewPortfolio.depot.title": "Depot"
 }

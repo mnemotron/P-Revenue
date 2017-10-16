@@ -46,8 +46,6 @@ public class Portfolio implements Serializable
 	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER)
 	private Collection<Depot> depot = new ArrayList<Depot>();
 
-	@Basic
-	@Lob
 	private String description;
 
 	public long getId()

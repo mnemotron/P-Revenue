@@ -3,6 +3,8 @@
  */
 
 var storageService = angular.module('storage.service', []);
+
+storageService.constant('STORAGE_SERVICE_KEY', {PORTFOLIO: 'portfolio', DEPOT: 'depot'});
 																																																																																																				
 storageService.factory('storageService', function($localStorage) {
 	
@@ -12,10 +14,6 @@ storageService.factory('storageService', function($localStorage) {
 		{
 			$localStorage.data = {[key] : value};
 		}
-//		else if ($localStorage.data[key] === undefined)
-//		{
-//			$localStorage.data[key] = value;
-//		}
 		else
 		{
 			$localStorage.data[key] = value;

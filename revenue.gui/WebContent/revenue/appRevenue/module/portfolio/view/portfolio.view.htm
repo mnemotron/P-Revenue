@@ -7,7 +7,7 @@
 			<div class="col">
 
 				<nav class="navbar navbar-expand-lg navbar-dark bg-primary m-3">
-					<a class="navbar-brand" href="#"><b>Portfolio | {{selectedPortfolio.name}}</b></a>
+					<a class="navbar-brand" href="#"><b>{{'viewPortfolio.portfolio.menu.title'|translate}} {{selectedPortfolio.name}}</b></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -15,9 +15,9 @@
 						<ul class="navbar-nav">
 							<!-- 					    <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li> -->
 							<li class="nav-item dropdown">
-								<div class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</div>
+								<div class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewPortfolio.portfolio.menu.admin"></div>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item" data-toggle="modal" data-target="#deletePortfolioModal" href="">Löschen</a>
+									<a class="dropdown-item" data-toggle="modal" data-target="#deletePortfolioModal" href="" translate="viewPortfolio.portfolio.menu.admin.delete"></a>
 								</div>
 							</li>
 						</ul>
@@ -28,15 +28,15 @@
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="deletePortfolioModalLabel">Delete Portfolio | {{selectedPortfolio.name}}</h5>
+									<h5 class="modal-title" id="deletePortfolioModalLabel">{{'viewPortfolio.portfolio.menu.admin.delete.dialog.title'|translate}} {{selectedPortfolio.name}}</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<div class="modal-body">Do you want to delete the portfolio?</div>
+								<div class="modal-body" translate="viewPortfolio.portfolio.menu.admin.delete.dialog.question"></div>
 								<div class="modal-footer">
-									<button ng-click="deletePortfolio()" type="button" class="btn btn-primary" data-dismiss="modal">Delete</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+									<button ng-click="deletePortfolio()" type="button" class="btn btn-primary" data-dismiss="modal" translate="viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete"></button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal" translate="viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel"></button>
 								</div>
 							</div>
 						</div>
@@ -59,7 +59,7 @@
 						<div class="container-fluit">
 							<div class="row">
 								<div class="col">
-									<b>Depots</b>
+									<b translate="viewPortfolio.depot.title"></b>
 								</div>
 								<div class="col"></div>
 								<div class="col" align="right" valign="middle">
@@ -92,22 +92,5 @@
 
 		</div>
 
-		<div class="row">
-
-			<div class="col">
-				<a href="#" class="nav-link">
-					<div class="card text-white">
-						<div class="card-header bg-primary">
-							<b>Konten</b>
-						</div>
-						<div class="card-body bg-light">
-							<!-- 							<h4 class="card-title text-dark"></h4> -->
-							<!-- 							<p class="card-text text-dark"></p> -->
-						</div>
-					</div>
-				</a>
-			</div>
-
-		</div>
 	</div>
 </div>

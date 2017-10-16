@@ -11,13 +11,13 @@
 						<form>
 							<div class="form-group">
 								<label for="depotName" class="text-dark" translate="viewCreateDepot.form.label.name"></label> <input
-									ng-model="portfolio.name" type="depotName"
+									ng-model="depot.name" type="depotName"
 									class="form-control" id="depotName"
 									aria-describedby="depotNameHelp"
 									placeholder="{{ 'viewCreateDepot.form.input.name.placeholder' | translate }}">
 							</div>
 							<div class="form-group">
-								<button ng-click="" type="submit"
+								<button ng-click="createDepot()" type="submit"
 									class="btn btn-success" translate="viewCreateDepot.form.button.create"></button>
 								<a class="btn btn-danger" href="#!viewPortfolio" role="button" translate="viewCreateDepot.form.button.cancel"></a>
 							</div>
