@@ -59,7 +59,7 @@
 						<div class="container-fluit">
 							<div class="row">
 								<div class="col">
-									<b translate="viewPortfolio.depot.title"></b>
+									<b translate="viewPortfolio.portfolio.depot.title"></b>
 								</div>
 								<div class="col"></div>
 								<div class="col" align="right" valign="middle">
@@ -69,7 +69,8 @@
 						</div>
 
 					</li>
-					<li ng-repeat="depot in depots" class="list-group-item">{{depot.name}}</li>
+					<li ng-repeat="depot in depots" class="list-group-item"><a ng-click="selectDepot($index)" href="#!viewDepot" >{{depot.name}}</a></li>
+					 
 				</ul>
 
 				<!-- 				<a href="#" class="nav-link"> -->

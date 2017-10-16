@@ -40,6 +40,10 @@ portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, storageS
 		$scope.depots = response.data
 	});
 	
+	$scope.selectDepot = function(index) {
+		storageService.set(STORAGE_SERVICE_KEY.DEPOT, $scope.depots[index]);
+	};
+	
 	$scope.deletePortfolio = function(){
 		$http.delete('http://localhost:8080/revenue.service/portfolio/service/deletePortfolio', {params: {id : $scope.selectedPortfolio.id }})
 		.then(function successCallback(response) {
