@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Portfolio implements Serializable
 	@Temporal(TIMESTAMP)
 	private Date creationDate;
 
-	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Depot> depot = new ArrayList<Depot>();
 
 	private String description;
