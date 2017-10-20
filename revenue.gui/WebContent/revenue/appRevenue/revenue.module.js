@@ -4,11 +4,25 @@
 
 var appRevenueModule = angular.module('appRevenue', ['ngSanitize', 'appRevenue.config']);
 
-appRevenueModule.controller('ctrlTranslate', function($scope, $translate, breadcrumbService) {
+appRevenueModule.controller('ctrlRevenue', function($scope, $translate, breadcrumbService) {
 	
-    $scope.$on('breadcrumb',function(event){
+	breadcrumbService.push({event:'+', text:'Home', link:'/'});
+	$scope.breadcrumb = breadcrumbService.get();
+	
+	//EVENTLISTENER: breadcrumb from children
+    $scope.$on('breadcrumb',function(event, data){
+
+    	if (data.event == '+')
+    	{
+    		breadcrumbService.push(data);
+    	}
+    	else if(data.event == '-')
+    	{
+    		breadcrumbService.pop();
+    	}
+    	
     	$scope.breadcrumb = breadcrumbService.get();
-    	console.log($scope.breadcrumb);
+    	
       });
 
 	$scope.changeLang = function(key) {

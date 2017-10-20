@@ -19,30 +19,20 @@
 </head>
 
 <!-- Body -->
-<body ng-controller="ctrlTranslate">
+<body ng-controller="ctrlRevenue">
 
-	<nav
-		class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
+	<nav class="navbar navbar-expand-sm navbar-dark bg-primary navbar-fixed-top">
 		<div class="container-fluid">
 
-			<a class="navbar-brand" href="#"> <img
-				src="icon/revenue_logo.svg" width="30" height="30"
-				class="d-inline-block align-top" alt=""> <b>Revenue</b>
+			<a class="navbar-brand" href="#"> <img src="icon/revenue_logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""> <b>Revenue</b>
 			</a>
 
 			<div class="collapse navbar-collapse" id="nav-content">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
-						id="language" role="button" aria-haspopup="true"
-						aria-expanded="false"> Language </a>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"> Language </a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
-							<a ng-click="changeLang('de_DE')" href="" class="dropdown-item">
-								<img src="icon/lang/DE.png"></img> <span valign="middle"
-								translate="viewIndex.language.de"></span>
-							</a> <a ng-click="changeLang('en_EN')" href="" class="dropdown-item">
-								<img src="icon/lang/GB.png"></img> <span valign="middle"
-								translate="viewIndex.language.en"></span>
+							<a ng-click="changeLang('de_DE')" href="" class="dropdown-item"> <img src="icon/lang/DE.png"></img> <span valign="middle" translate="viewIndex.language.de"></span>
+							</a> <a ng-click="changeLang('en_EN')" href="" class="dropdown-item"> <img src="icon/lang/GB.png"></img> <span valign="middle" translate="viewIndex.language.en"></span>
 							</a>
 						</div></li>
 				</ul>
@@ -74,9 +64,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-				
 					<ul class="nav navbar-nav">
-						<li><h6 class="text-white nav-item" ng-bind="breadcrumb"></h6></li>
+						<li><h6 class="text-white nav-item">
+							<b>
+								<span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span>
+								<span ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}&nbsp;&bull;&nbsp;</span>
+							</b>
+					    </h6></li>
 					</ul>
 				</div>
 			</div>
@@ -108,16 +102,16 @@
 	<script src="config/revenue.config.js"></script>
 	<script src="service/storage.service.js"></script>
 	<script src="service/breadcrumb.service.js"></script>
-	
+
 	<!-- Portfolio -->
 	<script src="module/portfolio/service/portfolio.service.js"></script>
 	<script src="module/portfolio/config/portfolio.config.js"></script>
 	<script src="module/portfolio/portfolio.module.js"></script>
-	
+
 	<!--  Depot -->
 	<script src="module/depot/config/depot.config.js"></script>
 	<script src="module/depot/depot.module.js"></script>
-	
+
 	<!-- Bond -->
 	<script src="module/bond/config/bond.config.js"></script>
 	<script src="module/bond/bond.module.js"></script>

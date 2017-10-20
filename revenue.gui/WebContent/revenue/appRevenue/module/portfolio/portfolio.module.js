@@ -30,11 +30,10 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 
 });
 
-portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, breadcrumbService) {
-
-	breadcrumbService.push('Portfolio');
+portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
 	
-	  $scope.$emit('breadcrumb');
+	//EVENT: breadcrumb
+	$scope.$emit('breadcrumb', {event:'+', text:'Portfolio', link:'/viewPortfolio'});
 	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
