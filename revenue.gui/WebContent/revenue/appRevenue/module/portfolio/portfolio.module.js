@@ -30,8 +30,12 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 
 });
 
-portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
+portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, breadcrumbService) {
 
+	breadcrumbService.push('Portfolio');
+	
+	  $scope.$emit('breadcrumb');
+	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
 	$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params : {id : $scope.selectedPortfolio.id}}).then(function(response) {

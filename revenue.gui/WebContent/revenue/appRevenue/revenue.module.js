@@ -4,7 +4,12 @@
 
 var appRevenueModule = angular.module('appRevenue', ['ngSanitize', 'appRevenue.config']);
 
-appRevenueModule.controller('ctrlTranslate', function($scope, $translate) {
+appRevenueModule.controller('ctrlTranslate', function($scope, $translate, breadcrumbService) {
+	
+    $scope.$on('breadcrumb',function(event){
+    	$scope.breadcrumb = breadcrumbService.get();
+    	console.log($scope.breadcrumb);
+      });
 
 	$scope.changeLang = function(key) {
 		$translate.use(key)
