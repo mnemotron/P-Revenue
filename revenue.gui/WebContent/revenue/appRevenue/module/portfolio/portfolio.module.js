@@ -4,15 +4,13 @@
 
 var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
-portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, storageService, STORAGE_SERVICE_KEY) {
+portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY) {
 
 	$scope.selectPortfolio = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.PORTFOLIO, $scope.portfolios[index]);
 	};
-
-	$http.get('http://localhost:8080/revenue.service/portfolio/service/getPortfolioList').then(function(response) {
-		$scope.portfolios = response.data
-	});
+	
+	portfolioService.getPortfolioList($scope);
 
 });
 
@@ -32,7 +30,7 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 
 });
 
-portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, storageService, $location, STORAGE_SERVICE_KEY) {
+portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
 
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 

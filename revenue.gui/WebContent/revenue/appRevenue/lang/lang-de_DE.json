@@ -31,5 +31,11 @@
 	"viewDepot.depot.menu.admin.delete.dialog.question": "Möchten Sie das Depot löschen?",
 	"viewDepot.depot.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewDepot.depot.menu.admin.delete.dialog.button.cancel": "Abbrechen",
-	"viewDepot.depot.bond.title": "Anleihen"
+	"viewDepot.depot.bond.title": "Anleihen",
+	"viewAddBond.form.title": "Anleihe hinzufügen",
+	"viewAddBond.form.label.name": "Name",
+	"viewAddBond.form.button.add": "Hinzufügen",
+	"viewAddBond.form.button.cancel": "Abbrechen",
+	"viewAddBond.form.input.name.placeholder": "Anleihenname eingeben"
+	
 }

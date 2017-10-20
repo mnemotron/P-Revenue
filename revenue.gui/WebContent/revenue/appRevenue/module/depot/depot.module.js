@@ -4,20 +4,20 @@
 
 var depotModule = angular.module('depot.module', ['depot.config']);
 
-depotModule.controller('ctrlViewDepot', function($scope, $http, storageService, STORAGE_SERVICE_KEY) {
+depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
 	
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 
-	$scope.deletePortfolio = function(){
-//		$http.delete('', {params: {id : }})
-//		.then(function successCallback(response) {
-//			  $location.path( '/' );
-//			  
-//		}, 
-//		
-//		function errorCallback(response) {
-//			
-//		});
+	$scope.deleteDepot = function(){
+		$http.delete('http://localhost:8080/revenue.service/depot/service/deleteDepot', {params: {id : $scope.selectedDepot.id}})
+		.then(function successCallback(response) {
+			  $location.path( '/viewPortfolio' );
+			  
+		}, 
+		
+		function errorCallback(response) {
+			
+		});
 	}
 
 });

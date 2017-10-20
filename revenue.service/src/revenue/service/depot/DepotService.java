@@ -3,6 +3,7 @@ package revenue.service.depot;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -76,5 +77,28 @@ public class DepotService
 	// HTTP-PUT: update
 
 	// HTP-DELETE: delete
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/deleteDepot")
+	public Response deleteDepot(@QueryParam("id") long depotId)
+	{
+		Response locResponse = new Response();
+		
+		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+		
+		Transaction locTransaction = locSession.beginTransaction();
+		
+		Query locQuery = locSession.createQuery("from Depot where id = " + depotId);
+		
+		Depot locDepot = (Depot) locQuery.getSingleResult();
+
+		locSession.delete(locDepot);
+
+		locTransaction.commit();
+
+		locSession.close();
+
+		return locResponse;
+	}
 
 }

@@ -1,0 +1,42 @@
+<div>
+	<div class="container">
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col">
+				<div class="card text-white mb-3">
+					<div class="card-header bg-primary">
+						<b translate="viewAddBond.form.title"></b>
+					</div>
+					<div class="card-body bg-light">
+						<form>
+
+							<div class="form-group">
+								<label for="bondName" class="text-dark" translate="viewAddBond.form.label.name"></label> <input ng-model="bond.name" type="bondName" class="form-control" id="bondName"
+									aria-describedby="bondNameHelp" placeholder="{{ 'viewAddBond.form.input.name.placeholder' | translate }}">
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="bondISIN" class="text-dark">ISIN</label> <input type="bondISIN" class="form-control" id="bondISIN" placeholder="ISIN">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="bondWKN" class="text-dark">WKN</label> <input type="bondWKN" class="form-control" id="bondWKN" placeholder="WKN">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="bondArea" class="text-dark" translate="viewAddBond.form.label.area"></label> <input ng-model="bond.area" type="bondArea" class="form-control" id="bondArea"
+									aria-describedby="bondAreaHelp" placeholder="{{ 'viewAddBond.form.input.area.placeholder' | translate }}">
+							</div>
+
+							<div class="form-group">
+								<button ng-click="createBond()" type="submit" class="btn btn-success" translate="viewAddBond.form.button.add"></button>
+								<a class="btn btn-danger" href="#!viewDepot" role="button" translate="viewAddBond.form.button.cancel"></a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
