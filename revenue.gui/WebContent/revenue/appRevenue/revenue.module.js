@@ -6,21 +6,11 @@ var appRevenueModule = angular.module('appRevenue', ['ngSanitize', 'appRevenue.c
 
 appRevenueModule.controller('ctrlRevenue', function($scope, $translate, breadcrumbService) {
 	
-	breadcrumbService.push({event:'+', text:'Home', link:'/'});
-	$scope.breadcrumb = breadcrumbService.get();
-	
 	//EVENTLISTENER: breadcrumb from children
     $scope.$on('breadcrumb',function(event, data){
-
-    	if (data.event == '+')
-    	{
-    		breadcrumbService.push(data);
-    	}
-    	else if(data.event == '-')
-    	{
-    		breadcrumbService.pop();
-    	}
     	
+    	breadcrumbService.set(data);
+
     	$scope.breadcrumb = breadcrumbService.get();
     	
       });

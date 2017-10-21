@@ -21,14 +21,27 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 	
 	var breadcrumb = new Array();
 	
-	function push(locBreadcrumb)
+	function set(locBreadcrumb)
 	{		
-		breadcrumb.push(locBreadcrumb);
-	}
-	
-	function pop()
-	{		
-		breadcrumb.pop();
+		var locFound = false;
+		
+		for (var i = 0; i < breadcrumb.length; i++) {
+			
+			if (locFound == true)
+			{
+				breadcrumb.pop();
+			}
+			else if (breadcrumb[i].link == locBreadcrumb.link)
+			{
+				locFound = true;
+			}
+			
+		}
+		
+		if(locFound == false)
+		{
+			breadcrumb.push(locBreadcrumb);
+		}
 	}
 	
 	function get()
@@ -38,8 +51,7 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 	
 	return{
 		get: get,
-		push: push,
-		pop: pop
+		set: set
 	};
 
     
