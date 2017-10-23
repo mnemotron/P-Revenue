@@ -7,7 +7,7 @@ var depotModule = angular.module('depot.module', ['depot.config']);
 depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
 	
 	//EVENT: breadcrumb
-	$scope.$emit('breadcrumb', {text:'Depot', link:'/viewDepot'});
+	$scope.$emit('breadcrumb', {id:'breadcrumb.depot', link:'/viewDepot'});
 	
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 

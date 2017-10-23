@@ -29,7 +29,7 @@
 
 			<div class="collapse navbar-collapse" id="nav-content">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"> Language </a>
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
 						<div class="dropdown-menu" aria-labelledby="Preview">
 							<a ng-click="changeLang('de_DE')" href="" class="dropdown-item"> <img src="icon/lang/DE.png"></img> <span valign="middle" translate="viewIndex.language.de"></span>
 							</a> <a ng-click="changeLang('en_EN')" href="" class="dropdown-item"> <img src="icon/lang/GB.png"></img> <span valign="middle" translate="viewIndex.language.en"></span>
@@ -66,10 +66,7 @@
 				<div class="col">
 					<ul class="nav navbar-nav">
 						<li><h6 class="text-white nav-item">
-							<b>
-								<span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span>
-								<span ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}&nbsp;&bull;&nbsp;</span>
-							</b>
+							<b><span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span></b><span ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}<b>&nbsp;&bull;&nbsp;</b></span>
 					    </h6></li>
 					</ul>
 				</div>
@@ -77,7 +74,7 @@
 		</div>
 		<!-- 				<div class="col"> -->
 		<ul class="nav navbar-nav navbar-left">
-			<li><h6 class="text-white nav-item">jjjjjjjjjjjjjjjjj.</h6></li>
+			<li><h6 class="text-white nav-item">About</h6></li>
 		</ul>
 
 		<!-- 				</DIV> -->

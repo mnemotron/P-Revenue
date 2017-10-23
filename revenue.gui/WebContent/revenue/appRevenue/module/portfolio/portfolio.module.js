@@ -7,7 +7,7 @@ var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY) {
 
 	//EVENT: breadcrumb
-	$scope.$emit('breadcrumb', {text:'Home', link:'/'});
+	$scope.$emit('breadcrumb', {id:'breadcrumb.home', link:'/'});
 	
 	$scope.selectPortfolio = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.PORTFOLIO, $scope.portfolios[index]);
@@ -36,7 +36,7 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
 	
 	//EVENT: breadcrumb
-	$scope.$emit('breadcrumb', {text:'Portfolio', link:'/viewPortfolio'});
+	$scope.$emit('breadcrumb', {id:'breadcrumb.portfolio', link:'/viewPortfolio'});
 	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 

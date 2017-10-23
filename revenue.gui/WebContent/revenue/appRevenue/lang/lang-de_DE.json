@@ -36,6 +36,18 @@
 	"viewAddBond.form.label.name": "Name",
 	"viewAddBond.form.button.add": "Hinzufügen",
 	"viewAddBond.form.button.cancel": "Abbrechen",
-	"viewAddBond.form.input.name.placeholder": "Anleihenname eingeben"
-	
+	"viewAddBond.form.input.name.placeholder": "Anleihenname eingeben",
+	"viewAddBond.form.label.area": "Gebiet",
+	"viewAddBond.form.input.area.placeholder": "Gebiet",
+	"viewAddBond.form.label.interest": "Zinsen",
+	"viewAddBond.form.input.interest.placeholder": "Zinsen",
+	"viewAddBond.form.label.interestDate": "Zinstermin",
+	"viewAddBond.form.input.interestDate.placeholder": "Zinstermin",
+	"viewAddBond.form.label.interestIntervall": "Zinsintervall",
+	"viewAddBond.form.input.interestIntervall.placeholder": "Zinsintervall",
+	"viewAddBond.form.label.dueDate": "Fälligkeit",
+	"viewAddBond.form.input.dueDate.placeholder": "Faelligkeit",
+	"breadcrumb.home": "Home",
+	"breadcrumb.portfolio": "Portfolio",
+	"breadcrumb.depot": "Depot"
 }
