@@ -29,7 +29,7 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 			function errorCallback(response) {
 				
 			});
-	};
+	}
 
 });
 

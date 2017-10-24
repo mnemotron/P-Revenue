@@ -17,10 +17,10 @@
 
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="bondISIN" class="text-dark">ISIN</label> <input type="bondISIN" class="form-control" id="bondISIN" placeholder="ISIN">
+									<label for="bondISIN" class="text-dark">ISIN</label> <input ng-model="bond.isin" type="bondISIN" class="form-control" id="bondISIN" placeholder="ISIN">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="bondWKN" class="text-dark">WKN</label> <input type="bondWKN" class="form-control" id="bondWKN" placeholder="WKN">
+									<label for="bondWKN" class="text-dark">WKN</label> <input ng-model="bond.wkn" type="bondWKN" class="form-control" id="bondWKN" placeholder="WKN">
 								</div>
 							</div>
 
@@ -30,7 +30,7 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input ng-model="bond.interest" type="bondInterest" class="form-control"
+									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input type="bondInterest" class="form-control"
 										id="bondInterest" aria-describedby="bondInterestHelp" placeholder="{{ 'viewAddBond.form.input.interest.placeholder' | translate }}">
 								</div>
 								<div class="form-group col-md-4">

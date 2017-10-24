@@ -12,10 +12,10 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
-	
-<!-- SERVLET DECLARATION -->
 
-<!-- SERVICE: PORTFOLIO -->
+	<!-- SERVLET DECLARATION -->
+
+	<!-- SERVICE: PORTFOLIO -->
 	<servlet>
 		<servlet-name>revenue.service.portfolio</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -29,8 +29,8 @@
 		<servlet-name>revenue.service.portfolio</servlet-name>
 		<url-pattern>/portfolio/*</url-pattern>
 	</servlet-mapping>
-	
-<!-- SERVICE: DEPOT -->
+
+	<!-- SERVICE: DEPOT -->
 	<servlet>
 		<servlet-name>revenue.service.depot</servlet-name>
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -44,8 +44,23 @@
 		<servlet-name>revenue.service.depot</servlet-name>
 		<url-pattern>/depot/*</url-pattern>
 	</servlet-mapping>
-	
-<!-- RESOURCE DECLARATION -->
+
+	<!-- SERVICE: BOND -->
+	<servlet>
+		<servlet-name>revenue.service.bond</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>revenue.service.bond</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revenue.service.bond</servlet-name>
+		<url-pattern>/bond/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- RESOURCE DECLARATION -->
 	<resource-ref>
 		<description>hsqldb.revenue</description>
 		<res-ref-name>jdbc/revenue</res-ref-name>

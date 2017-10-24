@@ -1,6 +1,7 @@
 package revenue.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -15,10 +16,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import revenue.entity.Interest;
 
 @Entity(name = "BondHeader")
 @Table(name = "T_BONDHEADER")
+@XmlRootElement
 public class BondHeader implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,8 +57,8 @@ public class BondHeader implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date interestDate;
 
-	@OneToMany(mappedBy = "bondHeader", fetch = FetchType.EAGER)
-	private Collection<BondItemBuy> bondItemBuy;
+	@OneToMany(mappedBy = "bondHeader")
+	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
 
 	@ManyToOne
 	private Depot depot;
@@ -63,7 +67,7 @@ public class BondHeader implements Serializable {
 	private Portfolio portfolio;
 
 	@OneToMany(mappedBy = "bondHeader")
-	private Collection<Interest> interest;
+	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	public long getId() {
 		return id;

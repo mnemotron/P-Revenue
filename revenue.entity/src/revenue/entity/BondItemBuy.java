@@ -12,12 +12,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import revenue.entity.Fee;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
 
 @Entity(name = "BondItemBuy")
 @Table(name = "T_BONDITEMBUY")
+@XmlRootElement
 public class BondItemBuy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,7 +52,7 @@ public class BondItemBuy implements Serializable {
 	private Depot depot;
 
 	@OneToMany(mappedBy = "bondItemBuy")
-	private Collection<Fee> fee;
+	private Collection<Fee> fee = new ArrayList<Fee>();
 
 	public long getId() {
 		return id;

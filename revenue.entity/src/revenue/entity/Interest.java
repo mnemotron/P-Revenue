@@ -12,11 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import revenue.entity.BondHeader;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "Interest")
 @Table(name = "T_INTEREST")
+@XmlRootElement
 public class Interest implements Serializable {
 
 	private static final long serialVersionUID = 1L;

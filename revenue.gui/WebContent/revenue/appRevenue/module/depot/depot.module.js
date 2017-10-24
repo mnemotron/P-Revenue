@@ -22,6 +22,10 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 			
 		});
 	}
+	
+	$scope.selectDepot = function(index) {
+		storageService.set(STORAGE_SERVICE_KEY.BOND, $scope.bonds[index]);
+	};
 
 });
 
