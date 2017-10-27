@@ -24,8 +24,8 @@ bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService,
 		
 		var interest = {'portfolio': $scope.bond['portfolio'], 'depot': $scope.bond['depot'], 'interest': $scope.bond['interest']};
 		
-		var interestArray = new Array();
-		interestArray.push(interest);
+//		var interestArray = new Array();
+//		interestArray.push(interest);
 		
 //		$scope.bond['interest'] = interestArray;
 	
