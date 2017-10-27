@@ -6,8 +6,8 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -16,13 +16,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import revenue.entity.Interest;
 
 @Entity(name = "BondHeader")
 @Table(name = "T_BONDHEADER")
-@XmlRootElement
 public class BondHeader implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -57,7 +55,7 @@ public class BondHeader implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date interestDate;
 
-	@OneToMany(mappedBy = "bondHeader")
+	@OneToMany(mappedBy = "bondHeader", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
 
 	@ManyToOne
@@ -66,7 +64,7 @@ public class BondHeader implements Serializable {
 	@OneToOne
 	private Portfolio portfolio;
 
-	@OneToMany(mappedBy = "bondHeader")
+	@OneToMany(mappedBy = "bondHeader", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	public long getId() {

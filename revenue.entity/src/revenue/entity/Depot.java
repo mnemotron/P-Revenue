@@ -2,23 +2,21 @@ package revenue.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import revenue.entity.BondHeader;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
 
 @Entity(name = "Depot")
 @Table(name = "T_DEPOT")
-@XmlRootElement
 public class Depot implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +33,7 @@ public class Depot implements Serializable {
 	@ManyToOne
 	private Portfolio portfolio;
 
-	@OneToMany(mappedBy = "depot", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "depot", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
 
 	public long getId() {

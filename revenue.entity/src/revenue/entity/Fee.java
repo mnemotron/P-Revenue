@@ -8,14 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import revenue.entity.BondItemBuy;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "Fee")
 @Table(name = "T_FEE")
-@XmlRootElement
 public class Fee implements Serializable {
 
 	private static final long serialVersionUID = 1L;

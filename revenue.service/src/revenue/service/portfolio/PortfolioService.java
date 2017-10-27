@@ -15,10 +15,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.entity.Response;
+import revenue.service.portfolio.entity.ReqPortfolio;
+import revenue.service.portfolio.entity.ResPortfolio;
 
 @Path("/service")
 public class PortfolioService
@@ -31,7 +32,7 @@ public class PortfolioService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getPortfolioList")
-	public ArrayList<Portfolio> getPortfolioList()
+	public ArrayList<ResPortfolio> getPortfolioList()
 	{
 		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
 
@@ -41,16 +42,22 @@ public class PortfolioService
 
 		ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.getResultList();
 
-		// locTransaction.commit();
+		ArrayList<ResPortfolio> locResPortfolioList = new ArrayList<ResPortfolio>();
 
 		for (Portfolio portfolio : locPortfolioList)
 		{
-			portfolio.setDepot(null);
+			ResPortfolio locResPortfolio = new ResPortfolio();
+
+			locResPortfolio.setId(portfolio.getId());
+			locResPortfolio.setName(portfolio.getName());
+			locResPortfolio.setDescription(portfolio.getDescription());
+
+			locResPortfolioList.add(locResPortfolio);
 		}
 
 		locSession.close();
 
-		return locPortfolioList;
+		return locResPortfolioList;
 	}
 
 	// HTTP-POST: create
@@ -58,17 +65,21 @@ public class PortfolioService
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createPortfolio")
-	public Response createPortfolio(Portfolio portfolio)
+	public Response createPortfolio(ReqPortfolio reqPortfolio)
 	{
 		Response locResponse = new Response();
 
-		portfolio.setCreationDate(new Date());
+		Portfolio locPortfolio = new Portfolio();
+
+		locPortfolio.setName(reqPortfolio.getName());
+		locPortfolio.setDescription(reqPortfolio.getDescription());
+		locPortfolio.setCreationDate(new Date());
 
 		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
 
 		Transaction locTransaction = locSession.beginTransaction();
 
-		locSession.save(portfolio);
+		locSession.save(locPortfolio);
 
 		locTransaction.commit();
 
@@ -86,13 +97,13 @@ public class PortfolioService
 	public Response deletePortfolio(@QueryParam("id") long portfolioId)
 	{
 		Response locResponse = new Response();
-		
+
 		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-		
+
 		Transaction locTransaction = locSession.beginTransaction();
-		
+
 		Query locQuery = locSession.createQuery("from Portfolio where id = " + portfolioId);
-		
+
 		Portfolio locPortfolio = (Portfolio) locQuery.getSingleResult();
 
 		locSession.delete(locPortfolio);

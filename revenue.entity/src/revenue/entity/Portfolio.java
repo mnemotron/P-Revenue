@@ -10,21 +10,17 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import revenue.entity.Depot;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
 
 @Entity(name = "Portfolio")
 @Table(name = "T_PORTFOLIO")
-@XmlRootElement
 public class Portfolio implements Serializable
 {
 
@@ -44,7 +40,7 @@ public class Portfolio implements Serializable
 	@Temporal(TIMESTAMP)
 	private Date creationDate;
 
-	@OneToMany(mappedBy = "portfolio", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Depot> depot = new ArrayList<Depot>();
 
 	private String description;

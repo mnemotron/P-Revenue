@@ -6,12 +6,12 @@ var bondModule = angular.module('bond.module', ['bond.config']);
 
 bondModule.controller('ctrlViewBond', function($scope, $http) {
 
-	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
-	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-	
-	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
-		$scope.bonds = response.data
-	});
+//	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+//	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+//	
+//	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
+//		$scope.bonds = response.data
+//	});
 
 });
 
@@ -19,15 +19,11 @@ bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService,
 
 	$scope.createBond = function() {
 		
-		$scope.bond['portfolio'] = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-		$scope.bond['depot'] = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+		var depot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 		
-		var interest = {'portfolio': $scope.bond['portfolio'], 'depot': $scope.bond['depot'], 'interest': $scope.bond['interest']};
-		
-//		var interestArray = new Array();
-//		interestArray.push(interest);
-		
-//		$scope.bond['interest'] = interestArray;
+		$scope.bond['portfolioId'] = portfolio.id;
+		$scope.bond['depotId'] = depot.id;
 	
 		$http.post('http://localhost:8080/revenue.service/bond/service/createBondHeader', $scope.bond)	
 	

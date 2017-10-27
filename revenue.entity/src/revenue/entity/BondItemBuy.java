@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -22,7 +24,6 @@ import javax.persistence.OneToMany;
 
 @Entity(name = "BondItemBuy")
 @Table(name = "T_BONDITEMBUY")
-@XmlRootElement
 public class BondItemBuy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -51,7 +52,7 @@ public class BondItemBuy implements Serializable {
 	@OneToOne
 	private Depot depot;
 
-	@OneToMany(mappedBy = "bondItemBuy")
+	@OneToMany(mappedBy = "bondItemBuy", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Fee> fee = new ArrayList<Fee>();
 
 	public long getId() {

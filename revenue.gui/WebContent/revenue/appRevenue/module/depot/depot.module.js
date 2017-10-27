@@ -10,7 +10,16 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 	$scope.$emit('breadcrumb', {id:'breadcrumb.depot', link:'/viewDepot'});
 	
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
+	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
+		$scope.bonds = response.data
+	});
+	
+	$scope.selectBond = function(index) {
+		storageService.set(STORAGE_SERVICE_KEY.BOND, $scope.bonds[index]);
+	};
+	
 	$scope.deleteDepot = function(){
 		$http.delete('http://localhost:8080/revenue.service/depot/service/deleteDepot', {params: {id : $scope.selectedDepot.id}})
 		.then(function successCallback(response) {
@@ -23,9 +32,6 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 		});
 	}
 	
-	$scope.selectDepot = function(index) {
-		storageService.set(STORAGE_SERVICE_KEY.BOND, $scope.bonds[index]);
-	};
 
 });
 
@@ -33,7 +39,9 @@ depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageSer
 
 	$scope.createDepot = function() {
 
-		$scope.depot["portfolio"] = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+		
+		$scope.depot["portfolioId"] = portfolio.id;
 		
 		$http.post('http://localhost:8080/revenue.service/depot/service/createDepot', $scope.depot)	
 		
