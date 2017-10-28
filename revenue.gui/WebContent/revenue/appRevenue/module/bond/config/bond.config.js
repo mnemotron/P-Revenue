@@ -3,7 +3,8 @@
  */
 
 var bondConfig = angular.module('bond.config',[
-	'ngRoute'
+	'ngRoute',
+	'storage.service'
 	]);
 
 bondConfig.config(function($routeProvider){

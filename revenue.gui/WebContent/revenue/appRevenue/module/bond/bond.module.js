@@ -4,14 +4,15 @@
 
 var bondModule = angular.module('bond.module', ['bond.config']);
 
-bondModule.controller('ctrlViewBond', function($scope, $http) {
+bondModule.controller('ctrlViewBond', function($scope, $http, storageService, STORAGE_SERVICE_KEY) {
 
-//	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
-//	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-//	
-//	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
-//		$scope.bonds = response.data
-//	});
+	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+	$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
+	
+	$http.get('http://localhost:8080/revenue.service/bond/service/getBondItemBuyList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id, bondId: $scope.selectedBond.id}}).then(function(response) {
+		$scope.bondItemBuyList = response.data
+	});
 
 });
 
@@ -24,8 +25,8 @@ bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService,
 		
 		$scope.bond['portfolioId'] = portfolio.id;
 		$scope.bond['depotId'] = depot.id;
-	
-		$http.post('http://localhost:8080/revenue.service/bond/service/createBondHeader', $scope.bond)	
+		
+		$http.post('http://localhost:8080/revenue.service/bond/service/createBond', $scope.bond)	
 	
 		.then(function successCallback(response) {
 			$location.path( '/viewBond' );

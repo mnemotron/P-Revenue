@@ -8,50 +8,53 @@
 						<b translate="viewAddBond.form.title"></b>
 					</div>
 					<div class="card-body bg-light">
-						<form>
+						<form name="formAddBond">
 
 							<div class="form-group">
-								<label for="bondName" class="text-dark" translate="viewAddBond.form.label.name"></label> <input ng-model="bond.name" type="bondName" class="form-control" id="bondName"
-									aria-describedby="bondNameHelp" placeholder="{{ 'viewAddBond.form.input.name.placeholder' | translate }}">
+								<label for="bondName" class="text-dark" translate="viewAddBond.form.label.name"></label> <input ng-model="bond.name" required minlength="5" maxlength="25" type="bondName" class="form-control"
+									id="bondName" name="bondName" aria-describedby="bondNameHelp" placeholder="{{ 'viewAddBond.form.input.name.placeholder' | translate }}">
+<!-- 								<div role="alert"> -->
+<!-- 									<span class="error" ng-show="formAddBond.bondName.$error.required"> Required!</span> -->
+<!-- 								</div> -->
 							</div>
 
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="bondISIN" class="text-dark">ISIN</label> <input ng-model="bond.isin" type="bondISIN" class="form-control" id="bondISIN" placeholder="ISIN">
+									<label for="bondISIN" class="text-dark">ISIN</label> <input ng-model="bond.isin" type="bondISIN" minlength="12" maxlength="12" class="form-control" id="bondISIN" placeholder="ISIN">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="bondWKN" class="text-dark">WKN</label> <input ng-model="bond.wkn" type="bondWKN" class="form-control" id="bondWKN" placeholder="WKN">
+									<label for="bondWKN" class="text-dark">WKN</label> <input ng-model="bond.wkn" type="bondWKN" minlength="6" maxlength="6" class="form-control" id="bondWKN" placeholder="WKN">
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label for="bondArea" class="text-dark" translate="viewAddBond.form.label.area"></label> <input ng-model="bond.area" type="bondArea" class="form-control" id="bondArea"
+								<label for="bondArea" class="text-dark" translate="viewAddBond.form.label.area"></label> <input ng-model="bond.area" type="bondArea" maxlength="255" class="form-control" id="bondArea"
 									aria-describedby="bondAreaHelp" placeholder="{{ 'viewAddBond.form.input.area.placeholder' | translate }}">
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input ng-model="bond.interest" type="bondInterest" class="form-control"
-										id="bondInterest" aria-describedby="bondInterestHelp" placeholder="{{ 'viewAddBond.form.input.interest.placeholder' | translate }}">
+									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input ng-model="bond.interest" type="bondInterest" required class="form-control" id="bondInterest"
+										aria-describedby="bondInterestHelp" placeholder="{{ 'viewAddBond.form.input.interest.placeholder' | translate }}">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="bondInterestDate" class="text-dark" translate="viewAddBond.form.label.interestDate"></label>
-									<input ng-model="bond.interestDate" type="bondInterestDate" class="form-control" id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{ 'viewAddBond.form.input.interestDate.placeholder' | translate }}">
-							
+									<label for="bondInterestDate" class="text-dark" translate="viewAddBond.form.label.interestDate"></label> <input ng-model="bond.interestDate" type="bondInterestDate" required class="form-control"
+										id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{ 'viewAddBond.form.input.interestDate.placeholder' | translate }}">
+
 								</div>
 								<div class="form-group col-md-4">
 									<label for="bondInterestIntervall" class="text-dark" translate="viewAddBond.form.label.interestIntervall"></label> <input ng-model="bond.interestIntervall" type="bondInterestIntervall"
-										class="form-control" id="bondInterestIntervall" aria-describedby="bondInterestIntervallHelp" placeholder="{{ 'viewAddBond.form.input.interestIntervall.placeholder' | translate }}">
+										required class="form-control" id="bondInterestIntervall" aria-describedby="bondInterestIntervallHelp" placeholder="{{ 'viewAddBond.form.input.interestIntervall.placeholder' | translate }}">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" class="form-control" id="bondDueDate"
+								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" required class="form-control" id="bondDueDate"
 									aria-describedby="bondDueDateHelp" placeholder="{{ 'viewAddBond.form.input.dueDate.placeholder' | translate }}">
 							</div>
 							<div>
 								<br>
 							</div>
 							<div class="form-group">
-								<button ng-click="createBond()" type="submit" class="btn btn-success" translate="viewAddBond.form.button.add"></button>
+								<button ng-disabled="!formAddBond.$valid" ng-click="createBond()" type="submit" class="btn btn-success" translate="viewAddBond.form.button.add"></button>
 								<a class="btn btn-danger" href="#!viewDepot" role="button" translate="viewAddBond.form.button.cancel"></a>
 							</div>
 						</form>
