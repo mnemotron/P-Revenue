@@ -1,0 +1,42 @@
+<div>
+	<div class="container">
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col">
+				<div class="card text-white mb-3">
+					<div class="card-header bg-primary">
+						<b translate="viewAddBondItemBuy.form.title"></b>
+					</div>
+					<div class="card-body bg-light">
+						<form name="formAddBondItemBuy">
+
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="buyDate" class="text-dark" translate="viewAddBondItemBuy.form.label.buyDate"></label> <input ng-model="bondItemBuy.buyDate" type="buyDate" required class="form-control"
+										id="buyDate" aria-describedby="buyDateHelp" placeholder="{{ 'viewAddBondItemBuy.form.input.buyDate.placeholder' | translate }}">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="nominalValue" class="text-dark" translate="viewAddBondItemBuy.form.label.nominalValue"></label> <input ng-model="bondItemBuy.nominalValue" type="nominalValue" required
+										class="form-control" id="nominalValue" aria-describedby="nominalValueHelp" placeholder="{{ 'viewAddBondItemBuy.form.input.nominalValue.placeholder' | translate }}">
+
+								</div>
+								<div class="form-group col-md-4">
+									<label for="buyPercent" class="text-dark" translate="viewAddBondItemBuy.form.label.buyPercent"></label> <input ng-model="bondItemBuy.buyPercent" type="buyPercent" required
+										class="form-control" id="buyPercent" aria-describedby="buyPercentHelp" placeholder="{{ 'viewAddBondItemBuy.form.input.buyPercent.placeholder' | translate }}">
+								</div>
+							</div>
+
+							<div>
+								<br>
+							</div>
+							<div class="form-group">
+								<button ng-disabled="!formAddBondItemBuy.$valid" ng-click="createBondItemBuy()" type="submit" class="btn btn-success" translate="viewAddBondItemBuy.form.button.buy"></button>
+								<a class="btn btn-danger" href="#!viewBond" role="button" translate="viewAddBondItemBuy.form.button.cancel"></a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
