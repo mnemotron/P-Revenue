@@ -56,7 +56,17 @@
 	"viewBond.bond.menu.admin.delete.dialog.button.cancel": "Cancel",
 	"viewBond.bond.item.buy.title": "In Stock",
 	"viewBond.bond.item.sold.title": "Sold",
+	"viewAddBondItemBuy.form.title": "Buy Bond",
+	"viewAddBondItemBuy.form.button.buy": "Buy",
+	"viewAddBondItemBuy.form.button.cancel": "Cancel",
+	"viewAddBondItemBuy.form.label.buyDate": "Buy Date",
+	"viewAddBondItemBuy.form.input.buyDate.placeholder": "Buy Date",
+	"viewAddBondItemBuy.form.label.nominalValue": "Nominal Value",
+	"viewAddBondItemBuy.form.input.nominalValue.placeholder": "Nominal Value",
+	"viewAddBondItemBuy.form.label.buyPercent": "Bond Rate in %",
+	"viewAddBondItemBuy.form.input.buyPercent.placeholder": "Bond Rate",
 	"breadcrumb.home": "Home",
 	"breadcrumb.portfolio": "Portfolio",
-	"breadcrumb.depot": "Depot"
+	"breadcrumb.depot": "Depot",
+	"breadcrumb.bond": "Bond"
 }

@@ -56,7 +56,17 @@
 	"viewBond.bond.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewBond.bond.item.buy.title": "Im Bestand",
 	"viewBond.bond.item.sold.title": "Verkauft",
+	"viewAddBondItemBuy.form.title": "Anleihe kaufen",
+	"viewAddBondItemBuy.form.button.buy": "Kaufen",
+	"viewAddBondItemBuy.form.button.cancel": "Abbrechen",
+	"viewAddBondItemBuy.form.label.buyDate": "Kaufdatum",
+	"viewAddBondItemBuy.form.input.buyDate.placeholder": "Kaufdatum",
+	"viewAddBondItemBuy.form.label.nominalValue": "Nominale",
+	"viewAddBondItemBuy.form.input.nominalValue.placeholder": "Nominale",
+	"viewAddBondItemBuy.form.label.buyPercent" : "Kurs in %",
+	"viewAddBondItemBuy.form.input.buyPercent.placeholder": "Kurs",
 	"breadcrumb.home": "Home",
 	"breadcrumb.portfolio": "Portfolio",
-	"breadcrumb.depot": "Depot"
+	"breadcrumb.depot": "Depot",
+	"breadcrumb.bond": "Anleihe"
 }

@@ -23,6 +23,7 @@ import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.bond.entity.ReqBondHeader;
+import revenue.service.bond.entity.ReqBondItemBuy;
 import revenue.service.bond.entity.ResBondHeader;
 import revenue.service.bond.entity.ResBondItemBuy;
 import revenue.service.entity.Response;
@@ -112,18 +113,7 @@ public class BondService
 		locBondHeader.setWkn(reqBondHeader.getWkn());
 		locBondHeader.setIsin(reqBondHeader.getIsin());
 		locBondHeader.setName(reqBondHeader.getName());
-
-		SimpleDateFormat locFormatter = new SimpleDateFormat("dd.MM.yyyy");
-
-		try
-		{
-			Date locDueDate = locFormatter.parse(reqBondHeader.getDueDate());
-			locBondHeader.setDueDate(locDueDate);
-		}
-		catch (ParseException e)
-		{
-			locResponse.setMessage(e.getMessage());
-		}
+		locBondHeader.setDueDate(reqBondHeader.getDueDate());
 
 		Depot locDepot = new Depot();
 		locDepot.setId(reqBondHeader.getDepotId());
@@ -138,6 +128,45 @@ public class BondService
 		Transaction locTransaction = locSession.beginTransaction();
 
 		locSession.save(locBondHeader);
+
+		locTransaction.commit();
+
+		locSession.close();
+
+		return locResponse;
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/createBondItemBuy")
+	public Response createBondItemBuy(ReqBondItemBuy reqBondItemBuy)
+	{
+		Response locResponse = new Response();
+
+		BondItemBuy locBondItemBuy = new BondItemBuy();
+
+		locBondItemBuy.setNominalValue(reqBondItemBuy.getNominalValue());
+		locBondItemBuy.setBuyPercent(reqBondItemBuy.getBuyPercent());
+		locBondItemBuy.setBuyDate(reqBondItemBuy.getBuyDate());
+		
+		BondHeader locBondHeader = new BondHeader();
+		locBondHeader.setId(reqBondItemBuy.getBondId());
+		locBondItemBuy.setBondHeader(locBondHeader);
+
+		Depot locDepot = new Depot();
+		locDepot.setId(reqBondItemBuy.getDepotId());
+		locBondItemBuy.setDepot(locDepot);
+
+		Portfolio locPortfolio = new Portfolio();
+		locPortfolio.setId(reqBondItemBuy.getPortfolioId());
+		locBondItemBuy.setPortfolio(locPortfolio);
+
+		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+
+		Transaction locTransaction = locSession.beginTransaction();
+
+		locSession.save(locBondItemBuy);
 
 		locTransaction.commit();
 

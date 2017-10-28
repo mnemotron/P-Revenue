@@ -1,5 +1,7 @@
 package revenue.service.bond.entity;
 
+import java.util.Date;
+
 public class ReqBondHeader
 {
 	private long id;
@@ -16,7 +18,7 @@ public class ReqBondHeader
 
 	private String area;
 
-	private String dueDate;
+	private Date dueDate;
 
 	private byte interestIntervall;
 
@@ -99,12 +101,12 @@ public class ReqBondHeader
 		this.area = area;
 	}
 
-	public String getDueDate()
+	public Date getDueDate()
 	{
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate)
+	public void setDueDate(Date dueDate)
 	{
 		this.dueDate = dueDate;
 	}

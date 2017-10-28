@@ -66,8 +66,9 @@
 				<div class="col">
 					<ul class="nav navbar-nav">
 						<li><h6 class="text-white nav-item">
-							<b><span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span></b><span ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}<b>&nbsp;&bull;&nbsp;</b></span>
-					    </h6></li>
+								<b><span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span></b><span ng-repeat="crumb in breadcrumb"
+									ng-if="$last">{{crumb.text}}<b>&nbsp;&bull;&nbsp;</b></span>
+							</h6></li>
 					</ul>
 				</div>
 			</div>
@@ -89,6 +90,7 @@
 	<script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
 	<script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-static-files.min.js"></script>
 	<script src="../lib/angular-ngStorage-0.3.11/js/ngStorage.min.js"></script>
+	<script src="../lib/angular-dateParser-1.2.0/js/angular-dateparser.js"></script>
 	<script src="../lib/jquery-3.2.1/js/jquery-3.2.1.min.js"></script>
 	<script src="../lib/popper-1.11.0/js/popper.min.js"></script>
 	<script src="../lib/bootstrap-4.0.0/js/bootstrap.min.js"></script>

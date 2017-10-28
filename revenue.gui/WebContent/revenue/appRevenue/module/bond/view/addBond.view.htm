@@ -47,7 +47,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" required class="form-control" id="bondDueDate"
+								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" date-parser="dd.MM.yyyy" type="bondDueDate" required class="form-control" id="bondDueDate"
 									aria-describedby="bondDueDateHelp" placeholder="{{ 'viewAddBond.form.input.dueDate.placeholder' | translate }}">
 							</div>
 							<div>
