@@ -1,9 +1,6 @@
 package revenue.service.bond;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -114,6 +111,7 @@ public class BondService
 		locBondHeader.setIsin(reqBondHeader.getIsin());
 		locBondHeader.setName(reqBondHeader.getName());
 		locBondHeader.setDueDate(reqBondHeader.getDueDate());
+		locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
 
 		Depot locDepot = new Depot();
 		locDepot.setId(reqBondHeader.getDepotId());
@@ -174,11 +172,35 @@ public class BondService
 
 		return locResponse;
 	}
+	
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/deleteBondItemBuy")
+	public Response deleteBondItemBuy(@QueryParam("bondItemBuyId") long bondItemBuyId)
+	{
+		Response locResponse = new Response();
+
+		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+
+		Transaction locTransaction = locSession.beginTransaction();
+
+		Query locQuery = locSession.createQuery("from BondItemBuy where id = " + bondItemBuyId);
+
+		BondItemBuy locBondItemBuy = (BondItemBuy) locQuery.getSingleResult();
+
+		locSession.delete(locBondItemBuy);
+
+		locTransaction.commit();
+
+		locSession.close();
+
+		return locResponse;
+	}
 
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteBond")
-	public Response deleteDepot(@QueryParam("bondId") long bondId)
+	public Response deleteBond(@QueryParam("bondId") long bondId)
 	{
 		Response locResponse = new Response();
 

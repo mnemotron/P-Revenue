@@ -71,26 +71,67 @@
 									<a href="#!viewAddBondItemBuy"><img src="icon/cart-3x-w.png"></a>
 								</div>
 							</div>
+							<div class="row">&nbsp;</div>
+							<div class="row">
+								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.buyDate"></i></b></div>
+								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.nominalValue"></i></b></div>
+								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.buyRate"></i></b></div>
+								<div class="col"></div>
+							</div>
 						</div>
 
 					</li>
-					<li ng-repeat="bondItemBuy in bondItemBuyList" class="list-group-item"><a href="">{{bondItemBuy.nominalValue}}</a></li>
-				</ul>
-				<div><br></div>
-				<!-- BOND GROUP SOLD -->
-				<ul class="list-group m-1">
-					<li class="list-group-item list-group-item-danger">
+					<li ng-repeat="bondItemBuy in bondItemBuyList" class="list-group-item list-group-item-success">
 
 						<div class="container-fluit">
 							<div class="row">
-								<div class="col">
-									<b translate="viewBond.bond.item.sold.title"></b>
+								<div class="col">{{bondItemBuy.buyDate|date:'dd.MM.yyyy'}}</div>
+								<div class="col">{{bondItemBuy.nominalValue}}</div>
+								<div class="col">{{bondItemBuy.buyPercent}}</div>
+								<div class="col" align="right">
+									<a><img src="icon/minus-2x-w.png"></a>&nbsp;&nbsp; <a href="" data-toggle="modal" data-target="#deleteBondItemBuyModal{{$index}}"><img src="icon/x-2x-w.png"></a>
+								</div>
+							</div>
+
+						</div> <!-- BONDITEMBUY DELETE MODAL DIALOG -->
+						<div class="modal fade" id="deleteBondItemBuyModal{{$index}}" tabindex="-1" role="dialog" aria-labelledby="deleteBondItemBuyLabel{{$index}}" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title text-dark" id="deleteBondItemBuyLabel{{$index}}">{{'viewBond.bondItemBuy.delete.dialog.title'|translate}}</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body text-dark" translate="viewBond.bondItemBuy.delete.dialog.question"></div>
+									<div class="modal-footer">
+										<button ng-click="deleteBondItemBuy($index)" type="button" class="btn btn-primary" data-dismiss="modal" translate="viewBond.bondItemBuy.delete.dialog.button.delete"></button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal" translate="viewBond.bondItemBuy.delete.dialog.button.cancel"></button>
+									</div>
 								</div>
 							</div>
 						</div>
 
 					</li>
 				</ul>
+
+				<div>
+					<br>
+				</div>
+				<!-- BOND GROUP SOLD -->
+				<!-- 				<ul class="list-group m-1"> -->
+				<!-- 					<li class="list-group-item list-group-item-danger"> -->
+
+				<!-- 						<div class="container-fluit"> -->
+				<!-- 							<div class="row"> -->
+				<!-- 								<div class="col"> -->
+				<!-- 									<b translate="viewBond.bond.item.sold.title"></b> -->
+				<!-- 								</div> -->
+				<!-- 							</div> -->
+				<!-- 						</div> -->
+
+				<!-- 					</li> -->
+				<!-- 				</ul> -->
 
 			</div>
 

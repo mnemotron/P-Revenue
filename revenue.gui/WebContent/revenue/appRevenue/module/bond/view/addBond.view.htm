@@ -13,9 +13,9 @@
 							<div class="form-group">
 								<label for="bondName" class="text-dark" translate="viewAddBond.form.label.name"></label> <input ng-model="bond.name" required minlength="5" maxlength="25" type="bondName" class="form-control"
 									id="bondName" name="bondName" aria-describedby="bondNameHelp" placeholder="{{ 'viewAddBond.form.input.name.placeholder' | translate }}">
-<!-- 								<div role="alert"> -->
-<!-- 									<span class="error" ng-show="formAddBond.bondName.$error.required"> Required!</span> -->
-<!-- 								</div> -->
+								<!-- 								<div role="alert"> -->
+								<!-- 									<span class="error" ng-show="formAddBond.bondName.$error.required"> Required!</span> -->
+								<!-- 								</div> -->
 							</div>
 
 							<div class="form-row">
@@ -33,21 +33,29 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input ng-model="bond.interest" type="bondInterest" required class="form-control" id="bondInterest"
-										aria-describedby="bondInterestHelp" placeholder="{{ 'viewAddBond.form.input.interest.placeholder' | translate }}">
+									<label for="bondInterest" class="text-dark" translate="viewAddBond.form.label.interest"></label> <input ng-model="bond.interest" type="bondInterest" required class="form-control"
+										id="bondInterest" aria-describedby="bondInterestHelp" placeholder="{{ 'viewAddBond.form.input.interest.placeholder' | translate }}">
 								</div>
 								<div class="form-group col-md-4">
-									<label for="bondInterestDate" class="text-dark" translate="viewAddBond.form.label.interestDate"></label> <input ng-model="bond.interestDate" type="bondInterestDate" required class="form-control"
-										id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{ 'viewAddBond.form.input.interestDate.placeholder' | translate }}">
+									<label for="bondInterestDate" class="text-dark" translate="viewAddBond.form.label.interestDate"></label> <input ng-model="bond.interestDate" type="bondInterestDate" required
+										class="form-control" id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{ 'viewAddBond.form.input.interestDate.placeholder' | translate }}">
 
 								</div>
 								<div class="form-group col-md-4">
-									<label for="bondInterestIntervall" class="text-dark" translate="viewAddBond.form.label.interestIntervall"></label> <input ng-model="bond.interestIntervall" type="bondInterestIntervall"
-										required class="form-control" id="bondInterestIntervall" aria-describedby="bondInterestIntervallHelp" placeholder="{{ 'viewAddBond.form.input.interestIntervall.placeholder' | translate }}">
+
+									<label for="bondInterestIntervall" class="text-dark" translate="viewAddBond.form.label.interestIntervall"></label>
+									 <select id="bondInterestIntervall" class="form-control" ng-model="bond.interestIntervall" type="bondInterestIntervall" required>
+										<option value="">{{ 'viewAddBond.form.select.interestIntervall.placeholder' | translate }}</option>
+										<option value="1">{{ 'viewAddBond.form.select.option.interestIntervall.yearly' | translate }}</option>
+										<option value="2">{{ 'viewAddBond.form.select.option.interestIntervall.halfyearly' | translate }}</option>
+										<option value="4">{{ 'viewAddBond.form.select.option.interestIntervall.quarterly' | translate }}</option>
+										<option value="12">{{ 'viewAddBond.form.select.option.interestIntervall.monthly' | translate }}</option>
+									</select>
+
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" date-parser="dd.MM.yyyy" type="bondDueDate" required class="form-control" id="bondDueDate"
+								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" required class="form-control" id="bondDueDate"
 									aria-describedby="bondDueDateHelp" placeholder="{{ 'viewAddBond.form.input.dueDate.placeholder' | translate }}">
 							</div>
 							<div>

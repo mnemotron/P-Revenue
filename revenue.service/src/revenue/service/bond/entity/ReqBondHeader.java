@@ -22,7 +22,7 @@ public class ReqBondHeader
 
 	private byte interestIntervall;
 
-	private String interestDate;
+	private Date interestDate;
 
 	private String interest;
 
@@ -121,12 +121,12 @@ public class ReqBondHeader
 		this.interestIntervall = interestIntervall;
 	}
 
-	public String getInterestDate()
+	public Date getInterestDate()
 	{
 		return interestDate;
 	}
 
-	public void setInterestDate(String interestDate)
+	public void setInterestDate(Date interestDate)
 	{
 		this.interestDate = interestDate;
 	}
