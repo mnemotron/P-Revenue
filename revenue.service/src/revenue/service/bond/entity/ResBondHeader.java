@@ -1,5 +1,7 @@
 package revenue.service.bond.entity;
 
+import java.util.Date;
+
 public class ResBondHeader
 {
 	private long id;
@@ -22,7 +24,7 @@ public class ResBondHeader
 
 	private String interestDate;
 
-	private String interest;
+	private double interest;
 
 	public ResBondHeader()
 	{
@@ -129,12 +131,12 @@ public class ResBondHeader
 		this.interestDate = interestDate;
 	}
 
-	public String getInterest()
+	public double getInterest()
 	{
 		return interest;
 	}
 
-	public void setInterest(String interest)
+	public void setInterest(double interest)
 	{
 		this.interest = interest;
 	}

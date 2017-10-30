@@ -16,6 +16,27 @@
 									<b>{{'viewBond.bond.menu.title'|translate}} {{selectedBond.name}}</b>
 								</div>
 							</div>
+							<div class="row">&nbsp;</div>
+							<div class="row">
+								<div class="col-md-2">ISIN:</div>
+								<div class="col">{{selectedBond.isin}}</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">WKN:</div>
+								<div class="col">{{selectedBond.wkn}}</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">Area:</div>
+								<div class="col">{{selectedBond.area}}</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">Interest Date:</div>
+								<div class="col">{{selectedBond.interestDate|date:'dd.MM.yyyy'}}</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">Interest Intervall:</div>
+								<div class="col">{{selectedBond.interestIntervall}}</div>
+							</div>
 						</div>
 
 					</li>
@@ -73,9 +94,15 @@
 							</div>
 							<div class="row">&nbsp;</div>
 							<div class="row">
-								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.buyDate"></i></b></div>
-								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.nominalValue"></i></b></div>
-								<div class="col" ><b><i translate="viewBond.bondItemBuy.col.buyRate"></i></b></div>
+								<div class="col">
+									<b><i translate="viewBond.bondItemBuy.col.buyDate"></i></b>
+								</div>
+								<div class="col">
+									<b><i translate="viewBond.bondItemBuy.col.nominalValue"></i></b>
+								</div>
+								<div class="col">
+									<b><i translate="viewBond.bondItemBuy.col.buyRate"></i></b>
+								</div>
 								<div class="col"></div>
 							</div>
 						</div>

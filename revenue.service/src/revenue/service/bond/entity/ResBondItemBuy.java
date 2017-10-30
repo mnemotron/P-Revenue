@@ -13,7 +13,7 @@ public class ResBondItemBuy
 
 	private long bondId;
 
-	private Date buyDate;
+	private String buyDate;
 
 	private double buyPercent;
 
@@ -59,12 +59,12 @@ public class ResBondItemBuy
 		this.bondId = bondId;
 	}
 
-	public Date getBuyDate()
+	public String getBuyDate()
 	{
 		return buyDate;
 	}
 
-	public void setBuyDate(Date buyDate)
+	public void setBuyDate(String buyDate)
 	{
 		this.buyDate = buyDate;
 	}

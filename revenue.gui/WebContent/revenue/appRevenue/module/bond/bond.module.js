@@ -17,7 +17,10 @@ bondModule.controller('ctrlViewBond', function($scope, $http, storageService, ST
 		
 		$http.get('http://localhost:8080/revenue.service/bond/service/getBondItemBuyList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id, bondId: $scope.selectedBond.id}}).then(function(response) {
 			$scope.bondItemBuyList = response.data
-			
+
+			for (var i = 0; i < $scope.bondItemBuyList.length; i++) {
+			$scope.bondItemBuyList[i].buyDate = new Date($scope.bondItemBuyList[i].buyDate);	
+			}
 		});
 		
 	}

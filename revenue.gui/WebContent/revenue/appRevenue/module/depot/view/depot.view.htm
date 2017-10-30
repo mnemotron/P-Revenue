@@ -29,7 +29,7 @@
 		<div class="row">
 
 			<div class="col">
-			
+
 				<!-- DEPOT MENU -->
 				<div class="btn-group m-1">
 					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewDepot.depot.menu.admin"></button>
@@ -71,11 +71,22 @@
 									<a href="#!viewAddBond"><img src="icon/plus-2x-w.png"></a>
 								</div>
 							</div>
+							<div class="row">&nbsp;</div>
+							<div class="row">
+								<div class="col"><b><i translate="viewDepot.depot.bond.col.bondName"></i></b></div>
+								<div class="col"><b><i translate="viewDepot.depot.bond.col.bondIsin"></i></b></div>
+							</div>
 						</div>
 
 					</li>
-					<li ng-repeat="bond in bonds" class="list-group-item"><a
-						ng-click="selectBond($index)" href="#!viewBond">{{bond.name}}</a></li>
+					<li ng-repeat="bond in bonds" class="list-group-item bg-light"><a ng-click="selectBond($index)" href="#!viewBond">
+							<div class="container-fluit">
+								<div class="row text-dark">
+									<div class="col">{{bond.name}}</div>
+									<div class="col">{{bond.isin}}</div>
+								</div>
+							</div>
+					</a></li>
 				</ul>
 
 			</div>

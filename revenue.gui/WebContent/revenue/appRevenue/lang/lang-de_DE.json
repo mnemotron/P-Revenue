@@ -32,6 +32,8 @@
 	"viewDepot.depot.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewDepot.depot.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewDepot.depot.bond.title": "Anleihen",
+	"viewDepot.depot.bond.col.bondName": "Name",
+	"viewDepot.depot.bond.col.bondIsin": "ISIN",
 	"viewAddBond.form.title": "Anleihe hinzufügen",
 	"viewAddBond.form.label.name": "Name",
 	"viewAddBond.form.button.add": "Hinzufügen",

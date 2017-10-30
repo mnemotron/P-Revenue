@@ -6,11 +6,17 @@ var breadcrumbService = angular.module('breadcrumb.service', ['storage.service',
 																																																																																																				
 breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_SERVICE_KEY, $translate) {
 	
-	var breadcrumb = new Array();
 	var index = 0;
 	
 	function set(locBreadcrumb)
 	{		
+		var breadcrumb = storageService.get(STORAGE_SERVICE_KEY.BREADCRUMB);
+		
+		if (breadcrumb == undefined)
+		{
+			breadcrumb = new Array();
+		}
+		
 		var locFound = false;
 		var locLength = breadcrumb.length;
 		
@@ -31,25 +37,26 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 			breadcrumb.push(locBreadcrumb);
 		}
 		
-//		storageService.set(STORAGE_SERVICE_KEY.BREADCRUMB, breadcrumb);	
+		storageService.set(STORAGE_SERVICE_KEY.BREADCRUMB, breadcrumb);	
 	}
 	
 	function get()
 	{
-//		var breadcrumb = storageService.get(STORAGE_SERVICE_KEY.BREADCRUMB);
+		var breadcrumb = storageService.get(STORAGE_SERVICE_KEY.BREADCRUMB);
 		
 		for (var i = 0; i < breadcrumb.length; i++)
 		{
 				index = i;
 				
 				$translate(breadcrumb[i].id).then(function (translation) {
+					
 					breadcrumb[index].text = translation;
-				});
+				});	
 		}
 
 		return breadcrumb;
 	}
-	
+
 	return{
 		get: get,
 		set: set

@@ -14,6 +14,11 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 
 	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
 		$scope.bonds = response.data
+		
+		for (var i = 0; i < $scope.bonds.length; i++) {
+			$scope.bonds[i].interestDate = new Date($scope.bonds[i].interestDate);	
+			$scope.bonds[i].dueDate = new Date($scope.bonds[i].dueDate);	
+		}
 	});
 	
 	$scope.selectBond = function(index) {

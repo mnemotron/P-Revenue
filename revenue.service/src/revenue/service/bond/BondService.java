@@ -1,5 +1,6 @@
 package revenue.service.bond;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
@@ -51,7 +52,16 @@ public class BondService
 			locResBondHeader.setId(bondheader.getId());
 			locResBondHeader.setName(bondheader.getName());
 			locResBondHeader.setArea(bondheader.getArea());
-			// locResBondHeader.setDueDate(bondheader.getDueDate());
+			locResBondHeader.setIsin(bondheader.getIsin());
+			locResBondHeader.setWkn(bondheader.getWkn());
+			
+			locResBondHeader.setDueDate(bondheader.getDueDate().toString());			
+			locResBondHeader.setInterestDate(bondheader.getInterestDate().toString());
+			
+			locResBondHeader.setDepotId(bondheader.getDepot().getId());
+			locResBondHeader.setPortfolioId(bondheader.getPortfolio().getId());
+			locResBondHeader.setInterestIntervall(bondheader.getInterestIntervall());
+//			locResBondHeader.setInterest(bondheader.get);
 
 			locResBondHeaderList.add(locResBondHeader);
 		}
@@ -85,7 +95,7 @@ public class BondService
 			locResBondItemBuy.setPortfolioId(bonditembuy.getPortfolio().getId());
 			locResBondItemBuy.setDepotId(bonditembuy.getDepot().getId());
 			locResBondItemBuy.setNominalValue(bonditembuy.getNominalValue());
-			locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate());
+			locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate().toString());
 			locResBondItemBuy.setBuyPercent(bonditembuy.getBuyPercent());
 
 			locResBondItemBuyList.add(locResBondItemBuy);
@@ -112,6 +122,7 @@ public class BondService
 		locBondHeader.setName(reqBondHeader.getName());
 		locBondHeader.setDueDate(reqBondHeader.getDueDate());
 		locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
+		locBondHeader.setInterestIntervall(reqBondHeader.getInterestIntervall());
 
 		Depot locDepot = new Depot();
 		locDepot.setId(reqBondHeader.getDepotId());

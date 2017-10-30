@@ -32,6 +32,8 @@
 	"viewDepot.depot.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewDepot.depot.menu.admin.delete.dialog.button.cancel": "Cancel",
 	"viewDepot.depot.bond.title": "Bonds",
+	"viewDepot.depot.bond.col.bondName": "Name",
+	"viewDepot.depot.bond.col.bondIsin": "ISIN",
 	"viewAddBond.form.title": "Add Bond",
 	"viewAddBond.form.label.name": "Name",
 	"viewAddBond.form.button.add": "Add",
