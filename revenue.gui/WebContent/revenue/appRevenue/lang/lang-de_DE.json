@@ -54,6 +54,8 @@
 	"viewAddBond.form.label.dueDate": "Fälligkeit",
 	"viewAddBond.form.input.dueDate.placeholder": "Faelligkeit",
 	"viewBond.bond.menu.title": "Anleihe:",
+	"viewBond.bond.menu.revenue": "Erträge",
+	"viewBond.bond.menu.revenue.timeline": "Ertragszeitleiste",
 	"viewBond.bond.menu.admin": "Administration",
 	"viewBond.bond.menu.admin.delete": "Löschen",
 	"viewBond.bond.menu.admin.delete.dialog.title": "Anleihe:",
