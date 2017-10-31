@@ -1,6 +1,7 @@
 package revenue.service.revenue.timeline;
 
 import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -10,9 +11,17 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import revenue.core.bond.Bond;
+import revenue.core.bond.entity.BondHeaderResult;
+import revenue.core.bond.entity.BondInterestResult;
+import revenue.core.bond.entity.BondItemResult;
 import revenue.entity.BondHeader;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.revenue.timeline.entity.ReqRevenueTimeline;
+import revenue.service.revenue.timeline.entity.ResBond;
+import revenue.service.revenue.timeline.entity.ResBondItemBuy;
+import revenue.service.revenue.timeline.entity.ResBondItemInterestRevenue;
+import revenue.service.revenue.timeline.entity.ResDepot;
 import revenue.service.revenue.timeline.entity.ResRevenueTimeline;
 
 @Path("/service")
@@ -42,10 +51,8 @@ public class RevenueTimelineService
 			locQuery.setParameterList("BondIdList", locBondIdList);
 
 			ArrayList<BondHeader> locBondHeaderList = (ArrayList<BondHeader>) locQuery.getResultList();
-			
-			//Revenue Berechnung pro Bond
-			
-			//Map to result
+
+			locResRevenueTimeline = calTimelineBond(reqRevenueTimeline, locBondHeaderList);
 
 		}
 		else if (reqRevenueTimeline.getPortfolioId() > 0 && reqRevenueTimeline.getDepotId() > 0)
@@ -61,22 +68,69 @@ public class RevenueTimelineService
 
 		return locResRevenueTimeline;
 	}
-}
 
-//// ITEMS
-//// nominal value: 2000, buy date: 01.02.2017, buy value: 100%
-// BondItemBuy locBondItem1 = new BondItemBuy(2000, new Date(117, 1, 1), 100,
-//// null, null);
-//
-// ArrayList<BondItemBuy> locBondItemsBuy = new ArrayList<BondItemBuy>();
-// locBondItemsBuy.add(locBondItem1);
-//
-//// HEADER
-//// interest date: 21.05., due date: 21.05.2020
-// BondHeader locBondHeader = new BondHeader("JUNG, DMS ANL.15/20", "Insurance",
-//// "A14J9D", "DE000A14J9D9", 6.0, BondHeader.INTEREST_INTERVALL_YEARLY, new
-//// Date(117, 4, 21), new Date(120, 4, 21), locBondItemsBuy);
-//
-// Bond bond = new Bond(locBondHeader);
-//
-// bond.calReturnTimeline();
+	private ResRevenueTimeline calTimelineBond(ReqRevenueTimeline reqRevenueTimeline, ArrayList<BondHeader> bondHeaderList)
+	{
+		ResRevenueTimeline locResRevenueTimeline = new ResRevenueTimeline();
+
+		Bond locBond = new Bond();
+
+		// calculate revenue timeline
+		for (BondHeader bondHeader : bondHeaderList)
+		{
+			locBond.addBond(bondHeader);
+		}
+
+		locBond.calReturnTimeline();
+
+		ArrayList<BondHeaderResult> locBondHeaderResultList = locBond.getResult();
+
+		// return result
+		ArrayList<ResBond> locResBondList = new ArrayList<ResBond>();
+
+		for (BondHeaderResult bondHeaderResult : locBondHeaderResultList)
+		{
+
+			ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
+
+			ArrayList<BondItemResult> locBondItemResult = bondHeaderResult.getBondItemResult();
+
+			for (BondItemResult bondItemResult : locBondItemResult)
+			{
+				ArrayList<ResBondItemInterestRevenue> locResBondItemInterestRevenueList = new ArrayList<ResBondItemInterestRevenue>();
+
+				ArrayList<BondInterestResult> locBondInterestResult = bondItemResult.getBondInterestDates();
+
+				for (BondInterestResult bondInterestResult : locBondInterestResult)
+				{
+					ResBondItemInterestRevenue locBondItemInterestRevenue = new ResBondItemInterestRevenue();
+					locBondItemInterestRevenue.setInterestDate(bondInterestResult.getInterestDate().toString());
+					locBondItemInterestRevenue.setInterestRevenue(bondInterestResult.getInterest());
+					locResBondItemInterestRevenueList.add(locBondItemInterestRevenue);
+				}
+
+				ResBondItemBuy locResBondItemBuy = new ResBondItemBuy();
+				locResBondItemBuy.setBondItemBuyId(bondItemResult.getBondItemBuy().getId());
+				locResBondItemBuy.setBondItemInterestRevenueList(locResBondItemInterestRevenueList);
+				locResBondItemBuyList.add(locResBondItemBuy);
+			}
+
+			ResBond locResBond = new ResBond();
+			locResBond.setBondId(bondHeaderResult.getBondHeader().getId());
+			locResBond.setBondItemBuyList(locResBondItemBuyList);
+			locResBondList.add(locResBond);
+
+		}
+
+		ArrayList<ResDepot> locResDepotList = new ArrayList<ResDepot>();
+		ResDepot locResDepot = new ResDepot();
+		locResDepot.setDepotId(reqRevenueTimeline.getDepotId());
+		locResDepot.setBondList(locResBondList);
+		locResDepotList.add(locResDepot);
+
+		locResRevenueTimeline.setPortfolioId(reqRevenueTimeline.getPortfolioId());
+		locResRevenueTimeline.setDepotList(locResDepotList);
+
+		return locResRevenueTimeline;
+	}
+}

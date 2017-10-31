@@ -25,6 +25,11 @@ public class Bond
 		this.bonds = new ArrayList<BondHeaderResult>();
 	}
 
+	public ArrayList<BondHeaderResult> getResult()
+	{
+		return bonds;
+	}
+
 	public void addBond(BondHeader bond)
 	{
 		BondHeaderResult locBondHeaderResult = new BondHeaderResult();
@@ -134,7 +139,7 @@ public class Bond
 		return MONTH_OF_YEAR / intervall;
 	}
 
-	public ArrayList<Date> getNextInterestDates(Date buyDate, Date interestDate, Date dueDate, byte interestIntervall)
+	private ArrayList<Date> getNextInterestDates(Date buyDate, Date interestDate, Date dueDate, byte interestIntervall)
 	{
 
 		ArrayList<Date> locInterestDates = new ArrayList<Date>();
