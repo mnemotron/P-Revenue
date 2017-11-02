@@ -56,7 +56,7 @@ public class BondHeader implements Serializable {
 	private Date interestDate;
 
 	@OneToMany(mappedBy = "bondHeader", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
+	private Collection<BondItemBuy> bondItemBuy = new ArrayList<BondItemBuy>();
 
 	@ManyToOne
 	private Depot depot;
@@ -65,7 +65,7 @@ public class BondHeader implements Serializable {
 	private Portfolio portfolio;
 
 	@OneToMany(mappedBy = "bondHeader", cascade = CascadeType.ALL, orphanRemoval = true)
-	private ArrayList<Interest> interest = new ArrayList<Interest>();
+	private Collection<Interest> interest = new ArrayList<Interest>();
 
 	public long getId() {
 		return id;
@@ -139,11 +139,11 @@ public class BondHeader implements Serializable {
 		this.interestDate = param;
 	}
 
-	public ArrayList<BondItemBuy> getBondItemBuy() {
+	public Collection<BondItemBuy> getBondItemBuy() {
 	    return bondItemBuy;
 	}
 
-	public void setBondItemBuy(ArrayList<BondItemBuy> param) {
+	public void setBondItemBuy(Collection<BondItemBuy> param) {
 	    this.bondItemBuy = param;
 	}
 
@@ -163,7 +163,7 @@ public class BondHeader implements Serializable {
 	    this.portfolio = param;
 	}
 
-	public ArrayList<Interest> getInterest() {
+	public Collection<Interest> getInterest() {
 	    return interest;
 	}
 

@@ -52,10 +52,28 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 					
 					breadcrumb[index].text = translation;
 				});	
+				
+//				var translater = translateAsy(i);
+//				
+//				translater(breadcrumb);
+				
 		}
 
 		return breadcrumb;
 	}
+	
+//	function translateAsy(tindex)
+//	{
+//		function translater(breadcrumb)
+//		{
+//			$translate(breadcrumb[tindex].id).then(function (translation) {
+//				
+//				breadcrumb[tindex].text = translation;
+//			});	
+//		}
+//		
+//		return translater
+//	}
 
 	return{
 		get: get,
