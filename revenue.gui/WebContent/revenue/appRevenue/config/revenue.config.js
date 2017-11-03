@@ -13,18 +13,19 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 
 appRevenueConfig.constant('LANGUAGE', {DEFAULT_LANGUAGE: 'de_DE', FILE_PREFIX: 'lang/lang-', FILE_SUFFIX: '.json'});
 
-appRevenueConfig.config(function($routeProvider, $translateProvider, LANGUAGE) {
+appRevenueConfig.config(function($routeProvider, $translateProvider, $translatePartialLoaderProvider, LANGUAGE) {
 
 	//translation
-	$translateProvider.useStaticFilesLoader({
-	prefix : LANGUAGE.FILE_PREFIX,
-	suffix : LANGUAGE.FILE_SUFFIX
-	});
-
+    $translatePartialLoaderProvider.addPart('lang');
+    
+    $translateProvider.useLoader('$translatePartialLoader', {
+      urlTemplate: '{part}/lang-{lang}.json'
+    });
+    
 	$translateProvider.preferredLanguage(LANGUAGE.DEFAULT_LANGUAGE);
-
-//	$translateProvider.useSanitizeValueStrategy('sanitize');
 	
+//	$translateProvider.useSanitizeValueStrategy('sanitize');
+																																																																																																					
 	//navigation
 	$routeProvider
 	.when('/viewAbout', {

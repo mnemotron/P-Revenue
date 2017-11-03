@@ -24,7 +24,14 @@ storageService.factory('storageService', function($localStorage) {
 	{
 		var locData = $localStorage.data;
 		
+		if (locData === undefined)
+		{
+			return undefined;
+		}
+		else
+		{
 		return locData[key];	
+		}
 	}
 	
 	return{

@@ -6,9 +6,12 @@ var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
 portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY) {
 
+	//EVENT: translate
+	$scope.$emit('translate', {part:'module/portfolio/lang'});
+	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.home', link:'/'});
-	
+
 	$scope.selectPortfolio = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.PORTFOLIO, $scope.portfolios[index]);
 	};

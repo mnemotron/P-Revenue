@@ -1,0 +1,20 @@
+{
+	"viewPortfolioLaunchpad.create.header": "Portfolio",
+	"viewPortfolioLaunchpad.create.title": "Create a Portfolio",
+	"viewPortfolioLaunchpad.exist.title": "Portfolio",
+	"viewCreatePortfolio.form.title": "Create Portfolio",
+	"viewCreatePortfolio.form.label.name": "Name",
+	"viewCreatePortfolio.form.label.description": "Description",
+	"viewCreatePortfolio.form.button.create": "Create",
+	"viewCreatePortfolio.form.button.cancel": "Cancel",
+	"viewCreatePortfolio.form.input.description.placeholder": "Enter the portfolio description",
+	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name",
+	"viewPortfolio.portfolio.menu.title": "Portfolio:",
+	"viewPortfolio.portfolio.menu.admin": "Administration",
+	"viewPortfolio.portfolio.menu.admin.delete": "Delete",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.title": "Portfolio:",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.question": "Do you want to delete the portfolio?",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Delete",
+	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Cancel",
+	"viewPortfolio.portfolio.depot.title": "Depot"
+}
