@@ -42,7 +42,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2">Interest Date:</div>
-								<div class="col">{{selectedBond.interestDate|date:'dd.MM.yyyy'}}</div>
+								<div class="col">{{selectedBond.interestDate | date:'mediumDate'}}</div>
 							</div>
 							<div class="row">
 								<div class="col-md-2">Interest Intervall:</div>
@@ -141,7 +141,7 @@
 
 						<div class="container-fluit">
 							<div class="row">
-								<div class="col">{{bondItemBuy.buyDate|date:'dd.MM.yyyy'}}</div>
+								<div class="col">{{bondItemBuy.buyDate | date:'mediumDate'}}</div>
 								<div class="col">{{bondItemBuy.nominalValue}}</div>
 								<div class="col">{{bondItemBuy.buyPercent}}</div>
 								<div class="col" align="right">

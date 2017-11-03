@@ -8,6 +8,8 @@ var bondConfig = angular.module('bond.config',[
 	'dateParser'
 	]);
 
+bondConfig.constant('BOND_LANGUAGE', {PART: 'module/bond/lang'});
+
 bondConfig.config(function($routeProvider){
 
 	$routeProvider

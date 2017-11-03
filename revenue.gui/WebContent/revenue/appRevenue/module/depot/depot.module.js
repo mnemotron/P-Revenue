@@ -4,7 +4,10 @@
 
 var depotModule = angular.module('depot.module', ['depot.config']);
 
-depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
+depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, DEPOT_LANGUAGE) {
+	
+	//EVENT: translate
+	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.depot', link:'/viewDepot'});
@@ -40,8 +43,11 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 
 });
 
-depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location) {
+depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location, DEPOT_LANGUAGE) {
 
+	//EVENT: translate
+	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});
+	
 	$scope.createDepot = function() {
 
 		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);

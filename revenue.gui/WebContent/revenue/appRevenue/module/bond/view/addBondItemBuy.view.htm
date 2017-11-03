@@ -12,8 +12,8 @@
 
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="buyDate" class="text-dark" translate="viewAddBondItemBuy.form.label.buyDate"></label> <input ng-model="bondItemBuy.buyDate" type="buyDate" required class="form-control"
-										id="buyDate" aria-describedby="buyDateHelp" placeholder="{{ 'viewAddBondItemBuy.form.input.buyDate.placeholder' | translate }}">
+									<label for="buyDate" class="text-dark" translate="viewAddBondItemBuy.form.label.buyDate"></label> <input ng-model="bondItemBuy.buyDate" date-parser="shortDate" type="buyDate" required class="form-control"
+										id="buyDate" aria-describedby="buyDateHelp" placeholder="{{dateFormat}}">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="nominalValue" class="text-dark" translate="viewAddBondItemBuy.form.label.nominalValue"></label> <input ng-model="bondItemBuy.nominalValue" type="nominalValue" required

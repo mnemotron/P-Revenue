@@ -8,14 +8,16 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 		'pascalprecht.translate', 
 		'storage.service',
 		'breadcrumb.service',
-		'portfolio.module'
+		'portfolio.module',
+		'dateParser',
+		'tmh.dynamicLocale'
 		]);
 
-appRevenueConfig.constant('REVENUE_LANGUAGE', {DEFAULT_LANGUAGE: 'de_DE', FILE_PREFIX: 'lang-', FILE_SUFFIX: '.json', PART: 'lang'});
+appRevenueConfig.constant('REVENUE_LANGUAGE', {DEFAULT_LANGUAGE: 'de', FILE_PREFIX: 'lang-', FILE_SUFFIX: '.json', PART: 'lang'});
 
-appRevenueConfig.config(function($routeProvider, $translateProvider, $translatePartialLoaderProvider, REVENUE_LANGUAGE) {
+appRevenueConfig.config(function($routeProvider, $translateProvider, $translatePartialLoaderProvider, REVENUE_LANGUAGE, $dateParserProvider, tmhDynamicLocaleProvider) {
 
-	//translation
+	//TRANSLATION
     $translatePartialLoaderProvider.addPart(REVENUE_LANGUAGE.PART);
     
     $translateProvider.useLoader('$translatePartialLoader', {
@@ -24,9 +26,13 @@ appRevenueConfig.config(function($routeProvider, $translateProvider, $translateP
     
 	$translateProvider.preferredLanguage(REVENUE_LANGUAGE.DEFAULT_LANGUAGE);
 	
-//	$translateProvider.useSanitizeValueStrategy('sanitize');
-																																																																																																					
-	//navigation
+	//$translateProvider.useSanitizeValueStrategy('sanitize');
+	
+	//LOCALIZATION
+	 $dateParserProvider.watchLocale(true);
+     tmhDynamicLocaleProvider.localeLocationPattern('../lib/angular-1.6.6/locale/angular-locale_{{locale}}.js');
+     
+	//NAVIGATION
 	$routeProvider
 	.when('/viewAbout', {
 		templateUrl : 'view/about.view.htm'

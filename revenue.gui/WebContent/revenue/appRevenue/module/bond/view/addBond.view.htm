@@ -38,7 +38,7 @@
 								</div>
 								<div class="form-group col-md-4">
 									<label for="bondInterestDate" class="text-dark" translate="viewAddBond.form.label.interestDate"></label> <input ng-model="bond.interestDate" type="bondInterestDate" required
-										class="form-control" id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{ 'viewAddBond.form.input.interestDate.placeholder' | translate }}">
+										class="form-control" date-parser="shortDate" id="bondInterestDate" aria-describedby="bondInterestDateHelp" placeholder="{{dateFormat}}">
 
 								</div>
 								<div class="form-group col-md-4">
@@ -55,8 +55,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" required class="form-control" id="bondDueDate"
-									aria-describedby="bondDueDateHelp" placeholder="{{ 'viewAddBond.form.input.dueDate.placeholder' | translate }}">
+								<label for="bondDueDate" class="text-dark" translate="viewAddBond.form.label.dueDate"></label> <input ng-model="bond.dueDate" type="bondDueDate" required date-parser="shortDate" class="form-control" id="bondDueDate"
+									aria-describedby="bondDueDateHelp" placeholder="{{dateFormat}}">
 							</div>
 							<div>
 								<br>

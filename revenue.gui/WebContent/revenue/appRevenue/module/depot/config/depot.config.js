@@ -8,6 +8,8 @@ var depotConfig = angular.module('depot.config',[
 	'bond.module'
 	]);
 
+depotConfig.constant('DEPOT_LANGUAGE', {PART: 'module/depot/lang'});
+
 depotConfig.config(function($routeProvider){
 	
 	$routeProvider

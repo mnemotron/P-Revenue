@@ -4,7 +4,10 @@
 
 var bondModule = angular.module('bond.module', ['bond.config']);
 
-bondModule.controller('ctrlViewBond', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location) {
+bondModule.controller('ctrlViewBond', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location, BOND_LANGUAGE) {
+	
+	//EVENT: translate
+	$scope.$emit('translate', {part:BOND_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.bond', link:'/viewBond'});
@@ -55,8 +58,21 @@ bondModule.controller('ctrlViewBond', function($scope, $http, storageService, ST
 
 });
 
-bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService, STORAGE_SERVICE_KEY,  $location, $dateParser) {
+bondModule.controller('ctrlViewAddBond', function($locale, $scope, $http, storageService, STORAGE_SERVICE_KEY,  $location, BOND_LANGUAGE) {
+
+	//INIT
+    $scope.dateFormat = $locale.DATETIME_FORMATS.shortDate
 	
+	//EVEN: translate
+	$scope.$emit('translate', {part:BOND_LANGUAGE.PART});
+	
+    //EVENTLISTENER: localization change
+	$scope.$on('$localeChangeSuccess', function(event, data){
+		$scope.dateFormat = $locale.DATETIME_FORMATS.shortDate;
+	
+	});
+	
+	//METHOD
 	$scope.createBond = function() {
 		
 		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
@@ -64,9 +80,6 @@ bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService,
 		
 		$scope.bond['portfolioId'] = portfolio.id;
 		$scope.bond['depotId'] = depot.id;
-		
-		$scope.bond['dueDate'] = $dateParser($scope.bond['dueDate'], 'dd.MM.yyyy');
-		$scope.bond['interestDate'] = $dateParser($scope.bond['interestDate'], 'dd.MM.yyyy');
 		
 		$http.post('http://localhost:8080/revenue.service/bond/service/createBond', $scope.bond)	
 	
@@ -81,8 +94,21 @@ bondModule.controller('ctrlViewAddBond', function($scope, $http, storageService,
 
 });
 
-bondModule.controller('ctrlViewAddBondItemBuy', function($scope, $http, storageService, STORAGE_SERVICE_KEY,  $location, $dateParser) {
+bondModule.controller('ctrlViewAddBondItemBuy', function($locale, $scope, $http, storageService, STORAGE_SERVICE_KEY,  $location, BOND_LANGUAGE) {
 
+	//INIT
+    $scope.dateFormat = $locale.DATETIME_FORMATS.shortDate
+	
+	//EVEN: translate
+	$scope.$emit('translate', {part:BOND_LANGUAGE.PART});
+	
+    //EVENTLISTENER: localization change
+	$scope.$on('$localeChangeSuccess', function(event, data){
+		$scope.dateFormat = $locale.DATETIME_FORMATS.shortDate;
+	
+	});
+	
+	//METHOD
 	$scope.createBondItemBuy = function () {
 		
 		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
@@ -91,9 +117,7 @@ bondModule.controller('ctrlViewAddBondItemBuy', function($scope, $http, storageS
 			
 		$scope.bondItemBuy['portfolioId'] = portfolio.id;
 		$scope.bondItemBuy['depotId'] = depot.id;
-		$scope.bondItemBuy['bondId'] = bond.id;
-		
-		$scope.bondItemBuy['buyDate'] = $dateParser($scope.bondItemBuy['buyDate'], 'dd.MM.yyyy');																																																																																																	
+		$scope.bondItemBuy['bondId'] = bond.id;																																																																																																
 		
 		$http.post('http://localhost:8080/revenue.service/bond/service/createBondItemBuy', $scope.bondItemBuy)	
 		
