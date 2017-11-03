@@ -28,4 +28,5 @@ portfolioConfig.config(function($routeProvider){
 			templateUrl : 'module/depot/view/createDepot.view.htm',
 			controller : 'ctrlViewCreateDepot'
 		});
+	
 });
