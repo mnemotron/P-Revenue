@@ -9,6 +9,8 @@ var portfolioConfig = angular.module('portfolio.config',[
 	'portfolio.service'
 	]);
 
+portfolioConfig.constant('PORTFOLIO_LANGUAGE', {PART: 'module/portfolio/lang'});
+
 portfolioConfig.config(function($routeProvider){
 	
 	$routeProvider

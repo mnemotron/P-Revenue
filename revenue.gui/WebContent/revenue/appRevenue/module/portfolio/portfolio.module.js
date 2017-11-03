@@ -4,10 +4,10 @@
 
 var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
-portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY) {
+portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 
-	//EVENT: translate
-	$scope.$emit('translate', {part:'module/portfolio/lang'});
+//	//EVENT: translate
+	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.home', link:'/'});
@@ -20,8 +20,11 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 
 });
 
-portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $location) {
-
+portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, PORTFOLIO_LANGUAGE) {
+ 
+//	//EVENT: translate
+	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
+	
 	$scope.createPortfolio = function() {
 		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio)
 		
@@ -36,7 +39,10 @@ portfolioConfig.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 
 });
 
-portfolioConfig.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY) {
+portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+	
+//	//EVENT: translate
+	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.portfolio', link:'/viewPortfolio'});
