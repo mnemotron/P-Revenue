@@ -52,7 +52,7 @@ depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageSer
 
 		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 		
-		$scope.depot["portfolioId"] = portfolio.id;
+		$scope.depot['portfolioId'] = portfolio.id;
 		
 		$http.post('http://localhost:8080/revenue.service/depot/service/createDepot', $scope.depot)	
 		

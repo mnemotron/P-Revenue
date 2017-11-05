@@ -54,7 +54,8 @@ public class PortfolioService
 
 			locResPortfolioList.add(locResPortfolio);
 		}
-
+		
+		locTransaction.commit();
 		locSession.close();
 
 		return locResPortfolioList;

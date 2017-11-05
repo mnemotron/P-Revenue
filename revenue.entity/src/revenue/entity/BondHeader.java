@@ -79,7 +79,7 @@ public class BondHeader implements Serializable {
 		return bondItemBuy;
 	}
 
-	public void setBondItem(ArrayList<BondItemBuy> param) {
+	public void setBondItem(Collection<BondItemBuy> param) {
 		this.bondItemBuy = param;
 	}
 
@@ -167,7 +167,7 @@ public class BondHeader implements Serializable {
 	    return interest;
 	}
 
-	public void setInterest(ArrayList<Interest> param) {
+	public void setInterest(Collection<Interest> param) {
 	    this.interest = param;
 	}
 

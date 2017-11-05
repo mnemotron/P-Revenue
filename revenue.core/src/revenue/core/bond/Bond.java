@@ -39,7 +39,11 @@ public class Bond
 		locBondHeaderResult.setBondHeader(bond);
 
 		// add bond buy items to result
-		this.addBondItemsToResult(locBondHeaderResult, (ArrayList<BondItemBuy>) bond.getBondItemBuy());
+		ArrayList<BondItemBuy> locBondItemBuyList = new ArrayList<BondItemBuy>(bond.getBondItemBuy());
+		
+		this.addBondItemsToResult(locBondHeaderResult, locBondItemBuyList);
+		
+		this.bonds.add(locBondHeaderResult);
 	}
 
 	public void calReturnTimeline()
@@ -48,7 +52,7 @@ public class Bond
 		{
 			ArrayList<BondItemResult> locBondItemsResult = locBond.getBondItemResult();
 
-			ArrayList<Interest> locInterestList = (ArrayList<Interest>) locBond.getBondHeader().getInterest();
+			ArrayList<Interest> locInterestList = new ArrayList<Interest>(locBond.getBondHeader().getInterest());
 
 			double locInterestPerYear = locInterestList.get(0).getInterest();
 

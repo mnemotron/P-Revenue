@@ -24,7 +24,7 @@ public class ReqBondHeader
 
 	private Date interestDate;
 
-	private String interest;
+	private double interest;
 
 	public ReqBondHeader()
 	{
@@ -131,12 +131,12 @@ public class ReqBondHeader
 		this.interestDate = interestDate;
 	}
 
-	public String getInterest()
+	public double getInterest()
 	{
 		return interest;
 	}
 
-	public void setInterest(String interest)
+	public void setInterest(double interest)
 	{
 		this.interest = interest;
 	}

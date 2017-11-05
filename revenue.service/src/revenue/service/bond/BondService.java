@@ -1,6 +1,8 @@
 package revenue.service.bond;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,6 +19,7 @@ import org.hibernate.query.Query;
 import revenue.entity.BondHeader;
 import revenue.entity.BondItemBuy;
 import revenue.entity.Depot;
+import revenue.entity.Interest;
 import revenue.entity.Portfolio;
 import revenue.hibernate.HibernateSessionFactory;
 import revenue.service.bond.entity.ReqBondHeader;
@@ -60,11 +63,18 @@ public class BondService
 			locResBondHeader.setDepotId(bondheader.getDepot().getId());
 			locResBondHeader.setPortfolioId(bondheader.getPortfolio().getId());
 			locResBondHeader.setInterestIntervall(bondheader.getInterestIntervall());
-//			locResBondHeader.setInterest(bondheader.get);
+			
+			ArrayList<Interest> locInterestList = new ArrayList<Interest>(bondheader.getInterest());
+			for (Interest interest : locInterestList)
+			{
+				locResBondHeader.setInterest(interest.getInterest());
+				break;
+			}
 
 			locResBondHeaderList.add(locResBondHeader);
 		}
 
+		locTransaction.commit();
 		locSession.close();
 
 		return locResBondHeaderList;
@@ -100,6 +110,7 @@ public class BondService
 			locResBondItemBuyList.add(locResBondItemBuy);
 		}
 
+		locTransaction.commit();
 		locSession.close();
 
 		return locResBondItemBuyList;
@@ -122,6 +133,14 @@ public class BondService
 		locBondHeader.setDueDate(reqBondHeader.getDueDate());
 		locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
 		locBondHeader.setInterestIntervall(reqBondHeader.getInterestIntervall());
+		
+		ArrayList<Interest> locInterestList = new ArrayList<Interest>();
+		Interest locInterest = new Interest();
+		locInterest.setInterest(reqBondHeader.getInterest());
+		locInterestList.add(locInterest);
+		Collection<Interest> locInterestCol = new HashSet<Interest>(locInterestList);
+		
+		locBondHeader.setInterest(locInterestCol);
 
 		Depot locDepot = new Depot();
 		locDepot.setId(reqBondHeader.getDepotId());
