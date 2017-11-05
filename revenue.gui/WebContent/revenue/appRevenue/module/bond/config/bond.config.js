@@ -5,7 +5,8 @@
 var bondConfig = angular.module('bond.config',[
 	'ngRoute',
 	'storage.service',
-	'dateParser'
+	'dateParser',
+	'revenue.timeline.module'
 	]);
 
 bondConfig.constant('BOND_LANGUAGE', {PART: 'module/bond/lang'});
@@ -19,6 +20,9 @@ bondConfig.config(function($routeProvider){
 	}).when('/viewAddBondItemBuy', {
 		templateUrl : 'module/bond/view/addBondItemBuy.view.htm',
 		controller : 'ctrlViewAddBondItemBuy'
+	}).when('/viewRevenueTimeline', {
+		templateUrl : 'module/revenueTimeline/view/revenueTimeline.view.htm',
+		controller : 'ctrlViewRevenueTimeline'
 	});
 	
 });
