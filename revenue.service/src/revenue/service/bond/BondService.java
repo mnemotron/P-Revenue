@@ -134,14 +134,6 @@ public class BondService
 		locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
 		locBondHeader.setInterestIntervall(reqBondHeader.getInterestIntervall());
 		
-		ArrayList<Interest> locInterestList = new ArrayList<Interest>();
-		Interest locInterest = new Interest();
-		locInterest.setInterest(reqBondHeader.getInterest());
-		locInterestList.add(locInterest);
-		Collection<Interest> locInterestCol = new HashSet<Interest>(locInterestList);
-		
-		locBondHeader.setInterest(locInterestCol);
-
 		Depot locDepot = new Depot();
 		locDepot.setId(reqBondHeader.getDepotId());
 		locBondHeader.setDepot(locDepot);
@@ -149,6 +141,17 @@ public class BondService
 		Portfolio locPortfolio = new Portfolio();
 		locPortfolio.setId(reqBondHeader.getPortfolioId());
 		locBondHeader.setPortfolio(locPortfolio);
+		
+		ArrayList<Interest> locInterestList = new ArrayList<Interest>();
+		Interest locInterest = new Interest();
+		locInterest.setPortfolio(locPortfolio);
+		locInterest.setDepot(locDepot);
+		locInterest.setBondHeader(locBondHeader);
+		locInterest.setInterest(reqBondHeader.getInterest());
+		locInterestList.add(locInterest);
+		Collection<Interest> locInterestCol = new HashSet<Interest>(locInterestList);
+		
+		locBondHeader.setInterest(locInterestCol);
 
 		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
 

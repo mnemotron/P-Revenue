@@ -1,7 +1,16 @@
-<div>
-	<div class="container">
-
-		
-
-	</div>
+<div style="overflow-x: scroll;">
+	<table width="100%">
+		<tr>
+			<td class="border border-dark" colspan="{{year.daysInYear}}"
+				ng-repeat="year in timeline.year">{{year.yearString}}</td>
+		</tr>
+		<tr>
+			<td class="border border-dark" colspan="{{month.daysInMonth}}"
+				ng-repeat="month in timeline.month track by $index">{{month.monthString}}</td>
+		</tr>
+		<tr>
+			<td class="border border-dark" ng-repeat="day in timeline.day track by $index">{{day}}</td>
+		</tr>
+		<tr><td>&nbsp;</td></tr>
+	</table>
 </div>
