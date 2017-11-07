@@ -9,8 +9,15 @@
 				ng-repeat="month in timeline.month track by $index">{{month.monthString}}</td>
 		</tr>
 		<tr>
-			<td class="border border-dark" ng-repeat="day in timeline.day track by $index">{{day}}</td>
+			<td class="border border-dark" colspan="{{week.daysInWeek}}"
+				ng-repeat="week in timeline.week track by $index">{{week.weekString}}</td>
 		</tr>
-		<tr><td>&nbsp;</td></tr>
+		<tr>
+			<td class="border border-dark"
+				ng-repeat="day in timeline.day track by $index">{{day}}</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
 	</table>
 </div>
