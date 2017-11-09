@@ -26,7 +26,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	//BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2017, 2017);
+		$scope.timeline = $scope.initTimeline(2017, 2020);
 	}
 	
 	$scope.initTimeline = function(startYear, endYear) {
@@ -39,15 +39,17 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		timeline['day'] = new Array();
 		
 		//add year to timeline
-		var iterateYearDate = new Date.parse('01.01.' + startYear);
+		var iterateDate = moment('01.01.' + startYear, 'DD.MM.YYYY');
 		
-		while (+iterateYearDate.getFullYear() <= +endYear) {
+		while (+iterateDate.year() <= +endYear) {
 	
-			timeline = $scope.addMonthsToTimeline(timeline, iterateYearDate.getFullYear());
+			var months = $scope.addMonthsToTimeline(timeline, iterateDate.year());
 			
-//			timline = $scope.addWeeksToTimeline(timeline, iterateYearDate.getFullYear(), 7);
+			timeline = months.timeline;
 			
-			iterateYearDate = iterateYearDate.addYears(1);
+			timeline.year.push({yearString: iterateDate.format('YYYY'), colspan: months.colspan});
+			
+			iterateDate.add(1, 'y');
 		}
 
 		return timeline;
@@ -55,53 +57,51 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	$scope.addMonthsToTimeline = function(timeline, year) {
 
-		var iterateMonthDate = new Date.parse('01.01.' + year);
-		var daysInYear = 0;
+		var iterateDate = moment('01.01.' + year, 'DD.MM.YYYY');
+		var colspan = 0;
 		
 		for (var m = 0; m <= 11; m++) {
 			
-			var daysInMonth = Date.getDaysInMonth(year, m);
+			var result = $scope.addDaysToTimeline(timeline, year, iterateDate.format('MM'));
+//			var result  = $scope.addWeeksToTimeline(timeline, year, iterateDate.format('MM'));
+			timeline = result.timeline;
 			
-			$scope.addDaysToTimeline(timeline, year, daysInMonth);
+			timeline.month.push({monthString: iterateDate.format('MM'), colspan: result.colspan});
 			
-			timeline.month.push({monthString: iterateMonthDate.toString('MM'), daysInMonth: daysInMonth});
+			iterateDate.add(1, 'M');
 			
-			iterateMonthDate = iterateMonthDate.addMonths(1);
-			
-			daysInYear = daysInYear + daysInMonth;
+			colspan = colspan + result.colspan;
 		}
-		
-		timeline.year.push({yearString: year, daysInYear: daysInYear});
 	
-		return timeline;
+		return {timeline: timeline, colspan: colspan};
 	}
 	
-	$scope.addWeeksToTimeline = function(timeline, year, daysInWeek){
-		
-		var iterateWeekDate = new Date.parse('01.01.' + year);
-		
-		for (var w = 1; w <= 52 ; w++) {
-			
-
-			
-			timeline.week.push({weekString: iterateWeekDate.getISOWeek(), daysInWeek: 7});
-			
-			iterateWeekDate = iterateWeekDate.addWeeks(1);
-		}
-		
-		return timeline;
-	}
+//	$scope.addWeeksToTimeline = function(timeline, year, month){
+//		
+//		var iterateDate = moment('01' + month + year, 'DD.MM.YYYY').startOf('month');
+//		var colspan = 4; //weeks in month
+//		
+//		for (var w = 0; w < 4; w++) {
+//
+//			timeline.week.push({weekString: iterateDate.format('WW'), colspan: 0});
+//			
+//			iterateDate.add(1, 'w');
+//		}
+//		
+//		return {timeline: timeline, colspan: colspan};
+//	}
 	
-	$scope.addDaysToTimeline = function(timeline, year, daysInMonth) {
+	$scope.addDaysToTimeline = function(timeline, year, month) {
 		
-		var iterateDayDate = new Date.parse('01.01.' + year);
+		var iterateDate = moment('01' + month + year, 'DD.MM.YYYY');
+		var colspan = iterateDate.daysInMonth();
 		
-		for (var d = 1; d <= daysInMonth; d++) {
-			timeline['day'].push(iterateDayDate.toString('dd'));
-			iterateDayDate = iterateDayDate.addDays(1);
+		for (var d = 1; d <= colspan; d++) {
+			timeline['day'].push(iterateDate.format('DD'));
+			iterateDate.add(1, 'd');
 		}
 		
-		return timeline;
+		return {timeline: timeline, colspan: colspan};
 	}
 
 });
