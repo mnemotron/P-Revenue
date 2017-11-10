@@ -26,8 +26,8 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	//BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2017, 2017);
-		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2017, 2017);
+		$scope.timeline = $scope.initTimeline(2018, 2025);
+		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2018, 2025);
 	}
 	
 	$scope.initRevenue = function(timeline, resRevenue, startYear, endYear){
@@ -41,23 +41,29 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			
 			if (list.length > 0)
 				{
-			for (var i = 0; i < list.length; i++) {
 				
-				var tmpDate = new Date(list[i].interestDate);
+				var tmpDate = moment(list[0].interestDate);
 				
-				timeline['bond'].push(list[i].interestDate + '_' + list[i].interestRevenue+'kkkkkkkkkkkkkkkkkkk');
-				
+				if (iterateDate.isSame(tmpDate))
+				{
+				timeline['bond'].push({color: 'bg-success', revenue: list[0].interestRevenue});
+				list.shift();
+				}
+				else
+					{
+					timeline['bond'].push({color: 'table-active', revenue: ''});
+					}
 //				timeline['bond'].push('');
 				
-				list.pop();
+
 				
 //				list[i].interestDate
 //				list[i].interestRevenue
-			}
+
 				}
 			else
 				{
-				timeline['bond'].push('');
+				timeline['bond'].push({color: 'table-active', revenue: ''});
 				
 //			timeline['day'].push(iterateDate.format('DD'));
 				}

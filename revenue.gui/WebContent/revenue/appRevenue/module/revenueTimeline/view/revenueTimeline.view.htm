@@ -35,7 +35,7 @@
 				<tr class="bg-info text-light">
 					<td class="border border-light"><b>Month</b></td>
 				</tr>
-				<tr class="bg-info text-light"> 
+				<tr class="bg-info text-light">
 					<td class="border border-light"><b>Day</b></td>
 				</tr>
 				<tr class="">
@@ -64,8 +64,9 @@
 					<td class="border border-light"
 						ng-repeat="day in timeline.day track by $index"><b>{{day}}</b></td>
 				</tr>
-				<tr>
-					<td class="" ng-repeat="bond in timeline.bond track by $index">{{bond}}</td>
+				<tr class="text-light">
+					<td class="border border-light {{bond.color}}"
+						ng-repeat="bond in timeline.bond track by $index"><b>{{bond.revenue}}</b></td>
 				</tr>
 				<tr>
 					<td class=""></td>
