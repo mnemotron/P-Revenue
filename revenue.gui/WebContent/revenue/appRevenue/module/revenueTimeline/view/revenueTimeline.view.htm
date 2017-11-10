@@ -65,10 +65,10 @@
 						ng-repeat="day in timeline.day track by $index"><b>{{day}}</b></td>
 				</tr>
 				<tr>
-					<td class="">&nbsp;</td>
+					<td class="" ng-repeat="bond in timeline.bond track by $index">{{bond}}</td>
 				</tr>
 				<tr>
-					<td class="">Bond</td>
+					<td class=""></td>
 				</tr>
 			</table>
 		</div>

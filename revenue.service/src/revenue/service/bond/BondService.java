@@ -57,8 +57,8 @@ public class BondService
 			locResBondHeader.setIsin(bondheader.getIsin());
 			locResBondHeader.setWkn(bondheader.getWkn());
 			
-			locResBondHeader.setDueDate(bondheader.getDueDate().toString());			
-			locResBondHeader.setInterestDate(bondheader.getInterestDate().toString());
+			locResBondHeader.setDueDate(bondheader.getDueDate().toInstant().toString());			
+			locResBondHeader.setInterestDate(bondheader.getInterestDate().toInstant().toString());
 			
 			locResBondHeader.setDepotId(bondheader.getDepot().getId());
 			locResBondHeader.setPortfolioId(bondheader.getPortfolio().getId());
@@ -104,7 +104,7 @@ public class BondService
 			locResBondItemBuy.setPortfolioId(bonditembuy.getPortfolio().getId());
 			locResBondItemBuy.setDepotId(bonditembuy.getDepot().getId());
 			locResBondItemBuy.setNominalValue(bonditembuy.getNominalValue());
-			locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate().toString());
+			locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate().toInstant().toString());
 			locResBondItemBuy.setBuyPercent(bonditembuy.getBuyPercent());
 
 			locResBondItemBuyList.add(locResBondItemBuy);

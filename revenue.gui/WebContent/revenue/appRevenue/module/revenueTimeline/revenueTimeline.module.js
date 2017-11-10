@@ -10,7 +10,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 //	$scope.$emit('translate', {part:BOND_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
-//	$scope.$emit('breadcrumb', {id:'breadcrumb.bond', link:'/viewBond'});
+	$scope.$emit('breadcrumb', {id:'breadcrumb.revenue.timeline', link:'/viewRevenueTimeline'});
 
 	//CALCULATE TIMELINE
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
@@ -26,7 +26,46 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	//BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2017, 2020);
+		$scope.timeline = $scope.initTimeline(2017, 2017);
+		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2017, 2017);
+	}
+	
+	$scope.initRevenue = function(timeline, resRevenue, startYear, endYear){
+		
+		var iterateDate = moment('01.01.' + startYear, 'DD.MM.YYYY');
+		timeline['bond'] = new Array();
+		
+		while (+iterateDate.year() <= +endYear) {
+			
+			var list = resRevenue.depotList[0].bondList[0].bondItemBuyList[0].bondItemInterestRevenueList;
+			
+			if (list.length > 0)
+				{
+			for (var i = 0; i < list.length; i++) {
+				
+				var tmpDate = new Date(list[i].interestDate);
+				
+				timeline['bond'].push(list[i].interestDate + '_' + list[i].interestRevenue+'kkkkkkkkkkkkkkkkkkk');
+				
+//				timeline['bond'].push('');
+				
+				list.pop();
+				
+//				list[i].interestDate
+//				list[i].interestRevenue
+			}
+				}
+			else
+				{
+				timeline['bond'].push('');
+				
+//			timeline['day'].push(iterateDate.format('DD'));
+				}
+			iterateDate.add(1, 'd');
+			
+		}
+		
+		return timeline;
 	}
 	
 	$scope.initTimeline = function(startYear, endYear) {

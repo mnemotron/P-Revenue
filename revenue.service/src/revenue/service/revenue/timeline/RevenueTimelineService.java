@@ -106,7 +106,7 @@ public class RevenueTimelineService
 				for (BondInterestResult bondInterestResult : locBondInterestResult)
 				{
 					ResBondItemInterestRevenue locBondItemInterestRevenue = new ResBondItemInterestRevenue();
-					locBondItemInterestRevenue.setInterestDate(bondInterestResult.getInterestDate().toString());
+					locBondItemInterestRevenue.setInterestDate(bondInterestResult.getInterestDate().toInstant().toString());
 					locBondItemInterestRevenue.setInterestRevenue(bondInterestResult.getInterest());
 					locResBondItemInterestRevenueList.add(locBondItemInterestRevenue);
 				}

@@ -46,34 +46,36 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 		
 		for (var i = 0; i < breadcrumb.length; i++)
 		{
-				index = i;
-				
-				$translate(breadcrumb[i].id).then(function (translation) {
-					
-					breadcrumb[index].text = translation;
-				});	
-				
-//				var translater = translateAsy(i);
+//				index = i;
 //				
-//				translater(breadcrumb);
+//				$translate(breadcrumb[i].id).then(function (translation) {
+//					
+//					breadcrumb[index].text = translation;
+//				});	
+				
+				var translater = translateAsy(i);
+				
+				translater(breadcrumb);
 				
 		}
 
 		return breadcrumb;
 	}
 	
-//	function translateAsy(tindex)
-//	{
-//		function translater(breadcrumb)
-//		{
-//			$translate(breadcrumb[tindex].id).then(function (translation) {
-//				
-//				breadcrumb[tindex].text = translation;
-//			});	
-//		}
-//		
-//		return translater
-//	}
+	function translateAsy(tindex)
+	{
+		var iindex = tindex;
+		
+		function translater(breadcrumb)
+		{
+			$translate(breadcrumb[iindex].id).then(function (translation) {
+				
+				breadcrumb[iindex].text = translation;
+			});	
+		}
+		
+		return translater
+	}
 
 	return{
 		get: get,
