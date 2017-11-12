@@ -54,7 +54,7 @@ public class Bond
 
 			ArrayList<Interest> locInterestList = new ArrayList<Interest>(locBond.getBondHeader().getInterest());
 
-			double locInterestPerYear = locInterestList.get(0).getInterest();
+			double locInterestPerYear = locInterestList.get(0).getInterest();	
 
 			// get due date
 			Date locDueDate = this.getDueDate(locBond.getBondHeader());
@@ -94,6 +94,13 @@ public class Bond
 				bondItemResult.setBondInterestDates(locBondInterestDates);
 			}
 		}
+		
+		this.calTotalInterestResult();
+	}
+	
+	private void calTotalInterestResult()
+	{
+		
 	}
 
 	private void addBondItemsToResult(BondHeaderResult bondHeaderResult, ArrayList<BondItemBuy> bondItemsBuy)

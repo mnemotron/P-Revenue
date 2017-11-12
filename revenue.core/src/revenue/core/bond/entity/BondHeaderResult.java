@@ -7,6 +7,7 @@ public class BondHeaderResult
 {
 	private BondHeader bondHeader;
 	private ArrayList<BondItemResult> bondItemsResult;
+	private ArrayList<BondInterestResult> bondTotalInterestResult;
 
 	public BondHeader getBondHeader()
 	{
@@ -26,5 +27,25 @@ public class BondHeaderResult
 	public void setBondItemResult(ArrayList<BondItemResult> bondItemResult)
 	{
 		this.bondItemsResult = bondItemResult;
+	}
+
+	public ArrayList<BondItemResult> getBondItemsResult()
+	{
+		return bondItemsResult;
+	}
+
+	public void setBondItemsResult(ArrayList<BondItemResult> bondItemsResult)
+	{
+		this.bondItemsResult = bondItemsResult;
+	}
+
+	public ArrayList<BondInterestResult> getBondTotalInterestResult()
+	{
+		return bondTotalInterestResult;
+	}
+
+	public void setBondTotalInterestResult(ArrayList<BondInterestResult> bondTotalInterestResult)
+	{
+		this.bondTotalInterestResult = bondTotalInterestResult;
 	}
 }
