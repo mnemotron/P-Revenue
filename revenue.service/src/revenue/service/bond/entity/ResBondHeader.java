@@ -1,7 +1,5 @@
 package revenue.service.bond.entity;
 
-import java.util.Date;
-
 public class ResBondHeader
 {
 	private long id;

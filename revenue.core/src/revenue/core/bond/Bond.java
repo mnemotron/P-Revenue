@@ -129,8 +129,12 @@ public class Bond {
 								locBondIR);
 					} else {
 						// insert new key and value
+						BondInterestResult locValue = new BondInterestResult();
+						locValue.setInterest(bondInterestResult.getInterest());
+						locValue.setInterestDate(bondInterestResult.getInterestDate());
+					
 						locBondTotalInterestHash.put(bondInterestResult.getInterestDate().toInstant().toString(),
-								bondInterestResult);
+								locValue);
 					}
 
 				}

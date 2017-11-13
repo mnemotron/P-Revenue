@@ -95,7 +95,7 @@ public class RevenueTimelineService
 
 			ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
 
-			ArrayList<BondItemResult> locBondItemResult = bondHeaderResult.getBondItemResult();
+			ArrayList<BondItemResult> locBondItemResult = bondHeaderResult.getBondItemsResult();
 
 			for (BondItemResult bondItemResult : locBondItemResult)
 			{
