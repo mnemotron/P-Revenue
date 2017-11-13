@@ -19,11 +19,6 @@ public class BondHeaderResult
 		this.bondHeader = bondHeader;
 	}
 
-	public ArrayList<BondItemResult> getBondItemResult()
-	{
-		return bondItemsResult;
-	}
-
 	public void setBondItemResult(ArrayList<BondItemResult> bondItemResult)
 	{
 		this.bondItemsResult = bondItemResult;
@@ -32,11 +27,6 @@ public class BondHeaderResult
 	public ArrayList<BondItemResult> getBondItemsResult()
 	{
 		return bondItemsResult;
-	}
-
-	public void setBondItemsResult(ArrayList<BondItemResult> bondItemsResult)
-	{
-		this.bondItemsResult = bondItemsResult;
 	}
 
 	public ArrayList<BondInterestResult> getBondTotalInterestResult()
