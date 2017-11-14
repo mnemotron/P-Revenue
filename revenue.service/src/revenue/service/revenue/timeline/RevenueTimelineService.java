@@ -94,6 +94,7 @@ public class RevenueTimelineService
 		{
 
 			ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
+			ArrayList<ResBondItemInterestRevenue> locResBondTotalInterestList = new ArrayList<ResBondItemInterestRevenue>();
 
 			ArrayList<BondItemResult> locBondItemResult = bondHeaderResult.getBondItemsResult();
 
@@ -101,7 +102,7 @@ public class RevenueTimelineService
 			{
 				ArrayList<ResBondItemInterestRevenue> locResBondItemInterestRevenueList = new ArrayList<ResBondItemInterestRevenue>();
 
-				ArrayList<BondInterestResult> locBondInterestResult = bondItemResult.getBondInterestDates();
+				ArrayList<BondInterestResult> locBondInterestResult = bondItemResult.getBondInterestDates(); 
 
 				for (BondInterestResult bondInterestResult : locBondInterestResult)
 				{
@@ -116,10 +117,19 @@ public class RevenueTimelineService
 				locResBondItemBuy.setBondItemInterestRevenueList(locResBondItemInterestRevenueList);
 				locResBondItemBuyList.add(locResBondItemBuy);
 			}
+			
+			// total interest result
+			for (BondInterestResult bondTotalInterestResult : bondHeaderResult.getBondTotalInterestResult()) {
+				ResBondItemInterestRevenue locBondTIR = new ResBondItemInterestRevenue();
+				locBondTIR.setInterestDate(bondTotalInterestResult.getInterestDate().toInstant().toString());
+				locBondTIR.setInterestRevenue(bondTotalInterestResult.getInterest());
+				locResBondTotalInterestList.add(locBondTIR);
+			}
 
 			ResBond locResBond = new ResBond();
 			locResBond.setBondId(bondHeaderResult.getBondHeader().getId());
 			locResBond.setBondItemBuyList(locResBondItemBuyList);
+			locResBond.setBondTotalInterestResult(locResBondTotalInterestList);
 			locResBondList.add(locResBond);
 
 		}
