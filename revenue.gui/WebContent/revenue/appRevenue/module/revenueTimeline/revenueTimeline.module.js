@@ -32,12 +32,19 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	$scope.initRevenue = function(timeline, resRevenue, startYear, endYear){
 		
+		var bondList = resRevenue.depotList[0].bondList;
+		
+		//BOND
+		for (var b = 0; b < bondList.length; b++) {
+			
+		//BOND TOTAL INTEREST RESULT
 		var iterateDate = moment('01.01.' + startYear, 'DD.MM.YYYY');
-		timeline['bond'] = new Array();
+		timeline['bond'] = {};
+		timeline.bond[b] = new Array();
 		
 		while (+iterateDate.year() <= +endYear) {
 			
-			var list = resRevenue.depotList[0].bondList[0].bondItemBuyList[0].bondItemInterestRevenueList;
+			var list = bondList[b].bondTotalInterestResultList;
 			
 			if (list.length > 0)
 				{
@@ -46,12 +53,12 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 				
 				if (iterateDate.isSame(tmpDate))
 				{
-				timeline['bond'].push({color: 'bg-success', revenue: list[0].interestRevenue});
+				timeline.bond[b].push({color: 'bg-success', revenue: list[0].interestRevenue});
 				list.shift();
 				}
 				else
 					{
-					timeline['bond'].push({color: 'table-active', revenue: ''});
+					timeline.bond[b].push({color: 'table-active', revenue: ''});
 					}
 //				timeline['bond'].push('');
 				
@@ -63,12 +70,14 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 				}
 			else
 				{
-				timeline['bond'].push({color: 'table-active', revenue: ''});
+				timeline.bond[b].push({color: 'table-active', revenue: ''});
 				
 //			timeline['day'].push(iterateDate.format('DD'));
 				}
 			iterateDate.add(1, 'd');
 			
+		}
+		
 		}
 		
 		return timeline;

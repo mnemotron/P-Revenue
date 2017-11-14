@@ -8,7 +8,7 @@ public class ResBond
 
 	private ArrayList<ResBondItemBuy> bondItemBuyList = new ArrayList<ResBondItemBuy>();
 	
-	private ArrayList<ResBondItemInterestRevenue> bondTotalInterestResult = new ArrayList<ResBondItemInterestRevenue>();
+	private ArrayList<ResBondItemInterestRevenue> bondTotalInterestResultList = new ArrayList<ResBondItemInterestRevenue>();
 
 	public ResBond()
 	{
@@ -35,11 +35,11 @@ public class ResBond
 		this.bondItemBuyList = bondItemBuyList;
 	}
 
-	public ArrayList<ResBondItemInterestRevenue> getBondTotalInterestResult() {
-		return bondTotalInterestResult;
+	public ArrayList<ResBondItemInterestRevenue> getBondTotalInterestResultList() {
+		return bondTotalInterestResultList;
 	}
 
-	public void setBondTotalInterestResult(ArrayList<ResBondItemInterestRevenue> bondTotalInterestResult) {
-		this.bondTotalInterestResult = bondTotalInterestResult;
+	public void setBondTotalInterestResultList(ArrayList<ResBondItemInterestRevenue> bondTotalInterestResult) {
+		this.bondTotalInterestResultList = bondTotalInterestResult;
 	}
 }
