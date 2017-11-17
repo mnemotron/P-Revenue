@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class ResBond
 {
 	private long bondId;
+	
+	private String bondName;
 
 	private ArrayList<ResBondItemBuy> bondItemBuyList = new ArrayList<ResBondItemBuy>();
 	
@@ -41,5 +43,15 @@ public class ResBond
 
 	public void setBondTotalInterestResultList(ArrayList<ResBondItemInterestRevenue> bondTotalInterestResult) {
 		this.bondTotalInterestResultList = bondTotalInterestResult;
+	}
+
+	public String getBondName()
+	{
+		return bondName;
+	}
+
+	public void setBondName(String bondName)
+	{
+		this.bondName = bondName;
 	}
 }

@@ -12,9 +12,14 @@ public class SessionManager
 		locSession.beginTransaction();
 	}
 
+	public static Transaction beginTransaction()
+	{
+		return SessionManager.getSession().beginTransaction();
+	}
+
 	public static Transaction getTransaction()
 	{
-		return getSession().getTransaction();
+		return SessionManager.getSession().getTransaction();
 	}
 
 	public static Session getSession()

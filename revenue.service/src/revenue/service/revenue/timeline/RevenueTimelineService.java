@@ -9,7 +9,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import revenue.core.bond.Bond;
@@ -138,6 +137,7 @@ public class RevenueTimelineService
 
 			ResBond locResBond = new ResBond();
 			locResBond.setBondId(bondHeaderResult.getBondHeader().getId());
+			locResBond.setBondName(bondHeaderResult.getBondHeader().getName());
 			locResBond.setBondItemBuyList(locResBondItemBuyList);
 			locResBond.setBondTotalInterestResultList(locResBondTotalInterestList);
 			locResBondList.add(locResBond);

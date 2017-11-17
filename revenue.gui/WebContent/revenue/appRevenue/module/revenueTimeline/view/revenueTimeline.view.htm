@@ -3,19 +3,19 @@
 		<div class="col">
 
 			<!-- MENU -->
-<!-- 			<div class="btn-group m-1"> -->
-<!-- 				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewBond.bond.menu.revenue"></button> -->
-<!-- 				<div class="dropdown-menu"> -->
-<!-- 					<a class="dropdown-item" href="#!viewRevenueTimeline" translate="viewBond.bond.menu.revenue.timeline"></a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<!-- 			<div class="btn-group m-1"> -->
+			<!-- 				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewBond.bond.menu.revenue"></button> -->
+			<!-- 				<div class="dropdown-menu"> -->
+			<!-- 					<a class="dropdown-item" href="#!viewRevenueTimeline" translate="viewBond.bond.menu.revenue.timeline"></a> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
-<!-- 			<div class="btn-group m-1"> -->
-<!-- 				<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewBond.bond.menu.admin"></button> -->
-<!-- 				<div class="dropdown-menu"> -->
-<!-- 					<a class="dropdown-item" data-toggle="modal" data-target="#deleteBondModal" href="" translate="viewBond.bond.menu.admin.delete"></a> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<!-- 			<div class="btn-group m-1"> -->
+			<!-- 				<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewBond.bond.menu.admin"></button> -->
+			<!-- 				<div class="dropdown-menu"> -->
+			<!-- 					<a class="dropdown-item" data-toggle="modal" data-target="#deleteBondModal" href="" translate="viewBond.bond.menu.admin.delete"></a> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
 
 		</div>
 	</div>
@@ -31,12 +31,12 @@
 				<tr class="bg-info text-light">
 					<td class="border border-light"><b translate="viewRevenueTimeline.day.title"></b></td>
 				</tr>
-				<tr class="" ng-repeat="titleLine in timeline.titleLine">
-					<td class="border border-light">{{titleLine.title}}</td>
+				<tr class="text-dark" ng-repeat="titleLine in timeline.titleLine">
+					<td class="border border-light {{titleLine.color}}"><b>{{titleLine.title}}</b></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td class="border border-light">Bond</td> -->
-<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td class="border border-light">Bond</td> -->
+				<!-- 				</tr> -->
 			</table>
 		</div>
 		<div class="col p-0 m-0" style="overflow-x: scroll;">
@@ -55,8 +55,8 @@
 					<td class="border border-light" ng-repeat="day in timeline.day track by $index" align="center"><b>{{day}}</b></td>
 				</tr>
 				<!-- BOND -->
-				<tr class="text-light" ng-repeat="bondHeader in timeline.bond">
-					<td class="border border-light {{bondItem.color}}" ng-repeat="bondItem in bondHeader track by $index"><b>{{bondItem.revenue}}</b></td>
+				<tr class="text-light" ng-repeat="valueLine in timeline.valueLine">
+					<td class="border border-light {{value.color}}" ng-repeat="value in valueLine track by $index"><b>{{value.revenue}}</b></td>
 				</tr>
 				<tr>
 					<td class=""></td>
