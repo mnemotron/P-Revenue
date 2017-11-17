@@ -26,8 +26,8 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	
 	//BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2018, 2025);
-		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2018, 2025);
+		$scope.timeline = $scope.initTimeline(2016, 2025);
+		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2016, 2025);
 	}
 	
 	$scope.initRevenue = function(timeline, resRevenue, startYear, endYear){
