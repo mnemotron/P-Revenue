@@ -4,10 +4,10 @@
 
 var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.timeline.config']);
 
-revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, storageService, STORAGE_SERVICE_KEY) {
+revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, storageService, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 	
 	//EVENT: translate
-//	$scope.$emit('translate', {part:BOND_LANGUAGE.PART});
+	$scope.$emit('translate', {part:TIMELINE_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.revenue.timeline', link:'/viewRevenueTimeline'});
@@ -27,9 +27,35 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	//BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
 		$scope.timeline = $scope.initTimeline(2016, 2025);
+		$scope.timeline = $scope.initRevenueTitle($scope.timeline, data);
 		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2016, 2025);
 	}
 	
+	//REVENUE HEADER
+	$scope.initRevenueTitle = function(timeline, resRevenue){
+		
+		var depotList = resRevenue.depotList
+		
+		timeline['titleLine'] = {};
+		timeline.titleLine = new Array();
+		
+		//TITLE DEPOT	
+		for (var d = 0; d < depotList.length; d++) {
+			timeline.titleLine.push({title: depotList[d].depotName});
+			
+			var bondList = depotList[d].bondList;
+			
+		//TITLE BOND
+			for (var b = 0; b < bondList.length; b++) {
+				timeline.titleLine.push({title: bondList[b].bondId});
+			}
+			
+		}
+		
+		return timeline;		
+	}
+	
+	//REVENUE VALUES
 	$scope.initRevenue = function(timeline, resRevenue, startYear, endYear){
 		
 		var bondList = resRevenue.depotList[0].bondList;
@@ -75,6 +101,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		return timeline;
 	}
 	
+	//HEADERS: YEAR, MONTH, WEEK; DATE
 	$scope.initTimeline = function(startYear, endYear) {
 		
 		//init timline

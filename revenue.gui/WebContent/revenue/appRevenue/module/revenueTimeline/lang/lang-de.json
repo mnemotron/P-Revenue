@@ -1,3 +1,6 @@
 {
-	
+	"viewRevenueTimeline.year.title": "Jahr",
+	"viewRevenueTimeline.month.title": "Monat",
+	"viewRevenueTimeline.week.title": "KW",
+	"viewRevenueTimeline.day.title": "Tag"
 }

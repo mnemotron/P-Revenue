@@ -6,6 +6,8 @@ public class ResDepot
 {
 	private long depotId;
 	
+	private String depotName;
+	
 	private ArrayList<ResBond> bondList = new ArrayList<ResBond>();
 
 	public ResDepot()
@@ -31,5 +33,15 @@ public class ResDepot
 	public void setBondList(ArrayList<ResBond> bondList)
 	{
 		this.bondList = bondList;
+	}
+
+	public String getDepotName()
+	{
+		return depotName;
+	}
+
+	public void setDepotName(String depotName)
+	{
+		this.depotName = depotName;
 	}
 }
