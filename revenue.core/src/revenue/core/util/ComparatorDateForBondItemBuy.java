@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import revenue.entity.BondItemBuy;
 
-public class ComparatorDate implements Comparator<BondItemBuy>
+public class ComparatorDateForBondItemBuy implements Comparator<BondItemBuy>
 {
 
 	@Override

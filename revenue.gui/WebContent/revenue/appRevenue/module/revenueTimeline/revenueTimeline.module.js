@@ -60,20 +60,12 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 					{
 					timeline.bond[b].push({color: 'table-active', revenue: ''});
 					}
-//				timeline['bond'].push('');
-				
-
-				
-//				list[i].interestDate
-//				list[i].interestRevenue
-
 				}
 			else
 				{
 				timeline.bond[b].push({color: 'table-active', revenue: ''});
-				
-//			timeline['day'].push(iterateDate.format('DD'));
 				}
+			
 			iterateDate.add(1, 'd');
 			
 		}

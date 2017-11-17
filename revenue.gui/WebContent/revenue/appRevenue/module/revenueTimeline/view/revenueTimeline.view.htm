@@ -64,9 +64,9 @@
 					<td class="border border-light"
 						ng-repeat="day in timeline.day track by $index" align="center"><b>{{day}}</b></td>
 				</tr>
-				<tr class="text-light">
-					<td class="border border-light {{bond.color}}"
-						ng-repeat="bond in timeline.bond track by $index"><b>{{bond.revenue}}</b></td>
+				<tr class="text-light" ng-repeat="bondHeader in timeline.bond">
+					<td class="border border-light {{bondItem.color}}"
+						ng-repeat="bondItem in bondHeader track by $index"><b>{{bondItem.revenue}}</b></td>
 				</tr>
 				<tr>
 					<td class=""></td>
