@@ -34,9 +34,15 @@ storageService.factory('storageService', function($localStorage) {
 		}
 	}
 	
+	function del(key)
+	{
+		delete $localStorage.data[key];
+	}
+	
 	return{
 		set: set,
-		get: get
+		get: get,
+		del: del
 	};
 
     

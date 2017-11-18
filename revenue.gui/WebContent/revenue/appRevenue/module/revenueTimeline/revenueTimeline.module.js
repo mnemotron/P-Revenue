@@ -26,9 +26,9 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 	// BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2016, 2025);
+		$scope.timeline = $scope.initTimeline(2018, 2018);
 		$scope.timeline = $scope.initRevenueTitle($scope.timeline, data);
-		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2016, 2025);
+		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2018, 2018);
 	}
 
 	// REVENUE HEADER
@@ -87,6 +87,11 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 					if (list.length > 0) {
 
 						var tmpDate = moment(list[0].interestDate);
+						
+						while (tmpDate.isBefore(iterateDate, 'year')) {
+							list.shift();
+							tmpDate = moment(list[0].interestDate);
+						}
 
 						if (iterateDate.isSame(tmpDate)) {
 							timeline.valueLine[valueLineIndex].push({color : 'bg-success', revenue : list[0].interestRevenue});
