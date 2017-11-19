@@ -48,3 +48,10 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $translate, breadcru
  	tmhDynamicLocale.set(REVENUE_LANGUAGE.DEFAULT_LANGUAGE);
 
 });
+
+appRevenueModule.controller('ctrlViewAbout', function($scope) {
+	
+	//EVENT: breadcrumb
+	$scope.$emit('breadcrumb', {id:'breadcrumb.about', link:'/viewAbout'});
+	
+});

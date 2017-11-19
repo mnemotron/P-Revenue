@@ -35,7 +35,8 @@ appRevenueConfig.config(function($routeProvider, $translateProvider, $translateP
 	//NAVIGATION
 	$routeProvider
 	.when('/viewAbout', {
-		templateUrl : 'view/about.view.htm'
+		templateUrl : 'view/about.view.htm',
+		controller : 'ctrlViewAbout'
 	});
 
 });
