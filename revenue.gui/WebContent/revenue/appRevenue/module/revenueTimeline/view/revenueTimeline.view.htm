@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col">
@@ -9,7 +10,8 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col">
-								<b>{{'viewRevenueTimeline.header.title' | translate}} {{selectedPortfolio.name}}</b>
+								<b>{{'viewRevenueTimeline.header.title' | translate}}
+									{{selectedPortfolio.name}}</b>
 							</div>
 						</div>
 
@@ -24,9 +26,12 @@
 		<div class="col">
 			<!-- MENU -->
 			<div class="btn-group m-1">
-				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewBond.bond.menu.revenue"></button>
+				<button type="button" class="btn btn-success dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+					translate="viewBond.bond.menu.revenue"></button>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#!viewRevenueTimeline" translate="viewBond.bond.menu.revenue.timeline"></a>
+					<a class="dropdown-item" href="#!viewRevenueTimeline"
+						translate="viewBond.bond.menu.revenue.timeline"></a>
 				</div>
 			</div>
 
@@ -43,13 +48,16 @@
 		<div class="col-md-auto p-0">
 			<table class="table p-0 m-0">
 				<tr class="bg-primary text-light">
-					<td class="border border-light"><b translate="viewRevenueTimeline.year.title"></b></td>
+					<td class="border border-light"><b
+						translate="viewRevenueTimeline.year.title"></b></td>
 				</tr>
 				<tr class="bg-info text-light">
-					<td class="border border-light"><b translate="viewRevenueTimeline.month.title"></b></td>
+					<td class="border border-light"><b
+						translate="viewRevenueTimeline.month.title"></b></td>
 				</tr>
 				<tr class="bg-info text-light">
-					<td class="border border-light"><b translate="viewRevenueTimeline.day.title"></b></td>
+					<td class="border border-light"><b
+						translate="viewRevenueTimeline.day.title"></b></td>
 				</tr>
 				<tr class="text-dark" ng-repeat="titleLine in timeline.titleLine">
 					<td class="border border-light {{titleLine.color}}"><b>{{titleLine.title}}</b></td>
@@ -63,20 +71,25 @@
 			<table class="table p-0 m-0">
 				<!-- HEADER -->
 				<tr class="bg-primary text-light">
-					<td class="border border-light" colspan="{{year.colspan}}" ng-repeat="year in timeline.year"><b>{{year.yearString}}</b></td>
+					<td class="border border-light" colspan="{{year.colspan}}"
+						ng-repeat="year in timeline.year"><b>{{year.yearString}}</b></td>
 				</tr>
 				<tr class="bg-info text-light">
-					<td class="border border-light" colspan="{{month.colspan}}" ng-repeat="month in timeline.month track by $index"><b>{{month.monthString}}</b></td>
+					<td class="border border-light" colspan="{{month.colspan}}"
+						ng-repeat="month in timeline.month track by $index"><b>{{month.monthString}}</b></td>
 				</tr>
 				<tr class="bg-info text-light">
-					<td class="border border-light" colspan="{{week.colspan}}" ng-repeat="week in timeline.week track by $index"><b>{{week.weekString}}</b></td>
+					<td class="border border-light" colspan="{{week.colspan}}"
+						ng-repeat="week in timeline.week track by $index"><b>{{week.weekString}}</b></td>
 				</tr>
 				<tr class="bg-info text-light">
-					<td class="border border-light" ng-repeat="day in timeline.day track by $index" align="center"><b>{{day}}</b></td>
+					<td class="border border-light"
+						ng-repeat="day in timeline.day track by $index" align="center"><b>{{day}}</b></td>
 				</tr>
 				<!-- BOND -->
 				<tr class="text-light" ng-repeat="valueLine in timeline.valueLine">
-					<td class="border border-light {{value.color}}" ng-repeat="value in valueLine track by $index"><b>{{value.revenue}}</b></td>
+					<td class="border border-light {{value.color}}"
+						ng-repeat="value in valueLine track by $index"><b>{{value.revenue}}</b></td>
 				</tr>
 				<tr>
 					<td class=""></td>
