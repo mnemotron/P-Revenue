@@ -1,6 +1,10 @@
 {
+	"viewIndex.help.about": "Über",
+	"viewIndex.help": "Hilfe",
+	"viewIndex.language": "Sprache",
 	"viewIndex.language.de": "Deutsch",
 	"viewIndex.language.en": "Englisch",
+	"viewIndex.preferences": "Einstellungen",
 	"breadcrumb.home": "Home",
 	"breadcrumb.about": "Über",
 	"breadcrumb.portfolio": "Portfolio",
