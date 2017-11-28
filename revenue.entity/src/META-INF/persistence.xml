@@ -7,6 +7,7 @@
 		<class>revenue.entity.Interest</class>
 		<class>revenue.entity.BondItemBuy</class>
 		<class>revenue.entity.Depot</class>
+		<class>revenue.entity.Config</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

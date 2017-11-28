@@ -55,6 +55,17 @@
 	</entity>
 
 	<entity>
+		<entity-name>revenue.entity.Config</entity-name>
+		<entity-width>201</entity-width>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>40</entity-X-Coordinate>
+		<entity-Y-Coordinate>60</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
 		<entity-name>revenue.entity.BondHeader</entity-name>
 		<entity-width>171</entity-width>
 		<entity-height>326</entity-height>
