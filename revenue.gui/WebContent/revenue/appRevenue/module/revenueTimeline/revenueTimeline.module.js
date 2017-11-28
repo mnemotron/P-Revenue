@@ -4,7 +4,7 @@
 
 var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.timeline.config']);
 
-revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, storageService, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
+revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, $routeParams, storageService, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 
 	// EVENT: translate
 	$scope.$emit('translate', {part : TIMELINE_LANGUAGE.PART});

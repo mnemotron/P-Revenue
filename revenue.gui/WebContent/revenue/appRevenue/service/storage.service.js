@@ -4,7 +4,11 @@
 
 var storageService = angular.module('storage.service', []);
 
-storageService.constant('STORAGE_SERVICE_KEY', {BREADCRUMB: 'breadcrumb', PORTFOLIO: 'portfolio', DEPOT: 'depot', BOND: 'bond'});
+storageService.constant('STORAGE_SERVICE_KEY', {
+	BREADCRUMB: 'breadcrumb', 
+	PORTFOLIO: 'portfolio', 
+	DEPOT: 'depot', 
+	BOND: 'bond'});
 																																																																																																				
 storageService.factory('storageService', function($localStorage) {
 	
