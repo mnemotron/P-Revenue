@@ -20,7 +20,7 @@ bondConfig.config(function($routeProvider){
 	}).when('/viewAddBondItemBuy', {
 		templateUrl : 'module/bond/view/addBondItemBuy.view.htm',
 		controller : 'ctrlViewAddBondItemBuy'
-	}).when('/viewRevenueTimeline', {
+	}).when('/viewRevenueTimeline/:scope', {
 		templateUrl : 'module/revenueTimeline/view/revenueTimeline.view.htm',
 		controller : 'ctrlViewRevenueTimeline'
 	});
