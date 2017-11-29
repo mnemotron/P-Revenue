@@ -11,18 +11,48 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 	// EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id : 'breadcrumb.revenue.timeline', link : '/viewRevenueTimeline'});
+	
+	//BUILD SCOPE REQUEST
+	var reqRevenueTimeline = $scope.buildScopeRequest( $routeParams.scope);
 
 	// CALCULATE TIMELINE
-	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
-	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-	$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
-
-	var bondIdList = [$scope.selectedBond.id];
-	var reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id, bondIdList : bondIdList};
-
 	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline).then(function(response) {
 		$scope.buildTimelineDates(response.data);
 	});
+	
+	// BUILD SCOPE REQUEST
+	$scope.buildScopeRequest = function(id){
+		
+//		var reqRevenueTimeline;
+//		var bondIdList;
+//
+//		switch(scope) {
+//	    case 'portfolio':
+//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+//			
+//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id};
+//	       
+//			break;
+//	    case 'depot':
+//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+//			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+//			
+//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id};
+//			
+//	        break;
+//	    case 'bond':
+//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+//			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+//			$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
+//			
+//			bondIdList = [$scope.selectedBond.id];
+//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id, bondIdList : bondIdList};
+//	       
+//			break;
+//		} 
+//		
+//		return reqRevenueTimeline;		
+	}
 
 	// BUILD TIMELINE
 	$scope.buildTimelineDates = function(data) {
