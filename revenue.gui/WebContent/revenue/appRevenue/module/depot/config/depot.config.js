@@ -19,6 +19,9 @@ depotConfig.config(function($routeProvider){
 	}).when('/viewAddBond', {
 		templateUrl : 'module/bond/view/addBond.view.htm',
 		controller : 'ctrlViewAddBond'
+	}).when('/viewRevenueTimeline/:scope', {
+		templateUrl : 'module/revenueTimeline/view/revenueTimeline.view.htm',
+		controller : 'ctrlViewRevenueTimeline'
 	});
 	
 });

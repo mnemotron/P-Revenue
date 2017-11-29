@@ -6,52 +6,40 @@ var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.
 
 revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, $routeParams, storageService, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 
-	// EVENT: translate
-	$scope.$emit('translate', {part : TIMELINE_LANGUAGE.PART});
-
-	// EVENT: breadcrumb
-	$scope.$emit('breadcrumb', {id : 'breadcrumb.revenue.timeline', link : '/viewRevenueTimeline'});
-	
-	//BUILD SCOPE REQUEST
-	var reqRevenueTimeline = $scope.buildScopeRequest( $routeParams.scope);
-
-	// CALCULATE TIMELINE
-	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline).then(function(response) {
-		$scope.buildTimelineDates(response.data);
-	});
+	// FUNCTIONS
 	
 	// BUILD SCOPE REQUEST
-	$scope.buildScopeRequest = function(id){
+	$scope.buildScopeRequest = function($scope, scope){
 		
-//		var reqRevenueTimeline;
-//		var bondIdList;
-//
-//		switch(scope) {
-//	    case 'portfolio':
-//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-//			
-//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id};
-//	       
-//			break;
-//	    case 'depot':
-//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-//			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
-//			
-//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id};
-//			
-//	        break;
-//	    case 'bond':
-//			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-//			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
-//			$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
-//			
-//			bondIdList = [$scope.selectedBond.id];
-//			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id, bondIdList : bondIdList};
-//	       
-//			break;
-//		} 
-//		
-//		return reqRevenueTimeline;		
+		var reqRevenueTimeline;
+		var bondIdList;
+
+		switch(scope) {
+	    case 'portfolio':
+			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+			
+			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id};
+	       
+			break;
+	    case 'depot':
+			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+			
+			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id};
+			
+	        break;
+	    case 'bond':
+			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+			$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
+			
+			bondIdList = [$scope.selectedBond.id];
+			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id, bondIdList : bondIdList};
+	       
+			break;
+		} 
+		
+		return reqRevenueTimeline;		
 	}
 
 	// BUILD TIMELINE
@@ -222,5 +210,22 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 		return {timeline : timeline, colspan : colspan};
 	}
+	
+	
+	// CONTROLLER INIT
+	
+	// EVENT: translate
+	$scope.$emit('translate', {part : TIMELINE_LANGUAGE.PART});
+
+	// EVENT: breadcrumb
+	$scope.$emit('breadcrumb', {id : 'breadcrumb.revenue.timeline', link : '/viewRevenueTimeline'});
+	
+	// BUILD SCOPE REQUEST
+	var reqRevenueTimeline = $scope.buildScopeRequest($scope, $routeParams.scope);
+
+	// CALCULATE TIMELINE
+	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline).then(function(response) {
+		$scope.buildTimelineDates(response.data);
+	});
 
 });
