@@ -55,3 +55,9 @@ appRevenueModule.controller('ctrlViewAbout', function($scope) {
 	$scope.$emit('breadcrumb', {id:'breadcrumb.about', link:'/viewAbout'});
 	
 });
+
+appRevenueModule.controller('ctrlViewPreferences', function($scope) {
+	
+	//EVENT: breadcrumb
+	$scope.$emit('breadcrumb', {id:'breadcrumb.preferences', link:'/viewPreferences'});
+});

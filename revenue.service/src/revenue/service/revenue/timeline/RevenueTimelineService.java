@@ -57,6 +57,12 @@ public class RevenueTimelineService
 			else if (reqRevenueTimeline.getPortfolioId() > 0 && reqRevenueTimeline.getDepotId() > 0)
 			{
 
+				Depot locDepot = queryDepot(reqRevenueTimeline.getPortfolioId(), reqRevenueTimeline.getDepotId());
+
+				ArrayList<BondHeader> locBondHeaderList = queryBondList(reqRevenueTimeline.getPortfolioId(), reqRevenueTimeline.getDepotId());
+
+				locResRevenueTimeline = calTimelineBond(reqRevenueTimeline, locDepot, locBondHeaderList);
+
 			}
 			else if (reqRevenueTimeline.getPortfolioId() > 0)
 			{
@@ -168,6 +174,19 @@ public class RevenueTimelineService
 		locDepot = (Depot) locQuery.getSingleResult();
 
 		return locDepot;
+	}
+
+	private ArrayList<BondHeader> queryBondList(long portfolioId, long depotId) throws RuntimeException
+	{
+		Session locSession = SessionManager.getSession();
+
+		ArrayList<BondHeader> locBondHeaderList = null;
+
+		Query locQuery = locSession.createQuery("FROM BondHeader WHERE portfolio_id = " + portfolioId + "AND depot_id = " + depotId);
+
+		locBondHeaderList = (ArrayList<BondHeader>) locQuery.getResultList();
+
+		return locBondHeaderList;
 	}
 
 	private ArrayList<BondHeader> queryBondList(long portfolioId, long depotId, ArrayList<Long> bondIdList) throws RuntimeException
