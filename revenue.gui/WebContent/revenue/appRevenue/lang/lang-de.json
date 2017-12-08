@@ -14,6 +14,7 @@
 	"breadcrumb.revenue.timeline": "Ertragszeitleiste",
 	"preferences.title": "Einstellungen",
 	"preferences.menu.save": "Speichern",
+	"preferences.menu.save.notify.success": "Einstellungen wurden gespeichert.",
 	"preferences.language.title": "Sprache",
 	"preferences.language.defaultLanguage": "Standardsprache",
 	"preferences.language.defaultLanguage.en": "Englisch",

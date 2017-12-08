@@ -10,7 +10,7 @@ appRevenueModule.run(function($rootScope, $translate) {
 	});
 });
 
-appRevenueModule.controller('ctrlRevenue', function($scope, $http, $translate, breadcrumbService, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
+appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $translate, ngToast, breadcrumbService, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
 
 	// EVENTLISTENER: breadcrumb from children
 	$scope.$on('breadcrumb', function(event, data) {
@@ -24,6 +24,37 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $http, $translate, b
 	// EVENTLISTENER: translate from children
 	$scope.$on('translate', function(event, data) {
 		$translatePartialLoader.addPart(data.part);
+	});
+	
+	// EVENTLISTENDER: notify
+	$scope.$on('notify', function(event, data){
+		
+		switch (data.type) {
+			case 'S' :
+				ngToast.create({
+					  className: 'success',
+					  compileContent: true,
+					  content: $sce.trustAsHtml('<div translate="'+data.msgId+'"></div>')
+					});
+				break;
+				
+			case 'E' :
+				ngToast.create({
+					  className: 'error',
+					  compileContent: true,
+					  content: $sce.trustAsHtml('<div translate="'+data.msgId+'"></div>')
+					});
+				break;
+
+			default :
+				ngToast.create({
+					  className: 'info',
+					  compileContent: true,
+					  content: $sce.trustAsHtml('<div translate="'+data.msgId+'"></div>')
+					});
+				break;
+		}
+
 	});
 
 	// LANGUAGE AND LOCALIZATION
@@ -43,17 +74,11 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $http, $translate, b
 			tmhDynamicLocale.set(value);
 		}
 	});
-
-	// INIT DEFAULTS
-	$scope.initDefaultLocale = function(language) {
-		$scope.locale = language;
-		tmhDynamicLocale.set(language);
-	}
 	
 	// INIT CONFIGURATION
 	$scope.initConfig = function(config){
 		
-		for (let i = 0; i < config.length; i++) {
+		for (var i = 0; i < config.length; i++) {
 
 			switch (config[i].key) {
 				case CONFIG_KEY.LANGUAGE:
@@ -66,7 +91,7 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $http, $translate, b
 			}
 		}
 		
-		$scope.initDefaultLocale($scope.configLanguage.toLowerCase());
+		$scope.changeLang($scope.configLanguage.toLowerCase());
 	}
 
 	// GET CONFIGURATION
@@ -93,11 +118,11 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $tran
 		
 		var config = new Array();
 		
-		config.push({key: CONFIG_KEY.LANGUAGE, value: $scope.config.language});
+		config.push({key: CONFIG_KEY.LANGUAGE, value: $scope.configLanguage});
 		
 		$http.put('http://localhost:8080/revenue.service/config/service/updateConfig', config)
 			.then(function successCallback(response) {
-				
+				$scope.$emit('notify', {type:'S', msgId:'preferences.menu.save.notify.success'});	
 		}, 
 		function errorCallback(response) {
 			

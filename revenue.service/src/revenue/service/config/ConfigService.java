@@ -72,8 +72,8 @@ public class ConfigService
 			for (ReqConfig reqConfig : reqConfigList)
 			{
 				for (Config config : locConfigList)
-				{
-					if (reqConfig.getKey() == config.getKey() && !(reqConfig.getValue().equals(config.getValue())))
+				{					
+					if ((reqConfig.getKey().equals(config.getKey())) && !(reqConfig.getValue().equals(config.getValue())))
 					{
 						config.setValue(reqConfig.getValue());
 

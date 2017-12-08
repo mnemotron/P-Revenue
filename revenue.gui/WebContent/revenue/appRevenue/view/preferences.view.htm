@@ -48,10 +48,8 @@
 									<form name="formPreferencesLanguage">
 
 										<div class="form-group">
-											<label for="defaultLanguage" class="text-dark" translate="preferences.language.defaultLanguage"></label>
-											<select ng-model="config.language" id="defaultLanguage" class="form-control">
-												<option ng-repeat="language in languages" ng-if="language.selected === false" value="{{language.key}}"><span>{{language.textId|translate}} | {{language.key}}</span></option>
-												<option ng-repeat="language in languages" ng-if="language.selected === true" value="{{language.key}}" selected><span>{{language.textId|translate}} | {{language.key}}</span></option>
+											<label for="defaultLanguage" class="text-dark" translate="preferences.language.defaultLanguage"></label> <select ng-model="configLanguage" id="defaultLanguage" class="form-control">
+												<option ng-repeat="language in languages" value="{{language.key}}"><span>{{language.textId|translate}} | {{language.key}}</span></option>
 											</select>
 										</div>
 

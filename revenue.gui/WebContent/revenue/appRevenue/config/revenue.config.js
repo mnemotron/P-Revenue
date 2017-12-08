@@ -10,7 +10,8 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 		'breadcrumb.service',
 		'portfolio.module',
 		'dateParser',
-		'tmh.dynamicLocale'
+		'tmh.dynamicLocale',
+		'ngToast'
 		]);
 
 appRevenueConfig.constant('LANGUAGE_FILE', 
@@ -60,3 +61,11 @@ appRevenueConfig.config(function($routeProvider, $translateProvider, $translateP
 	});
 
 });
+
+appRevenueConfig.config(['ngToastProvider', function(ngToast) {
+    ngToast.configure({
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      maxNumber: 3,
+    });
+  }]);
