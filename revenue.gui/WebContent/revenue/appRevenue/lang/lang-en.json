@@ -18,5 +18,7 @@
 	"preferences.language.title": "Language",
 	"preferences.language.defaultLanguage": "Default Language",
 	"preferences.language.defaultLanguage.en": "English",
-	"preferences.language.defaultLanguage.de": "German"
+	"preferences.language.defaultLanguage.de": "German",
+	"about.title": "About",
+	"about.txt.usedFrameworks": "The following frameworks are used"
 }
