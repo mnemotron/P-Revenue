@@ -13,18 +13,35 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 		'tmh.dynamicLocale'
 		]);
 
-appRevenueConfig.constant('REVENUE_LANGUAGE', {DEFAULT_LANGUAGE: 'de', FILE_PREFIX: 'lang-', FILE_SUFFIX: '.json', PART: 'lang'});
+appRevenueConfig.constant('LANGUAGE_FILE', 
+    { 	DEFAULT_LANGUAGE: 'en', 
+	  	FILE_PREFIX: 'lang-', 
+	  	FILE_SUFFIX: '.json', 
+	  	PART: 'lang'
+    });
 
-appRevenueConfig.config(function($routeProvider, $translateProvider, $translatePartialLoaderProvider, REVENUE_LANGUAGE, $dateParserProvider, tmhDynamicLocaleProvider) {
+appRevenueConfig.constant('CONFIG_KEY',
+    {
+      	LANGUAGE: 'LANGUAGE',
+      	CURRENCY: 'CURRENCY'
+    });
+
+appRevenueConfig.constant('LANGUAGE',
+    {
+		EN: 'EN',
+		DE: 'DE'
+    });
+
+appRevenueConfig.config(function($routeProvider, $translateProvider, $translatePartialLoaderProvider, LANGUAGE_FILE, $dateParserProvider, tmhDynamicLocaleProvider) {
 
 	//TRANSLATION
-    $translatePartialLoaderProvider.addPart(REVENUE_LANGUAGE.PART);
+    $translatePartialLoaderProvider.addPart(LANGUAGE_FILE.PART);
     
     $translateProvider.useLoader('$translatePartialLoader', {
-      urlTemplate: '{part}/'  + REVENUE_LANGUAGE.FILE_PREFIX + '{lang}' + REVENUE_LANGUAGE.FILE_SUFFIX
+      urlTemplate: '{part}/'  + LANGUAGE_FILE.FILE_PREFIX + '{lang}' + LANGUAGE_FILE.FILE_SUFFIX
     });
     
-	$translateProvider.preferredLanguage(REVENUE_LANGUAGE.DEFAULT_LANGUAGE);
+	$translateProvider.preferredLanguage(LANGUAGE_FILE.DEFAULT_LANGUAGE);
 	
 	//$translateProvider.useSanitizeValueStrategy('sanitize');
 	

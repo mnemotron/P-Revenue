@@ -1,0 +1,11 @@
+-- APPLICATION: 		REVENUE 
+-- SCRIPT DESCRIPTION: 	INITIALISATION
+
+
+-- ENTITY: 				CONFIG
+-- ----------------------------------------------------------
+-- LANGUAGE VALUE: ISO 639-1
+INSERT INTO T_CONFIG (key, value) VALUES ('LANGUAGE', 'EN'); 
+
+-- CURRENCY VALUE: ISO 4217
+INSERT INTO T_CONFIG (key, value) VALUES ('CURRENCY', 'EUR'); 

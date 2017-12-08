@@ -77,13 +77,7 @@ public class DepotService
 
 		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
 
-		Transaction locTransaction = locSession.beginTransaction();
-
 		locSession.save(locDepot);
-
-		locTransaction.commit();
-
-		locSession.close();
 
 		return locResponse;
 	}

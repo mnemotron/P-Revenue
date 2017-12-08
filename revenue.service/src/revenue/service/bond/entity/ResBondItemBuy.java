@@ -1,7 +1,5 @@
 package revenue.service.bond.entity;
 
-import java.util.Date;
-
 public class ResBondItemBuy
 {
 

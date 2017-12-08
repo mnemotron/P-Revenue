@@ -21,6 +21,11 @@ public class SessionManager
 	{
 		return SessionManager.getSession().getTransaction();
 	}
+	
+	public static void commit()
+	{
+		SessionManager.getTransaction().commit();
+	}
 
 	public static Session getSession()
 	{

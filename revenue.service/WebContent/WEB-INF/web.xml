@@ -15,6 +15,21 @@
 
 	<!-- SERVLET DECLARATION -->
 
+	<!-- SERVICE: CONFIGURATION -->
+	<servlet>
+		<servlet-name>revenue.service.config</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>revenue.service.config</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revenue.service.config</servlet-name>
+		<url-pattern>/config/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- SERVICE: PORTFOLIO -->
 	<servlet>
 		<servlet-name>revenue.service.portfolio</servlet-name>

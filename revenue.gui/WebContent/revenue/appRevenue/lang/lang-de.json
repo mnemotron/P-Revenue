@@ -11,5 +11,11 @@
 	"breadcrumb.portfolio": "Portfolio",
 	"breadcrumb.depot": "Depot",
 	"breadcrumb.bond": "Anleihe",
-	"breadcrumb.revenue.timeline": "Ertragszeitleiste"
+	"breadcrumb.revenue.timeline": "Ertragszeitleiste",
+	"preferences.title": "Einstellungen",
+	"preferences.menu.save": "Speichern",
+	"preferences.language.title": "Sprache",
+	"preferences.language.defaultLanguage": "Standardsprache",
+	"preferences.language.defaultLanguage.en": "Englisch",
+	"preferences.language.defaultLanguage.de": "Deutsch"
 }
