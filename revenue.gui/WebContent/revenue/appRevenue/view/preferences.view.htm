@@ -62,6 +62,41 @@
 				</div>
 			</div>
 
+			<div class="list-group m-1">
+				<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesCurrency" href="" aria-expanded="false"
+					aria-controls="preferencesCurrency">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col">
+								<b translate="preferences.currency.title"></b>
+							</div>
+						</div>
+					</div>
+				</a>
+
+				<div class="collapse" id="preferencesCurrency" role="tabpanel" aria-labelledby="headerPrefCurrency" data-parent="#accordion">
+					<div class="list-group-item bg-light">
+						<div class="container-fluid">
+							<div class="row text-dark">
+								<div class="col">
+
+									<form name="formPreferencesCurrency">
+
+										<div class="form-group">
+											<label for="defaultCurrency" class="text-dark" translate="preferences.currency.defaultCurrency"></label> <select ng-model="configCurrency" id="defaultCurrency" class="form-control">
+												<option ng-repeat="currency in currencies" value="{{currency.key}}"><span>{{currency.textId|translate}} | {{currency.key}}</span></option>
+											</select>
+										</div>
+
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 	</div>

@@ -67,5 +67,5 @@ appRevenueConfig.config(['ngToastProvider', function(ngToast) {
       verticalPosition: 'bottom',
       horizontalPosition: 'center',
       maxNumber: 3,
-    });
+    })
   }]);

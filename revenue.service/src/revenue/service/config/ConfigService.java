@@ -92,6 +92,10 @@ public class ConfigService
 			{
 				SessionManager.getTransaction().rollback();
 			}
+			
+			locResponse.setMessage(e.getMessage());
+			locResponse.setStackTrace(e.getStackTrace().toString());
+			
 		}
 		finally
 		{

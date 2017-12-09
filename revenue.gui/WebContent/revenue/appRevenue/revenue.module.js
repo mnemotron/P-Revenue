@@ -40,9 +40,20 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 				
 			case 'E' :
 				ngToast.create({
-					  className: 'error',
+					  className: 'danger',
+					  dismissOnTimeout: false,
 					  compileContent: true,
+					  dismissButton: true,
 					  content: $sce.trustAsHtml('<div translate="'+data.msgId+'"></div>')
+					});
+				break;
+				
+			case 'RAW' :
+				ngToast.create({
+					  className: 'danger',
+					  dismissOnTimeout: false,
+					  dismissButton: true,
+					  content: data.raw
 					});
 				break;
 
@@ -102,6 +113,7 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 	
 		function errorCallback(response) {
 			$scope.initDefaultLocale(LANGUAGE_FILE.DEFAULT_LANGUAGE);
+			$scope.$emit('notify', {type:'RAW', raw: response.data});	
 		});
 });
 
@@ -125,7 +137,7 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $tran
 				$scope.$emit('notify', {type:'S', msgId:'preferences.menu.save.notify.success'});	
 		}, 
 		function errorCallback(response) {
-			
+				$scope.$emit('notify', {type:'RAW', raw: response.data});	
 		});
 	}
 	
