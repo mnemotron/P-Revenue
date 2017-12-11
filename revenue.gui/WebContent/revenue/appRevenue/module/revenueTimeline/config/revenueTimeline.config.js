@@ -4,6 +4,7 @@
 
 var revenueTimelineConfig = angular.module('revenue.timeline.config',[
 	'ngRoute',
+	'rzModule',
 	'storage.service'
 ]);
 

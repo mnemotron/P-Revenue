@@ -43,10 +43,10 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	}
 
 	// BUILD TIMELINE
-	$scope.buildTimelineDates = function(data) {
-		$scope.timeline = $scope.initTimeline(2018, 2018);
-		$scope.timeline = $scope.initRevenueTitle($scope.timeline, data);
-		$scope.timeline = $scope.initRevenue($scope.timeline, data, 2018, 2018);
+	$scope.buildTimelineDates = function(resRevenue, startYear, endYear) {
+		$scope.timeline = $scope.initTimeline(startYear, endYear);
+		$scope.timeline = $scope.initRevenueTitle($scope.timeline, resRevenue);
+		$scope.timeline = $scope.initRevenue($scope.timeline, resRevenue, startYear, endYear);
 	}
 
 	// REVENUE HEADER
@@ -100,7 +100,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 				while (+iterateDate.year() <= +endYear) {
 
-					var list = bondList[b].bondTotalInterestResultList;
+					var list = bondList[b].bondTotalInterestResultList.slice(0, bondList[b].bondTotalInterestResultList.length);
 
 					if (list.length > 0) {
 
@@ -210,8 +210,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 		return {timeline : timeline, colspan : colspan};
 	}
-	
-	
+
 	// CONTROLLER INIT
 	
 	// EVENT: translate
@@ -225,7 +224,22 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 
 	// CALCULATE TIMELINE
 	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline).then(function(response) {
-		$scope.buildTimelineDates(response.data);
+		$scope.resRevenue = response.data;
+		
+		$scope.resRevenue.startYear = 2017;
+		$scope.resRevenue.endYear = 2020;
+		
+		$scope.yearSlider = { min: $scope.resRevenue.startYear, max: $scope.resRevenue.endYear, 
+				options: { floor: $scope.resRevenue.startYear, 
+						   ceil: $scope.resRevenue.endYear, 
+						   showTicksValues: true,
+						   onChange: function(id) {
+					            $scope.buildTimelineDates($scope.resRevenue, $scope.yearSlider.min, $scope.yearSlider.max);
+					        }
+				         } };
+			
+		
+		$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear);
 	});
 
 });
