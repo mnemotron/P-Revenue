@@ -21,6 +21,7 @@
 	"preferences.language.defaultLanguage.de": "German",
 	"preferences.currency.title": "Currency",
 	"preferences.currency.defaultCurrency": "Default Currency",
+	"preferences.currency.defaultCurrency.eur": "Euro",
 	"about.title": "About",
 	"about.txt.usedFrameworks": "The following frameworks are used"
 }

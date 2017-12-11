@@ -7,9 +7,8 @@ public class ResRevenueTimeline {
 
 	private ArrayList<ResDepot> depotList = new ArrayList<ResDepot>();
 
-	private int startYear;
-
-	private int endYear;
+	private String startDate;
+	private String endDate;
 
 	public ResRevenueTimeline() {
 
@@ -31,20 +30,20 @@ public class ResRevenueTimeline {
 		this.depotList = depotList;
 	}
 
-	public int getStartYear() {
-		return startYear;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setStartYear(int startYear) {
-		this.startYear = startYear;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public int getEndYear() {
-		return endYear;
+	public String getEndDate() {
+		return endDate;
 	}
 
-	public void setEndYear(int endYear) {
-		this.endYear = endYear;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 }

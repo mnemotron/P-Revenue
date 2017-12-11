@@ -7,6 +7,10 @@ public class ResBond
 	private long bondId;
 	
 	private String bondName;
+	
+	private String startDate;
+	
+	private String endDate;
 
 	private ArrayList<ResBondItemBuy> bondItemBuyList = new ArrayList<ResBondItemBuy>();
 	
@@ -53,5 +57,21 @@ public class ResBond
 	public void setBondName(String bondName)
 	{
 		this.bondName = bondName;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 }

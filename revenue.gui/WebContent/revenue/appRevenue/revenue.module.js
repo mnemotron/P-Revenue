@@ -148,6 +148,9 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $tran
 	// LANGUAGE: INIT OPTIONS
 	$scope.languages = [{key: LANGUAGE.EN, textId: 'preferences.language.defaultLanguage.en', selected: $scope.isDefaultLanguage(LANGUAGE.EN)}, {key: LANGUAGE.DE, textId: 'preferences.language.defaultLanguage.de', selected: $scope.isDefaultLanguage(LANGUAGE.DE)}];
 	
+	// CURRENCY: INIT OPTIONS
+	$scope.currencies = [{key: $scope.configCurrency, textId: 'preferences.currency.defaultCurrency.eur', selected: $scope.configCurrency}];
+	
 	// EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id : 'breadcrumb.preferences', link : '/viewPreferences'});
 });

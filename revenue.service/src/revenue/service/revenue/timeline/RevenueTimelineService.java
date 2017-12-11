@@ -146,6 +146,8 @@ public class RevenueTimelineService
 			locResBond.setBondName(bondHeaderResult.getBondHeader().getName());
 			locResBond.setBondItemBuyList(locResBondItemBuyList);
 			locResBond.setBondTotalInterestResultList(locResBondTotalInterestList);
+			locResBond.setStartDate(bondHeaderResult.getStartDate().toInstant().toString());
+			locResBond.setEndDate(bondHeaderResult.getEndDate().toInstant().toString());
 			locResBondList.add(locResBond);
 
 		}
