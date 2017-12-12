@@ -5,36 +5,30 @@ import java.util.Date;
 
 import revenue.entity.BondHeader;
 
-public class TimelineBondHeader
-{
+public class TimelineBondHeader {
 	private BondHeader bondHeader;
 	private ArrayList<TimelineBondItem> bondItemsResult;
 	private ArrayList<TimelineBondInterest> bondTotalInterestResult;
 	private Date startDate;
 	private Date endDate;
-	
-	public BondHeader getBondHeader()
-	{
+
+	public BondHeader getBondHeader() {
 		return bondHeader;
 	}
 
-	public void setBondHeader(BondHeader bondHeader)
-	{
+	public void setBondHeader(BondHeader bondHeader) {
 		this.bondHeader = bondHeader;
 	}
 
-	public ArrayList<TimelineBondItem> getBondItemsResult()
-	{
+	public ArrayList<TimelineBondItem> getBondItemsResult() {
 		return bondItemsResult;
 	}
 
-	public ArrayList<TimelineBondInterest> getBondTotalInterestResult()
-	{
+	public ArrayList<TimelineBondInterest> getBondTotalInterestResult() {
 		return bondTotalInterestResult;
 	}
 
-	public void setBondTotalInterestResult(ArrayList<TimelineBondInterest> bondTotalInterestResult)
-	{
+	public void setBondTotalInterestResult(ArrayList<TimelineBondInterest> bondTotalInterestResult) {
 		this.bondTotalInterestResult = bondTotalInterestResult;
 	}
 

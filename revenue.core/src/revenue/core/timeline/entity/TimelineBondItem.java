@@ -4,28 +4,23 @@ import java.util.ArrayList;
 
 import revenue.entity.BondItemBuy;
 
-public class TimelineBondItem
-{
+public class TimelineBondItem {
 	private BondItemBuy bondItemBuy;
 	private ArrayList<TimelineBondInterest> bondInterestDates;
 
-	public ArrayList<TimelineBondInterest> getBondInterestDates()
-	{
+	public ArrayList<TimelineBondInterest> getBondInterestDates() {
 		return bondInterestDates;
 	}
 
-	public void setBondInterestDates(ArrayList<TimelineBondInterest> bondInterestDates)
-	{
+	public void setBondInterestDates(ArrayList<TimelineBondInterest> bondInterestDates) {
 		this.bondInterestDates = bondInterestDates;
 	}
 
-	public BondItemBuy getBondItemBuy()
-	{
+	public BondItemBuy getBondItemBuy() {
 		return bondItemBuy;
 	}
 
-	public void setBondItemBuy(BondItemBuy bondItemBuy)
-	{
+	public void setBondItemBuy(BondItemBuy bondItemBuy) {
 		this.bondItemBuy = bondItemBuy;
 	}
 

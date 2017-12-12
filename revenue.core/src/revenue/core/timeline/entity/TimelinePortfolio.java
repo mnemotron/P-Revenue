@@ -13,5 +13,5 @@ public class TimelinePortfolio {
 	public void setBondDepotResult(ArrayList<TimelineDepot> bondDepotResult) {
 		this.bondDepotResult = bondDepotResult;
 	}
-	
+
 }

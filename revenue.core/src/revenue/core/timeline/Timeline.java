@@ -28,7 +28,6 @@ public class Timeline {
 	private TimelinePortfolio portfolioResult;
 
 	public Timeline() {
-
 	}
 
 	public Timeline(Portfolio portfolio) {
