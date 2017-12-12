@@ -75,14 +75,6 @@ public class BondHeader implements Serializable {
 		this.id = id;
 	}
 
-	public Collection<BondItemBuy> getBondItem() {
-		return bondItemBuy;
-	}
-
-	public void setBondItem(Collection<BondItemBuy> param) {
-		this.bondItemBuy = param;
-	}
-
 	public String getName() {
 		return name;
 	}

@@ -1,8 +1,8 @@
-package revenue.core.bond.entity;
+package revenue.core.timeline.entity;
 
 import java.util.Date;
 
-public class BondInterestResult
+public class TimelineBondInterest
 {
 
 	private Date interestDate;

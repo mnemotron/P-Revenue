@@ -1,20 +1,20 @@
-package revenue.core.bond.entity;
+package revenue.core.timeline.entity;
 
 import java.util.ArrayList;
 
 import revenue.entity.BondItemBuy;
 
-public class BondItemResult
+public class TimelineBondItem
 {
 	private BondItemBuy bondItemBuy;
-	private ArrayList<BondInterestResult> bondInterestDates;
+	private ArrayList<TimelineBondInterest> bondInterestDates;
 
-	public ArrayList<BondInterestResult> getBondInterestDates()
+	public ArrayList<TimelineBondInterest> getBondInterestDates()
 	{
 		return bondInterestDates;
 	}
 
-	public void setBondInterestDates(ArrayList<BondInterestResult> bondInterestDates)
+	public void setBondInterestDates(ArrayList<TimelineBondInterest> bondInterestDates)
 	{
 		this.bondInterestDates = bondInterestDates;
 	}

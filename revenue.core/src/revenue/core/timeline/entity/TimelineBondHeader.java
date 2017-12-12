@@ -1,18 +1,18 @@
-package revenue.core.bond.entity;
+package revenue.core.timeline.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import revenue.entity.BondHeader;
 
-public class BondHeaderResult
+public class TimelineBondHeader
 {
 	private BondHeader bondHeader;
-	private ArrayList<BondItemResult> bondItemsResult;
-	private ArrayList<BondInterestResult> bondTotalInterestResult;
+	private ArrayList<TimelineBondItem> bondItemsResult;
+	private ArrayList<TimelineBondInterest> bondTotalInterestResult;
 	private Date startDate;
 	private Date endDate;
-
+	
 	public BondHeader getBondHeader()
 	{
 		return bondHeader;
@@ -23,17 +23,17 @@ public class BondHeaderResult
 		this.bondHeader = bondHeader;
 	}
 
-	public ArrayList<BondItemResult> getBondItemsResult()
+	public ArrayList<TimelineBondItem> getBondItemsResult()
 	{
 		return bondItemsResult;
 	}
 
-	public ArrayList<BondInterestResult> getBondTotalInterestResult()
+	public ArrayList<TimelineBondInterest> getBondTotalInterestResult()
 	{
 		return bondTotalInterestResult;
 	}
 
-	public void setBondTotalInterestResult(ArrayList<BondInterestResult> bondTotalInterestResult)
+	public void setBondTotalInterestResult(ArrayList<TimelineBondInterest> bondTotalInterestResult)
 	{
 		this.bondTotalInterestResult = bondTotalInterestResult;
 	}
@@ -54,7 +54,7 @@ public class BondHeaderResult
 		this.endDate = endDate;
 	}
 
-	public void setBondItemsResult(ArrayList<BondItemResult> bondItemsResult) {
+	public void setBondItemsResult(ArrayList<TimelineBondItem> bondItemsResult) {
 		this.bondItemsResult = bondItemsResult;
 	}
 }

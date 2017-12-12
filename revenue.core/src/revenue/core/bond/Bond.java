@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
-import revenue.core.bond.entity.BondHeaderResult;
-import revenue.core.bond.entity.BondInterestResult;
-import revenue.core.bond.entity.BondItemResult;
-import revenue.core.bond.util.ComparatorDateForBondInterestResult;
 import revenue.core.bond.util.ComparatorDateForBondItemBuy;
+import revenue.core.timeline.entity.TimelineBondHeader;
+import revenue.core.timeline.entity.TimelineBondInterest;
+import revenue.core.timeline.entity.TimelineBondItem;
+import revenue.core.timeline.util.ComparatorDateForBondInterestResult;
 import revenue.entity.BondHeader;
 import revenue.entity.BondItemBuy;
 import revenue.entity.Interest;
@@ -20,14 +20,14 @@ public class Bond {
 	// TODO: Stückzinsen: Stückzins = Nominalwert × Zinssatz × Tage/360
 	private static final int MONTH_OF_YEAR = 12;
 
-	private BondHeaderResult bond;
+	private TimelineBondHeader bond;
 
 	public Bond() {
-		this.bond = new BondHeaderResult();
+		this.bond = new TimelineBondHeader();
 	}
 
 	public void addBond(BondHeader bond) {
-		BondHeaderResult locBondHeaderResult = new BondHeaderResult();
+		TimelineBondHeader locBondHeaderResult = new TimelineBondHeader();
 
 		// add header to result
 		locBondHeaderResult.setBondHeader(bond);
@@ -50,7 +50,7 @@ public class Bond {
 
 	private void calInterestResult() 
 	{
-		ArrayList<BondItemResult> locBondItemsResult = this.bond.getBondItemsResult();
+		ArrayList<TimelineBondItem> locBondItemsResult = this.bond.getBondItemsResult();
 
 		ArrayList<Interest> locInterestList = new ArrayList<Interest>(this.bond.getBondHeader().getInterest());
 
@@ -66,9 +66,9 @@ public class Bond {
 		byte locInterestIntervall = this.bond.getBondHeader().getInterestIntervall();
 
 		// calculate return for each bond item
-		for (BondItemResult bondItemResult : locBondItemsResult) {
+		for (TimelineBondItem bondItemResult : locBondItemsResult) {
 
-			ArrayList<BondInterestResult> locBondInterestDates = new ArrayList<BondInterestResult>();
+			ArrayList<TimelineBondInterest> locBondInterestDates = new ArrayList<TimelineBondInterest>();
 
 			Date locBuyDate = bondItemResult.getBondItemBuy().getBuyDate();
 
@@ -83,7 +83,7 @@ public class Bond {
 						bondItemResult.getBondItemBuy().getNominalValue(), locInterestPerYear, locInterestIntervall,
 						locDaysPerYear);
 
-				BondInterestResult locBondInterestDate = new BondInterestResult();
+				TimelineBondInterest locBondInterestDate = new TimelineBondInterest();
 
 				locBondInterestDate.setInterestDate(interestDate);
 				locBondInterestDate.setInterest(locReturnPerYearIntervall);
@@ -99,20 +99,20 @@ public class Bond {
 
 	private void calTotalInterestResult() 
 	{
-			HashMap<String, BondInterestResult> locBondTotalInterestHash = new HashMap<String, BondInterestResult>();
+			HashMap<String, TimelineBondInterest> locBondTotalInterestHash = new HashMap<String, TimelineBondInterest>();
 
-			ArrayList<BondItemResult> locBondItemResultList = this.bond.getBondItemsResult();
+			ArrayList<TimelineBondItem> locBondItemResultList = this.bond.getBondItemsResult();
 
-			for (BondItemResult bondItemResult : locBondItemResultList) {
+			for (TimelineBondItem bondItemResult : locBondItemResultList) {
 
-				ArrayList<BondInterestResult> locBondInterestResult = bondItemResult.getBondInterestDates();
+				ArrayList<TimelineBondInterest> locBondInterestResult = bondItemResult.getBondInterestDates();
 
-				for (BondInterestResult bondInterestResult : locBondInterestResult) {
+				for (TimelineBondInterest bondInterestResult : locBondInterestResult) {
 
 					if (locBondTotalInterestHash
 							.containsKey(bondInterestResult.getInterestDate().toInstant().toString())) {
 						// update value
-						BondInterestResult locBondIR = locBondTotalInterestHash
+						TimelineBondInterest locBondIR = locBondTotalInterestHash
 								.get(bondInterestResult.getInterestDate().toInstant().toString());
 
 						double locSum = bondInterestResult.getInterest() + locBondIR.getInterest();
@@ -123,7 +123,7 @@ public class Bond {
 								locBondIR);
 					} else {
 						// insert new key and value
-						BondInterestResult locValue = new BondInterestResult();
+						TimelineBondInterest locValue = new TimelineBondInterest();
 						locValue.setInterest(bondInterestResult.getInterest());
 						locValue.setInterestDate(bondInterestResult.getInterestDate());
 
@@ -135,7 +135,7 @@ public class Bond {
 
 			}
 
-			ArrayList<BondInterestResult> locBondTotalInterestList = new ArrayList<BondInterestResult>(
+			ArrayList<TimelineBondInterest> locBondTotalInterestList = new ArrayList<TimelineBondInterest>(
 					locBondTotalInterestHash.values());
 
 			// sort items ascending by interest date
@@ -146,12 +146,12 @@ public class Bond {
 
 	private void calStartEndDate() 
 	{
-			ArrayList<BondInterestResult> locBondTotalInterestResult = this.bond.getBondTotalInterestResult();
+			ArrayList<TimelineBondInterest> locBondTotalInterestResult = this.bond.getBondTotalInterestResult();
 
 			Calendar locCalStartDate = null;
 			Calendar locCalEndDate = null;
 
-			for (BondInterestResult bondInterestResult : locBondTotalInterestResult) {
+			for (TimelineBondInterest bondInterestResult : locBondTotalInterestResult) {
 
 				Calendar locCal = Calendar.getInstance();
 				locCal.setTime(bondInterestResult.getInterestDate());
@@ -173,11 +173,11 @@ public class Bond {
 			this.bond.setEndDate(locCalEndDate.getTime());
 	}
 
-	private void addBondItemsToResult(BondHeaderResult bondHeaderResult, ArrayList<BondItemBuy> bondItemsBuy) {
-		ArrayList<BondItemResult> locBondItemsResult = new ArrayList<BondItemResult>();
+	private void addBondItemsToResult(TimelineBondHeader bondHeaderResult, ArrayList<BondItemBuy> bondItemsBuy) {
+		ArrayList<TimelineBondItem> locBondItemsResult = new ArrayList<TimelineBondItem>();
 
 		for (BondItemBuy bondItemBuy : bondItemsBuy) {
-			BondItemResult locBondItemResult = new BondItemResult();
+			TimelineBondItem locBondItemResult = new TimelineBondItem();
 			locBondItemResult.setBondItemBuy(bondItemBuy);
 			locBondItemsResult.add(locBondItemResult);
 		}
@@ -267,7 +267,7 @@ public class Bond {
 		return locInterestDates;
 	}
 
-	public BondHeaderResult getBond() 
+	public TimelineBondHeader getBond() 
 	{
 		return this.bond;
 	}
