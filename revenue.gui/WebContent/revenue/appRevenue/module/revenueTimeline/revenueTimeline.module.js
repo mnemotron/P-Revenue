@@ -58,13 +58,13 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		timeline.titleLine = new Array();
 
 		// TITLE DEPOT
-		for (var d = 0; d < depotList.length; d++) {
+		for (var d = 0, l = depotList.length; d < l; d++) {
 			timeline.titleLine.push({color : '', title : depotList[d].depotName});
 
 			var bondList = depotList[d].bondList;
 
 			// TITLE BOND
-			for (var b = 0; b < bondList.length; b++) {
+			for (var b = 0, l =  bondList.length; b < l; b++) {
 				timeline.titleLine.push({color : 'table-active', title : bondList[b].bondName});
 			}
 
@@ -82,7 +82,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		// DEPOT
 		var depotList = resRevenue.depotList;
 
-		for (var d = 0; d < depotList.length; d++) {
+		for (var d = 0, l = depotList.length; d < l; d++) {
 
 			var bondList = depotList[d].bondList;
 
@@ -90,7 +90,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			timeline.valueLine[valueLineIndex].push({color : '', revenue : '\u00A0'});
 
 			// BOND
-			for (var b = 0; b < bondList.length; b++) {
+			for (var b = 0, l = bondList.length; b < l; b++) {
 
 				// BOND TOTAL INTEREST RESULT
 				var iterateDate = moment('01.01.' + startYear, 'DD.MM.YYYY');

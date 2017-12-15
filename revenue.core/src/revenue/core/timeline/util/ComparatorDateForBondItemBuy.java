@@ -1,4 +1,4 @@
-package revenue.core.bond.util;
+package revenue.core.timeline.util;
 
 import java.util.Comparator;
 

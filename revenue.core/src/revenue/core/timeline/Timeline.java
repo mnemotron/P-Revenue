@@ -12,6 +12,7 @@ import revenue.core.timeline.entity.TimelineBondItem;
 import revenue.core.timeline.entity.TimelineDepot;
 import revenue.core.timeline.entity.TimelinePortfolio;
 import revenue.core.timeline.util.ComparatorDateForBondInterestResult;
+import revenue.core.timeline.util.ComparatorDateForBondItemBuy;
 import revenue.entity.BondHeader;
 import revenue.entity.BondItemBuy;
 import revenue.entity.Depot;
@@ -42,7 +43,7 @@ public class Timeline {
 		
 		this.portfolioResult = new TimelinePortfolio();
 		
-		// DEPOT
+		// depot
 		ArrayList<TimelineDepot> locDepotResult = this.calTimelineDepot(new ArrayList<Depot>(this.portfolio.getDepot()));
 		
 		this.portfolioResult.setBondDepotResult(locDepotResult);
@@ -56,7 +57,7 @@ public class Timeline {
 
 			TimelineDepot locDepotResult = new TimelineDepot();
 			
-			// BOND HEADER
+			// bond header
 			ArrayList<TimelineBondHeader> locBondHeaderResultList = this.calTimelineBondHeader(new ArrayList<BondHeader>(depot.getBondHeader()));
 			locDepotResult.setBondHeaderResult(locBondHeaderResultList);
 			
@@ -74,13 +75,16 @@ public class Timeline {
 
 			TimelineBondHeader locBondHeaderResult = new TimelineBondHeader();
 			
-			// BOND ITEM BUY
+			// bond item buy
 			ArrayList<TimelineBondItem> locBondItemResultList = this.calInterestBondItem(bondHeader, new ArrayList<BondItemBuy>(bondHeader.getBondItemBuy()));
 			locBondHeaderResult.setBondItemsResult(locBondItemResultList);
 			
-			// TOTAL BOND ITEM BUY
+			// total bond item buy
 			ArrayList<TimelineBondInterest> locTotalInterestBondItemResultList = this.calTotalInterestBondItem(locBondItemResultList);
 			locBondHeaderResult.setBondTotalInterestResult(locTotalInterestBondItemResultList);
+			
+			// start/end date
+			locBondHeaderResult = calStartEndDate(locBondHeaderResult);
 			
 			locBondHeaderResultList.add(locBondHeaderResult);
 		}
@@ -253,5 +257,46 @@ public class Timeline {
 		locReturn = ((nominalValue * interestPerYear) / 100) / interestIntervall;
 
 		return locReturn;
+	}
+	
+	private TimelineBondHeader calStartEndDate(TimelineBondHeader bondHeaderResult) 
+	{
+			Calendar locCalStartDate = null;
+			Calendar locCalEndDate = null;
+			
+			ArrayList<TimelineBondInterest> locBondTotalInterestResultList = bondHeaderResult.getBondTotalInterestResult();
+
+			for (TimelineBondInterest bondInterestResult : locBondTotalInterestResultList) {
+
+				Calendar locCal = Calendar.getInstance();
+				locCal.setTime(bondInterestResult.getInterestDate());
+
+				if (locCalStartDate == null) {
+					locCalStartDate = Calendar.getInstance();
+					locCalStartDate.setTime(locCal.getTime());
+
+					locCalEndDate = Calendar.getInstance();
+					locCalEndDate.setTime(locCal.getTime());
+				} else if (locCal.before(locCalStartDate)) {
+					locCalStartDate.setTime(locCal.getTime());
+				} else if (locCal.after(locCalEndDate)) {
+					locCalEndDate.setTime(locCal.getTime());
+				}
+			}
+
+			bondHeaderResult.setStartDate(locCalStartDate.getTime());
+			bondHeaderResult.setEndDate(locCalEndDate.getTime());
+			
+			return bondHeaderResult;
+	}
+	
+	private Date getFirstBuyDate(BondHeader bondHeader) {
+		ArrayList<BondItemBuy> locBondItemBuyList = (ArrayList<BondItemBuy>) bondHeader.getBondItemBuy();
+
+		// sort items ascending by buy date
+		Collections.sort(locBondItemBuyList, new ComparatorDateForBondItemBuy());
+
+		// return first buy date
+		return locBondItemBuyList.get(0).getBuyDate();
 	}
 }
