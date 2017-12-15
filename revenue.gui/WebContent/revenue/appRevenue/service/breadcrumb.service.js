@@ -18,9 +18,8 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 		}
 		
 		var locFound = false;
-		var locLength = breadcrumb.length;
 		
-		for (var i = 0; i < locLength; i++) {
+		for (var i = 0, l = breadcrumb.length; i < l; i++) {
 			
 			if (locFound == true)
 			{
@@ -44,8 +43,11 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 	{
 		var breadcrumb = storageService.get(STORAGE_SERVICE_KEY.BREADCRUMB);
 		
-		for (var i = 0; i < breadcrumb.length; i++)
+		if (breadcrumb != undefined)
 		{
+			
+			for (var i = 0, l = breadcrumb.length; i < l; i++)
+			{
 //				index = i;
 //				
 //				$translate(breadcrumb[i].id).then(function (translation) {
@@ -57,6 +59,7 @@ breadcrumbService.factory('breadcrumbService', function(storageService, STORAGE_
 				
 				translater(breadcrumb);
 				
+			}
 		}
 
 		return breadcrumb;

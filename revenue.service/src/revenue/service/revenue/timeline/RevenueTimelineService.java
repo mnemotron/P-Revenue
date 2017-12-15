@@ -12,6 +12,8 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import revenue.core.timeline.Timeline;
+import revenue.core.timeline.entity.TimelineBondHeader;
+import revenue.core.timeline.entity.TimelineBondInterest;
 import revenue.core.timeline.entity.TimelineDepot;
 import revenue.core.timeline.entity.TimelinePortfolio;
 import revenue.entity.BondHeader;
@@ -20,6 +22,8 @@ import revenue.entity.Portfolio;
 import revenue.hibernate.SessionManager;
 import revenue.service.revenue.timeline.entity.ReqDepot;
 import revenue.service.revenue.timeline.entity.ReqRevenueTimeline;
+import revenue.service.revenue.timeline.entity.ResBondHeader;
+import revenue.service.revenue.timeline.entity.ResBondItemInterestRevenue;
 import revenue.service.revenue.timeline.entity.ResDepot;
 import revenue.service.revenue.timeline.entity.ResRevenueTimeline;
 
@@ -34,32 +38,32 @@ public class RevenueTimelineService
 	public ResRevenueTimeline getRevenueTimeline(ReqRevenueTimeline reqRevenueTimeline) throws Exception
 	{
 		SessionManager.initSession();
-		
+
 		ResRevenueTimeline locResRevenueTimeline = new ResRevenueTimeline();
 
 		try
 		{
-			
+
 			// query portfolio
 			Portfolio locPortfolio = queryPortfolio(reqRevenueTimeline.getPortfolioId());
-			
+
 			// query depots
 			if ((reqRevenueTimeline.getDepotList() != null) && !(reqRevenueTimeline.getDepotList().isEmpty()))
 			{
 				ArrayList<Depot> locDepotList = getDepot(locPortfolio, reqRevenueTimeline.getDepotList());
 				locPortfolio.setDepot(locDepotList);
 			}
-			
+
 			// calculate timeline
 			Timeline locTimeline = new Timeline(locPortfolio);
-			
+
 			locTimeline.calTimeline();
-			
+
 			TimelinePortfolio locTimelinePortfolio = locTimeline.getResult();
-			
+
 			// build response
 			locResRevenueTimeline = buildResponse(locTimelinePortfolio);
-			
+
 		}
 		catch (Exception e)
 		{
@@ -73,139 +77,112 @@ public class RevenueTimelineService
 		return locResRevenueTimeline;
 	}
 
-	private ArrayList<Depot> getDepot(Portfolio portfolio, ArrayList<ReqDepot> reqDepotList) throws Exception {
+	private ArrayList<Depot> getDepot(Portfolio portfolio, ArrayList<ReqDepot> reqDepotList) throws Exception
+	{
 
 		// query depot
 		ArrayList<Depot> locDepotList = new ArrayList<Depot>();
 
 		// each depot
-		for (ReqDepot reqDepot : reqDepotList) {
-			
+		for (ReqDepot reqDepot : reqDepotList)
+		{
+
 			// query depot
 			Depot locDepot = queryDepot(portfolio.getId(), reqDepot.getDepotId());
-			
+
 			ArrayList<BondHeader> locBondHeaderList = new ArrayList<BondHeader>();
 
 			// whole depot
-			if((reqDepot.getBondIdList() == null) || (reqDepot.getBondIdList().isEmpty()))
+			if ((reqDepot.getBondIdList() == null) || (reqDepot.getBondIdList().isEmpty()))
 			{
 				locBondHeaderList = queryBondList(portfolio.getId(), locDepot.getId());
 			}
 			else
 			{
-			
+
 				// bond
 				if ((reqDepot.getBondIdList() != null) && !(reqDepot.getBondIdList().isEmpty()))
 				{
 					locBondHeaderList = queryBondList(portfolio.getId(), locDepot.getId(), reqDepot.getBondIdList());
 				}
-			
+
 			}
-			
+
 			locDepot.setBondHeader(locBondHeaderList);
-			
+
 			locDepotList.add(locDepot);
 		}
-		
+
 		return locDepotList;
 	}
-	
+
 	private ResRevenueTimeline buildResponse(TimelinePortfolio timelinePortfolio)
 	{
 		ResRevenueTimeline locResRevenueTimeline = new ResRevenueTimeline();
-		
-		//map portfolio
+
+		// map portfolio
 		locResRevenueTimeline.setPortfolioId(timelinePortfolio.getPortfolio().getId());
-		
-		//map depot
+
+		// map depot
 		ArrayList<ResDepot> locResDepotList = new ArrayList<ResDepot>();
-		
-		for (TimelineDepot timelineDepot : timelinePortfolio.getBondDepotResult()) {
-			
+
+		for (TimelineDepot timelineDepot : timelinePortfolio.getBondDepotResult())
+		{
 			ResDepot locResDepot = new ResDepot();
-			
+
+			// map bond header
+			ArrayList<ResBondHeader> locResBondHeaderList = new ArrayList<ResBondHeader>();
+
+			for (TimelineBondHeader timelineBondHeader : timelineDepot.getBondHeaderResult())
+			{
+				ResBondHeader locBondHeader = new ResBondHeader();
+
+				// map bond item interest result
+				ArrayList<ResBondItemInterestRevenue> locResBondItemInterestRevenueList = new ArrayList<ResBondItemInterestRevenue>();
+
+				for (TimelineBondInterest timelineBondInterest : timelineBondHeader.getBondTotalInterestResult())
+				{
+					ResBondItemInterestRevenue locResBondItemInterestRevenue = new ResBondItemInterestRevenue();
+
+					locResBondItemInterestRevenue.setInterestDate(timelineBondInterest.getInterestDate().toInstant().toString());
+					locResBondItemInterestRevenue.setInterestRevenue(timelineBondInterest.getInterest());
+
+					locResBondItemInterestRevenueList.add(locResBondItemInterestRevenue);
+				}
+
+				locBondHeader.setBondId(timelineBondHeader.getBondHeader().getId());
+				locBondHeader.setBondName(timelineBondHeader.getBondHeader().getName());
+				// locBondHeader.setBondItemBuyList();
+				locBondHeader.setBondTotalInterestResultList(locResBondItemInterestRevenueList);
+				locBondHeader.setStartDate(timelineBondHeader.getStartDate().toInstant().toString());
+				locBondHeader.setEndDate(timelineBondHeader.getEndDate().toInstant().toString());
+
+				locResBondHeaderList.add(locBondHeader);
+			}
+
 			locResDepot.setDepotId(timelineDepot.getDepot().getId());
 			locResDepot.setDepotName(timelineDepot.getDepot().getName());
-			
-//			locResDepot.setBondList();
-			
+			locResDepot.setBondList(locResBondHeaderList);
+			locResDepot.setStartDate(timelineDepot.getStartDate().toInstant().toString());
+			locResDepot.setEndDate(timelineDepot.getEndDate().toInstant().toString());
+
 			locResDepotList.add(locResDepot);
 		}
 
-
-//		ArrayList<BondHeaderResult> locBondHeaderResultList = locBond.getResult();
-//
-//		// return result
-//		ArrayList<ResBondHeader> locResBondList = new ArrayList<ResBondHeader>();
-//
-//		for (BondHeaderResult bondHeaderResult : locBondHeaderResultList)
-//		{
-//
-//			ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
-//			ArrayList<ResBondItemInterestRevenue> locResBondTotalInterestList = new ArrayList<ResBondItemInterestRevenue>();
-//
-//			ArrayList<BondItemResult> locBondItemResult = bondHeaderResult.getBondItemsResult();
-//
-//			for (BondItemResult bondItemResult : locBondItemResult)
-//			{
-//				ArrayList<ResBondItemInterestRevenue> locResBondItemInterestRevenueList = new ArrayList<ResBondItemInterestRevenue>();
-//
-//				ArrayList<BondInterestResult> locBondInterestResult = bondItemResult.getBondInterestDates();
-//
-//				for (BondInterestResult bondInterestResult : locBondInterestResult)
-//				{
-//					ResBondItemInterestRevenue locBondItemInterestRevenue = new ResBondItemInterestRevenue();
-//					locBondItemInterestRevenue.setInterestDate(bondInterestResult.getInterestDate().toInstant().toString());
-//					locBondItemInterestRevenue.setInterestRevenue(bondInterestResult.getInterest());
-//					locResBondItemInterestRevenueList.add(locBondItemInterestRevenue);
-//				}
-//
-//				ResBondItemBuy locResBondItemBuy = new ResBondItemBuy();
-//				locResBondItemBuy.setBondItemBuyId(bondItemResult.getBondItemBuy().getId());
-//				locResBondItemBuy.setBondItemInterestRevenueList(locResBondItemInterestRevenueList);
-//				locResBondItemBuyList.add(locResBondItemBuy);
-//			}
-//
-//			// total interest result
-//			for (BondInterestResult bondTotalInterestResult : bondHeaderResult.getBondTotalInterestResult())
-//			{
-//				ResBondItemInterestRevenue locBondTIR = new ResBondItemInterestRevenue();
-//				locBondTIR.setInterestDate(bondTotalInterestResult.getInterestDate().toInstant().toString());
-//				locBondTIR.setInterestRevenue(bondTotalInterestResult.getInterest());
-//				locResBondTotalInterestList.add(locBondTIR);
-//			}
-//
-//			ResBondHeader locResBond = new ResBondHeader();
-//			locResBond.setBondId(bondHeaderResult.getBondHeader().getId());
-//			locResBond.setBondName(bondHeaderResult.getBondHeader().getName());
-//			locResBond.setBondItemBuyList(locResBondItemBuyList);
-//			locResBond.setBondTotalInterestResultList(locResBondTotalInterestList);
-//			locResBond.setStartDate(bondHeaderResult.getStartDate().toInstant().toString());
-//			locResBond.setEndDate(bondHeaderResult.getEndDate().toInstant().toString());
-//			locResBondList.add(locResBond);
-//
-//		}
-//
-//		ArrayList<ResDepot> locResDepotList = new ArrayList<ResDepot>();
-//		ResDepot locResDepot = new ResDepot();
-//		locResDepot.setDepotId(reqRevenueTimeline.getDepotId());
-//		locResDepot.setDepotName(depot.getName());
-//		locResDepot.setBondList(locResBondList);
-//		locResDepotList.add(locResDepot);
-//
-//		locResRevenueTimeline.setPortfolioId(reqRevenueTimeline.getPortfolioId());
-//		locResRevenueTimeline.setDepotList(locResDepotList);
-
+		locResRevenueTimeline.setDepotList(locResDepotList);
+		locResRevenueTimeline.setStartDate(timelinePortfolio.getStartDate().toInstant().toString());
+		locResRevenueTimeline.setEndDate(timelinePortfolio.getEndDate().toInstant().toString());
+		
 		return locResRevenueTimeline;
 	}
-	
+
 	private Portfolio queryPortfolio(long portfolioId) throws Exception
 	{
 		Session locSession = SessionManager.getSession();
 
 		Portfolio locPortfolio = null;
 
-		Query locQuery = locSession.createQuery("FROM Portfolio WHERE portfolio_id = " + portfolioId);
+		Query locQuery = locSession.createQuery("FROM Portfolio WHERE id = " + portfolioId);
 
 		locPortfolio = (Portfolio) locQuery.getSingleResult();
 

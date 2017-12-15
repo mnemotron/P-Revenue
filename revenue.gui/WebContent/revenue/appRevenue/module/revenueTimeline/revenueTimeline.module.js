@@ -25,7 +25,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 			$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 			
-			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id};
+			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : [$scope.selectedDepot.id]};
 			
 	        break;
 	    case 'bond':
@@ -34,7 +34,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			$scope.selectedBond = storageService.get(STORAGE_SERVICE_KEY.BOND);
 			
 			bondIdList = [$scope.selectedBond.id];
-			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotId : $scope.selectedDepot.id, bondIdList : bondIdList};
+			reqRevenueTimeline = {portfolioId : $scope.selectedPortfolio.id, depotList : [{depotId: $scope.selectedDepot.id, bondIdList : bondIdList}]};
 	       
 			break;
 		} 
@@ -58,13 +58,13 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		timeline.titleLine = new Array();
 
 		// TITLE DEPOT
-		for (var d = 0, l = depotList.length; d < l; d++) {
+		for (var d = 0, l1 = depotList.length; d < l1; d++) {
 			timeline.titleLine.push({color : '', title : depotList[d].depotName});
 
 			var bondList = depotList[d].bondList;
 
 			// TITLE BOND
-			for (var b = 0, l =  bondList.length; b < l; b++) {
+			for (var b = 0, l2 =  bondList.length; b < l2; b++) {
 				timeline.titleLine.push({color : 'table-active', title : bondList[b].bondName});
 			}
 
@@ -82,7 +82,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		// DEPOT
 		var depotList = resRevenue.depotList;
 
-		for (var d = 0, l = depotList.length; d < l; d++) {
+		for (var d = 0, l1 = depotList.length; d < l1; d++) {
 
 			var bondList = depotList[d].bondList;
 
@@ -90,7 +90,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			timeline.valueLine[valueLineIndex].push({color : '', revenue : '\u00A0'});
 
 			// BOND
-			for (var b = 0, l = bondList.length; b < l; b++) {
+			for (var b = 0, l2 = bondList.length; b < l2; b++) {
 
 				// BOND TOTAL INTEREST RESULT
 				var iterateDate = moment('01.01.' + startYear, 'DD.MM.YYYY');
@@ -223,11 +223,13 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	var reqRevenueTimeline = $scope.buildScopeRequest($scope, $routeParams.scope);
 
 	// CALCULATE TIMELINE
-	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline).then(function(response) {
+	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline)
+	.then(function successCallback(response) {
+		
 		$scope.resRevenue = response.data;
 		
-		$scope.resRevenue.startYear = 2017;
-		$scope.resRevenue.endYear = 2020;
+		$scope.resRevenue.startYear = moment($scope.resRevenue.startDate).get('year');
+		$scope.resRevenue.endYear = moment($scope.resRevenue.endDate).get('year');
 		
 		$scope.yearSlider = { min: $scope.resRevenue.startYear, max: $scope.resRevenue.endYear, 
 				options: { floor: $scope.resRevenue.startYear, 
@@ -240,6 +242,10 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 			
 		
 		$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear);
-	});
-
+		
+		}, 
+		function errorCallback(response) {
+				$scope.$emit('notify', {type:'RAW', raw: response.data});	
+		});
+	
 });

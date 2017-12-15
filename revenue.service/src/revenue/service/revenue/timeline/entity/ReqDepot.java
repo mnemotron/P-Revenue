@@ -7,7 +7,7 @@ public class ReqDepot {
 	private long depotId;
 
 	private ArrayList<Long> bondIdList = new ArrayList<Long>();
-
+	
 	public ReqDepot() {
 
 	}
@@ -27,5 +27,5 @@ public class ReqDepot {
 	public void setBondIdList(ArrayList<Long> bondIdList) {
 		this.bondIdList = bondIdList;
 	}
-
+	
 }

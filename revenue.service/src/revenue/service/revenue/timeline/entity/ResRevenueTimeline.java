@@ -8,6 +8,7 @@ public class ResRevenueTimeline {
 	private ArrayList<ResDepot> depotList = new ArrayList<ResDepot>();
 
 	private String startDate;
+	
 	private String endDate;
 
 	public ResRevenueTimeline() {

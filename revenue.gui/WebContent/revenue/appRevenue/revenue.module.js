@@ -89,7 +89,7 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 	// INIT CONFIGURATION
 	$scope.initConfig = function(config){
 		
-		for (var i = 0; i < config.length; i++) {
+		for (var i = 0, l = config.length; i < l; i++) {
 
 			switch (config[i].key) {
 				case CONFIG_KEY.LANGUAGE:

@@ -9,6 +9,10 @@ public class ResDepot
 	private String depotName;
 	
 	private ArrayList<ResBondHeader> bondList = new ArrayList<ResBondHeader>();
+	
+	private String startDate;
+	
+	private String endDate;
 
 	public ResDepot()
 	{
@@ -43,5 +47,25 @@ public class ResDepot
 	public void setDepotName(String depotName)
 	{
 		this.depotName = depotName;
+	}
+
+	public String getStartDate()
+	{
+		return startDate;
+	}
+
+	public void setStartDate(String startDate)
+	{
+		this.startDate = startDate;
+	}
+
+	public String getEndDate()
+	{
+		return endDate;
+	}
+
+	public void setEndDate(String endDate)
+	{
+		this.endDate = endDate;
 	}
 }
