@@ -60,6 +60,7 @@ public class Timeline {
 			// bond header
 			ArrayList<TimelineBondHeader> locBondHeaderResultList = this.calTimelineBondHeader(new ArrayList<BondHeader>(depot.getBondHeader()));
 			locDepotResult.setBondHeaderResult(locBondHeaderResultList);
+			locDepotResult.setDepot(depot);
 			
 			locTimelineDepot.add(locDepotResult);
 		}
@@ -74,6 +75,7 @@ public class Timeline {
 		for (BondHeader bondHeader : bondHeaderList) {
 
 			TimelineBondHeader locBondHeaderResult = new TimelineBondHeader();
+			locBondHeaderResult.setBondHeader(bondHeader);
 			
 			// bond item buy
 			ArrayList<TimelineBondItem> locBondItemResultList = this.calInterestBondItem(bondHeader, new ArrayList<BondItemBuy>(bondHeader.getBondItemBuy()));
@@ -114,6 +116,8 @@ public class Timeline {
 		for (BondItemBuy bondItemBuy : bondItemBuyList) {
 
 			TimelineBondItem locBondItemResult = new TimelineBondItem();
+			locBondItemResult.setBondItemBuy(bondItemBuy);
+			
 			ArrayList<TimelineBondInterest> locBondInterestDates = new ArrayList<TimelineBondInterest>();
 
 			Date locBuyDate = bondItemBuy.getBuyDate();

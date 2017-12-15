@@ -2,7 +2,7 @@ package revenue.service.revenue.timeline.entity;
 
 import java.util.ArrayList;
 
-public class ResBond
+public class ResBondHeader
 {
 	private long bondId;
 	
@@ -16,7 +16,7 @@ public class ResBond
 	
 	private ArrayList<ResBondItemInterestRevenue> bondTotalInterestResultList = new ArrayList<ResBondItemInterestRevenue>();
 
-	public ResBond()
+	public ResBondHeader()
 	{
 
 	}

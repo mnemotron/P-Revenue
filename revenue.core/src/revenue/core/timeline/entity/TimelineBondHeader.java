@@ -6,6 +6,7 @@ import java.util.Date;
 import revenue.entity.BondHeader;
 
 public class TimelineBondHeader {
+	
 	private BondHeader bondHeader;
 	private ArrayList<TimelineBondItem> bondItemsResult;
 	private ArrayList<TimelineBondInterest> bondTotalInterestResult;

@@ -5,10 +5,8 @@ import java.util.ArrayList;
 public class ReqRevenueTimeline
 {
 	private long portfolioId;
-
-	private long depotId;
-
-	private ArrayList<Long> bondIdList = new ArrayList<Long>();
+	
+	private ArrayList<ReqDepot> depotList = new ArrayList<ReqDepot>();
 
 	public ReqRevenueTimeline()
 	{
@@ -25,23 +23,12 @@ public class ReqRevenueTimeline
 		this.portfolioId = portfolioId;
 	}
 
-	public long getDepotId()
-	{
-		return depotId;
+	public ArrayList<ReqDepot> getDepotList() {
+		return depotList;
 	}
 
-	public void setDepotId(long depotId)
-	{
-		this.depotId = depotId;
+	public void setDepotList(ArrayList<ReqDepot> depotList) {
+		this.depotList = depotList;
 	}
-
-	public ArrayList<Long> getBondIdList()
-	{
-		return bondIdList;
-	}
-
-	public void setBondIdList(ArrayList<Long> bondIdList)
-	{
-		this.bondIdList = bondIdList;
-	}
+	
 }
