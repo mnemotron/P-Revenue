@@ -9,6 +9,7 @@
 	"viewCreatePortfolio.form.button.cancel": "Cancel",
 	"viewCreatePortfolio.form.input.description.placeholder": "Enter the portfolio description",
 	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name",
+	"viewCreatePortfolio.form.create.notify.error": "Error during portfolio creation. Go to error log &rarr;",
 	"viewPortfolio.portfolio.menu.title": "Portfolio:",
 	"viewPortfolio.portfolio.menu.admin": "Administration",
 	"viewPortfolio.portfolio.menu.admin.delete": "Delete",
@@ -16,5 +17,6 @@
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.question": "Do you want to delete the portfolio?",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Cancel",
-	"viewPortfolio.portfolio.depot.title": "Depot"
+	"viewPortfolio.portfolio.depot.title": "Depot",
+	"viewPortfolio.depotList.notify.error": "Error during the depot list determination. Go to error log &rarr;"
 }

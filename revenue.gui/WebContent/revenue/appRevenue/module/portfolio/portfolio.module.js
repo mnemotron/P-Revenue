@@ -20,7 +20,7 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 
 });
 
-portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, logService, LOGTYPE, PORTFOLIO_LANGUAGE) {
  
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -33,13 +33,14 @@ portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 			}, 
 			
 			function errorCallback(response) {
-				
+				logService.set('Revenue.Portfolio', LOGTYPE.ERROR, response.data);
+				$scope.$emit('notify', {type:'E', msgId:'viewCreatePortfolio.form.create.notify.error'});	
 			});
 	}
 
 });
 
-portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 	
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -49,9 +50,14 @@ portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $locatio
 	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
-	$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params : {id : $scope.selectedPortfolio.id}}).then(function(response) {
-		$scope.depots = response.data
-	});
+	$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params : {id : $scope.selectedPortfolio.id}})
+		.then(function successCallback(response) {
+			$scope.depots = response.data;
+		}, 
+		function errorCallback(response) {
+				logService.set('Revenue.Portfolio.DepotList', LOGTYPE.ERROR, response.data);
+				$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.depotList.notify.error'});	
+		});
 	
 	$scope.selectDepot = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.DEPOT, $scope.depots[index]);

@@ -2,17 +2,22 @@
 	<div class="container">
 
 		<!-- TITLE -->
-		<ul class="list-group m-1">
-			<li class="list-group-item active">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col">
-							<b translate="preferences.title"></b>
+		<div class="row">
+			<div class="col">
+				<ul class="list-group m-1">
+					<li class="list-group-item active">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<b translate="preferences.title"></b>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
 
 		<!-- MENU -->
 		<div class="row">
@@ -25,78 +30,84 @@
 
 		<!-- PREFERENCES -->
 		<!-- LANGUAGE -->
-		<div class="w-100" id="accordion" role="tablist">
+		<div class="row">
+			<div class="col">
+			
+				<div class="w-100" id="accordion" role="tablist">
 
-			<div class="list-group m-1">
-				<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesLanguage" href="" aria-expanded="true"
-					aria-controls="preferencesLanguage">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col">
-								<b translate="preferences.language.title"></b>
+					<div class="list-group m-1">
+						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesLanguage" href="" aria-expanded="true"
+							aria-controls="preferencesLanguage">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<b translate="preferences.language.title"></b>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				</a>
+						</a>
 
-				<div class="collapse show" id="preferencesLanguage" role="tabpanel" aria-labelledby="headerPrefLanguage" data-parent="#accordion">
-					<div class="list-group-item bg-light">
-						<div class="container-fluid">
-							<div class="row text-dark">
-								<div class="col">
+						<div class="collapse show" id="preferencesLanguage" role="tabpanel" aria-labelledby="headerPrefLanguage" data-parent="#accordion">
+							<div class="list-group-item bg-light">
+								<div class="container-fluid">
+									<div class="row text-dark">
+										<div class="col">
 
-									<form name="formPreferencesLanguage">
+											<form name="formPreferencesLanguage">
 
-										<div class="form-group">
-											<label for="defaultLanguage" class="text-dark" translate="preferences.language.defaultLanguage"></label> <select ng-model="configLanguage" id="defaultLanguage" class="form-control">
-												<option ng-repeat="language in languages" value="{{language.key}}"><span>{{language.textId|translate}} | {{language.key}}</span></option>
-											</select>
+												<div class="form-group">
+													<label for="defaultLanguage" class="text-dark" translate="preferences.language.defaultLanguage"></label> <select ng-model="configLanguage" id="defaultLanguage" class="form-control">
+														<option ng-repeat="language in languages" value="{{language.key}}"><span>{{language.textId|translate}} | {{language.key}}</span></option>
+													</select>
+												</div>
+
+											</form>
+
 										</div>
-
-									</form>
-
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 
-			<div class="list-group m-1">
-				<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesCurrency" href="" aria-expanded="false"
-					aria-controls="preferencesCurrency">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col">
-								<b translate="preferences.currency.title"></b>
+					<div class="list-group m-1">
+						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesCurrency" href="" aria-expanded="false"
+							aria-controls="preferencesCurrency">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<b translate="preferences.currency.title"></b>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				</a>
+						</a>
 
-				<div class="collapse" id="preferencesCurrency" role="tabpanel" aria-labelledby="headerPrefCurrency" data-parent="#accordion">
-					<div class="list-group-item bg-light">
-						<div class="container-fluid">
-							<div class="row text-dark">
-								<div class="col">
+						<div class="collapse" id="preferencesCurrency" role="tabpanel" aria-labelledby="headerPrefCurrency" data-parent="#accordion">
+							<div class="list-group-item bg-light">
+								<div class="container-fluid">
+									<div class="row text-dark">
+										<div class="col">
 
-									<form name="formPreferencesCurrency">
+											<form name="formPreferencesCurrency">
 
-										<div class="form-group">
-											<label for="defaultCurrency" class="text-dark" translate="preferences.currency.defaultCurrency"></label> <select ng-model="configCurrency" id="defaultCurrency" class="form-control">
-												<option ng-repeat="currency in currencies" value="{{currency.key}}"><span>{{currency.textId|translate}} | {{currency.key}}</span></option>
-											</select>
+												<div class="form-group">
+													<label for="defaultCurrency" class="text-dark" translate="preferences.currency.defaultCurrency"></label> <select ng-model="configCurrency" id="defaultCurrency" class="form-control">
+														<option ng-repeat="currency in currencies" value="{{currency.key}}"><span>{{currency.textId|translate}} | {{currency.key}}</span></option>
+													</select>
+												</div>
+
+											</form>
+
 										</div>
-
-									</form>
-
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 
+				</div>
+
+			</div>
 		</div>
 
 	</div>

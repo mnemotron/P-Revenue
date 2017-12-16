@@ -1,5 +1,6 @@
 {
 	"viewIndex.help.about": "About",
+	"viewIndex.help.log": "Error Log",
 	"viewIndex.help": "Help",
 	"viewIndex.language": "Language",
 	"viewIndex.language.de": "German",
@@ -7,6 +8,7 @@
 	"viewIndex.preferences": "Preferences",
 	"breadcrumb.home": "Home",
 	"breadcrumb.about": "About",
+	"breadcrumb.log": "Error Log",
 	"breadcrumb.preferences": "Preferences",
 	"breadcrumb.portfolio": "Portfolio",
 	"breadcrumb.depot": "Depot",
@@ -15,6 +17,7 @@
 	"preferences.title": "Preferences",
 	"preferences.menu.save": "Save",
 	"preferences.menu.save.notify.success": "Preferences have been saved.",
+	"preferences.menu.save.notify.error": "Saving Error. Go to the error log &rarr;",
 	"preferences.language.title": "Language",
 	"preferences.language.defaultLanguage": "Default Language",
 	"preferences.language.defaultLanguage.en": "English",
@@ -22,6 +25,7 @@
 	"preferences.currency.title": "Currency",
 	"preferences.currency.defaultCurrency": "Default Currency",
 	"preferences.currency.defaultCurrency.eur": "Euro",
+	"log.title": "Error Log",
 	"about.title": "About",
 	"about.txt.usedFrameworks": "The following frameworks are used"
 }

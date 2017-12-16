@@ -4,7 +4,7 @@
 
 var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.timeline.config']);
 
-revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, $routeParams, storageService, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
+revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, $routeParams, logService, storageService, LOGTYPE, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 
 	// FUNCTIONS
 	
@@ -245,7 +245,8 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 		
 		}, 
 		function errorCallback(response) {
-				$scope.$emit('notify', {type:'RAW', raw: response.data});	
+			logService.set('Revenue.Timeline', LOGTYPE.ERROR, response.data);
+			$scope.$emit('notify', {type:'E', msgId:'viewRevenueTimeline.notify.error'});
 		});
 	
 });

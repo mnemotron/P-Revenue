@@ -3,5 +3,6 @@
 	"viewRevenueTimeline.year.title": "Jahr",
 	"viewRevenueTimeline.month.title": "Monat",
 	"viewRevenueTimeline.week.title": "KW",
-	"viewRevenueTimeline.day.title": "Tag"
+	"viewRevenueTimeline.day.title": "Tag",
+	"viewRevenueTimeline.notify.error": "Fehler während der Berechnung der Ertragszeitleiste. Zum Fehlerprotokoll &rarr;"
 }

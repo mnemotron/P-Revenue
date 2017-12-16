@@ -48,8 +48,11 @@
 				<li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"
 					translate="viewIndex.help"></a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-						<a href="#!viewAbout" class="dropdown-item"><span valign="middle" translate="viewIndex.help.about"></span></a></a>
-					</div></li>
+					   	<a class="dropdown-item" href="#!viewLog" translate="viewIndex.help.log"></a>
+					 	<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#!viewAbout" translate="viewIndex.help.about"></a>
+					</div>
+				</li>
 
 
 				<li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"
@@ -93,10 +96,11 @@
 
 	<!--  Customs Scripts -->
 	<!-- Revenue -->
-	<script src="revenue.module.js"></script>
-	<script src="config/revenue.config.js"></script>
+	<script src="service/log.service.js"></script>
 	<script src="service/storage.service.js"></script>
 	<script src="service/breadcrumb.service.js"></script>
+	<script src="revenue.module.js"></script>
+	<script src="config/revenue.config.js"></script>
 
 	<!-- Portfolio -->
 	<script src="module/portfolio/service/portfolio.service.js"></script>

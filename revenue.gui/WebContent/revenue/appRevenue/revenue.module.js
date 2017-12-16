@@ -44,16 +44,7 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 					  dismissOnTimeout: false,
 					  compileContent: true,
 					  dismissButton: true,
-					  content: $sce.trustAsHtml('<div translate="'+data.msgId+'"></div>')
-					});
-				break;
-				
-			case 'RAW' :
-				ngToast.create({
-					  className: 'danger',
-					  dismissOnTimeout: false,
-					  dismissButton: true,
-					  content: data.raw
+					  content: $sce.trustAsHtml('<div><a href="#!viewLog" translate="'+data.msgId+'"></a></div>')
 					});
 				break;
 
@@ -117,6 +108,15 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 		});
 });
 
+appRevenueModule.controller('ctrlViewLog', function($scope, logService) {
+	
+	$scope.log = logService.get();
+	
+	// EVENT: breadcrumb
+	$scope.$emit('breadcrumb', {id : 'breadcrumb.log', link : '/viewLog'});
+	
+});
+
 appRevenueModule.controller('ctrlViewAbout', function($scope) {
 
 	// EVENT: breadcrumb
@@ -124,7 +124,7 @@ appRevenueModule.controller('ctrlViewAbout', function($scope) {
 
 });
 
-appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $translate, CONFIG_KEY, LANGUAGE) {
+appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $translate, logService, LOGTYPE, CONFIG_KEY, LANGUAGE) {
 	
 	$scope.savePreferences = function(){
 		
@@ -137,7 +137,8 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $tran
 				$scope.$emit('notify', {type:'S', msgId:'preferences.menu.save.notify.success'});	
 		}, 
 		function errorCallback(response) {
-				$scope.$emit('notify', {type:'RAW', raw: response.data});	
+				logService.set('Revenue', LOGTYPE.ERROR, response.data);
+				$scope.$emit('notify', {type:'E', msgId:'preferences.menu.save.notify.error'});	
 		});
 	}
 	

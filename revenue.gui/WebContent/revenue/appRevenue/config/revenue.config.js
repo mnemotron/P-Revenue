@@ -7,6 +7,7 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 	    'ngStorage',
 		'pascalprecht.translate', 
 		'storage.service',
+		'log.service',
 		'breadcrumb.service',
 		'portfolio.module',
 		'dateParser',
@@ -58,6 +59,9 @@ appRevenueConfig.config(function($routeProvider, $translateProvider, $translateP
 	}).when('/viewPreferences', {
 		templateUrl : 'view/preferences.view.htm',
 		controller : 'ctrlViewPreferences'
+	}).when('/viewLog', {
+		templateUrl : 'view/log.view.htm',
+		controller : 'ctrlViewLog'
 	});
 
 });

@@ -1,5 +1,6 @@
 {
 	"viewIndex.help.about": "Über",
+	"viewIndex.help.log" : "Fehlerprotokoll",
 	"viewIndex.help": "Hilfe",
 	"viewIndex.language": "Sprache",
 	"viewIndex.language.de": "Deutsch",
@@ -7,6 +8,7 @@
 	"viewIndex.preferences": "Einstellungen",
 	"breadcrumb.home": "Home",
 	"breadcrumb.about": "Über",
+	"breadcrumb.log": "Fehlerprotokoll",
 	"breadcrumb.preferences": "Einstellungen",
 	"breadcrumb.portfolio": "Portfolio",
 	"breadcrumb.depot": "Depot",
@@ -15,6 +17,7 @@
 	"preferences.title": "Einstellungen",
 	"preferences.menu.save": "Speichern",
 	"preferences.menu.save.notify.success": "Einstellungen wurden gespeichert.",
+	"preferences.menu.save.notify.error": "Fehler beim Speichern. Zum Fehlerprotokoll &rarr;",
 	"preferences.language.title": "Sprache",
 	"preferences.language.defaultLanguage": "Standardsprache",
 	"preferences.language.defaultLanguage.en": "Englisch",
@@ -22,6 +25,7 @@
 	"preferences.currency.title": "Währung",
 	"preferences.currency.defaultCurrency": "Standardwährung",
 	"preferences.currency.defaultCurrency.eur": "Euro",
+	"log.title": "Fehlerprotokoll",
 	"about.title": "Über",
 	"about.txt.usedFrameworks": "Es werden die folgenden Frameworks verwendet"
 }
