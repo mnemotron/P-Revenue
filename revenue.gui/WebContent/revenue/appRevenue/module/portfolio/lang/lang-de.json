@@ -18,5 +18,6 @@
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewPortfolio.portfolio.depot.title": "Depot",
+	"viewPortfolio.portfolioList.notify.error": "Fehler bei Portfoliolist-Ermittlung. Zum Fehlerprotokoll &rarr;",
 	"viewPortfolio.depotList.notify.error": "Fehler bei Depotlist-Ermittlung. Zum Fehlerprotokoll &rarr;"
 }

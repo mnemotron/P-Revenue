@@ -16,7 +16,8 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 		]);
 
 appRevenueConfig.constant('LANGUAGE_FILE', 
-    { 	DEFAULT_LANGUAGE: 'en', 
+    { 	
+		DEFAULT_LANGUAGE: 'en', 
 	  	FILE_PREFIX: 'lang-', 
 	  	FILE_SUFFIX: '.json', 
 	  	PART: 'lang'

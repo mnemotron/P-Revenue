@@ -6,7 +6,7 @@ var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
 portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 
-//	//EVENT: translate
+	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
@@ -16,7 +16,14 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 		storageService.set(STORAGE_SERVICE_KEY.PORTFOLIO, $scope.portfolios[index]);
 	};
 	
-	portfolioService.getPortfolioList($scope);
+	portfolioService.getPortfolioList(
+		function successCallback(response){
+			$scope.portfolios = response.data;
+		}, 
+		function errorCallback(response){
+			logService.set('Revenue.Portfolio', LOGTYPE.ERROR, response.data);
+			$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.portfolioList.notify.error'});
+		});
 
 });
 

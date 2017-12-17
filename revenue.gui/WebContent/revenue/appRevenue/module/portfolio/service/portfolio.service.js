@@ -1,24 +1,25 @@
 /**
- * HTTP.SERVICE
+ * PORTFOLIO.HTTP.SERVICE
  */
 
-var portfolioService = angular.module('portfolio.service', []);
+var portfolioService = angular.module('portfolio.service',
+    [
+    	'server.service'
+	]);
 
 portfolioService.constant('URL_PORTFOLIO_SERVICE', 
 			{	
-				SERVER:  'http://localhost:8080',
-				SERVICE: '/revenue.service/portfolio/service', 
-				METHOD_GET_PORTFOLIO_LIST:  '/getPortfolioList'
+				SERVICE: '/portfolio/service', 
+				METHOD_GET_PORTFOLIO_LIST: '/getPortfolioList'
 			});
 			
 																																																																																																				
-portfolioService.factory('portfolioService', function($http, URL_PORTFOLIO_SERVICE) {
+portfolioService.factory('portfolioService', function($http, serverService, URL_PORTFOLIO_SERVICE) {
 	
-	function getPortfolioList(scope)
+	function getPortfolioList(successCallback, errorCallback)
 	{
-		$http.get(URL_PORTFOLIO_SERVICE.SERVER + URL_PORTFOLIO_SERVICE.SERVICE + URL_PORTFOLIO_SERVICE.METHOD_GET_PORTFOLIO_LIST).then(function(response) {
-			scope.portfolios = response.data;
-		});
+		$http.get(serverService.getURLServerBrowser() + URL_PORTFOLIO_SERVICE.SERVICE + URL_PORTFOLIO_SERVICE.METHOD_GET_PORTFOLIO_LIST)
+			.then(successCallback, errorCallback);
 	}
 	
 	return{

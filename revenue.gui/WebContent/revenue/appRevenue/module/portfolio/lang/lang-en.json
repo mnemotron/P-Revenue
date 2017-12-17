@@ -18,5 +18,6 @@
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Cancel",
 	"viewPortfolio.portfolio.depot.title": "Depot",
+	"viewPortfolio.portfolioList.notify.error": "Error during the portfolio list determination. Go to error log &rarr;",
 	"viewPortfolio.depotList.notify.error": "Error during the depot list determination. Go to error log &rarr;"
 }
