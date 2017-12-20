@@ -32,7 +32,7 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col">
-											<b>{{item.module}}</b>
+											<b>{{item.date}} | {{item.module}}</b>
 										</div>
 									</div>
 								</div>
@@ -41,7 +41,7 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col">
-											<b>{{item.module}}</b>
+											<b>{{item.date}} | {{item.module}}</b>
 										</div>
 									</div>
 								</div>
@@ -52,7 +52,11 @@
 							<div class="list-group-item list-group-item-secondary">
 								<div class="container-fluid">
 									<div class="row text-dark">
-										<div class="col"><pre><code>{{item.msg}}</code></pre></div>
+										<div class="col"> 
+											<div class="embed-responsive embed-responsive-1by1">
+  												<iframe class="embed-responsive-item" srcdoc="{{item.msg}}"></iframe>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -62,7 +66,11 @@
 							<div class="list-group-item list-group-item-secondary">
 								<div class="container-fluid">
 									<div class="row text-dark">
-										<div class="col"><pre><code>{{item.msg}}</code></pre></div>
+										<div class="col"> 
+											<div class="embed-responsive embed-responsive-1by1">
+  												<iframe class="embed-responsive-item" srcdoc="{{item.msg}}"></iframe>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

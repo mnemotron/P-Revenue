@@ -13,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import revenue.entity.BondHeader;
@@ -21,97 +20,101 @@ import revenue.entity.BondItemBuy;
 import revenue.entity.Depot;
 import revenue.entity.Interest;
 import revenue.entity.Portfolio;
-import revenue.hibernate.HibernateSessionFactory;
+import revenue.hibernate.SessionManager;
 import revenue.service.bond.entity.ReqBondHeader;
 import revenue.service.bond.entity.ReqBondItemBuy;
 import revenue.service.bond.entity.ResBondHeader;
 import revenue.service.bond.entity.ResBondItemBuy;
-import revenue.service.entity.Response;
 
 @Path("/service")
-public class BondService
-{
+public class BondService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getBondList")
-	public ArrayList<ResBondHeader> getBondList(@QueryParam("portfolioId") long portfolioId, @QueryParam("depotId") long depotId)
-	{
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-
-		Transaction locTransaction = locSession.beginTransaction();
-
-		Query locQuery = locSession.createQuery("from BondHeader where portfolio_id = " + portfolioId + "and depot_id = " + depotId);
-
-		ArrayList<BondHeader> locBondHeaderList = (ArrayList<BondHeader>) locQuery.list();
-
+	public ArrayList<ResBondHeader> getBondList(@QueryParam("portfolioId") long portfolioId,
+			@QueryParam("depotId") long depotId) {
 		ArrayList<ResBondHeader> locResBondHeaderList = new ArrayList<ResBondHeader>();
 
-		for (BondHeader bondheader : locBondHeaderList)
-		{
-			ResBondHeader locResBondHeader = new ResBondHeader();
+		SessionManager.initSession();
 
-			locResBondHeader.setId(bondheader.getId());
-			locResBondHeader.setName(bondheader.getName());
-			locResBondHeader.setArea(bondheader.getArea());
-			locResBondHeader.setIsin(bondheader.getIsin());
-			locResBondHeader.setWkn(bondheader.getWkn());
-			
-			locResBondHeader.setDueDate(bondheader.getDueDate().toInstant().toString());			
-			locResBondHeader.setInterestDate(bondheader.getInterestDate().toInstant().toString());
-			
-			locResBondHeader.setDepotId(bondheader.getDepot().getId());
-			locResBondHeader.setPortfolioId(bondheader.getPortfolio().getId());
-			locResBondHeader.setInterestIntervall(bondheader.getInterestIntervall());
-			
-			ArrayList<Interest> locInterestList = new ArrayList<Interest>(bondheader.getInterest());
-			for (Interest interest : locInterestList)
-			{
-				locResBondHeader.setInterest(interest.getInterest());
-				break;
+		try {
+			Session locSession = SessionManager.getSession();
+
+			Query locQuery = locSession
+					.createQuery("from BondHeader where portfolio_id = " + portfolioId + "and depot_id = " + depotId);
+
+			ArrayList<BondHeader> locBondHeaderList = (ArrayList<BondHeader>) locQuery.list();
+
+			for (BondHeader bondheader : locBondHeaderList) {
+				ResBondHeader locResBondHeader = new ResBondHeader();
+
+				locResBondHeader.setId(bondheader.getId());
+				locResBondHeader.setName(bondheader.getName());
+				locResBondHeader.setArea(bondheader.getArea());
+				locResBondHeader.setIsin(bondheader.getIsin());
+				locResBondHeader.setWkn(bondheader.getWkn());
+
+				locResBondHeader.setDueDate(bondheader.getDueDate().toInstant().toString());
+				locResBondHeader.setInterestDate(bondheader.getInterestDate().toInstant().toString());
+
+				locResBondHeader.setDepotId(bondheader.getDepot().getId());
+				locResBondHeader.setPortfolioId(bondheader.getPortfolio().getId());
+				locResBondHeader.setInterestIntervall(bondheader.getInterestIntervall());
+
+				ArrayList<Interest> locInterestList = new ArrayList<Interest>(bondheader.getInterest());
+				for (Interest interest : locInterestList) {
+					locResBondHeader.setInterest(interest.getInterest());
+					break;
+				}
+
+				locResBondHeaderList.add(locResBondHeader);
 			}
-
-			locResBondHeaderList.add(locResBondHeader);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			SessionManager.closeSession();
 		}
-
-		locTransaction.commit();
-		locSession.close();
 
 		return locResBondHeaderList;
 	}
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getBondItemBuyList")
-	public ArrayList<ResBondItemBuy> getBondItemBuyList(@QueryParam("portfolioId") long portfolioId, @QueryParam("depotId") long depotId, @QueryParam("bondId") long bondId)
-	{
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-
-		Transaction locTransaction = locSession.beginTransaction();
-
-		Query locQuery = locSession.createQuery("from BondItemBuy where portfolio_id = " + portfolioId + "and depot_id = " + depotId + "and bondheader_id = " + bondId);
-
-		ArrayList<BondItemBuy> locBondItemBuyList = (ArrayList<BondItemBuy>) locQuery.list();
+	public ArrayList<ResBondItemBuy> getBondItemBuyList(@QueryParam("portfolioId") long portfolioId,
+			@QueryParam("depotId") long depotId, @QueryParam("bondId") long bondId) {
 
 		ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
 
-		for (BondItemBuy bonditembuy : locBondItemBuyList)
-		{
-			ResBondItemBuy locResBondItemBuy = new ResBondItemBuy();
+		SessionManager.initSession();
 
-			locResBondItemBuy.setId(bonditembuy.getId());
-			locResBondItemBuy.setBondId(bonditembuy.getId());
-			locResBondItemBuy.setPortfolioId(bonditembuy.getPortfolio().getId());
-			locResBondItemBuy.setDepotId(bonditembuy.getDepot().getId());
-			locResBondItemBuy.setNominalValue(bonditembuy.getNominalValue());
-			locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate().toInstant().toString());
-			locResBondItemBuy.setBuyPercent(bonditembuy.getBuyPercent());
+		try {
+			Session locSession = SessionManager.getSession();
 
-			locResBondItemBuyList.add(locResBondItemBuy);
+			Query locQuery = locSession.createQuery("from BondItemBuy where portfolio_id = " + portfolioId
+					+ "and depot_id = " + depotId + "and bondheader_id = " + bondId);
+
+			ArrayList<BondItemBuy> locBondItemBuyList = (ArrayList<BondItemBuy>) locQuery.list();
+
+			for (BondItemBuy bonditembuy : locBondItemBuyList) {
+				ResBondItemBuy locResBondItemBuy = new ResBondItemBuy();
+
+				locResBondItemBuy.setId(bonditembuy.getId());
+				locResBondItemBuy.setBondId(bonditembuy.getId());
+				locResBondItemBuy.setPortfolioId(bonditembuy.getPortfolio().getId());
+				locResBondItemBuy.setDepotId(bonditembuy.getDepot().getId());
+				locResBondItemBuy.setNominalValue(bonditembuy.getNominalValue());
+				locResBondItemBuy.setBuyDate(bonditembuy.getBuyDate().toInstant().toString());
+				locResBondItemBuy.setBuyPercent(bonditembuy.getBuyPercent());
+
+				locResBondItemBuyList.add(locResBondItemBuy);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			SessionManager.closeSession();
 		}
-
-		locTransaction.commit();
-		locSession.close();
 
 		return locResBondItemBuyList;
 	}
@@ -120,137 +123,141 @@ public class BondService
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createBond")
-	public Response createBond(ReqBondHeader reqBondHeader)
-	{
-		Response locResponse = new Response();
+	public void createBond(ReqBondHeader reqBondHeader) {
+		SessionManager.initSession();
 
-		BondHeader locBondHeader = new BondHeader();
+		try {
+			BondHeader locBondHeader = new BondHeader();
 
-		locBondHeader.setArea(reqBondHeader.getArea());
-		locBondHeader.setWkn(reqBondHeader.getWkn());
-		locBondHeader.setIsin(reqBondHeader.getIsin());
-		locBondHeader.setName(reqBondHeader.getName());
-		locBondHeader.setDueDate(reqBondHeader.getDueDate());
-		locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
-		locBondHeader.setInterestIntervall(reqBondHeader.getInterestIntervall());
-		
-		Depot locDepot = new Depot();
-		locDepot.setId(reqBondHeader.getDepotId());
-		locBondHeader.setDepot(locDepot);
+			locBondHeader.setArea(reqBondHeader.getArea());
+			locBondHeader.setWkn(reqBondHeader.getWkn());
+			locBondHeader.setIsin(reqBondHeader.getIsin());
+			locBondHeader.setName(reqBondHeader.getName());
+			locBondHeader.setDueDate(reqBondHeader.getDueDate());
+			locBondHeader.setInterestDate(reqBondHeader.getInterestDate());
+			locBondHeader.setInterestIntervall(reqBondHeader.getInterestIntervall());
 
-		Portfolio locPortfolio = new Portfolio();
-		locPortfolio.setId(reqBondHeader.getPortfolioId());
-		locBondHeader.setPortfolio(locPortfolio);
-		
-		ArrayList<Interest> locInterestList = new ArrayList<Interest>();
-		Interest locInterest = new Interest();
-		locInterest.setPortfolio(locPortfolio);
-		locInterest.setDepot(locDepot);
-		locInterest.setBondHeader(locBondHeader);
-		locInterest.setInterest(reqBondHeader.getInterest());
-		locInterestList.add(locInterest);
-		Collection<Interest> locInterestCol = new HashSet<Interest>(locInterestList);
-		
-		locBondHeader.setInterest(locInterestCol);
+			Depot locDepot = new Depot();
+			locDepot.setId(reqBondHeader.getDepotId());
+			locBondHeader.setDepot(locDepot);
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+			Portfolio locPortfolio = new Portfolio();
+			locPortfolio.setId(reqBondHeader.getPortfolioId());
+			locBondHeader.setPortfolio(locPortfolio);
 
-		Transaction locTransaction = locSession.beginTransaction();
+			ArrayList<Interest> locInterestList = new ArrayList<Interest>();
+			Interest locInterest = new Interest();
+			locInterest.setPortfolio(locPortfolio);
+			locInterest.setDepot(locDepot);
+			locInterest.setBondHeader(locBondHeader);
+			locInterest.setInterest(reqBondHeader.getInterest());
+			locInterestList.add(locInterest);
+			Collection<Interest> locInterestCol = new HashSet<Interest>(locInterestList);
 
-		locSession.save(locBondHeader);
+			locBondHeader.setInterest(locInterestCol);
 
-		locTransaction.commit();
+			SessionManager.getSession().save(locBondHeader);
 
-		locSession.close();
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		return locResponse;
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 	}
-	
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createBondItemBuy")
-	public Response createBondItemBuy(ReqBondItemBuy reqBondItemBuy)
-	{
-		Response locResponse = new Response();
+	public void createBondItemBuy(ReqBondItemBuy reqBondItemBuy) {
+		SessionManager.initSession();
 
-		BondItemBuy locBondItemBuy = new BondItemBuy();
+		try {
+			BondItemBuy locBondItemBuy = new BondItemBuy();
 
-		locBondItemBuy.setNominalValue(reqBondItemBuy.getNominalValue());
-		locBondItemBuy.setBuyPercent(reqBondItemBuy.getBuyPercent());
-		locBondItemBuy.setBuyDate(reqBondItemBuy.getBuyDate());
-		
-		BondHeader locBondHeader = new BondHeader();
-		locBondHeader.setId(reqBondItemBuy.getBondId());
-		locBondItemBuy.setBondHeader(locBondHeader);
+			locBondItemBuy.setNominalValue(reqBondItemBuy.getNominalValue());
+			locBondItemBuy.setBuyPercent(reqBondItemBuy.getBuyPercent());
+			locBondItemBuy.setBuyDate(reqBondItemBuy.getBuyDate());
 
-		Depot locDepot = new Depot();
-		locDepot.setId(reqBondItemBuy.getDepotId());
-		locBondItemBuy.setDepot(locDepot);
+			BondHeader locBondHeader = new BondHeader();
+			locBondHeader.setId(reqBondItemBuy.getBondId());
+			locBondItemBuy.setBondHeader(locBondHeader);
 
-		Portfolio locPortfolio = new Portfolio();
-		locPortfolio.setId(reqBondItemBuy.getPortfolioId());
-		locBondItemBuy.setPortfolio(locPortfolio);
+			Depot locDepot = new Depot();
+			locDepot.setId(reqBondItemBuy.getDepotId());
+			locBondItemBuy.setDepot(locDepot);
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+			Portfolio locPortfolio = new Portfolio();
+			locPortfolio.setId(reqBondItemBuy.getPortfolioId());
+			locBondItemBuy.setPortfolio(locPortfolio);
 
-		Transaction locTransaction = locSession.beginTransaction();
+			SessionManager.getSession().save(locBondItemBuy);
 
-		locSession.save(locBondItemBuy);
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		locTransaction.commit();
-
-		locSession.close();
-
-		return locResponse;
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 	}
-	
+
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteBondItemBuy")
-	public Response deleteBondItemBuy(@QueryParam("bondItemBuyId") long bondItemBuyId)
-	{
-		Response locResponse = new Response();
+	public void deleteBondItemBuy(@QueryParam("bondItemBuyId") long bondItemBuyId) {
+		SessionManager.initSession();
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+		try {
+			Query locQuery = SessionManager.getSession().createQuery("from BondItemBuy where id = " + bondItemBuyId);
 
-		Transaction locTransaction = locSession.beginTransaction();
+			BondItemBuy locBondItemBuy = (BondItemBuy) locQuery.getSingleResult();
 
-		Query locQuery = locSession.createQuery("from BondItemBuy where id = " + bondItemBuyId);
+			SessionManager.getSession().delete(locBondItemBuy);
 
-		BondItemBuy locBondItemBuy = (BondItemBuy) locQuery.getSingleResult();
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		locSession.delete(locBondItemBuy);
-
-		locTransaction.commit();
-
-		locSession.close();
-
-		return locResponse;
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 	}
 
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteBond")
-	public Response deleteBond(@QueryParam("bondId") long bondId)
-	{
-		Response locResponse = new Response();
+	public void deleteBond(@QueryParam("bondId") long bondId) {
+		SessionManager.initSession();
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+		try {
+			Query locQuery = SessionManager.getSession().createQuery("from BondHeader where id = " + bondId);
 
-		Transaction locTransaction = locSession.beginTransaction();
+			BondHeader locBond = (BondHeader) locQuery.getSingleResult();
 
-		Query locQuery = locSession.createQuery("from BondHeader where id = " + bondId);
+			SessionManager.getSession().delete(locBond);
 
-		BondHeader locBond = (BondHeader) locQuery.getSingleResult();
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		locSession.delete(locBond);
-
-		locTransaction.commit();
-
-		locSession.close();
-
-		return locResponse;
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 	}
 
 }

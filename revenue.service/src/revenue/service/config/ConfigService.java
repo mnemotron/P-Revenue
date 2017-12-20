@@ -16,7 +16,6 @@ import revenue.entity.Config;
 import revenue.hibernate.SessionManager;
 import revenue.service.config.entity.ReqConfig;
 import revenue.service.config.entity.ResConfig;
-import revenue.service.entity.Response;
 
 @Path("/service")
 public class ConfigService
@@ -59,10 +58,8 @@ public class ConfigService
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/updateConfig")
-	public Response updateConfig(ArrayList<ReqConfig> reqConfigList)
+	public void updateConfig(ArrayList<ReqConfig> reqConfigList)
 	{
-		Response locResponse = new Response();
-
 		SessionManager.initSession();
 
 		try
@@ -93,16 +90,13 @@ public class ConfigService
 				SessionManager.getTransaction().rollback();
 			}
 			
-			locResponse.setMessage(e.getMessage());
-			locResponse.setStackTrace(e.getStackTrace().toString());
-			
+			throw e;	
 		}
 		finally
 		{
 			SessionManager.closeSession();
 		}
 
-		return locResponse;
 	}
 
 	private ArrayList<Config> queryConfig() throws RuntimeException

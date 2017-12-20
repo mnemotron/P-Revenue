@@ -43,7 +43,7 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 
 });
 
-depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location, DEPOT_LANGUAGE) {
+depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageService, logService, depotService, LOGTYPE, STORAGE_SERVICE_KEY, $location, DEPOT_LANGUAGE) {
 
 	//EVENT: translate
 	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});
@@ -54,15 +54,16 @@ depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageSer
 		
 		$scope.depot['portfolioId'] = portfolio.id;
 		
-		$http.post('http://localhost:8080/revenue.service/depot/service/createDepot', $scope.depot)	
-		
-		.then(function successCallback(response) {
-			  $location.path( '/viewPortfolio' );
-		}, 
-		
-		function errorCallback(response) {
-			
-		});
+		depotService.createDepot(
+				function successCallback(response){
+					$location.path( '/viewPortfolio' );
+				}, 
+				function errorCallback(response){
+					logService.set('Revenue.Depot.Create', LOGTYPE.ERROR, response.data);
+					$scope.$emit('notify', {type:'E', msgId:'viewCreateDepot.form.create.notify.error'});
+				}, 
+				$scope.depot
+		);
 	}
 
 });

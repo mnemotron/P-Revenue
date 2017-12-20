@@ -4,7 +4,7 @@
 
 var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
-portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 
 	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -14,40 +14,41 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 
 	$scope.selectPortfolio = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.PORTFOLIO, $scope.portfolios[index]);
-	};
+	}
 	
 	portfolioService.getPortfolioList(
 		function successCallback(response){
 			$scope.portfolios = response.data;
 		}, 
 		function errorCallback(response){
-			logService.set('Revenue.Portfolio', LOGTYPE.ERROR, response.data);
+			logService.set('Revenue.Portfolio.PortfolioList', LOGTYPE.ERROR, response.data);
 			$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.portfolioList.notify.error'});
 		});
 
 });
 
-portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, logService, LOGTYPE, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, portfolioService, logService, LOGTYPE, PORTFOLIO_LANGUAGE) {
  
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
 	
 	$scope.createPortfolio = function() {
-		$http.post('http://localhost:8080/revenue.service/portfolio/service/createPortfolio', $scope.portfolio)
 		
-			.then(function successCallback(response) {
-				  $location.path( '/' );
-			}, 
-			
-			function errorCallback(response) {
-				logService.set('Revenue.Portfolio', LOGTYPE.ERROR, response.data);
-				$scope.$emit('notify', {type:'E', msgId:'viewCreatePortfolio.form.create.notify.error'});	
-			});
+		portfolioService.createPortfolio(
+				function successCallback(response){
+					 $location.path( '/' );
+				}, 
+				function errorCallback(response){
+					logService.set('Revenue.Portfolio.Create', LOGTYPE.ERROR, response.data);
+					$scope.$emit('notify', {type:'E', msgId:'viewCreatePortfolio.form.create.notify.error'});
+				}, 
+				$scope.portfolio
+		);
 	}
 
 });
 
-portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, portfolioService, depotService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 	
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -57,29 +58,33 @@ portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $locatio
 	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
-	$http.get('http://localhost:8080/revenue.service/depot/service/getDepotList', {params : {id : $scope.selectedPortfolio.id}})
-		.then(function successCallback(response) {
-			$scope.depots = response.data;
-		}, 
-		function errorCallback(response) {
-				logService.set('Revenue.Portfolio.DepotList', LOGTYPE.ERROR, response.data);
+	depotService.getDepotList(
+			function successCallback(response){
+				$scope.depots = response.data;
+			}, 
+			function errorCallback(response){
+				logService.set('Revenue.Depot.DepotList', LOGTYPE.ERROR, response.data);
 				$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.depotList.notify.error'});	
-		});
+			},
+			{params : {id : $scope.selectedPortfolio.id}}
+	);
 	
 	$scope.selectDepot = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.DEPOT, $scope.depots[index]);
 	};
 	
 	$scope.deletePortfolio = function(){
-		$http.delete('http://localhost:8080/revenue.service/portfolio/service/deletePortfolio', {params: {id : $scope.selectedPortfolio.id }})
-		.then(function successCallback(response) {
-			  $location.path( '/' );
-			  
-		}, 
 		
-		function errorCallback(response) {
-			
-		});
+		portfolioService.deletePortfolio(
+				function successCallback(response){
+					 $location.path( '/' );
+				}, 
+				function errorCallback(response){
+					logService.set('Revenue.Portfolio.Delete', LOGTYPE.ERROR, response.data);
+					$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.portfolio.delete.notify.error'});
+				},
+				{params: {id : $scope.selectedPortfolio.id }}
+		);
 	}
 
 });

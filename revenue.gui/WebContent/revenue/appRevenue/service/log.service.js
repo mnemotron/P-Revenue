@@ -15,7 +15,7 @@ logService.factory('logService', function() {
 	
 	function set(logModule, logType, logMsg)
 	{
-		log.push({date: '', module: logModule, type: logType, msg: logMsg});
+		log.push({date: moment().format(), module: logModule, type: logType, msg: logMsg});
 	}
 	
 	function get()

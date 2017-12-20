@@ -9,7 +9,7 @@
 	"viewCreatePortfolio.form.button.cancel": "Abbrechen",
 	"viewCreatePortfolio.form.input.description.placeholder": "Beschreibung eingeben",
 	"viewCreatePortfolio.form.input.name.placeholder": "Name eingeben",
-	"viewCreatePortfolio.form.create.notify.error": "Fehler beim Erstellen des Portfolios. Zum Fehlerprotokoll &rarr;",
+	"viewCreatePortfolio.form.create.notify.error": "Fehler beim Erstellen des Portfolios. Zum Fehlerprotokoll.",
 	"viewPortfolio.portfolio.menu.title": "Portfolio:",
 	"viewPortfolio.portfolio.menu.admin": "Administration",
 	"viewPortfolio.portfolio.menu.admin.delete": "Löschen",
@@ -18,6 +18,7 @@
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewPortfolio.portfolio.depot.title": "Depot",
-	"viewPortfolio.portfolioList.notify.error": "Fehler bei Portfoliolist-Ermittlung. Zum Fehlerprotokoll &rarr;",
-	"viewPortfolio.depotList.notify.error": "Fehler bei Depotlist-Ermittlung. Zum Fehlerprotokoll &rarr;"
+	"viewPortfolio.portfolioList.notify.error": "Fehler bei Portfoliolist-Ermittlung. Zum Fehlerprotokoll.",
+	"viewPortfolio.portfolio.delete.notify.error": "Fehler beim Löschen des Portfolios. Zum Fehlerprotokoll.",
+	"viewPortfolio.depotList.notify.error": "Fehler bei Depotlist-Ermittlung. Zum Fehlerprotokoll."
 }

@@ -7,6 +7,7 @@ var portfolioConfig = angular.module('portfolio.config',[
 	'storage.service',
 	'log.service',
 	'depot.module',
+	'depot.service',
 	'portfolio.service'
 	]);
 

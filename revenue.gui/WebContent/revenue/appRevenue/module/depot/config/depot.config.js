@@ -5,6 +5,8 @@
 var depotConfig = angular.module('depot.config',[
 	'ngRoute',
 	'storage.service',
+	'depot.service',
+	'log.service',
 	'bond.module'
 	]);
 

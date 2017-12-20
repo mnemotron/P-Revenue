@@ -12,18 +12,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import revenue.entity.Portfolio;
-import revenue.hibernate.HibernateSessionFactory;
-import revenue.service.entity.Response;
+import revenue.hibernate.SessionManager;
 import revenue.service.portfolio.entity.ReqPortfolio;
 import revenue.service.portfolio.entity.ResPortfolio;
 
 @Path("/service")
-public class PortfolioService
-{
+public class PortfolioService {
 
 	// @Resource(name = "jdbc/revenue")
 	// private DataSource ds;
@@ -32,31 +29,35 @@ public class PortfolioService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getPortfolioList")
-	public ArrayList<ResPortfolio> getPortfolioList()
-	{
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-
-		Transaction locTransaction = locSession.beginTransaction();
-
-		Query locQuery = locSession.createQuery("from Portfolio");
-
-		ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.getResultList();
+	public ArrayList<ResPortfolio> getPortfolioList() {
 
 		ArrayList<ResPortfolio> locResPortfolioList = new ArrayList<ResPortfolio>();
 
-		for (Portfolio portfolio : locPortfolioList)
-		{
-			ResPortfolio locResPortfolio = new ResPortfolio();
+		SessionManager.initSession();
 
-			locResPortfolio.setId(portfolio.getId());
-			locResPortfolio.setName(portfolio.getName());
-			locResPortfolio.setDescription(portfolio.getDescription());
+		try {
+			Session locSession = SessionManager.getSession();
 
-			locResPortfolioList.add(locResPortfolio);
+			Query locQuery = locSession.createQuery("from Portfolio");
+
+			ArrayList<Portfolio> locPortfolioList = (ArrayList<Portfolio>) locQuery.getResultList();
+
+			locResPortfolioList = new ArrayList<ResPortfolio>();
+
+			for (Portfolio portfolio : locPortfolioList) {
+				ResPortfolio locResPortfolio = new ResPortfolio();
+
+				locResPortfolio.setId(portfolio.getId());
+				locResPortfolio.setName(portfolio.getName());
+				locResPortfolio.setDescription(portfolio.getDescription());
+
+				locResPortfolioList.add(locResPortfolio);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			SessionManager.closeSession();
 		}
-		
-		locTransaction.commit();
-		locSession.close();
 
 		return locResPortfolioList;
 	}
@@ -66,27 +67,30 @@ public class PortfolioService
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createPortfolio")
-	public Response createPortfolio(ReqPortfolio reqPortfolio)
-	{
-		Response locResponse = new Response();
+	public void createPortfolio(ReqPortfolio reqPortfolio) {
 
-		Portfolio locPortfolio = new Portfolio();
+		SessionManager.initSession();
 
-		locPortfolio.setName(reqPortfolio.getName());
-		locPortfolio.setDescription(reqPortfolio.getDescription());
-		locPortfolio.setCreationDate(new Date());
+		try {
+			Portfolio locPortfolio = new Portfolio();
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+			locPortfolio.setName(reqPortfolio.getName());
+			locPortfolio.setDescription(reqPortfolio.getDescription());
+			locPortfolio.setCreationDate(new Date());
 
-		Transaction locTransaction = locSession.beginTransaction();
+			SessionManager.getSession().save(locPortfolio);
 
-		locSession.save(locPortfolio);
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		locTransaction.commit();
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 
-		locSession.close();
-
-		return locResponse;
 	}
 
 	// HTTP-PUT: update
@@ -95,25 +99,28 @@ public class PortfolioService
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deletePortfolio")
-	public Response deletePortfolio(@QueryParam("id") long portfolioId)
-	{
-		Response locResponse = new Response();
+	public void deletePortfolio(@QueryParam("id") long portfolioId) {
+		SessionManager.initSession();
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
+		try {
 
-		Transaction locTransaction = locSession.beginTransaction();
+			Query locQuery = SessionManager.getSession().createQuery("from Portfolio where id = " + portfolioId);
 
-		Query locQuery = locSession.createQuery("from Portfolio where id = " + portfolioId);
+			Portfolio locPortfolio = (Portfolio) locQuery.getSingleResult();
 
-		Portfolio locPortfolio = (Portfolio) locQuery.getSingleResult();
+			SessionManager.getSession().delete(locPortfolio);
 
-		locSession.delete(locPortfolio);
+			SessionManager.commit();
+		} catch (Exception e) {
+			if (SessionManager.getTransaction() != null) {
+				SessionManager.getTransaction().rollback();
+			}
 
-		locTransaction.commit();
+			throw e;
+		} finally {
+			SessionManager.closeSession();
+		}
 
-		locSession.close();
-
-		return locResponse;
 	}
 
 }

@@ -43,7 +43,7 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 					  className: 'danger',
 					  dismissOnTimeout: false,
 					  compileContent: true,
-					  dismissButton: true,
+					  dismissButton: false,
 					  content: $sce.trustAsHtml('<div><a href="#!viewLog" translate="'+data.msgId+'"></a></div>')
 					});
 				break;

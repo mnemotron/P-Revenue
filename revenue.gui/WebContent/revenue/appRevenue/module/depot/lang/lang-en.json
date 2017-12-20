@@ -4,6 +4,7 @@
 	"viewCreateDepot.form.input.name.placeholder": "Enter the depot name",
 	"viewCreateDepot.form.button.create": "Create",
 	"viewCreateDepot.form.button.cancel": "Cancel",
+	"viewCreateDepot.form.create.notify.error": "Error during depot creation. Go to error log.",
 	"viewDepot.depot.menu.title": "Depot:",
 	"viewDepot.depot.menu.revenue": "Revenue",
 	"viewDepot.depot.menu.revenue.timeline": "Timeline",

@@ -4,6 +4,7 @@
 	"viewCreateDepot.form.input.name.placeholder": "Name eingeben",
 	"viewCreateDepot.form.button.create": "Erstellen",
 	"viewCreateDepot.form.button.cancel": "Abbrechen",
+	"viewCreateDepot.form.create.notify.error": "Fehler beim Erstellen des Depots. Zum Fehlerprotokoll.",
 	"viewDepot.depot.menu.title": "Depot:",
 	"viewDepot.depot.menu.revenue": "Erträge",
 	"viewDepot.depot.menu.revenue.timeline": "Ertragszeitleiste",

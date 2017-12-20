@@ -11,15 +11,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import revenue.entity.Depot;
 import revenue.entity.Portfolio;
-import revenue.hibernate.HibernateSessionFactory;
+import revenue.hibernate.SessionManager;
 import revenue.service.depot.entity.ReqDepot;
 import revenue.service.depot.entity.ResDepot;
-import revenue.service.entity.Response;
 
 @Path("/service")
 public class DepotService
@@ -31,28 +29,40 @@ public class DepotService
 	@Path("/getDepotList")
 	public ArrayList<ResDepot> getDepotList(@QueryParam("id") long portfolioId)
 	{
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-
-		Transaction locTransaction = locSession.beginTransaction();
-
-		Query locQuery = locSession.createQuery("from Depot where portfolio_id = " + portfolioId);
-
-		ArrayList<Depot> locDepotList = (ArrayList<Depot>) locQuery.list();
-		
 		ArrayList<ResDepot> locResDepotList = new ArrayList<ResDepot>();
 		
-		for (Depot depot : locDepotList)
-		{
-			ResDepot locResDepot = new ResDepot();
-			
-			locResDepot.setId(depot.getId());
-			locResDepot.setName(depot.getName());
-			locResDepot.setPortfolioId(depot.getPortfolio().getId());
-			
-			locResDepotList.add(locResDepot);
-		}
+		SessionManager.initSession();
 		
-		locSession.close();
+		try
+		{
+			Session locSession = SessionManager.getSession();
+			
+			Query locQuery = locSession.createQuery("from Depot where portfolio_id = " + portfolioId);
+
+			ArrayList<Depot> locDepotList = (ArrayList<Depot>) locQuery.list();
+			
+			locResDepotList = new ArrayList<ResDepot>();
+			
+			for (Depot depot : locDepotList)
+			{
+				ResDepot locResDepot = new ResDepot();
+				
+				locResDepot.setId(depot.getId());
+				locResDepot.setName(depot.getName());
+				locResDepot.setPortfolioId(depot.getPortfolio().getId());
+				
+				locResDepotList.add(locResDepot);
+			}
+			
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			SessionManager.closeSession();
+		}		
 
 		return locResDepotList;
 	}
@@ -62,24 +72,38 @@ public class DepotService
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createDepot")
-	public Response createDepot(ReqDepot reqDepot)
+	public void createDepot(ReqDepot reqDepot)
 	{
-		Response locResponse = new Response();
+		SessionManager.initSession();
 		
-		Depot locDepot = new Depot();
-		
-		locDepot.setName(reqDepot.getName());
-		
-		Portfolio p = new Portfolio();
-		p.setId(reqDepot.getPortfolioId());
-		
-		locDepot.setPortfolio(p);
+		try
+		{		
+			Depot locDepot = new Depot();
+			
+			locDepot.setName(reqDepot.getName());
+			
+			Portfolio p = new Portfolio();
+			p.setId(reqDepot.getPortfolioId());
+			
+			locDepot.setPortfolio(p);
 
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-
-		locSession.save(locDepot);
-
-		return locResponse;
+			SessionManager.getSession().save(locDepot);
+			
+			SessionManager.commit();
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
+				SessionManager.getTransaction().rollback();
+			}
+			
+			throw e;
+		}
+		finally
+		{
+			SessionManager.closeSession();
+		}	
 	}
 
 	// HTTP-PUT: update
@@ -88,25 +112,33 @@ public class DepotService
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteDepot")
-	public Response deleteDepot(@QueryParam("id") long depotId)
+	public void deleteDepot(@QueryParam("id") long depotId)
 	{
-		Response locResponse = new Response();
+		SessionManager.initSession();
 		
-		Session locSession = HibernateSessionFactory.getSessionFactory().getCurrentSession();
-		
-		Transaction locTransaction = locSession.beginTransaction();
-		
-		Query locQuery = locSession.createQuery("from Depot where id = " + depotId);
-		
-		Depot locDepot = (Depot) locQuery.getSingleResult();
+		try
+		{					
+			Query locQuery = SessionManager.getSession().createQuery("from Depot where id = " + depotId);
+			
+			Depot locDepot = (Depot) locQuery.getSingleResult();
 
-		locSession.delete(locDepot);
-
-		locTransaction.commit();
-
-		locSession.close();
-
-		return locResponse;
+			SessionManager.getSession().delete(locDepot);
+			
+			SessionManager.commit();
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
+				SessionManager.getTransaction().rollback();
+			}
+			
+			throw e;
+		}
+		finally
+		{
+			SessionManager.closeSession();
+		}	
 	}
 
 }
