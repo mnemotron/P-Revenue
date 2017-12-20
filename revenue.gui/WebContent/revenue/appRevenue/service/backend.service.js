@@ -47,6 +47,11 @@ backendService.factory('backendService', function($http, $location, URL_BACKEND_
 		$http.delete(getURLBackend(service), config).then(successCallback, errorCallback);
 	}
 	
+	function httpPut(service, successCallback, errorCallback, data, config)
+	{
+		$http.put(getURLBackend(service), data, config).then(successCallback, errorCallback);
+	}
+	
 	return{
 		getURLBackendDefault: getURLBackendDefault,
 		getURLBackendBrowser: getURLBackendBrowser,

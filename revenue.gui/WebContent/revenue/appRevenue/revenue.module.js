@@ -124,13 +124,17 @@ appRevenueModule.controller('ctrlViewAbout', function($scope) {
 
 });
 
-appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $translate, logService, LOGTYPE, CONFIG_KEY, LANGUAGE) {
+appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $translate, logService, configService, LOGTYPE, CONFIG_KEY, LANGUAGE) {
 	
 	$scope.savePreferences = function(){
 		
 		var config = new Array();
 		
 		config.push({key: CONFIG_KEY.LANGUAGE, value: $scope.configLanguage});
+		
+//		configService.updateConfig(
+//				
+//		);
 		
 		$http.put('http://localhost:8080/revenue.service/config/service/updateConfig', config)
 			.then(function successCallback(response) {

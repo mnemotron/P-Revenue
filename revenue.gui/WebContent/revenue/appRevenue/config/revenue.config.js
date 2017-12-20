@@ -7,6 +7,7 @@ var appRevenueConfig = angular.module('appRevenue.config',[
 	    'ngStorage',
 		'pascalprecht.translate', 
 		'storage.service',
+		'config.service',
 		'log.service',
 		'breadcrumb.service',
 		'portfolio.module',
