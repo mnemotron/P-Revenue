@@ -4,7 +4,7 @@
 
 var depotModule = angular.module('depot.module', ['depot.config']);
 
-depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, STORAGE_SERVICE_KEY, DEPOT_LANGUAGE) {
+depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, logService, depotService, bondService, LOGTYPE, STORAGE_SERVICE_KEY, DEPOT_LANGUAGE) {
 	
 	//EVENT: translate
 	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});
@@ -15,31 +15,41 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
 
-	$http.get('http://localhost:8080/revenue.service/bond/service/getBondList', {params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}).then(function(response) {
-		$scope.bonds = response.data
-		
-		for (var i = 0; i < $scope.bonds.length; i++) {
-			$scope.bonds[i].interestDate = new Date($scope.bonds[i].interestDate);	
-			$scope.bonds[i].dueDate = new Date($scope.bonds[i].dueDate);	
-		}
-	});
+	bondService.getBondList(
+			function successCallback(response){
+				$scope.bonds = response.data;
+				
+				for (var i = 0; i < $scope.bonds.length; i++) {
+				$scope.bonds[i].interestDate = new Date($scope.bonds[i].interestDate);	
+				$scope.bonds[i].dueDate = new Date($scope.bonds[i].dueDate);	
+				}
+				
+			}, 
+			function errorCallback(response){
+				logService.set('Revenue.Depot.DepotList', LOGTYPE.ERROR, response.data);
+				$scope.$emit('notify', {type:'E', msgId:'viewDepot.bondList.notify.error'});	
+			},
+			{params : {portfolioId: $scope.selectedPortfolio.id, depotId: $scope.selectedDepot.id}}
+	);
 	
 	$scope.selectBond = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.BOND, $scope.bonds[index]);
 	};
 	
 	$scope.deleteDepot = function(){
-		$http.delete('http://localhost:8080/revenue.service/depot/service/deleteDepot', {params: {id : $scope.selectedDepot.id}})
-		.then(function successCallback(response) {
-			  $location.path( '/viewPortfolio' );
-			  
-		}, 
 		
-		function errorCallback(response) {
-			
-		});
+		depotService.deleteDepot(
+				function successCallback(response){
+					 $location.path( '/viewPortfolio' );
+				}, 
+				function errorCallback(response){
+					logService.set('Revenue.Depot.Delete', LOGTYPE.ERROR, response.data);
+					$scope.$emit('notify', {type:'E', msgId:'viewDepot.depot.delete.notify.error'});
+				},
+				{params: {id : $scope.selectedDepot.id}}
+		);
+
 	}
-	
 
 });
 

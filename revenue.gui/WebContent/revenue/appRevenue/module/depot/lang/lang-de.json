@@ -14,7 +14,9 @@
 	"viewDepot.depot.menu.admin.delete.dialog.question": "Möchten Sie das Depot löschen?",
 	"viewDepot.depot.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewDepot.depot.menu.admin.delete.dialog.button.cancel": "Abbrechen",
+	"viewDepot.depot.delete.notify.error": "Fehler beim Löschen des Depots. Zum Fehlerprotokoll.",
 	"viewDepot.depot.bond.title": "Anleihen",
 	"viewDepot.depot.bond.col.bondName": "Name",
-	"viewDepot.depot.bond.col.bondIsin": "ISIN"
+	"viewDepot.depot.bond.col.bondIsin": "ISIN",
+	"viewDepot.bondList.notify.error": "Fehler bei der Ermittlung der Anleihenliste. Zum Fehlerprotokoll."
 }
