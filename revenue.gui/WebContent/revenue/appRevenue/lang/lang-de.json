@@ -17,7 +17,7 @@
 	"preferences.title": "Einstellungen",
 	"preferences.menu.save": "Speichern",
 	"preferences.menu.save.notify.success": "Einstellungen wurden gespeichert.",
-	"preferences.menu.save.notify.error": "Fehler beim Speichern. Zum Fehlerprotokoll.",
+	"preferences.menu.save.notify.error": "Fehler beim Speichern der Anwendungseinstellungen. Zum Fehlerprotokoll.",
 	"preferences.language.title": "Sprache",
 	"preferences.language.defaultLanguage": "Standardsprache",
 	"preferences.language.defaultLanguage.en": "Englisch",

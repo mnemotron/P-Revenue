@@ -58,7 +58,8 @@ backendService.factory('backendService', function($http, $location, URL_BACKEND_
 		getURLBackend: getURLBackend,
 		httpGet: httpGet,
 		httpPost: httpPost,
-		httpDelete: httpDelete
+		httpDelete: httpDelete,
+		httpPut: httpPut
 	};
     
 });

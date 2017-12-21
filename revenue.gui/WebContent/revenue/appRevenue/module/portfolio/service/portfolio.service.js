@@ -37,7 +37,7 @@ portfolioService.factory('portfolioService', function(backendService, URL_PORTFO
 		getPortfolioList: getPortfolioList,
 		createPortfolio: createPortfolio,
 		deletePortfolio: deletePortfolio
-	};
+	}
 
     
 });

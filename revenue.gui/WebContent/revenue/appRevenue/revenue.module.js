@@ -10,7 +10,7 @@ appRevenueModule.run(function($rootScope, $translate) {
 	});
 });
 
-appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $translate, ngToast, breadcrumbService, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
+appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $translate, ngToast, breadcrumbService, logService, configService, LOGTYPE, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
 
 	// EVENTLISTENER: breadcrumb from children
 	$scope.$on('breadcrumb', function(event, data) {
@@ -97,15 +97,17 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $transl
 	}
 
 	// GET CONFIGURATION
-	$http.get('http://localhost:8080/revenue.service/config/service/getConfig')
-		.then(function successCallback(response) {
-			$scope.initConfig(response.data);
-		}, 
+	configService.getConfig(
+          function successCallback(response){
+        	 $scope.initConfig(response.data);
+	        }, 
+	      function errorCallback(response){
+	         $scope.initDefaultLocale(LANGUAGE_FILE.DEFAULT_LANGUAGE);
+	        	
+		     logService.set('Revenue.Preferences.Get', LOGTYPE.ERROR, response.data);
+		     $scope.$emit('notify', {type:'E', msgId:'preferences.menu.save.notify.error'});
+	});
 	
-		function errorCallback(response) {
-			$scope.initDefaultLocale(LANGUAGE_FILE.DEFAULT_LANGUAGE);
-			$scope.$emit('notify', {type:'RAW', raw: response.data});	
-		});
 });
 
 appRevenueModule.controller('ctrlViewLog', function($scope, logService) {
@@ -132,18 +134,16 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $tran
 		
 		config.push({key: CONFIG_KEY.LANGUAGE, value: $scope.configLanguage});
 		
-//		configService.updateConfig(
-//				
-//		);
-		
-		$http.put('http://localhost:8080/revenue.service/config/service/updateConfig', config)
-			.then(function successCallback(response) {
-				$scope.$emit('notify', {type:'S', msgId:'preferences.menu.save.notify.success'});	
-		}, 
-		function errorCallback(response) {
-				logService.set('Revenue', LOGTYPE.ERROR, response.data);
-				$scope.$emit('notify', {type:'E', msgId:'preferences.menu.save.notify.error'});	
-		});
+		configService.updateConfig( 
+           function successCallback(response){
+        	   $scope.$emit('notify', {type:'S', msgId:'preferences.menu.save.notify.success'});
+		    }, 
+		   function errorCallback(response){
+				logService.set('Revenue.Preferences.Update', LOGTYPE.ERROR, response.data);
+				$scope.$emit('notify', {type:'E', msgId:'preferences.menu.save.notify.error'})
+		   },	
+		   config
+		);
 	}
 	
 	$scope.isDefaultLanguage = function(language){

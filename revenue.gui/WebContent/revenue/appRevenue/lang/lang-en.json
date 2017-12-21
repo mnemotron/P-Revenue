@@ -17,7 +17,7 @@
 	"preferences.title": "Preferences",
 	"preferences.menu.save": "Save",
 	"preferences.menu.save.notify.success": "Preferences have been saved.",
-	"preferences.menu.save.notify.error": "Saving Error. Go to the error log.",
+	"preferences.menu.save.notify.error": "Error when saving the preferences. Go to the error log.",
 	"preferences.language.title": "Language",
 	"preferences.language.defaultLanguage": "Default Language",
 	"preferences.language.defaultLanguage.en": "English",
