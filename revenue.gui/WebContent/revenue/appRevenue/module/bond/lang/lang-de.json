@@ -16,6 +16,7 @@
 	"viewAddBond.form.select.option.interestInterval.quarterly": "quartalsweise",
 	"viewAddBond.form.select.option.interestInterval.monthly": "monatlich",
 	"viewAddBond.form.label.dueDate": "Fälligkeit",
+	"viewAddBond.form.button.add.notify.error": "Fehler beim Erstellen der Anleihe. Zum Fehlerprotokoll",
 	"viewBond.bond.header.isin": "ISIN:",
 	"viewBond.bond.header.wkn": "WKN:",
 	"viewBond.bond.header.area": "Bereich:",
@@ -30,8 +31,10 @@
 	"viewBond.bond.menu.admin.delete.dialog.question": "Möchten Sie die Anleihe löschen?",
 	"viewBond.bond.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewBond.bond.menu.admin.delete.dialog.button.cancel": "Abbrechen",
+	"viewBond.bond.delete.notify.error": "Fehler beim Löschen der Anleihe. Zum Fehlerprotokoll.",
 	"viewBond.bond.item.buy.title": "Im Bestand",
 	"viewBond.bond.item.sold.title": "Verkauft",
+	"viewBond.bond.bondItemBuyList.notify.error": "Fehler bei der Ermittlung der Anleihenpositionen. Zum Fehlerprotokoll.",
 	"viewAddBondItemBuy.form.title": "Anleihe kaufen",
 	"viewAddBondItemBuy.form.button.buy": "Kaufen",
 	"viewAddBondItemBuy.form.button.cancel": "Abbrechen",
@@ -40,11 +43,13 @@
 	"viewAddBondItemBuy.form.input.nominalValue.placeholder": "Nominale",
 	"viewAddBondItemBuy.form.label.buyPercent": "Kurs in %",
 	"viewAddBondItemBuy.form.input.buyPercent.placeholder": "Kurs",
+	"viewAddBondItemBuy.form.button.buy.notify.error": "Fehler beim Erstellen der Anleihenposition. Zum Fehlerprotokoll",
 	"viewBond.bondItemBuy.col.buyDate": "Kaufdatum",
 	"viewBond.bondItemBuy.col.nominalValue": "Nominale",
 	"viewBond.bondItemBuy.col.buyRate": "Kaufkurs",
 	"viewBond.bondItemBuy.delete.dialog.title": "Anleihenposition",
 	"viewBond.bondItemBuy.delete.dialog.question": "Möchten Sie die Anleihenposition löschen?",
 	"viewBond.bondItemBuy.delete.dialog.button.delete": "Löschen",
-	"viewBond.bondItemBuy.delete.dialog.button.cancel": "Abbrechen"
+	"viewBond.bondItemBuy.delete.dialog.button.cancel": "Abbrechen",
+	"viewBond.bondItemBuy.delete.notify.error": "Fehler beim Löschen der Anleihenposition. Zum Fehlerprotokoll."
 }

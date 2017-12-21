@@ -5,6 +5,8 @@
 var bondConfig = angular.module('bond.config',[
 	'ngRoute',
 	'storage.service',
+	'bond.service',
+	'log.service',
 	'dateParser',
 	'revenue.timeline.module'
 	]);

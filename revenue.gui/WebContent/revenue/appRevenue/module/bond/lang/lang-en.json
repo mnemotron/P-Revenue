@@ -16,6 +16,7 @@
 	"viewAddBond.form.select.option.interestInterval.quarterly": "quarterly",
 	"viewAddBond.form.select.option.interestInterval.monthly": "monthly",
 	"viewAddBond.form.label.dueDate": "Due Date",
+	"viewAddBond.form.button.add.notify.error": "Error during bond creation. Go to error log.",
 	"viewBond.bond.header.isin": "ISIN:",
 	"viewBond.bond.header.wkn": "WKN:",
 	"viewBond.bond.header.area": "Area:",
@@ -30,8 +31,10 @@
 	"viewBond.bond.menu.admin.delete.dialog.question": "Do you want to delete the bond?",
 	"viewBond.bond.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewBond.bond.menu.admin.delete.dialog.button.cancel": "Cancel",
+	"viewBond.bond.delete.notify.error": "Error during bond deletion. Go to error log.",
 	"viewBond.bond.item.buy.title": "In Stock",
 	"viewBond.bond.item.sold.title": "Sold",
+	"viewBond.bond.bondItemBuyList.notify.error": "Error during the determination of the bond item list. Got to error log.",
 	"viewAddBondItemBuy.form.title": "Buy Bond",
 	"viewAddBondItemBuy.form.button.buy": "Buy",
 	"viewAddBondItemBuy.form.button.cancel": "Cancel",
@@ -40,11 +43,13 @@
 	"viewAddBondItemBuy.form.input.nominalValue.placeholder": "Nominal Value",
 	"viewAddBondItemBuy.form.label.buyPercent": "Bond Rate in %",
 	"viewAddBondItemBuy.form.input.buyPercent.placeholder": "Bond Rate",
+	"viewAddBondItemBuy.form.button.buy.notify.error": "Error during bond item creation. Go to error log.",
 	"viewBond.bondItemBuy.col.buyDate": "Purchase Date",
 	"viewBond.bondItemBuy.col.nominalValue": "Nominal Value",
 	"viewBond.bondItemBuy.col.buyRate": "Buying Rate",
 	"viewBond.bondItemBuy.delete.dialog.title": "Bond Item",
 	"viewBond.bondItemBuy.delete.dialog.question": "Do you want to delete the bond item?",
 	"viewBond.bondItemBuy.delete.dialog.button.delete": "Delete",
-	"viewBond.bondItemBuy.delete.dialog.button.cancel": "Cancel"
+	"viewBond.bondItemBuy.delete.dialog.button.cancel": "Cancel",
+	"viewBond.bondItemBuy.delete.notify.error": "Error during the bond item deletion, Go to error log."
 }
