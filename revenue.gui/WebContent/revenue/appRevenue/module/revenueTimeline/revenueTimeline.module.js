@@ -4,7 +4,7 @@
 
 var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.timeline.config']);
 
-revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $http, $routeParams, logService, storageService, LOGTYPE, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
+revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $routeParams, revenueTimelineService, logService, storageService, LOGTYPE, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 
 	// FUNCTIONS
 	
@@ -223,16 +223,16 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 	var reqRevenueTimeline = $scope.buildScopeRequest($scope, $routeParams.scope);
 
 	// CALCULATE TIMELINE
-	$http.post('http://localhost:8080/revenue.service/revenue/service/getRevenueTimeline', reqRevenueTimeline)
-	.then(function successCallback(response) {
+	revenueTimelineService.getRevenueTimeline(
+            function successCallback(response) {
 		
-		$scope.resRevenue = response.data;
+            	$scope.resRevenue = response.data;
 		
-		$scope.resRevenue.startYear = moment($scope.resRevenue.startDate).get('year');
-		$scope.resRevenue.endYear = moment($scope.resRevenue.endDate).get('year');
+            	$scope.resRevenue.startYear = moment($scope.resRevenue.startDate).get('year');
+            	$scope.resRevenue.endYear = moment($scope.resRevenue.endDate).get('year');
 		
-		$scope.yearSlider = { min: $scope.resRevenue.startYear, max: $scope.resRevenue.endYear, 
-				options: { floor: $scope.resRevenue.startYear, 
+            	$scope.yearSlider = { min: $scope.resRevenue.startYear, max: $scope.resRevenue.endYear, 
+			    options: { floor: $scope.resRevenue.startYear, 
 						   ceil: $scope.resRevenue.endYear, 
 						   showTicksValues: true,
 						   onChange: function(id) {
@@ -241,12 +241,14 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ht
 				         } };
 			
 		
-		$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear);
+            	$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear);
 		
 		}, 
 		function errorCallback(response) {
 			logService.set('Revenue.Timeline', LOGTYPE.ERROR, response.data);
 			$scope.$emit('notify', {type:'E', msgId:'viewRevenueTimeline.notify.error'});
-		});
+		},
+		reqRevenueTimeline
+		);
 	
 });

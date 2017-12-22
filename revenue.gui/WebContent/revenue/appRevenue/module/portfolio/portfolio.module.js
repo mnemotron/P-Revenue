@@ -4,7 +4,7 @@
 
 var portfolioModule = angular.module('portfolio.module', ['portfolio.config']);
 
-portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http, portfolioService, storageService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, portfolioService, storageService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 
 	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -27,7 +27,7 @@ portfolioModule.controller('ctrlViewPortfolioLaunchpad', function($scope, $http,
 
 });
 
-portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $location, portfolioService, logService, LOGTYPE, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $location, portfolioService, logService, LOGTYPE, PORTFOLIO_LANGUAGE) {
  
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
@@ -48,7 +48,7 @@ portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $http, $l
 
 });
 
-portfolioModule.controller('ctrlViewPortfolio', function($scope, $http, $location, storageService, portfolioService, depotService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolio', function($scope, $location, storageService, portfolioService, depotService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 	
 //	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});

@@ -10,7 +10,7 @@ appRevenueModule.run(function($rootScope, $translate) {
 	});
 });
 
-appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $http, $translate, ngToast, breadcrumbService, logService, configService, LOGTYPE, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
+appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $translate, ngToast, breadcrumbService, logService, configService, LOGTYPE, $translatePartialLoader, tmhDynamicLocale, LANGUAGE_FILE, CONFIG_KEY) {
 
 	// EVENTLISTENER: breadcrumb from children
 	$scope.$on('breadcrumb', function(event, data) {
@@ -126,7 +126,7 @@ appRevenueModule.controller('ctrlViewAbout', function($scope) {
 
 });
 
-appRevenueModule.controller('ctrlViewPreferences', function($scope, $http, $translate, logService, configService, LOGTYPE, CONFIG_KEY, LANGUAGE) {
+appRevenueModule.controller('ctrlViewPreferences', function($scope, $translate, logService, configService, LOGTYPE, CONFIG_KEY, LANGUAGE) {
 	
 	$scope.savePreferences = function(){
 		

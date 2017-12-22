@@ -4,7 +4,7 @@
 
 var depotModule = angular.module('depot.module', ['depot.config']);
 
-depotModule.controller('ctrlViewDepot', function($scope, $http, $location, storageService, logService, depotService, bondService, LOGTYPE, STORAGE_SERVICE_KEY, DEPOT_LANGUAGE) {
+depotModule.controller('ctrlViewDepot', function($scope, $location, storageService, logService, depotService, bondService, LOGTYPE, STORAGE_SERVICE_KEY, DEPOT_LANGUAGE) {
 	
 	//EVENT: translate
 	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});
@@ -53,7 +53,7 @@ depotModule.controller('ctrlViewDepot', function($scope, $http, $location, stora
 
 });
 
-depotModule.controller('ctrlViewCreateDepot', function($scope, $http, storageService, logService, depotService, LOGTYPE, STORAGE_SERVICE_KEY, $location, DEPOT_LANGUAGE) {
+depotModule.controller('ctrlViewCreateDepot', function($scope, storageService, logService, depotService, LOGTYPE, STORAGE_SERVICE_KEY, $location, DEPOT_LANGUAGE) {
 
 	//EVENT: translate
 	$scope.$emit('translate', {part:DEPOT_LANGUAGE.PART});

@@ -4,7 +4,7 @@
 
 var bondModule = angular.module('bond.module', ['bond.config']);
 
-bondModule.controller('ctrlViewBond', function($scope, $http, storageService, STORAGE_SERVICE_KEY, $location, bondService, logService, LOGTYPE, BOND_LANGUAGE) {
+bondModule.controller('ctrlViewBond', function($scope, storageService, STORAGE_SERVICE_KEY, $location, bondService, logService, LOGTYPE, BOND_LANGUAGE) {
 
 	// EVENT: translate
 	$scope.$emit('translate', {part : BOND_LANGUAGE.PART});
@@ -58,7 +58,7 @@ bondModule.controller('ctrlViewBond', function($scope, $http, storageService, ST
 
 });
 
-bondModule.controller('ctrlViewAddBond', function($locale, $scope, $http, storageService, bondService, logService, LOGTYPE, STORAGE_SERVICE_KEY, $location, BOND_LANGUAGE) {
+bondModule.controller('ctrlViewAddBond', function($locale, $scope, storageService, bondService, logService, LOGTYPE, STORAGE_SERVICE_KEY, $location, BOND_LANGUAGE) {
 
 	// INIT
 	$scope.dateFormat = $locale.DATETIME_FORMATS.shortDate
@@ -91,7 +91,7 @@ bondModule.controller('ctrlViewAddBond', function($locale, $scope, $http, storag
 
 });
 
-bondModule.controller('ctrlViewAddBondItemBuy', function($locale, $scope, $http, storageService, bondService, logService, LOGTYPE, STORAGE_SERVICE_KEY, $location, BOND_LANGUAGE) {
+bondModule.controller('ctrlViewAddBondItemBuy', function($locale, $scope, storageService, bondService, logService, LOGTYPE, STORAGE_SERVICE_KEY, $location, BOND_LANGUAGE) {
 
 	// INIT
 	$scope.dateFormat = $locale.DATETIME_FORMATS.shortDate
