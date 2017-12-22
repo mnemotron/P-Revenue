@@ -3,25 +3,17 @@
  */
 
 var appSplashScreenConfig = angular.module('appSplashScreen.config',[
+	    'ngRoute',
 		'config.service',
 		'log.service'
 		]);
 
 appSplashScreenConfig.config(function($routeProvider) {
   
-//	//NAVIGATION
-//	$routeProvider
-//	.when('/viewAbout', {
-//		templateUrl : 'view/about.view.htm',
-//		controller : 'ctrlViewAbout'
-//	});
+	//NAVIGATION
+	$routeProvider
+	.when('/viewSplashScreen', {
+		templateUrl : 'view/splashScreen.view.htm'
+	});
 
 });
-
-//appRevenueConfig.config(['ngToastProvider', function(ngToast) {
-//    ngToast.configure({
-//      verticalPosition: 'bottom',
-//      horizontalPosition: 'center',
-//      maxNumber: 3,
-//    })
-//  }]);

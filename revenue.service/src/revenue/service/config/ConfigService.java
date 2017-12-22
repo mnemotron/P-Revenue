@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.hibernate.Session;
@@ -20,6 +21,35 @@ import revenue.service.config.entity.ResConfig;
 @Path("/service")
 public class ConfigService
 {
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getConfigSingle")
+	public ResConfig getConfigSingle(@QueryParam("key") String key)
+	{
+		SessionManager.initSession();
+
+		ResConfig locResConfig = new ResConfig();
+
+		try
+		{
+			Config locConfig = queryConfig(key);
+
+			locResConfig.setKey(locConfig.getKey());
+			locResConfig.setValue(locConfig.getValue());
+
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
+		finally
+		{
+			SessionManager.closeSession();
+		}
+
+		return locResConfig;
+	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -41,10 +71,11 @@ public class ConfigService
 				locResConfig.setValue(config.getValue());
 				locResConfigList.add(locResConfig);
 			}
+
 		}
 		catch (Exception e)
 		{
-
+			throw e;
 		}
 		finally
 		{
@@ -69,7 +100,7 @@ public class ConfigService
 			for (ReqConfig reqConfig : reqConfigList)
 			{
 				for (Config config : locConfigList)
-				{					
+				{
 					if ((reqConfig.getKey().equals(config.getKey())) && !(reqConfig.getValue().equals(config.getValue())))
 					{
 						config.setValue(reqConfig.getValue());
@@ -89,14 +120,27 @@ public class ConfigService
 			{
 				SessionManager.getTransaction().rollback();
 			}
-			
-			throw e;	
+
+			throw e;
 		}
 		finally
 		{
 			SessionManager.closeSession();
 		}
 
+	}
+
+	private Config queryConfig(String key) throws RuntimeException
+	{
+		Session locSession = SessionManager.getSession();
+
+		Config locConfig = null;
+
+		Query locQuery = locSession.createQuery("FROM Config WHERE key = '" + key + "'");
+
+		locConfig = (Config) locQuery.getSingleResult();
+
+		return locConfig;
 	}
 
 	private ArrayList<Config> queryConfig() throws RuntimeException

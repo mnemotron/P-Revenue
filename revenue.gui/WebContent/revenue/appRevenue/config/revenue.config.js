@@ -24,12 +24,6 @@ appRevenueConfig.constant('LANGUAGE_FILE',
 	  	PART: 'lang'
     });
 
-appRevenueConfig.constant('CONFIG_KEY',
-    {
-      	LANGUAGE: 'LANGUAGE',
-      	CURRENCY: 'CURRENCY'
-    });
-
 appRevenueConfig.constant('LANGUAGE',
     {
 		EN: 'EN',
