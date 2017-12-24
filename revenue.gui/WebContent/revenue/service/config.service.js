@@ -11,7 +11,7 @@ configService.constant('CONFIG_KEY',
     {
       	LANGUAGE: 'LANGUAGE',
       	CURRENCY: 'CURRENCY',
-      	SPLASHSCREEN: 'SPLASH_SCREEN'
+      	SPLASH_SCREEN: 'SPLASH_SCREEN'
     });
 
 configService.constant('URL_CONFIG_SERVICE', 

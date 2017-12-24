@@ -88,7 +88,18 @@ appRevenueModule.controller('ctrlRevenue', function($scope, $sce, $translate, ng
 					break;
 
 				case CONFIG_KEY.CURRENCY :
-					$scope.configCurrency = config[i].value
+					$scope.configCurrency = config[i].value;
+					break;
+					
+				case CONFIG_KEY.SPLASH_SCREEN :
+					if(config[i].value == 'true')
+					{
+						$scope.configSplashScreen = true;
+					}
+					else
+					{
+						$scope.configSplashScreen = false;
+					}
 					break;
 			}
 		}
@@ -132,6 +143,7 @@ appRevenueModule.controller('ctrlViewPreferences', function($scope, $translate, 
 		
 		var config = new Array();
 		
+		config.push({key: CONFIG_KEY.SPLASH_SCREEN, value: $scope.configSplashScreen.toString()});
 		config.push({key: CONFIG_KEY.LANGUAGE, value: $scope.configLanguage});
 		
 		configService.updateConfig( 

@@ -18,6 +18,8 @@
 	"preferences.menu.save": "Speichern",
 	"preferences.menu.save.notify.success": "Einstellungen wurden gespeichert.",
 	"preferences.menu.save.notify.error": "Fehler beim Speichern der Anwendungseinstellungen. Zum Fehlerprotokoll.",
+	"preferences.general.title": "Allgemein",
+	"preferences.general.splashScreen": "Startbildschirm anzeigen",
 	"preferences.language.title": "Sprache",
 	"preferences.language.defaultLanguage": "Standardsprache",
 	"preferences.language.defaultLanguage.en": "Englisch",

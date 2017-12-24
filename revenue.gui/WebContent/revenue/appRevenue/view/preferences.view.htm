@@ -29,14 +29,51 @@
 		</div>
 
 		<!-- PREFERENCES -->
-		<!-- LANGUAGE -->
 		<div class="row">
 			<div class="col">
-			
+
 				<div class="w-100" id="accordion" role="tablist">
 
+					<!-- GENERAL -->
 					<div class="list-group m-1">
-						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesLanguage" href="" aria-expanded="true"
+						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesGeneral" href="" aria-expanded="true"
+							aria-controls="preferencesGeneral">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<b translate="preferences.general.title"></b>
+									</div>
+								</div>
+							</div>
+						</a>
+
+						<div class="collapse show" id="preferencesGeneral" role="tabpanel" aria-labelledby="headerPrefGeneral" data-parent="#accordion">
+							<div class="list-group-item bg-light">
+								<div class="container-fluid">
+									<div class="row text-dark">
+										<div class="col">
+
+											<form name="formPreferencesGeneral">
+
+												<div class="form-group">
+
+													<div class="form-check">
+														<label class="form-check-label text-dark"> <input class="form-check-input" ng-model="configSplashScreen" type="checkbox"><span translate="preferences.general.splashScreen"></span></label>
+													</div>
+												</div>
+
+											</form>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- LANGUAGE -->
+					<div class="list-group m-1">
+						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesLanguage" href="" aria-expanded="false"
 							aria-controls="preferencesLanguage">
 							<div class="container-fluid">
 								<div class="row">
@@ -47,7 +84,7 @@
 							</div>
 						</a>
 
-						<div class="collapse show" id="preferencesLanguage" role="tabpanel" aria-labelledby="headerPrefLanguage" data-parent="#accordion">
+						<div class="collapse" id="preferencesLanguage" role="tabpanel" aria-labelledby="headerPrefLanguage" data-parent="#accordion">
 							<div class="list-group-item bg-light">
 								<div class="container-fluid">
 									<div class="row text-dark">
@@ -70,6 +107,7 @@
 						</div>
 					</div>
 
+					<!--  CURRENCY -->
 					<div class="list-group m-1">
 						<a class="list-group-item list-group-item-secondary list-group-item-action" data-toggle="collapse" data-target="#preferencesCurrency" href="" aria-expanded="false"
 							aria-controls="preferencesCurrency">

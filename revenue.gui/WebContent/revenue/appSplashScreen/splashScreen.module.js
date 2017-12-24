@@ -20,7 +20,7 @@ appRevenueModule.controller('ctrlSplashScreen', function($scope, $location, logS
 
 		}, function errorCallback(response) {
 
-		}, {params : {key : CONFIG_KEY.SPLASHSCREEN}}
+		}, {params : {key : CONFIG_KEY.SPLASH_SCREEN}}
 	);
 
 });
