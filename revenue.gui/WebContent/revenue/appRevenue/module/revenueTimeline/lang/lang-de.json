@@ -1,4 +1,8 @@
 {
+	"viewRevenueTimeline.menu.view.title": "Ansicht",
+	"viewRevenueTimeline.menu.view.option.month": "Monate",
+	"viewRevenueTimeline.menu.view.option.week": "Kalenderwoche",
+	"viewRevenueTimeline.menu.view.option.day": "Tage",
 	"viewRevenueTimeline.header.title": "Portfolio:",
 	"viewRevenueTimeline.year.title": "Jahr",
 	"viewRevenueTimeline.month.title": "Monat",

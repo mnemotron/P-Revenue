@@ -6,8 +6,6 @@ var revenueTimelineModule = angular.module('revenue.timeline.module', ['revenue.
 
 revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $routeParams, revenueTimelineService, logService, storageService, LOGTYPE, STORAGE_SERVICE_KEY, TIMELINE_LANGUAGE) {
 
-	// FUNCTIONS
-	
 	// BUILD SCOPE REQUEST
 	$scope.buildScopeRequest = function($scope, scope){
 		
@@ -43,8 +41,8 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 	}
 
 	// BUILD TIMELINE
-	$scope.buildTimelineDates = function(resRevenue, startYear, endYear) {
-		$scope.timeline = $scope.initTimeline(startYear, endYear);
+	$scope.buildTimelineDates = function(resRevenue, startYear, endYear, view) {
+		$scope.timeline = $scope.initTimeline(startYear, endYear, view);
 		$scope.timeline = $scope.initRevenueTitle($scope.timeline, resRevenue);
 		$scope.timeline = $scope.initRevenue($scope.timeline, resRevenue, startYear, endYear);
 	}
@@ -133,10 +131,10 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 		return timeline;
 	}
 
-	// HEADERS: YEAR, MONTH, WEEK; DATE
-	$scope.initTimeline = function(startYear, endYear) {
+	// HEADERS: YEAR, MONTH, WEEK, DATE
+	$scope.initTimeline = function(startYear, endYear, view) {
 
-		// init timline
+		// init timeline
 		var timeline = {};
 		timeline['year'] = new Array();
 		timeline['month'] = new Array();
@@ -148,7 +146,7 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 
 		while (+iterateDate.year() <= +endYear) {
 
-			var months = $scope.addMonthsToTimeline(timeline, iterateDate.year());
+			var months = $scope.addMonthsToTimeline(timeline, iterateDate.year(), view);
 
 			timeline = months.timeline;
 
@@ -159,45 +157,61 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 
 		return timeline;
 	}
-
-	$scope.addMonthsToTimeline = function(timeline, year) {
+	
+	$scope.addMonthsToTimeline = function(timeline, year, view) {
 
 		var iterateDate = moment('01.01.' + year, 'DD.MM.YYYY');
 		var colspan = 0;
 
 		for (var m = 0; m <= 11; m++) {
 
-			var result = $scope.addDaysToTimeline(timeline, year, iterateDate.format('MM'));
-			// var result = $scope.addWeeksToTimeline(timeline, year,
-			// iterateDate.format('MM'));
-			timeline = result.timeline;
+			if(view == 'd')
+			{
+				var resultDay = $scope.addDaysToTimeline(timeline, year, iterateDate.format('MM'));
+			}
+			
+			var resultWeek = $scope.addWeeksToTimeline(timeline, year, iterateDate.format('MM'));
+			
+			timeline = resultWeek.timeline;
 
-			timeline.month.push({monthString : iterateDate.format('MM'), colspan : result.colspan});
+			timeline.month.push({monthString : iterateDate.format('MM'), colspan : resultWeek.colspan});
 
 			iterateDate.add(1, 'M');
 
-			colspan = colspan + result.colspan;
+			colspan = colspan + resultWeek.colspan;
 		}
-
+		
 		return {timeline : timeline, colspan : colspan};
 	}
 
-	// $scope.addWeeksToTimeline = function(timeline, year, month){
-	//		
-	// var iterateDate = moment('01' + month + year,
-	// 'DD.MM.YYYY').startOf('month');
-	// var colspan = 4; //weeks in month
-	//		
-	// for (var w = 0; w < 4; w++) {
-	//
-	// timeline.week.push({weekString: iterateDate.format('WW'), colspan: 0});
-	//			
-	// iterateDate.add(1, 'w');
-	// }
-	//		
-	// return {timeline: timeline, colspan: colspan};
-	// }
+	 $scope.addWeeksToTimeline = function(timeline, year, month){
+		 			
+		var iterateDate = moment('01' + month + year, 'DD.MM.YYYY');
+		var compareWeek = iterateDate.format('WW');
+		var colspanWeek = 0;
+		var colspan = 0;
 
+		for (var d = 1, l = iterateDate.daysInMonth(); d <= l; d++) {
+			
+			if (+iterateDate.format('WW') != compareWeek)
+			{
+				timeline['week'].push({weekString: compareWeek, colspan: colspanWeek});
+				compareWeek = iterateDate.format('WW');
+				colspanWeek = 0;
+			}
+			
+			colspanWeek = colspanWeek + 1;
+			colspan = colspan + 1;
+			
+			iterateDate.add(1, 'd');
+		}
+		
+		timeline['week'].push({weekString: compareWeek, colspan: colspanWeek});
+		compareWeek = iterateDate.format('WW');
+
+		return {timeline : timeline, colspan : colspan};
+	 }
+	 
 	$scope.addDaysToTimeline = function(timeline, year, month) {
 
 		var iterateDate = moment('01' + month + year, 'DD.MM.YYYY');
@@ -210,6 +224,11 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 
 		return {timeline : timeline, colspan : colspan};
 	}
+	
+	$scope.changeView = function()
+	{
+		 $scope.buildTimelineDates($scope.resRevenue, $scope.yearSlider.min, $scope.yearSlider.max, $scope.view);
+	}
 
 	// CONTROLLER INIT
 	
@@ -219,8 +238,11 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 	// EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id : 'breadcrumb.revenue.timeline', link : '/viewRevenueTimeline'});
 	
-	// BUILD SCOPE REQUEST
+	// BUILD SCOPE REQUEST	
 	var reqRevenueTimeline = $scope.buildScopeRequest($scope, $routeParams.scope);
+	
+	// INIT VIEW - DEFAULT DAYS
+	$scope.view = 'd';
 
 	// CALCULATE TIMELINE
 	revenueTimelineService.getRevenueTimeline(
@@ -236,12 +258,12 @@ revenueTimelineModule.controller('ctrlViewRevenueTimeline', function($scope, $ro
 						   ceil: $scope.resRevenue.endYear, 
 						   showTicksValues: true,
 						   onChange: function(id) {
-					            $scope.buildTimelineDates($scope.resRevenue, $scope.yearSlider.min, $scope.yearSlider.max);
+					            $scope.buildTimelineDates($scope.resRevenue, $scope.yearSlider.min, $scope.yearSlider.max, $scope.view);
 					        }
 				         } };
 			
 		
-            	$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear);
+            	$scope.buildTimelineDates($scope.resRevenue, $scope.resRevenue.startYear, $scope.resRevenue.endYear, $scope.view);
 		
 		}, 
 		function errorCallback(response) {
