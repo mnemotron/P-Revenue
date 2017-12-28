@@ -1,54 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
 	<entity>
-		<entity-name>revenue.entity.BondItemBuy</entity-name>
-		<entity-width>171</entity-width>
-		<entity-height>246</entity-height>
-		<entity-X-Coordinate>657</entity-X-Coordinate>
-		<entity-Y-Coordinate>580</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>revenue.entity.Portfolio</entity-name>
-		<entity-width>171</entity-width>
-		<entity-height>186</entity-height>
-		<entity-X-Coordinate>584</entity-X-Coordinate>
-		<entity-Y-Coordinate>42</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>revenue.entity.Interest</entity-name>
-		<entity-width>171</entity-width>
-		<entity-height>226</entity-height>
-		<entity-X-Coordinate>1080</entity-X-Coordinate>
-		<entity-Y-Coordinate>123</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
 		<entity-name>revenue.entity.Fee</entity-name>
 		<entity-width>171</entity-width>
 		<entity-height>226</entity-height>
 		<entity-X-Coordinate>316</entity-X-Coordinate>
 		<entity-Y-Coordinate>600</entity-Y-Coordinate>
-		<primary-collapsed>false</primary-collapsed>
-		<relation-collapsed>false</relation-collapsed>
-		<basic-collapsed>false</basic-collapsed>
-	</entity>
-
-	<entity>
-		<entity-name>revenue.entity.Depot</entity-name>
-		<entity-width>171</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>190</entity-X-Coordinate>
-		<entity-Y-Coordinate>270</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -66,11 +22,88 @@
 	</entity>
 
 	<entity>
+		<entity-name>revenue.entity.AccountItemIncome</entity-name>
+		<entity-width>160</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>1460</entity-X-Coordinate>
+		<entity-Y-Coordinate>42</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
 		<entity-name>revenue.entity.BondHeader</entity-name>
 		<entity-width>171</entity-width>
 		<entity-height>326</entity-height>
 		<entity-X-Coordinate>1210</entity-X-Coordinate>
 		<entity-Y-Coordinate>428</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.Portfolio</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>186</entity-height>
+		<entity-X-Coordinate>584</entity-X-Coordinate>
+		<entity-Y-Coordinate>42</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.Depot</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>190</entity-X-Coordinate>
+		<entity-Y-Coordinate>270</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.BondItemBuy</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>246</entity-height>
+		<entity-X-Coordinate>657</entity-X-Coordinate>
+		<entity-Y-Coordinate>580</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.Interest</entity-name>
+		<entity-width>171</entity-width>
+		<entity-height>226</entity-height>
+		<entity-X-Coordinate>1080</entity-X-Coordinate>
+		<entity-Y-Coordinate>123</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.AccountHeader</entity-name>
+		<entity-width>151</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>1284</entity-X-Coordinate>
+		<entity-Y-Coordinate>42</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>revenue.entity.AccountItemExpense</entity-name>
+		<entity-width>191</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>1330</entity-X-Coordinate>
+		<entity-Y-Coordinate>210</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>

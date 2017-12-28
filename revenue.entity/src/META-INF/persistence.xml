@@ -8,6 +8,9 @@
 		<class>revenue.entity.BondItemBuy</class>
 		<class>revenue.entity.Depot</class>
 		<class>revenue.entity.Config</class>
+		<class>revenue.entity.AccountHeader</class>
+		<class>revenue.entity.AccountItemIncome</class>
+		<class>revenue.entity.AccountItemExpense</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>
