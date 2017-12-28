@@ -17,11 +17,13 @@ import javax.persistence.OneToMany;
 
 @Entity(name = "Depot")
 @Table(name = "T_DEPOT")
-public class Depot implements Serializable {
+public class Depot implements Serializable
+{
 
 	private static final long serialVersionUID = 1L;
 
-	public Depot() {
+	public Depot()
+	{
 	}
 
 	@Id
@@ -36,36 +38,56 @@ public class Depot implements Serializable {
 	@OneToMany(mappedBy = "depot", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
 
-	public long getId() {
+	private String number;
+
+	public long getId()
+	{
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String param) {
+	public void setName(String param)
+	{
 		this.name = param;
 	}
 
-	public Portfolio getPortfolio() {
-	    return portfolio;
+	public Portfolio getPortfolio()
+	{
+		return portfolio;
 	}
 
-	public void setPortfolio(Portfolio param) {
-	    this.portfolio = param;
+	public void setPortfolio(Portfolio param)
+	{
+		this.portfolio = param;
 	}
 
-	public Collection<BondHeader> getBondHeader() {
-	    return bondHeader;
+	public Collection<BondHeader> getBondHeader()
+	{
+		return bondHeader;
 	}
 
-	public void setBondHeader(Collection<BondHeader> param) {
-	    this.bondHeader = param;
+	public void setBondHeader(Collection<BondHeader> param)
+	{
+		this.bondHeader = param;
+	}
+
+	public String getNumber()
+	{
+		return number;
+	}
+
+	public void setNumber(String param)
+	{
+		this.number = param;
 	}
 
 }

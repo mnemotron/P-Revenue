@@ -18,6 +18,7 @@ import revenue.entity.Depot;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
+import revenue.entity.AccountHeader;
 
 @Entity(name = "Portfolio")
 @Table(name = "T_PORTFOLIO")
@@ -44,6 +45,9 @@ public class Portfolio implements Serializable
 	private Collection<Depot> depot = new ArrayList<Depot>();
 
 	private String description;
+
+	@OneToMany(mappedBy = "portfolio")
+	private Collection<AccountHeader> accountHeader;
 
 	public long getId()
 	{
@@ -93,6 +97,14 @@ public class Portfolio implements Serializable
 	public void setDescription(String param)
 	{
 		this.description = param;
+	}
+
+	public Collection<AccountHeader> getAccountHeader() {
+	    return accountHeader;
+	}
+
+	public void setAccountHeader(Collection<AccountHeader> param) {
+	    this.accountHeader = param;
 	}
 
 }
