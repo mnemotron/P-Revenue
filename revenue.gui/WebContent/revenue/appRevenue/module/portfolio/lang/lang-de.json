@@ -11,14 +11,19 @@
 	"viewCreatePortfolio.form.input.name.placeholder": "Name eingeben",
 	"viewCreatePortfolio.form.create.notify.error": "Fehler beim Erstellen des Portfolios. Zum Fehlerprotokoll.",
 	"viewPortfolio.portfolio.menu.title": "Portfolio:",
-	"viewPortfolio.portfolio.menu.admin": "Administration",
+	"viewPortfolio.portfolio.menu.create": "Erstellen",
+	"viewPortfolio.portfolio.menu.create.depot": "Depot",
+	"viewPortfolio.portfolio.menu.create.account": "Konto",
+	"viewPortfolio.portfolio.menu.admin": "Portfolio",
 	"viewPortfolio.portfolio.menu.admin.delete": "Löschen",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.title": "Portfolio:",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.question": "Möchten Sie das Portfolio löschen?",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewPortfolio.portfolio.depot.title": "Depot",
+	"viewPortfolio.portfolio.account.title": "Konto",
 	"viewPortfolio.portfolioList.notify.error": "Fehler bei Portfoliolist-Ermittlung. Zum Fehlerprotokoll.",
 	"viewPortfolio.portfolio.delete.notify.error": "Fehler beim Löschen des Portfolios. Zum Fehlerprotokoll.",
-	"viewPortfolio.depotList.notify.error": "Fehler bei Depotlist-Ermittlung. Zum Fehlerprotokoll."
+	"viewPortfolio.depotList.notify.error": "Fehler bei der Ermittlung der Depotliste. Zum Fehlerprotokoll.",
+	"viewPortfolio.accountList.notify.error": "Fehler bei der Ermittlung der Kontoliste. Zum Fehlerprotokoll."
 }

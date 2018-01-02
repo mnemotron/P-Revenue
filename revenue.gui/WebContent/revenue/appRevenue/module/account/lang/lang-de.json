@@ -1,0 +1,8 @@
+{
+	"viewCreateAcount.form.title": "Erstelle Konto",
+	"viewCreateAcount.form.label.name": "Name",
+	"viewCreateAcount.form.input.name.placeholder": "Name eingeben",
+	"viewCreateAcount.form.button.create": "Erstellen",
+	"viewCreateAcount.form.button.cancel": "Abbrechen",
+	"viewCreateAccount.form.create.notify.error": "Fehler beim erstellen des Kontos. Zum Fehlerprotokoll."
+}

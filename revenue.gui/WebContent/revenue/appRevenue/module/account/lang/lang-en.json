@@ -1,0 +1,8 @@
+{
+	"viewCreateAccount.form.title": "Create Bank Account",
+	"viewCreateAccount.form.label.name": "Name",
+	"viewCreateAccount.form.input.name.placeholder": "Enter the account name",
+	"viewCreateAccount.form.button.create": "Create",
+	"viewCreateAccount.form.button.cancel": "Cancel",
+	"viewCreateAccount.form.create.notify.error": "Error during account creation. Go to error log."
+}

@@ -11,14 +11,19 @@
 	"viewCreatePortfolio.form.input.name.placeholder": "Enter the portfolio name",
 	"viewCreatePortfolio.form.create.notify.error": "Error during portfolio creation. Go to error log.",
 	"viewPortfolio.portfolio.menu.title": "Portfolio:",
-	"viewPortfolio.portfolio.menu.admin": "Administration",
+	"viewPortfolio.portfolio.menu.create": "Create",
+	"viewPortfolio.portfolio.menu.create.depot": "Depot",
+	"viewPortfolio.portfolio.menu.create.account": "Bank Account",
+	"viewPortfolio.portfolio.menu.admin": "Portfolio",
 	"viewPortfolio.portfolio.menu.admin.delete": "Delete",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.title": "Portfolio:",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.question": "Do you want to delete the portfolio?",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewPortfolio.portfolio.menu.admin.delete.dialog.button.cancel": "Cancel",
 	"viewPortfolio.portfolio.depot.title": "Depot",
+	"viewPortfolio.portfolio.account.title": "Account",
 	"viewPortfolio.portfolioList.notify.error": "Error during the portfolio list determination. Go to error log.",
 	"viewPortfolio.portfolio.delete.notify.error": "Error during portfolio deletion. Go to error log.",
-	"viewPortfolio.depotList.notify.error": "Error during the depot list determination. Go to error log."
+	"viewPortfolio.depotList.notify.error": "Error during the depot list determination. Go to error log.",
+	"viewPortfolio.accountList.notify.error": "Error during the account list determination. Go to error log."
 }

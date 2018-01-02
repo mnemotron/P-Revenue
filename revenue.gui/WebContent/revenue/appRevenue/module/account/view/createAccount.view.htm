@@ -1,0 +1,35 @@
+<div>
+	<div class="container">
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col">
+				<div class="card text-white mb-3">
+					<div class="card-header bg-primary">
+						<b translate="viewCreateAccount.form.title"></b>
+					</div>
+					<div class="card-body bg-light">
+						<form name="formAddAccount">
+							<div class="form-group">
+								<label for="accountName" class="text-dark"
+									translate="viewCreateAccount.form.label.name"></label> <input
+									ng-model="account.name" required minlength="5" maxlength="25" type="accountName" class="form-control"
+									id="accountName" aria-describedby="accountNameHelp"
+									placeholder="{{ 'viewCreateAccount.form.input.name.placeholder' | translate }}">
+							</div>
+							<div>
+								<br>
+							</div>
+							<div class="form-group">
+								<button ng-disabled="!formAddAccount.$valid" ng-click="createAccount()" type="submit"
+									class="btn btn-success"
+									translate="viewCreateAccount.form.button.create"></button>
+								<a class="btn btn-danger" href="#!viewPortfolio" role="button"
+									translate="viewCreateAccount.form.button.cancel"></a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

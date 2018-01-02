@@ -48,16 +48,29 @@ portfolioModule.controller('ctrlViewCreatePortfolio', function($scope, $location
 
 });
 
-portfolioModule.controller('ctrlViewPortfolio', function($scope, $location, storageService, portfolioService, depotService, logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
+portfolioModule.controller('ctrlViewPortfolio', function($scope, $location, storageService, portfolioService, depotService, accountService,logService, LOGTYPE, STORAGE_SERVICE_KEY, PORTFOLIO_LANGUAGE) {
 	
-//	//EVENT: translate
+	//EVENT: translate
 	$scope.$emit('translate', {part:PORTFOLIO_LANGUAGE.PART});
 	
 	//EVENT: breadcrumb
 	$scope.$emit('breadcrumb', {id:'breadcrumb.portfolio', link:'/viewPortfolio'});
 	
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-
+	
+	
+	//GET ACCOUNT LIST
+	accountService.getAccountList(			
+        function successCallback(response){
+        	$scope.accounts = response.data;
+        }, 
+        function errorCallback(response){
+        	logService.set('Revenue.Account.AccountList', LOGTYPE.ERROR, response.data);
+        	$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.accountList.notify.error'});	
+        },
+        {params : {portfolioId : $scope.selectedPortfolio.id}});
+	
+	//GET DEPOT LIST
 	depotService.getDepotList(
 			function successCallback(response){
 				$scope.depots = response.data;
@@ -66,7 +79,7 @@ portfolioModule.controller('ctrlViewPortfolio', function($scope, $location, stor
 				logService.set('Revenue.Depot.DepotList', LOGTYPE.ERROR, response.data);
 				$scope.$emit('notify', {type:'E', msgId:'viewPortfolio.depotList.notify.error'});	
 			},
-			{params : {id : $scope.selectedPortfolio.id}}
+			{params : {portfolioId : $scope.selectedPortfolio.id}}
 	);
 	
 	$scope.selectDepot = function(index) {

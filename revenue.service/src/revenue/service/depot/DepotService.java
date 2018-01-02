@@ -27,7 +27,7 @@ public class DepotService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getDepotList")
-	public ArrayList<ResDepot> getDepotList(@QueryParam("id") long portfolioId)
+	public ArrayList<ResDepot> getDepotList(@QueryParam("portfolioId") long portfolioId)
 	{
 		ArrayList<ResDepot> locResDepotList = new ArrayList<ResDepot>();
 		

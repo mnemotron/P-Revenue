@@ -45,6 +45,21 @@
 		<url-pattern>/portfolio/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- SERVICE: ACCOUNT -->
+	<servlet>
+		<servlet-name>revenue.service.account</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>revenue.service.account</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revenue.service.account</servlet-name>
+		<url-pattern>/account/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- SERVICE: DEPOT -->
 	<servlet>
 		<servlet-name>revenue.service.depot</servlet-name>

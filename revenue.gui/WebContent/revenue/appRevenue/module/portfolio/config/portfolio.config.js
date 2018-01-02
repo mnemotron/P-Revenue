@@ -8,6 +8,8 @@ var portfolioConfig = angular.module('portfolio.config',[
 	'log.service',
 	'depot.module',
 	'depot.service',
+	'account.module',
+	'account.service',
 	'portfolio.service'
 	]);
 
@@ -31,6 +33,10 @@ portfolioConfig.config(function($routeProvider){
 		.when('/viewCreateDepot', {
 			templateUrl : 'module/depot/view/createDepot.view.htm',
 			controller : 'ctrlViewCreateDepot'
+		})
+		.when('/viewCreateAccount', {
+			templateUrl : 'module/account/view/createAccount.view.htm',
+			controller : 'ctrlViewCreateAccount'
 		});
 	
 });

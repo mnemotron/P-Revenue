@@ -42,6 +42,9 @@
 		<mapping class="revenue.entity.BondItemBuy" />
 		<mapping class="revenue.entity.BondHeader" />
 		<mapping class="revenue.entity.Depot" />
+		<mapping class="revenue.entity.AccountItemIncome" />
+		<mapping class="revenue.entity.AccountItemExpense" />
+		<mapping class="revenue.entity.AccountHeader" />
 		<mapping class="revenue.entity.Portfolio" />
 
 	</session-factory>
