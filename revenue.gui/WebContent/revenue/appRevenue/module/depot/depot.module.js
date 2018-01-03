@@ -46,7 +46,7 @@ depotModule.controller('ctrlViewDepot', function($scope, $location, storageServi
 					logService.set('Revenue.Depot.Delete', LOGTYPE.ERROR, response.data);
 					$scope.$emit('notify', {type:'E', msgId:'viewDepot.depot.delete.notify.error'});
 				},
-				{params: {id : $scope.selectedDepot.id}}
+				{params: {portfolioId : $scope.selectedPortfolio.id, id : $scope.selectedDepot.id}}
 		);
 
 	}

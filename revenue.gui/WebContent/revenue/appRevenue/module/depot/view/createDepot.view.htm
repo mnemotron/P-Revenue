@@ -16,6 +16,14 @@
 									id="depotName" aria-describedby="depotNameHelp"
 									placeholder="{{ 'viewCreateDepot.form.input.name.placeholder' | translate }}">
 							</div>
+							<div class="form-group">
+								<label for="depotNumber" class="text-dark"
+									translate="viewCreateDepot.form.label.number"></label> <input
+									ng-model="depot.number" required minlength="5" maxlength="34"
+									type="depotNumber" class="form-control" id="depotNumber"
+									aria-describedby="depotNumberHelp"
+									placeholder="{{ 'viewCreateDepot.form.input.number.placeholder' | translate }}">
+							</div>
 							<div>
 								<br>
 							</div>

@@ -2,6 +2,7 @@ package revenue.service.account;
 
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import revenue.entity.AccountHeader;
+import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.SessionManager;
 import revenue.service.account.entity.ReqAccountHeader;
@@ -98,6 +100,38 @@ public class AccountService
 		{
 			SessionManager.closeSession();
 		}
+	}
+	
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/deleteAccount")
+	public void deleteAccount(@QueryParam("portfolioId") long portfolioId, @QueryParam("id") long accountId)
+	{
+		SessionManager.initSession();
+		
+		try
+		{					
+			Query locQuery = SessionManager.getSession().createQuery("from AccountHeader where portfolio_id = " + portfolioId + " and id = " + accountId);
+			
+			AccountHeader locAccountHeader = (AccountHeader) locQuery.getSingleResult();
+
+			SessionManager.getSession().delete(locAccountHeader);
+			
+			SessionManager.commit();
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
+				SessionManager.getTransaction().rollback();
+			}
+			
+			throw e;
+		}
+		finally
+		{
+			SessionManager.closeSession();
+		}	
 	}
 
 }

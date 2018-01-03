@@ -2,7 +2,16 @@
 	"viewCreateAcount.form.title": "Erstelle Konto",
 	"viewCreateAcount.form.label.name": "Name",
 	"viewCreateAcount.form.input.name.placeholder": "Name eingeben",
+	"viewCreateAcount.form.label.number": "Kontonummer",
+	"viewCreateAcount.form.input.number.placeholder": "Kontonummer eingeben",
 	"viewCreateAcount.form.button.create": "Erstellen",
 	"viewCreateAcount.form.button.cancel": "Abbrechen",
-	"viewCreateAccount.form.create.notify.error": "Fehler beim erstellen des Kontos. Zum Fehlerprotokoll."
-}
+	"viewCreateAccount.form.create.notify.error": "Fehler beim erstellen des Kontos. Zum Fehlerprotokoll.",
+	"viewAccount.account.menu.title": "Konto:",
+	"viewAccount.account.menu.admin": "Administration",
+	"viewAccount.account.menu.admin.delete": "Löschen",
+	"viewAccount.account.menu.admin.delete.dialog.title": "Konto:",
+	"viewAccount.account.menu.admin.delete.dialog.question": "Möchten Sie das Konto löschen?",
+	"viewAccount.account.menu.admin.delete.dialog.button.delete": "Löschen",
+	"viewAccount.account.menu.admin.delete.dialog.button.cancel": "Abbrechen",
+	"viewAccount.account.delete.notify.error": "Fehler beim Löschen des Kontos. Zum Fehlerprotokoll."}

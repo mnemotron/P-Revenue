@@ -11,7 +11,8 @@ accountService.constant('URL_ACCOUNT_SERVICE',
 			{	
 				SERVICE: '/account/service', 
 				METHOD_GET_ACCOUNT_LIST: '/getAccountList',
-				METHOD_CREATE_ACCOUNT: '/createAccount'
+				METHOD_CREATE_ACCOUNT: '/createAccount',
+				METHOD_DELETE_ACCOUNT: '/deleteAccount'
 			});
 			
 																																																																																																				
@@ -27,9 +28,15 @@ accountService.factory('accountService', function(backendService, URL_ACCOUNT_SE
 		backendService.httpPost(URL_ACCOUNT_SERVICE.SERVICE + URL_ACCOUNT_SERVICE.METHOD_CREATE_ACCOUNT, successCallback, errorCallback, data, config);
 	}
 	
+	function deleteAccount(successCallback, errorCallback, config)
+	{
+		backendService.httpDelete(URL_ACCOUNT_SERVICE.SERVICE + URL_ACCOUNT_SERVICE.METHOD_DELETE_ACCOUNT, successCallback, errorCallback, config);
+	}
+	
 	return{
 		getAccountList: getAccountList,
-		createAccount: createAccount
+		createAccount: createAccount,
+		deleteAccount: deleteAccount
 	};
 	
 });

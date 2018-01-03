@@ -5,6 +5,8 @@ public class ResDepot
 	private long id;
 
 	private String name;
+	
+	private String number;
 
 	private long portfolioId;
 
@@ -41,6 +43,14 @@ public class ResDepot
 	public void setPortfolioId(long portfolioId)
 	{
 		this.portfolioId = portfolioId;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 	
 }

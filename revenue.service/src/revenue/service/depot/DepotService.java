@@ -49,6 +49,7 @@ public class DepotService
 				
 				locResDepot.setId(depot.getId());
 				locResDepot.setName(depot.getName());
+				locResDepot.setNumber(depot.getNumber());
 				locResDepot.setPortfolioId(depot.getPortfolio().getId());
 				
 				locResDepotList.add(locResDepot);
@@ -81,6 +82,7 @@ public class DepotService
 			Depot locDepot = new Depot();
 			
 			locDepot.setName(reqDepot.getName());
+			locDepot.setNumber(reqDepot.getNumber());
 			
 			Portfolio p = new Portfolio();
 			p.setId(reqDepot.getPortfolioId());
@@ -112,13 +114,13 @@ public class DepotService
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteDepot")
-	public void deleteDepot(@QueryParam("id") long depotId)
+	public void deleteDepot(@QueryParam("portfolioId") long portfolioId, @QueryParam("id") long depotId)
 	{
 		SessionManager.initSession();
 		
 		try
 		{					
-			Query locQuery = SessionManager.getSession().createQuery("from Depot where id = " + depotId);
+			Query locQuery = SessionManager.getSession().createQuery("from Depot where portfolio_id = " + portfolioId + " and id = " + depotId);
 			
 			Depot locDepot = (Depot) locQuery.getSingleResult();
 

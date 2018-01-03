@@ -82,9 +82,13 @@ portfolioModule.controller('ctrlViewPortfolio', function($scope, $location, stor
 			{params : {portfolioId : $scope.selectedPortfolio.id}}
 	);
 	
+	$scope.selectAccount = function(index){
+		storageService.set(STORAGE_SERVICE_KEY.ACCOUNT, $scope.accounts[index]);
+	}
+	
 	$scope.selectDepot = function(index) {
 		storageService.set(STORAGE_SERVICE_KEY.DEPOT, $scope.depots[index]);
-	};
+	}
 	
 	$scope.deletePortfolio = function(){
 		

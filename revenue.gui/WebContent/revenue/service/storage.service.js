@@ -7,6 +7,7 @@ var storageService = angular.module('storage.service', []);
 storageService.constant('STORAGE_SERVICE_KEY', {
 	BREADCRUMB: 'breadcrumb', 
 	PORTFOLIO: 'portfolio', 
+	ACCOUNT: 'account',
 	DEPOT: 'depot', 
 	BOND: 'bond'});
 																																																																																																				

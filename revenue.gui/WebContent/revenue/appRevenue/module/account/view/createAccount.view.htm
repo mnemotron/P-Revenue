@@ -12,15 +12,25 @@
 							<div class="form-group">
 								<label for="accountName" class="text-dark"
 									translate="viewCreateAccount.form.label.name"></label> <input
-									ng-model="account.name" required minlength="5" maxlength="25" type="accountName" class="form-control"
-									id="accountName" aria-describedby="accountNameHelp"
+									ng-model="account.name" required minlength="5" maxlength="25"
+									type="accountName" class="form-control" id="accountName"
+									aria-describedby="accountNameHelp"
 									placeholder="{{ 'viewCreateAccount.form.input.name.placeholder' | translate }}">
+							</div>
+							<div class="form-group">
+								<label for="accountNumber" class="text-dark"
+									translate="viewCreateAccount.form.label.number"></label> <input
+									ng-model="account.number" required minlength="5" maxlength="34"
+									type="accountNumber" class="form-control" id="accountNumber"
+									aria-describedby="accountNumberHelp"
+									placeholder="{{ 'viewCreateAccount.form.input.number.placeholder' | translate }}">
 							</div>
 							<div>
 								<br>
 							</div>
 							<div class="form-group">
-								<button ng-disabled="!formAddAccount.$valid" ng-click="createAccount()" type="submit"
+								<button ng-disabled="!formAddAccount.$valid"
+									ng-click="createAccount()" type="submit"
 									class="btn btn-success"
 									translate="viewCreateAccount.form.button.create"></button>
 								<a class="btn btn-danger" href="#!viewPortfolio" role="button"

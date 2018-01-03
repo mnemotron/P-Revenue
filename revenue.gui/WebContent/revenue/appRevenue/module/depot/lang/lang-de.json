@@ -2,6 +2,8 @@
 	"viewCreateDepot.form.title": "Erstelle Depot",
 	"viewCreateDepot.form.label.name": "Name",
 	"viewCreateDepot.form.input.name.placeholder": "Name eingeben",
+	"viewCreateDepot.form.label.number": "Depotnummer",
+	"viewCreateDepot.form.input.number.placeholder": "Depotnummer eingeben",
 	"viewCreateDepot.form.button.create": "Erstellen",
 	"viewCreateDepot.form.button.cancel": "Abbrechen",
 	"viewCreateDepot.form.create.notify.error": "Fehler beim Erstellen des Depots. Zum Fehlerprotokoll.",
