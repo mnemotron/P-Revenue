@@ -27,7 +27,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>revenue.service.api.yahooFinance</servlet-name>
-		<url-pattern>/api/yahooFinance/*</url-pattern>
+		<url-pattern>/yahooFinance/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -1,6 +1,5 @@
 package revenue.service.api.yahooFinance;
 
-import java.io.IOException;
 import java.util.Calendar;
 
 import javax.ws.rs.GET;
@@ -18,7 +17,7 @@ public class APIYahooFinance {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getHistoricalQuotes")
-	public void getHistoricalQuotes() throws Exception 
+	public Stock getHistoricalQuotes() throws Exception 
 	{
 		Calendar from = Calendar.getInstance();
 		Calendar to = Calendar.getInstance();
@@ -27,6 +26,8 @@ public class APIYahooFinance {
 		Stock locStock = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
 		
 		locStock.getHistory();
+		
+		return locStock;
 	}
 
 }
