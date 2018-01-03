@@ -9,7 +9,9 @@ storageService.constant('STORAGE_SERVICE_KEY', {
 	PORTFOLIO: 'portfolio', 
 	ACCOUNT: 'account',
 	DEPOT: 'depot', 
-	BOND: 'bond'});
+	BOND: 'bond',
+	SHARE: 'share'
+	});
 																																																																																																				
 storageService.factory('storageService', function($localStorage) {
 	

@@ -14,18 +14,25 @@
 
 <!-- Links -->
 <link rel="shortcut icon" type="image/png" href="../icon/favicon.ico">
-<link rel="stylesheet" href="../lib/bootstrap-4.0.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../lib/angular-toast-2.0.0/css/ngToast.min.css">
-<link rel="stylesheet" href="../lib/angular-slider-6.4.3/css/rzslider.min.css">
+<link rel="stylesheet"
+	href="../lib/bootstrap-4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../lib/angular-toast-2.0.0/css/ngToast.min.css">
+<link rel="stylesheet"
+	href="../lib/angular-slider-6.4.3/css/rzslider.min.css">
 
 </head>
 
 <!-- Body -->
-<body ng-controller="ctrlRevenue" style="height: 100%; overflow: hidden;">
+<body ng-controller="ctrlRevenue"
+	style="height: 100%; overflow: hidden;">
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
+	<nav
+		class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
 
-		<a class="navbar-brand" href="#"> <img src="../icon/revenue_logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""> <b>Revenue</b>
+		<a class="navbar-brand" href="#"> <img
+			src="../icon/revenue_logo.svg" width="30" height="30"
+			class="d-inline-block align-top" alt=""> <b>Revenue</b>
 		</a>
 
 		<div class="collapse navbar-collapse" id="nav-content">
@@ -37,29 +44,47 @@
 
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><div class="navbar-text text-white">
-						<b class="">&nbsp;&bull;&nbsp;<span ng-repeat="crumb in breadcrumb" ng-if="!$last"><a class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span></b><span
-							class="text-white" ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}<b class="text-white">&nbsp;&bull;&nbsp;</b></span>
+						<b class="">&nbsp;&bull;&nbsp;<span
+							ng-repeat="crumb in breadcrumb" ng-if="!$last"><a
+								class="text-white" href="#!{{crumb.link}}">{{crumb.text}}</a>&nbsp;&bull;&nbsp;</span></b><span
+							class="text-white" ng-repeat="crumb in breadcrumb" ng-if="$last">{{crumb.text}}<b
+							class="text-white">&nbsp;&bull;&nbsp;</b></span>
 					</div></li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
 
-				<li class="nav-item"><a class="nav-link active" href="#!viewPreferences" translate="viewIndex.preferences"></a></li>
+				<li class="nav-item"><a class="nav-link active"
+					href="#!viewPreferences" translate="viewIndex.preferences"></a></li>
 
-				<li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"
+				<li class="nav-item dropdown"><a
+					class="nav-link active dropdown-toggle" href=""
+					data-toggle="dropdown" id="language" role="button"
+					aria-haspopup="true" aria-expanded="false"
 					translate="viewIndex.help"></a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-						<a class="dropdown-item" href="#!viewLog" translate="viewIndex.help.log"></a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="Preview">
+						<a class="dropdown-item" href="#!viewLog"
+							translate="viewIndex.help.log"></a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#!viewAbout" translate="viewIndex.help.about"></a>
+						<a class="dropdown-item" href="#!viewAbout"
+							translate="viewIndex.help.about"></a>
 					</div></li>
 
 
-				<li class="nav-item dropdown"><a class="nav-link active dropdown-toggle" href="" data-toggle="dropdown" id="language" role="button" aria-haspopup="true" aria-expanded="false"
+				<li class="nav-item dropdown"><a
+					class="nav-link active dropdown-toggle" href=""
+					data-toggle="dropdown" id="language" role="button"
+					aria-haspopup="true" aria-expanded="false"
 					translate="viewIndex.language"></a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
-						<a ng-click="changeLang('de')" href="" class="dropdown-item"> <img src="icon/lang/DE.png"></img> <span valign="middle" translate="viewIndex.language.de"></span>
-						</a> <a ng-click="changeLang('en')" href="" class="dropdown-item"> <img src="icon/lang/GB.png"></img> <span valign="middle" translate="viewIndex.language.en"></span>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="Preview">
+						<a ng-click="changeLang('de')" href="" class="dropdown-item">
+							<img src="icon/lang/DE.png"></img> <span valign="middle"
+							translate="viewIndex.language.de"></span>
+						</a> <a ng-click="changeLang('en')" href="" class="dropdown-item">
+							<img src="icon/lang/GB.png"></img> <span valign="middle"
+							translate="viewIndex.language.en"></span>
 						</a>
 					</div></li>
 
@@ -82,11 +107,14 @@
 	<script src="../lib/angular-1.6.6/js/angular.min.js"></script>
 	<script src="../lib/angular-1.6.6/js/angular-sanitize.min.js"></script>
 	<script src="../lib/angular-1.6.6/js/angular-route.min.js"></script>
-	<script src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
-	<script src="../lib/angular-translate-2.15.2/js/angular-translate-loader-partial.min.js"></script>
+	<script
+		src="../lib/angular-translate-2.15.2/js/angular-translate.min.js"></script>
+	<script
+		src="../lib/angular-translate-2.15.2/js/angular-translate-loader-partial.min.js"></script>
 	<script src="../lib/angular-ngStorage-0.3.11/js/ngStorage.min.js"></script>
 	<script src="../lib/angular-dateParser-1.2.0/js/angular-dateparser.js"></script>
-	<script src="../lib/angular-dynamic-locale-0.1.32/js/tmhDynamicLocale.min.js"></script>
+	<script
+		src="../lib/angular-dynamic-locale-0.1.32/js/tmhDynamicLocale.min.js"></script>
 	<script src="../lib/angular-toast-2.0.0/js/ngToast.min.js"></script>
 	<script src="../lib/angular-slider-6.4.3/js/rzslider.min.js"></script>
 	<script src="../lib/jquery-3.2.1/js/jquery-3.2.1.min.js"></script>
@@ -108,6 +136,11 @@
 	<script src="module/bond/service/bond.service.js"></script>
 	<script src="module/bond/config/bond.config.js"></script>
 	<script src="module/bond/bond.module.js"></script>
+
+	<!-- Share -->
+	<script src="module/share/service/share.service.js"></script>
+	<script src="module/share/config/share.config.js"></script>
+	<script src="module/share/share.module.js"></script>
 
 	<!--  Depot -->
 	<script src="module/depot/service/depot.service.js"></script>
