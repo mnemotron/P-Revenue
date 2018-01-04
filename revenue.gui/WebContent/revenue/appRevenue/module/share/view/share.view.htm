@@ -13,7 +13,8 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col">
-									<b>{{'viewShare.share.menu.title'|translate}} {{selectedShare.name}}</b>
+									<b>{{'viewShare.share.menu.title'|translate}}
+										{{selectedShare.name}}</b>
 								</div>
 							</div>
 						</div>
@@ -31,74 +32,108 @@
 			<div class="col">
 
 				<!-- SHARE MENU -->
-		
+
 				<!-- ADMINISTRATION -->
 				<div class="btn-group m-1">
-					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewShare.share.menu.admin"></button>
+					<button type="button" class="btn btn-secondary dropdown-toggle"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+						translate="viewShare.share.menu.admin"></button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" data-toggle="modal" data-target="#deleteShareModal" href="" translate="viewShare.share.menu.admin.delete"></a>
+						<a class="dropdown-item" data-toggle="modal"
+							data-target="#deleteShareModal" href=""
+							translate="viewShare.share.menu.admin.delete"></a>
 					</div>
 				</div>
 
 				<!-- MODAL DIALOG DELETE SHARE-->
-				<div class="modal fade" id="deleteShareModal" tabindex="-1" role="dialog" aria-labelledby="deleteShareModalLabel" aria-hidden="true">
+				<div class="modal fade" id="deleteShareModal" tabindex="-1"
+					role="dialog" aria-labelledby="deleteShareModalLabel"
+					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="deleteShareModalLabel">{{'viewShare.share.menu.admin.delete.dialog.title'|translate}} {{selectedShare.name}}</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<h5 class="modal-title" id="deleteShareModalLabel">{{'viewShare.share.menu.admin.delete.dialog.title'|translate}}
+									{{selectedShare.name}}</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body" translate="viewShare.share.menu.admin.delete.dialog.question"></div>
+							<div class="modal-body"
+								translate="viewShare.share.menu.admin.delete.dialog.question"></div>
 							<div class="modal-footer">
-								<button ng-click="deleteShare()" type="button" class="btn btn-primary" data-dismiss="modal" translate="viewShare.share.menu.admin.delete.dialog.button.delete"></button>
-								<button type="button" class="btn btn-secondary" data-dismiss="modal" translate="viewShare.share.menu.admin.delete.dialog.button.cancel"></button>
+								<button ng-click="deleteShare()" type="button"
+									class="btn btn-primary" data-dismiss="modal"
+									translate="viewShare.share.menu.admin.delete.dialog.button.delete"></button>
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal"
+									translate="viewShare.share.menu.admin.delete.dialog.button.cancel"></button>
 							</div>
 						</div>
 					</div>
 				</div>
 
-<!-- 				 BOND GROUP  -->
-<!-- 				<ul class="list-group m-1"> -->
-<!-- 					<li class="list-group-item active"> -->
+				<!-- QUOTE GROUP -->
+				<ul class="list-group m-1">
+					<li class="list-group-item">
 
-<!-- 						<div class="container-fluid"> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col"> -->
-<!-- 									<b translate="viewDepot.depot.bond.title"></b> -->
-<!-- 								</div> -->
-<!-- 								<div class="col"></div> -->
-<!-- 								<div class="col" align="right" valign="middle"> -->
-<!-- 									<a href="#!viewAddBond"><img src="icon/plus-2x-w.png"></a> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col">
+									<canvas id="line" 
+									    class="chart chart-line"
+									    chart-data="data"
+										chart-labels="labels" 
+										chart-series="series"
+										chart-options="options"
+										chart-dataset-override="datasetOverride" 
+										chart-click="onClick">
+									</canvas>
+								</div>
+							</div>
+					</li>
+				</ul>
 
-<!-- 				<ul class="list-group m-1"> -->
-<!-- 					<li class="list-group-item active"> -->
-<!-- 						<div class="container-fluid"> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col"> -->
-<!-- 									<b><i translate="viewDepot.depot.bond.col.bondName"></i></b> -->
-<!-- 								</div> -->
-<!-- 								<div class="col"> -->
-<!-- 									<b><i translate="viewDepot.depot.bond.col.bondIsin"></i></b> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
+				<!-- 				 BOND GROUP  -->
+				<!-- 				<ul class="list-group m-1"> -->
+				<!-- 					<li class="list-group-item active"> -->
 
-<!-- 					<li ng-repeat="bond in bonds" class="list-group-item bg-light"><a ng-click="selectBond($index)" href="#!viewBond"> -->
-<!-- 							<div class="container-fluid"> -->
-<!-- 								<div class="row text-dark"> -->
-<!-- 									<div class="col">{{bond.name}}</div> -->
-<!-- 									<div class="col">{{bond.isin}}</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 					</a></li> -->
-<!-- 				</ul> -->
+				<!-- 						<div class="container-fluid"> -->
+				<!-- 							<div class="row"> -->
+				<!-- 								<div class="col"> -->
+				<!-- 									<b translate="viewDepot.depot.bond.title"></b> -->
+				<!-- 								</div> -->
+				<!-- 								<div class="col"></div> -->
+				<!-- 								<div class="col" align="right" valign="middle"> -->
+				<!-- 									<a href="#!viewAddBond"><img src="icon/plus-2x-w.png"></a> -->
+				<!-- 								</div> -->
+				<!-- 							</div> -->
+				<!-- 					</li> -->
+				<!-- 				</ul> -->
+
+				<!-- 				<ul class="list-group m-1"> -->
+				<!-- 					<li class="list-group-item active"> -->
+				<!-- 						<div class="container-fluid"> -->
+				<!-- 							<div class="row"> -->
+				<!-- 								<div class="col"> -->
+				<!-- 									<b><i translate="viewDepot.depot.bond.col.bondName"></i></b> -->
+				<!-- 								</div> -->
+				<!-- 								<div class="col"> -->
+				<!-- 									<b><i translate="viewDepot.depot.bond.col.bondIsin"></i></b> -->
+				<!-- 								</div> -->
+				<!-- 							</div> -->
+				<!-- 						</div> -->
+				<!-- 					</li> -->
+
+				<!-- 					<li ng-repeat="bond in bonds" class="list-group-item bg-light"><a ng-click="selectBond($index)" href="#!viewBond"> -->
+				<!-- 							<div class="container-fluid"> -->
+				<!-- 								<div class="row text-dark"> -->
+				<!-- 									<div class="col">{{bond.name}}</div> -->
+				<!-- 									<div class="col">{{bond.isin}}</div> -->
+				<!-- 								</div> -->
+				<!-- 							</div> -->
+				<!-- 					</a></li> -->
+				<!-- 				</ul> -->
 
 			</div>
 

@@ -7,6 +7,7 @@ var shareConfig = angular.module('share.config',[
 	'storage.service',
 	'share.service',
 	'log.service',
+	'chart.js'
 	]);
 
 shareConfig.constant('SHARE_LANGUAGE', {PART: 'module/share/lang'});

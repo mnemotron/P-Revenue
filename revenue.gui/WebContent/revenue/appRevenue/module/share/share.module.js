@@ -15,6 +15,39 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 	$scope.selectedShare = storageService.get(STORAGE_SERVICE_KEY.SHARE);
 	$scope.selectedDepot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
 	$scope.selectedPortfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+	
+	shareService.getHistoricalQuotes(
+		function successCallback(response){
+		
+			$scope.data = [response.data.quoteList];
+			$scope.series = [response.data.name];
+			$scope.labels = response.data.xLabelList;
+			$scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
+			
+			$scope.options = { 
+
+					  elements: {
+				            line: { tension: 0 },
+				            point: { radius: 0 }
+				        },
+				
+				    scales: {
+				      yAxes: [
+				        {
+				          id: 'y-axis-1',
+				          type: 'linear',
+				          display: true,
+				          position: 'left'
+				        }
+				      ]
+				    }
+				  }
+			
+		}, 
+		function errorCallback(response){
+		},
+		{params: {api: 'API_YF', tickerId : 'GOOG', interval: '1D', timePeriod: '5Y'}}		
+	);
 
 	$scope.deleteShare = function(){
 		

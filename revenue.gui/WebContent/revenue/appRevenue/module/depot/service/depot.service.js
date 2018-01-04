@@ -37,6 +37,6 @@ depotService.factory('depotService', function(backendService, URL_DEPOT_SERVICE)
 		getDepotList: getDepotList,
 		createDepot: createDepot,
 		deleteDepot: deleteDepot
-	};
+	}
 	
 });

@@ -1,7 +1,9 @@
 package revenue.service.stock;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.ws.rs.GET;
@@ -19,33 +21,116 @@ import yahoofinance.histquotes.Interval;
 @Path("/service")
 public class StockService {
 
+	public static final String API_YAHOO_FINANCE = "API_YF";
+	public static final String INTERVAL_DAY_1 = "1D";
+	public static final String TIME_PERIOD_USER_DEFINED = "UD";
+	public static final String TIME_PERIOD_YEAR_1 = "1Y";
+	public static final String TIME_PERIOD_YEAR_5 = "5Y";
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getHistoricalQuotes")
-	public ResHistoricalQuotes getHistoricalQuotes(@QueryParam("tickerId") String tickerId) throws Exception 
+	public ResHistoricalQuotes getHistoricalQuotes(@QueryParam("api") String api,
+			@QueryParam("tickerId") String tickerId, @QueryParam("interval") String interval,
+			@QueryParam("timePeriod") String timePeriod, @QueryParam("fromDate") String fromDate,
+			@QueryParam("toDate") String toDate) throws Exception 
 	{
 		ResHistoricalQuotes locResHQ = new ResHistoricalQuotes();
+
+		locResHQ.setApi(api);
+		locResHQ.setTickerId(tickerId);
+		locResHQ.setInterval(interval);
+		locResHQ.setTimePeriod(timePeriod);
+
+		//calculate time period
+		locResHQ = this.calTimePeriod(locResHQ);
+
+		//get quotes
+		switch (locResHQ.getApi()) {
+		case API_YAHOO_FINANCE:
+			locResHQ = this.api_yahooFinance_getHistoricalQuotes(locResHQ);
+			break;
+
+		default:
+			break;
+		}
+
+		return locResHQ;
+	}
+
+	private ResHistoricalQuotes calTimePeriod(ResHistoricalQuotes hq) 
+	{
+		Calendar locFrom = Calendar.getInstance();
+		Calendar locTo = Calendar.getInstance();
+
+		switch (hq.getTimePeriod()) {
+		case TIME_PERIOD_YEAR_1:
+			locFrom.add(Calendar.YEAR, -1);
+			break;
+		case TIME_PERIOD_YEAR_5:
+			locFrom.add(Calendar.YEAR, -5);
+			break;
+		default:
+			break;
+		}
+
+		hq.setFromDate(locFrom.getTime().toInstant().toString());
+		hq.setToDate(locTo.getTime().toInstant().toString());
+
+		return hq;
+	}
+
+	private ResHistoricalQuotes api_yahooFinance_getHistoricalQuotes(ResHistoricalQuotes hq) throws Exception
+	{
+
 		ArrayList<Double> locQuoteList = new ArrayList<Double>();
-		
+		ArrayList<String> locXLabelList = new ArrayList<String>();
+
+		Interval locInterval = null;
 		Calendar locFrom = Calendar.getInstance();
 		Calendar locTo = Calendar.getInstance();
 		
-		locFrom.add(Calendar.YEAR, -5); // from 5 years ago
-
-		Stock locStock = YahooFinance.get(symbol, locFrom, locTo, Interval.WEEKLY);
-
-		Iterator<HistoricalQuote> locIteratorHQ = locStock.getHistory().iterator();
+		Instant locInstantFrom = Instant.parse(hq.getFromDate());
+		Instant locInstantTo = Instant.parse(hq.getToDate());
 		
-		while(locIteratorHQ.hasNext())
+		Date locFromDate = Date.from(locInstantFrom);
+		Date locToDate = Date.from(locInstantTo);
+		
+		locFrom.setTime(locFromDate);
+		locTo.setTime(locToDate);
+
+		// interval
+		switch (hq.getInterval()) {
+		case INTERVAL_DAY_1:
+			locInterval = Interval.DAILY;
+			break;
+		default:
+			break;
+		}
+
+		//get historical quotes
+		Stock locStock = YahooFinance.get(hq.getTickerId(), locFrom, locTo, locInterval);
+		
+		//return result
+		Iterator<HistoricalQuote> locIteratorHQ = locStock.getHistory().iterator();
+
+		while (locIteratorHQ.hasNext())
 		{
 			HistoricalQuote locHQ = locIteratorHQ.next();
-			
-			locQuoteList.add(new Double(locHQ.getClose().doubleValue()));
-		}
-		
-		locResHQ.setQuoteList(locQuoteList);
 
-		return locResHQ;
+			//set quote
+			locQuoteList.add(new Double(locHQ.getClose().doubleValue()));
+			
+			//set x-label
+			int locYear = locHQ.getDate().get(Calendar.YEAR);
+			locXLabelList.add(new String(new Integer(locYear).toString()));
+		}
+
+		hq.setName(locStock.getName());
+		hq.setQuoteList(locQuoteList);
+		hq.setxLabelList(locXLabelList);
+
+		return hq;
 	}
 
 }
