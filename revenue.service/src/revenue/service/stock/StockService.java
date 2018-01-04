@@ -1,5 +1,6 @@
 package revenue.service.stock;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -147,11 +148,16 @@ public class StockService {
 			HistoricalQuote locHQ = locIteratorHQ.next();
 
 			// set quote
-			locQuoteList.add(new Double(locHQ.getClose().doubleValue()));
-
-			// set x-label
-			int locYear = locHQ.getDate().get(Calendar.YEAR);
-			locXLabelList.add(new String(new Integer(locYear).toString()));
+			BigDecimal locClose = locHQ.getClose();
+			
+			if(locClose != null)
+			{
+				locQuoteList.add(new Double(locClose.doubleValue()));
+				
+				// set x-label
+				int locYear = locHQ.getDate().get(Calendar.YEAR);
+				locXLabelList.add(new String(new Integer(locYear).toString()));
+			}
 		}
 
 		hq.setName(locStock.getName());
