@@ -1,0 +1,10 @@
+{
+	"viewShare.share.menu.title": "Aktie:",
+	"viewShare.share.menu.admin": "Aktie",
+	"viewShare.share.menu.admin.delete": "Löschen",
+	"viewShare.share.menu.admin.delete.dialog.title": "Aktie:",
+	"viewShare.share.menu.admin.delete.dialog.question": "Möchten Sie die Aktie löschen?",
+	"viewShare.share.menu.admin.delete.dialog.button.delete": "Löschen",
+	"viewShare.share.menu.admin.delete.dialog.button.cancel": "Abbrechen",
+	"viewShare.share.delete.notify.error": "Fehler beim Löschen der Aktie. Zum Fehlerprotokoll."
+}

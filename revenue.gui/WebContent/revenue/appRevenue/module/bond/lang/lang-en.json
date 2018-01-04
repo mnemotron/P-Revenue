@@ -25,7 +25,7 @@
 	"viewBond.bond.menu.title": "Bond:",
 	"viewBond.bond.menu.revenue": "Revenue",
 	"viewBond.bond.menu.revenue.timeline": "Timeline",
-	"viewBond.bond.menu.admin": "Administration",
+	"viewBond.bond.menu.admin": "Bond",
 	"viewBond.bond.menu.admin.delete": "Delete",
 	"viewBond.bond.menu.admin.delete.dialog.title": "Bond:",
 	"viewBond.bond.menu.admin.delete.dialog.question": "Do you want to delete the bond?",

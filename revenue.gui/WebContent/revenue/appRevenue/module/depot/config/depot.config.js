@@ -6,8 +6,10 @@ var depotConfig = angular.module('depot.config',[
 	'ngRoute',
 	'storage.service',
 	'depot.service',
+	'share.service',
 	'bond.service',
 	'log.service',
+	'share.module',
 	'bond.module'
 	]);
 
@@ -19,6 +21,9 @@ depotConfig.config(function($routeProvider){
 	.when('/viewDepot', {
 		templateUrl : 'module/depot/view/depot.view.htm',
 		controller : 'ctrlViewDepot'
+	}).when('/viewAddShare', {
+		templateUrl : 'module/share/view/share.view.htm',
+		controller : 'ctrlViewShare'
 	}).when('/viewAddBond', {
 		templateUrl : 'module/bond/view/addBond.view.htm',
 		controller : 'ctrlViewAddBond'
