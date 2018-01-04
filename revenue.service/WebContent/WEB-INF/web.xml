@@ -105,6 +105,21 @@
 		<url-pattern>/revenue/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- SERVICE: STOCK -->
+	<servlet>
+		<servlet-name>revenue.service.stock</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>revenue.service.stock</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revenue.service.stock</servlet-name>
+		<url-pattern>/stock/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- RESOURCE DECLARATION -->
 	<resource-ref>
 		<description>hsqldb.revenue</description>
