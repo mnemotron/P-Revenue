@@ -6,5 +6,6 @@
 	"viewShare.share.menu.admin.delete.dialog.question": "Do you want to delete the share?",
 	"viewShare.share.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewShare.share.menu.admin.delete.dialog.button.cancel": "Cancel",
-	"viewShare.share.delete.notify.error": "Error during share deletion. Go to error log."
+	"viewShare.share.delete.notify.error": "Error during share deletion. Go to error log.",
+	"viewShare.share.quote.title": "Chart"
 }

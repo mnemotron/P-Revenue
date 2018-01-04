@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,9 +23,17 @@ import yahoofinance.histquotes.Interval;
 public class StockService {
 
 	public static final String API_YAHOO_FINANCE = "API_YF";
+	public static final String API_DUMMY = "API_DY";
 	public static final String INTERVAL_DAY_1 = "1D";
+	public static final String INTERVAL_MONTH_1 = "1M";
+	public static final String INTERVAL_WEEK_1 = "1W";
 	public static final String TIME_PERIOD_USER_DEFINED = "UD";
+	public static final String TIME_PERIOD_DAY_1 = "1D";
+	public static final String TIME_PERIOD_WEEK_1 = "1W";
+	public static final String TIME_PERIOD_MONTH_1 = "1M";
+	public static final String TIME_PERIOD_MONTH_6 = "6M";
 	public static final String TIME_PERIOD_YEAR_1 = "1Y";
+	public static final String TIME_PERIOD_YEAR_3 = "3Y";
 	public static final String TIME_PERIOD_YEAR_5 = "5Y";
 
 	@GET
@@ -33,8 +42,7 @@ public class StockService {
 	public ResHistoricalQuotes getHistoricalQuotes(@QueryParam("api") String api,
 			@QueryParam("tickerId") String tickerId, @QueryParam("interval") String interval,
 			@QueryParam("timePeriod") String timePeriod, @QueryParam("fromDate") String fromDate,
-			@QueryParam("toDate") String toDate) throws Exception 
-	{
+			@QueryParam("toDate") String toDate) throws Exception {
 		ResHistoricalQuotes locResHQ = new ResHistoricalQuotes();
 
 		locResHQ.setApi(api);
@@ -42,15 +50,17 @@ public class StockService {
 		locResHQ.setInterval(interval);
 		locResHQ.setTimePeriod(timePeriod);
 
-		//calculate time period
+		// calculate time period
 		locResHQ = this.calTimePeriod(locResHQ);
 
-		//get quotes
+		// get quotes
 		switch (locResHQ.getApi()) {
 		case API_YAHOO_FINANCE:
 			locResHQ = this.api_yahooFinance_getHistoricalQuotes(locResHQ);
 			break;
-
+		case API_DUMMY:
+			locResHQ = this.api_dummy_getHistoricalQuotes(locResHQ);
+			break;
 		default:
 			break;
 		}
@@ -58,14 +68,28 @@ public class StockService {
 		return locResHQ;
 	}
 
-	private ResHistoricalQuotes calTimePeriod(ResHistoricalQuotes hq) 
-	{
+	private ResHistoricalQuotes calTimePeriod(ResHistoricalQuotes hq) {
 		Calendar locFrom = Calendar.getInstance();
 		Calendar locTo = Calendar.getInstance();
 
 		switch (hq.getTimePeriod()) {
+		case TIME_PERIOD_DAY_1:
+			locFrom.add(Calendar.DAY_OF_MONTH, -1);
+			break;
+		case TIME_PERIOD_WEEK_1:
+			locFrom.add(Calendar.WEEK_OF_MONTH, -1);
+			break;
+		case TIME_PERIOD_MONTH_1:
+			locFrom.add(Calendar.MONTH, -1);
+			break;
+		case TIME_PERIOD_MONTH_6:
+			locFrom.add(Calendar.MONTH, -6);
+			break;
 		case TIME_PERIOD_YEAR_1:
 			locFrom.add(Calendar.YEAR, -1);
+			break;
+		case TIME_PERIOD_YEAR_3:
+			locFrom.add(Calendar.YEAR, -3);
 			break;
 		case TIME_PERIOD_YEAR_5:
 			locFrom.add(Calendar.YEAR, -5);
@@ -80,8 +104,7 @@ public class StockService {
 		return hq;
 	}
 
-	private ResHistoricalQuotes api_yahooFinance_getHistoricalQuotes(ResHistoricalQuotes hq) throws Exception
-	{
+	private ResHistoricalQuotes api_yahooFinance_getHistoricalQuotes(ResHistoricalQuotes hq) throws Exception {
 
 		ArrayList<Double> locQuoteList = new ArrayList<Double>();
 		ArrayList<String> locXLabelList = new ArrayList<String>();
@@ -89,13 +112,13 @@ public class StockService {
 		Interval locInterval = null;
 		Calendar locFrom = Calendar.getInstance();
 		Calendar locTo = Calendar.getInstance();
-		
+
 		Instant locInstantFrom = Instant.parse(hq.getFromDate());
 		Instant locInstantTo = Instant.parse(hq.getToDate());
-		
+
 		Date locFromDate = Date.from(locInstantFrom);
 		Date locToDate = Date.from(locInstantTo);
-		
+
 		locFrom.setTime(locFromDate);
 		locTo.setTime(locToDate);
 
@@ -104,29 +127,79 @@ public class StockService {
 		case INTERVAL_DAY_1:
 			locInterval = Interval.DAILY;
 			break;
+		case INTERVAL_MONTH_1:
+			locInterval = Interval.MONTHLY;
+			break;
+		case INTERVAL_WEEK_1:
+			locInterval = Interval.WEEKLY;
+			break;
 		default:
 			break;
 		}
 
-		//get historical quotes
+		// get historical quotes
 		Stock locStock = YahooFinance.get(hq.getTickerId(), locFrom, locTo, locInterval);
-		
-		//return result
+
+		// return result
 		Iterator<HistoricalQuote> locIteratorHQ = locStock.getHistory().iterator();
 
-		while (locIteratorHQ.hasNext())
-		{
+		while (locIteratorHQ.hasNext()) {
 			HistoricalQuote locHQ = locIteratorHQ.next();
 
-			//set quote
+			// set quote
 			locQuoteList.add(new Double(locHQ.getClose().doubleValue()));
-			
-			//set x-label
+
+			// set x-label
 			int locYear = locHQ.getDate().get(Calendar.YEAR);
 			locXLabelList.add(new String(new Integer(locYear).toString()));
 		}
 
 		hq.setName(locStock.getName());
+		hq.setQuoteList(locQuoteList);
+		hq.setxLabelList(locXLabelList);
+
+		return hq;
+	}
+
+	private ResHistoricalQuotes api_dummy_getHistoricalQuotes(ResHistoricalQuotes hq) throws Exception {
+
+		ArrayList<Double> locQuoteList = new ArrayList<Double>();
+		ArrayList<String> locXLabelList = new ArrayList<String>();
+
+		Calendar locFrom = Calendar.getInstance();
+		Calendar locTo = Calendar.getInstance();
+
+		Instant locInstantFrom = Instant.parse(hq.getFromDate());
+		Instant locInstantTo = Instant.parse(hq.getToDate());
+
+		Date locFromDate = Date.from(locInstantFrom);
+		Date locToDate = Date.from(locInstantTo);
+
+		locFrom.setTime(locFromDate);
+		locTo.setTime(locToDate);
+
+		while (locFrom.before(locTo)) {
+			Random locRandom = new Random();
+			locQuoteList.add(locRandom.nextDouble());
+
+			int locYear = locFrom.get(Calendar.YEAR);
+			locXLabelList.add(new String(new Integer(locYear).toString()));
+
+			switch (hq.getInterval()) {
+			case INTERVAL_DAY_1:
+				locFrom.add(Calendar.DAY_OF_MONTH, 1);
+				break;
+			case INTERVAL_WEEK_1:
+				locFrom.add(Calendar.WEEK_OF_MONTH, 1);
+				break;
+			case INTERVAL_MONTH_1:
+				locFrom.add(Calendar.MONTH, 1);
+				break;
+			}
+
+		}
+
+		hq.setName(hq.getTickerId());
 		hq.setQuoteList(locQuoteList);
 		hq.setxLabelList(locXLabelList);
 

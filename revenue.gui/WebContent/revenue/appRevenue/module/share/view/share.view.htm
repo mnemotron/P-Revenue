@@ -74,70 +74,103 @@
 				</div>
 
 				<!-- QUOTE GROUP -->
-				<ul class="list-group m-1">
-					<li class="list-group-item">
+				<div class="w-100" id="accordion" role="tablist">
 
-						<div class="container-fluid">
-							<div class="row">
-								<div class="col">
-									<canvas id="line" 
-									    class="chart chart-line"
-									    chart-data="data"
-										chart-labels="labels" 
-										chart-series="series"
-										chart-options="options"
-										chart-dataset-override="datasetOverride" 
-										chart-click="onClick">
-									</canvas>
+					<div class="list-group m-1">
+						<div class="list-group-item list-group-item-action active"
+							data-toggle="collapse" data-target="#shareQuote" href=""
+							aria-expanded="true" aria-controls="shareQuote">
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-sm-1">
+										<b translate="viewShare.share.quote.title"></b>
+									</div>
 								</div>
 							</div>
-					</li>
-				</ul>
+						</div>
 
-				<!-- 				 BOND GROUP  -->
-				<!-- 				<ul class="list-group m-1"> -->
-				<!-- 					<li class="list-group-item active"> -->
+						<div class="collapse show" id="shareQuote" role="tabpanel"
+							aria-labelledby="headerShareQuote" data-parent="#accordion">
+							<div class="list-group-item">
+								<div class="container-fluid">
+									<div class="row mb-2">
+									<div class="btn-group" role="group" aria-label="Quote">
+										<label>Time Period</label>
+										<button ng-click="changeTimePeriod('1D')" type="button" class="btn btn-light btn-sm">1D</button>
+										<button ng-click="changeTimePeriod('1W')" type="button" class="btn btn-light btn-sm">1W</button>
+										<button ng-click="changeTimePeriod('1M')" type="button" class="btn btn-light btn-sm">1M</button>
+										<button ng-click="changeTimePeriod('6M')" type="button" class="btn btn-light btn-sm">6M</button>
+ 										<button ng-click="changeTimePeriod('1Y')" type="button" class="btn btn-light btn-sm">1Y</button>
+ 										<button ng-click="changeTimePeriod('3Y')" type="button" class="btn btn-light btn-sm">3Y</button>
+  										<button ng-click="changeTimePeriod('5Y')" type="button" class="btn btn-light btn-sm">5Y</button>
+									</div>
+									<div class="btn-group" role="group" aria-label="Quote">
+										<label>Interval</label>
+										<button ng-click="changeInterval('1D')" type="button" class="btn btn-light btn-sm">1D</button>
+										<button ng-click="changeInterval('1W')" type="button" class="btn btn-light btn-sm">1W</button>
+										<button ng-click="changeInterval('1M')" type="button" class="btn btn-light btn-sm">1M</button>
+									</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<canvas id="line" class="chart chart-line" chart-data="data"
+												chart-labels="labels" chart-series="series"
+												chart-options="options"
+												chart-dataset-override="datasetOverride">
+											</canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-				<!-- 						<div class="container-fluid"> -->
-				<!-- 							<div class="row"> -->
-				<!-- 								<div class="col"> -->
-				<!-- 									<b translate="viewDepot.depot.bond.title"></b> -->
-				<!-- 								</div> -->
-				<!-- 								<div class="col"></div> -->
-				<!-- 								<div class="col" align="right" valign="middle"> -->
-				<!-- 									<a href="#!viewAddBond"><img src="icon/plus-2x-w.png"></a> -->
-				<!-- 								</div> -->
-				<!-- 							</div> -->
-				<!-- 					</li> -->
-				<!-- 				</ul> -->
+					</div>
 
-				<!-- 				<ul class="list-group m-1"> -->
-				<!-- 					<li class="list-group-item active"> -->
-				<!-- 						<div class="container-fluid"> -->
-				<!-- 							<div class="row"> -->
-				<!-- 								<div class="col"> -->
-				<!-- 									<b><i translate="viewDepot.depot.bond.col.bondName"></i></b> -->
-				<!-- 								</div> -->
-				<!-- 								<div class="col"> -->
-				<!-- 									<b><i translate="viewDepot.depot.bond.col.bondIsin"></i></b> -->
-				<!-- 								</div> -->
-				<!-- 							</div> -->
-				<!-- 						</div> -->
-				<!-- 					</li> -->
+					<!-- 				 BOND GROUP  -->
+					<!-- 				<ul class="list-group m-1"> -->
+					<!-- 					<li class="list-group-item active"> -->
 
-				<!-- 					<li ng-repeat="bond in bonds" class="list-group-item bg-light"><a ng-click="selectBond($index)" href="#!viewBond"> -->
-				<!-- 							<div class="container-fluid"> -->
-				<!-- 								<div class="row text-dark"> -->
-				<!-- 									<div class="col">{{bond.name}}</div> -->
-				<!-- 									<div class="col">{{bond.isin}}</div> -->
-				<!-- 								</div> -->
-				<!-- 							</div> -->
-				<!-- 					</a></li> -->
-				<!-- 				</ul> -->
+					<!-- 						<div class="container-fluid"> -->
+					<!-- 							<div class="row"> -->
+					<!-- 								<div class="col"> -->
+					<!-- 									<b translate="viewDepot.depot.bond.title"></b> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="col"></div> -->
+					<!-- 								<div class="col" align="right" valign="middle"> -->
+					<!-- 									<a href="#!viewAddBond"><img src="icon/plus-2x-w.png"></a> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 					</li> -->
+					<!-- 				</ul> -->
+
+					<!-- 				<ul class="list-group m-1"> -->
+					<!-- 					<li class="list-group-item active"> -->
+					<!-- 						<div class="container-fluid"> -->
+					<!-- 							<div class="row"> -->
+					<!-- 								<div class="col"> -->
+					<!-- 									<b><i translate="viewDepot.depot.bond.col.bondName"></i></b> -->
+					<!-- 								</div> -->
+					<!-- 								<div class="col"> -->
+					<!-- 									<b><i translate="viewDepot.depot.bond.col.bondIsin"></i></b> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 					</li> -->
+
+					<!-- 					<li ng-repeat="bond in bonds" class="list-group-item bg-light"><a ng-click="selectBond($index)" href="#!viewBond"> -->
+					<!-- 							<div class="container-fluid"> -->
+					<!-- 								<div class="row text-dark"> -->
+					<!-- 									<div class="col">{{bond.name}}</div> -->
+					<!-- 									<div class="col">{{bond.isin}}</div> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 					</a></li> -->
+					<!-- 				</ul> -->
+
+				</div>
 
 			</div>
 
 		</div>
-
 	</div>
-</div>
