@@ -7,5 +7,17 @@
 	"viewShare.share.menu.admin.delete.dialog.button.delete": "Delete",
 	"viewShare.share.menu.admin.delete.dialog.button.cancel": "Cancel",
 	"viewShare.share.delete.notify.error": "Error during share deletion. Go to error log.",
-	"viewShare.share.quote.title": "Chart"
+	"viewShare.share.quote.title": "Chart",
+	"viewShare.share.quote.interval": "Interval",
+	"viewShare.share.quote.interval.1D": "1D",
+	"viewShare.share.quote.interval.1W": "1W",
+	"viewShare.share.quote.interval.1M": "1M",
+	"viewShare.share.quote.timePeriod": "Time Period",
+	"viewShare.share.quote.timePeriod.1D": "1D",
+	"viewShare.share.quote.timePeriod.1W": "1W",
+	"viewShare.share.quote.timePeriod.1M": "1M",
+	"viewShare.share.quote.timePeriod.6M": "6M",
+	"viewShare.share.quote.timePeriod.1Y": "1Y",
+	"viewShare.share.quote.timePeriod.3Y": "3Y",
+	"viewShare.share.quote.timePeriod.5Y": "5Y"
 }

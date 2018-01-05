@@ -1,4 +1,4 @@
-<div>
+<div style="height: 91%; overflow: auto;">
 	<div class="container">
 
 		<!-- SHARE TITLE -->
@@ -13,8 +13,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col">
-									<b>{{'viewShare.share.menu.title'|translate}}
-										{{selectedShare.name}}</b>
+									<b>{{'viewShare.share.menu.title'|translate}} {{selectedShare.name}}</b>
 								</div>
 							</div>
 						</div>
@@ -35,39 +34,26 @@
 
 				<!-- ADMINISTRATION -->
 				<div class="btn-group m-1">
-					<button type="button" class="btn btn-secondary dropdown-toggle"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						translate="viewShare.share.menu.admin"></button>
+					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" translate="viewShare.share.menu.admin"></button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" data-toggle="modal"
-							data-target="#deleteShareModal" href=""
-							translate="viewShare.share.menu.admin.delete"></a>
+						<a class="dropdown-item" data-toggle="modal" data-target="#deleteShareModal" href="" translate="viewShare.share.menu.admin.delete"></a>
 					</div>
 				</div>
 
 				<!-- MODAL DIALOG DELETE SHARE-->
-				<div class="modal fade" id="deleteShareModal" tabindex="-1"
-					role="dialog" aria-labelledby="deleteShareModalLabel"
-					aria-hidden="true">
+				<div class="modal fade" id="deleteShareModal" tabindex="-1" role="dialog" aria-labelledby="deleteShareModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="deleteShareModalLabel">{{'viewShare.share.menu.admin.delete.dialog.title'|translate}}
-									{{selectedShare.name}}</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
+								<h5 class="modal-title" id="deleteShareModalLabel">{{'viewShare.share.menu.admin.delete.dialog.title'|translate}} {{selectedShare.name}}</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body"
-								translate="viewShare.share.menu.admin.delete.dialog.question"></div>
+							<div class="modal-body" translate="viewShare.share.menu.admin.delete.dialog.question"></div>
 							<div class="modal-footer">
-								<button ng-click="deleteShare()" type="button"
-									class="btn btn-primary" data-dismiss="modal"
-									translate="viewShare.share.menu.admin.delete.dialog.button.delete"></button>
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal"
-									translate="viewShare.share.menu.admin.delete.dialog.button.cancel"></button>
+								<button ng-click="deleteShare()" type="button" class="btn btn-primary" data-dismiss="modal" translate="viewShare.share.menu.admin.delete.dialog.button.delete"></button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal" translate="viewShare.share.menu.admin.delete.dialog.button.cancel"></button>
 							</div>
 						</div>
 					</div>
@@ -77,9 +63,7 @@
 				<div class="w-100" id="accordion" role="tablist">
 
 					<div class="list-group m-1">
-						<div class="list-group-item list-group-item-action active"
-							data-toggle="collapse" data-target="#shareQuote" href=""
-							aria-expanded="true" aria-controls="shareQuote">
+						<div class="list-group-item list-group-item-action active" data-toggle="collapse" data-target="#shareQuote" href="" aria-expanded="true" aria-controls="shareQuote">
 
 							<div class="container-fluid">
 								<div class="row">
@@ -90,34 +74,42 @@
 							</div>
 						</div>
 
-						<div class="collapse show" id="shareQuote" role="tabpanel"
-							aria-labelledby="headerShareQuote" data-parent="#accordion">
+						<div class="collapse show" id="shareQuote" role="tabpanel" aria-labelledby="headerShareQuote" data-parent="#accordion">
 							<div class="list-group-item">
 								<div class="container-fluid">
 									<div class="row mb-2">
-									<div class="btn-group" role="group" aria-label="Quote">
-										<label>Time Period</label>
-										<button ng-click="changeTimePeriod('1D')" type="button" class="btn btn-light btn-sm">1D</button>
-										<button ng-click="changeTimePeriod('1W')" type="button" class="btn btn-light btn-sm">1W</button>
-										<button ng-click="changeTimePeriod('1M')" type="button" class="btn btn-light btn-sm">1M</button>
-										<button ng-click="changeTimePeriod('6M')" type="button" class="btn btn-light btn-sm">6M</button>
- 										<button ng-click="changeTimePeriod('1Y')" type="button" class="btn btn-light btn-sm">1Y</button>
- 										<button ng-click="changeTimePeriod('3Y')" type="button" class="btn btn-light btn-sm">3Y</button>
-  										<button ng-click="changeTimePeriod('5Y')" type="button" class="btn btn-light btn-sm">5Y</button>
-									</div>
-									<div class="btn-group" role="group" aria-label="Quote">
-										<label>Interval</label>
-										<button ng-click="changeInterval('1D')" type="button" class="btn btn-light btn-sm">1D</button>
-										<button ng-click="changeInterval('1W')" type="button" class="btn btn-light btn-sm">1W</button>
-										<button ng-click="changeInterval('1M')" type="button" class="btn btn-light btn-sm">1M</button>
-									</div>
+
+										<div class="list-group m-1">
+											<div class="list-group-item p-0 m-0">
+												<div class="btn-group" role="group" aria-label="Quote">
+													<button class="btn btn-light btn-sm" disabled translate="viewShare.share.quote.timePeriod"></button>
+													<button ng-click="changeTimePeriod('1D')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.1D"></button>
+													<button ng-click="changeTimePeriod('1W')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.1W"></button>
+													<button ng-click="changeTimePeriod('1M')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.1M"></button>
+													<button ng-click="changeTimePeriod('6M')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.6M"></button>
+													<button ng-click="changeTimePeriod('1Y')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.1Y"></button>
+													<button ng-click="changeTimePeriod('3Y')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.3Y"></button>
+													<button ng-click="changeTimePeriod('5Y')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.timePeriod.5Y"></button>
+												</div>
+											</div>
+
+										</div>
+										<div class="list-group m-1">
+											<div class="list-group-item p-0 m-0">
+												<div class="btn-group" role="group" aria-label="Quote">
+													<button class="btn btn-light btn-sm" disabled translate="viewShare.share.quote.interval"></button>
+													<button ng-click="changeInterval('1D')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.interval.1D"></button>
+													<button ng-click="changeInterval('1W')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.interval.1W"></button>
+													<button ng-click="changeInterval('1M')" type="button" class="btn btn-light btn-sm" translate="viewShare.share.quote.interval.1M"></button>
+												</div>
+
+											</div>
+										</div>
+
 									</div>
 									<div class="row">
-										<div class="col">
-											<canvas id="line" class="chart chart-line" chart-data="data"
-												chart-labels="labels" chart-series="series"
-												chart-options="options"
-												chart-dataset-override="datasetOverride">
+										<div class="col m-0 p-0">
+											<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride">
 											</canvas>
 										</div>
 									</div>

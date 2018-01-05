@@ -7,4 +7,17 @@
 	"viewShare.share.menu.admin.delete.dialog.button.delete": "Löschen",
 	"viewShare.share.menu.admin.delete.dialog.button.cancel": "Abbrechen",
 	"viewShare.share.delete.notify.error": "Fehler beim Löschen der Aktie. Zum Fehlerprotokoll.",
-	"viewShare.share.quote.title": "Chart"}
+	"viewShare.share.quote.title": "Chart",
+	"viewShare.share.quote.interval": "Intervall",
+	"viewShare.share.quote.interval.1D": "1T",
+	"viewShare.share.quote.interval.1W": "1W",
+	"viewShare.share.quote.interval.1M": "1M",
+	"viewShare.share.quote.timePeriod": "Zeitraum",
+	"viewShare.share.quote.timePeriod.1D": "1T",
+	"viewShare.share.quote.timePeriod.1W": "1W",
+	"viewShare.share.quote.timePeriod.1M": "1M",
+	"viewShare.share.quote.timePeriod.6M": "6M",
+	"viewShare.share.quote.timePeriod.1Y": "1J",
+	"viewShare.share.quote.timePeriod.3Y": "3J",
+	"viewShare.share.quote.timePeriod.5Y": "5J"
+}

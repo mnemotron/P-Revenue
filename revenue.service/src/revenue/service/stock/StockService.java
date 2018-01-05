@@ -96,6 +96,7 @@ public class StockService {
 			locFrom.add(Calendar.YEAR, -5);
 			break;
 		default:
+			locFrom.add(Calendar.YEAR, -1);
 			break;
 		}
 
@@ -135,6 +136,7 @@ public class StockService {
 			locInterval = Interval.WEEKLY;
 			break;
 		default:
+			locInterval = Interval.DAILY;
 			break;
 		}
 
@@ -189,7 +191,13 @@ public class StockService {
 			locQuoteList.add(locRandom.nextDouble());
 
 			int locYear = locFrom.get(Calendar.YEAR);
-			locXLabelList.add(new String(new Integer(locYear).toString()));
+			int locMonth = locFrom.get(Calendar.MONTH);
+			int locDay = locFrom.get(Calendar.DAY_OF_MONTH);
+			String locLabel = new String();
+			locLabel = locLabel.concat(new Integer(locYear).toString());
+//			locLabel = locLabel.concat(new Integer(locMonth).toString() + '/');
+//			locLabel = locLabel.concat(new Integer(locDay).toString());
+			locXLabelList.add(locLabel);
 
 			switch (hq.getInterval()) {
 			case INTERVAL_DAY_1:
@@ -200,6 +208,9 @@ public class StockService {
 				break;
 			case INTERVAL_MONTH_1:
 				locFrom.add(Calendar.MONTH, 1);
+				break;
+			default:
+				locFrom.add(Calendar.DAY_OF_MONTH, 1);
 				break;
 			}
 
