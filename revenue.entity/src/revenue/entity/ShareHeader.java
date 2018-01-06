@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import revenue.entity.Ticker;
 
 @Entity(name = "ShareHeader")
 @Table(name = "T_SHAREHEADER")
@@ -44,6 +45,9 @@ public class ShareHeader implements Serializable
 
 	@OneToMany(mappedBy = "shareHeader", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<ShareItemBuy> shareItemBuy = new ArrayList<ShareItemBuy>();
+
+	@OneToMany(mappedBy = "shareHeader", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Collection<Ticker> ticker = new ArrayList<Ticker>();
 
 	public long getId()
 	{
@@ -123,6 +127,14 @@ public class ShareHeader implements Serializable
 	public void setShareItemBuy(Collection<ShareItemBuy> param)
 	{
 		this.shareItemBuy = param;
+	}
+
+	public Collection<Ticker> getTicker() {
+	    return ticker;
+	}
+
+	public void setTicker(Collection<Ticker> param) {
+	    this.ticker = param;
 	}
 
 }

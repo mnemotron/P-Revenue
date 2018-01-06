@@ -13,6 +13,8 @@
 		<class>revenue.entity.AccountItemExpense</class>
 		<class>revenue.entity.ShareHeader</class>
 		<class>revenue.entity.ShareItemBuy</class>
+		<class>revenue.entity.Ticker</class>
+		<class>revenue.entity.StockDataProvider</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>
