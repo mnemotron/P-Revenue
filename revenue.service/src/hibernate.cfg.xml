@@ -41,6 +41,8 @@
 		<mapping class="revenue.entity.Interest" />
 		<mapping class="revenue.entity.BondItemBuy" />
 		<mapping class="revenue.entity.BondHeader" />
+		<mapping class="revenue.entity.ShareHeader" />
+		<mapping class="revenue.entity.ShareItemBuy" />
 		<mapping class="revenue.entity.Depot" />
 		<mapping class="revenue.entity.AccountItemIncome" />
 		<mapping class="revenue.entity.AccountItemExpense" />
