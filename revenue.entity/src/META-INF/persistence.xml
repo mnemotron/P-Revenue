@@ -11,6 +11,8 @@
 		<class>revenue.entity.AccountHeader</class>
 		<class>revenue.entity.AccountItemIncome</class>
 		<class>revenue.entity.AccountItemExpense</class>
+		<class>revenue.entity.ShareHeader</class>
+		<class>revenue.entity.ShareItemBuy</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 	</persistence-unit>
 </persistence>

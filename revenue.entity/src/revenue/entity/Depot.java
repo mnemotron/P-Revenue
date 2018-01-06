@@ -14,6 +14,7 @@ import revenue.entity.BondHeader;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.OneToMany;
+import revenue.entity.ShareHeader;
 
 @Entity(name = "Depot")
 @Table(name = "T_DEPOT")
@@ -39,6 +40,9 @@ public class Depot implements Serializable
 	private Collection<BondHeader> bondHeader = new ArrayList<BondHeader>();
 
 	private String number;
+
+	@OneToMany(mappedBy = "depot")
+	private Collection<ShareHeader> shareHeader;
 
 	public long getId()
 	{
@@ -88,6 +92,14 @@ public class Depot implements Serializable
 	public void setNumber(String param)
 	{
 		this.number = param;
+	}
+
+	public Collection<ShareHeader> getShareHeader() {
+	    return shareHeader;
+	}
+
+	public void setShareHeader(Collection<ShareHeader> param) {
+	    this.shareHeader = param;
 	}
 
 }

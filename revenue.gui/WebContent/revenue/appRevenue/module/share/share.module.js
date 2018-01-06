@@ -49,7 +49,8 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 				function errorCallback(response){
 					logService.set('Revenue.Depot.Share.Quote', LOGTYPE.ERROR, response.data);
 				},
-				{params: {api: 'API_DY', tickerId : 'GOOG', interval: interval, timePeriod: timePeriod}}		
+				{params: {api: 'API_DY', tickerId : 'BMW.DE', interval: interval, timePeriod: timePeriod}}		
+				
 			);
 	}
 	

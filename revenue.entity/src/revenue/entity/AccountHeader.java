@@ -23,19 +23,21 @@ public class AccountHeader implements Serializable
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	@ManyToOne
 	private Portfolio portfolio;
-	
+
 	private String name;
-	
+
 	private String number;
-	
+
 	@OneToMany(mappedBy = "accountHeader", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<AccountItemIncome> accountItemIncome = new ArrayList<AccountItemIncome>();
-	
+
 	@OneToMany(mappedBy = "accountHeader", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<AccountItemExpense> accountItemExpense = new ArrayList<AccountItemExpense>();
+
+	private String totalValue;
 
 	public long getId()
 	{
@@ -95,6 +97,16 @@ public class AccountHeader implements Serializable
 	public void setAccountItemExpense(Collection<AccountItemExpense> param)
 	{
 		this.accountItemExpense = param;
+	}
+
+	public String getTotalValue()
+	{
+		return totalValue;
+	}
+
+	public void setTotalValue(String param)
+	{
+		this.totalValue = param;
 	}
 
 }
