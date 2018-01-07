@@ -13,7 +13,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import revenue.entity.AccountHeader;
-import revenue.entity.Depot;
 import revenue.entity.Portfolio;
 import revenue.hibernate.SessionManager;
 import revenue.service.account.entity.ReqAccountHeader;
@@ -26,7 +25,7 @@ public class AccountService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getAccountList")
-	public ArrayList<ResAccountHeader> getAccountList(@QueryParam("portfolioId") long portfolioId)
+	public ArrayList<ResAccountHeader> getAccountList(@QueryParam("portfolioId") long portfolioId) throws Exception
 	{
 		ArrayList<ResAccountHeader> locResAccountHeaderList = new ArrayList<ResAccountHeader>();
 
@@ -68,7 +67,7 @@ public class AccountService
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createAccount")
-	public void createAccount(ReqAccountHeader reqAccountHeader)
+	public void createAccount(ReqAccountHeader reqAccountHeader) throws Exception
 	{
 		SessionManager.initSession();
 
@@ -101,22 +100,22 @@ public class AccountService
 			SessionManager.closeSession();
 		}
 	}
-	
+
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteAccount")
-	public void deleteAccount(@QueryParam("portfolioId") long portfolioId, @QueryParam("id") long accountId)
+	public void deleteAccount(@QueryParam("portfolioId") long portfolioId, @QueryParam("id") long accountId) throws Exception
 	{
 		SessionManager.initSession();
-		
+
 		try
-		{					
+		{
 			Query locQuery = SessionManager.getSession().createQuery("from AccountHeader where portfolio_id = " + portfolioId + " and id = " + accountId);
-			
+
 			AccountHeader locAccountHeader = (AccountHeader) locQuery.getSingleResult();
 
 			SessionManager.getSession().delete(locAccountHeader);
-			
+
 			SessionManager.commit();
 		}
 		catch (Exception e)
@@ -125,13 +124,13 @@ public class AccountService
 			{
 				SessionManager.getTransaction().rollback();
 			}
-			
+
 			throw e;
 		}
 		finally
 		{
 			SessionManager.closeSession();
-		}	
+		}
 	}
 
 }

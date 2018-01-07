@@ -25,7 +25,7 @@ public class ConfigService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getConfigSingle")
-	public ResConfig getConfigSingle(@QueryParam("key") String key)
+	public ResConfig getConfigSingle(@QueryParam("key") String key) throws Exception
 	{
 		SessionManager.initSession();
 
@@ -54,7 +54,7 @@ public class ConfigService
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getConfig")
-	public ArrayList<ResConfig> getConfig()
+	public ArrayList<ResConfig> getConfig() throws Exception
 	{
 		SessionManager.initSession();
 
@@ -89,7 +89,7 @@ public class ConfigService
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/updateConfig")
-	public void updateConfig(ArrayList<ReqConfig> reqConfigList)
+	public void updateConfig(ArrayList<ReqConfig> reqConfigList) throws Exception
 	{
 		SessionManager.initSession();
 

@@ -20,7 +20,8 @@ import revenue.service.portfolio.entity.ReqPortfolio;
 import revenue.service.portfolio.entity.ResPortfolio;
 
 @Path("/service")
-public class PortfolioService {
+public class PortfolioService
+{
 
 	// @Resource(name = "jdbc/revenue")
 	// private DataSource ds;
@@ -29,13 +30,15 @@ public class PortfolioService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getPortfolioList")
-	public ArrayList<ResPortfolio> getPortfolioList() {
+	public ArrayList<ResPortfolio> getPortfolioList() throws Exception
+	{
 
 		ArrayList<ResPortfolio> locResPortfolioList = new ArrayList<ResPortfolio>();
 
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Session locSession = SessionManager.getSession();
 
 			Query locQuery = locSession.createQuery("from Portfolio");
@@ -44,7 +47,8 @@ public class PortfolioService {
 
 			locResPortfolioList = new ArrayList<ResPortfolio>();
 
-			for (Portfolio portfolio : locPortfolioList) {
+			for (Portfolio portfolio : locPortfolioList)
+			{
 				ResPortfolio locResPortfolio = new ResPortfolio();
 
 				locResPortfolio.setId(portfolio.getId());
@@ -53,9 +57,13 @@ public class PortfolioService {
 
 				locResPortfolioList.add(locResPortfolio);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 
@@ -67,11 +75,13 @@ public class PortfolioService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createPortfolio")
-	public void createPortfolio(ReqPortfolio reqPortfolio) {
+	public void createPortfolio(ReqPortfolio reqPortfolio) throws Exception
+	{
 
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Portfolio locPortfolio = new Portfolio();
 
 			locPortfolio.setName(reqPortfolio.getName());
@@ -81,13 +91,18 @@ public class PortfolioService {
 			SessionManager.getSession().save(locPortfolio);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 
@@ -99,10 +114,12 @@ public class PortfolioService {
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deletePortfolio")
-	public void deletePortfolio(@QueryParam("id") long portfolioId) {
+	public void deletePortfolio(@QueryParam("id") long portfolioId) throws Exception
+	{
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 
 			Query locQuery = SessionManager.getSession().createQuery("from Portfolio where id = " + portfolioId);
 
@@ -111,13 +128,18 @@ public class PortfolioService {
 			SessionManager.getSession().delete(locPortfolio);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 
