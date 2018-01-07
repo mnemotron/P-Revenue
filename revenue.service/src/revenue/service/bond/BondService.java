@@ -27,26 +27,28 @@ import revenue.service.bond.entity.ResBondHeader;
 import revenue.service.bond.entity.ResBondItemBuy;
 
 @Path("/service")
-public class BondService {
+public class BondService
+{
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getBondList")
-	public ArrayList<ResBondHeader> getBondList(@QueryParam("portfolioId") long portfolioId,
-			@QueryParam("depotId") long depotId) {
+	public ArrayList<ResBondHeader> getBondList(@QueryParam("portfolioId") long portfolioId, @QueryParam("depotId") long depotId) throws Exception
+	{
 		ArrayList<ResBondHeader> locResBondHeaderList = new ArrayList<ResBondHeader>();
 
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Session locSession = SessionManager.getSession();
 
-			Query locQuery = locSession
-					.createQuery("from BondHeader where portfolio_id = " + portfolioId + "and depot_id = " + depotId);
+			Query locQuery = locSession.createQuery("from BondHeader where portfolio_id = " + portfolioId + "and depot_id = " + depotId);
 
 			ArrayList<BondHeader> locBondHeaderList = (ArrayList<BondHeader>) locQuery.list();
 
-			for (BondHeader bondheader : locBondHeaderList) {
+			for (BondHeader bondheader : locBondHeaderList)
+			{
 				ResBondHeader locResBondHeader = new ResBondHeader();
 
 				locResBondHeader.setId(bondheader.getId());
@@ -63,16 +65,21 @@ public class BondService {
 				locResBondHeader.setInterestIntervall(bondheader.getInterestIntervall());
 
 				ArrayList<Interest> locInterestList = new ArrayList<Interest>(bondheader.getInterest());
-				for (Interest interest : locInterestList) {
+				for (Interest interest : locInterestList)
+				{
 					locResBondHeader.setInterest(interest.getInterest());
 					break;
 				}
 
 				locResBondHeaderList.add(locResBondHeader);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 
@@ -82,22 +89,23 @@ public class BondService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/getBondItemBuyList")
-	public ArrayList<ResBondItemBuy> getBondItemBuyList(@QueryParam("portfolioId") long portfolioId,
-			@QueryParam("depotId") long depotId, @QueryParam("bondId") long bondId) {
+	public ArrayList<ResBondItemBuy> getBondItemBuyList(@QueryParam("portfolioId") long portfolioId, @QueryParam("depotId") long depotId, @QueryParam("bondId") long bondId) throws Exception
+	{
 
 		ArrayList<ResBondItemBuy> locResBondItemBuyList = new ArrayList<ResBondItemBuy>();
 
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Session locSession = SessionManager.getSession();
 
-			Query locQuery = locSession.createQuery("from BondItemBuy where portfolio_id = " + portfolioId
-					+ "and depot_id = " + depotId + "and bondheader_id = " + bondId);
+			Query locQuery = locSession.createQuery("from BondItemBuy where portfolio_id = " + portfolioId + "and depot_id = " + depotId + "and bondheader_id = " + bondId);
 
 			ArrayList<BondItemBuy> locBondItemBuyList = (ArrayList<BondItemBuy>) locQuery.list();
 
-			for (BondItemBuy bonditembuy : locBondItemBuyList) {
+			for (BondItemBuy bonditembuy : locBondItemBuyList)
+			{
 				ResBondItemBuy locResBondItemBuy = new ResBondItemBuy();
 
 				locResBondItemBuy.setId(bonditembuy.getId());
@@ -110,9 +118,13 @@ public class BondService {
 
 				locResBondItemBuyList.add(locResBondItemBuy);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 
@@ -120,13 +132,14 @@ public class BondService {
 	}
 
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createBond")
-	public void createBond(ReqBondHeader reqBondHeader) {
+	public void createBond(ReqBondHeader reqBondHeader) throws Exception
+	{
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			BondHeader locBondHeader = new BondHeader();
 
 			locBondHeader.setArea(reqBondHeader.getArea());
@@ -159,25 +172,31 @@ public class BondService {
 			SessionManager.getSession().save(locBondHeader);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 	}
 
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createBondItemBuy")
-	public void createBondItemBuy(ReqBondItemBuy reqBondItemBuy) {
+	public void createBondItemBuy(ReqBondItemBuy reqBondItemBuy) throws Exception
+	{
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			BondItemBuy locBondItemBuy = new BondItemBuy();
 
 			locBondItemBuy.setNominalValue(reqBondItemBuy.getNominalValue());
@@ -199,24 +218,30 @@ public class BondService {
 			SessionManager.getSession().save(locBondItemBuy);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 	}
 
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteBondItemBuy")
-	public void deleteBondItemBuy(@QueryParam("bondItemBuyId") long bondItemBuyId) {
+	public void deleteBondItemBuy(@QueryParam("bondItemBuyId") long bondItemBuyId) throws Exception
+	{
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Query locQuery = SessionManager.getSession().createQuery("from BondItemBuy where id = " + bondItemBuyId);
 
 			BondItemBuy locBondItemBuy = (BondItemBuy) locQuery.getSingleResult();
@@ -224,24 +249,30 @@ public class BondService {
 			SessionManager.getSession().delete(locBondItemBuy);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 	}
 
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/deleteBond")
-	public void deleteBond(@QueryParam("bondId") long bondId) {
+	public void deleteBond(@QueryParam("bondId") long bondId) throws Exception
+	{
 		SessionManager.initSession();
 
-		try {
+		try
+		{
 			Query locQuery = SessionManager.getSession().createQuery("from BondHeader where id = " + bondId);
 
 			BondHeader locBond = (BondHeader) locQuery.getSingleResult();
@@ -249,13 +280,18 @@ public class BondService {
 			SessionManager.getSession().delete(locBond);
 
 			SessionManager.commit();
-		} catch (Exception e) {
-			if (SessionManager.getTransaction() != null) {
+		}
+		catch (Exception e)
+		{
+			if (SessionManager.getTransaction() != null)
+			{
 				SessionManager.getTransaction().rollback();
 			}
 
 			throw e;
-		} finally {
+		}
+		finally
+		{
 			SessionManager.closeSession();
 		}
 	}
