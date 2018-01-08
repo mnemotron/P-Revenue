@@ -1,4 +1,12 @@
 {
+	"viewAddShare.form.title": "Add Share",
+	"viewAddShare.form.label.name": "Name",
+	"viewAddShare.form.input.name.placeholder": "Enter the share name",
+	"viewAddShare.form.label.area": "Area",
+	"viewAddShare.form.input.area.placeholder": "Area",
+	"viewAddShare.form.button.add": "Add",
+	"viewAddShare.form.button.cancel": "Cancel",
+	"viewAddShare.form.button.add.notify.error": "Error during bond creation. Go to error log.",
 	"viewShare.share.menu.title": "Share:",
 	"viewShare.share.menu.admin": "Share",
 	"viewShare.share.menu.admin.delete": "Delete",

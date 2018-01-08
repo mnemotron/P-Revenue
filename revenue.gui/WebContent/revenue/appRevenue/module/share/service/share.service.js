@@ -10,10 +10,28 @@ var shareService = angular.module('share.service',
 
 shareService.constant('URL_SHARE_SERVICE', 
 			{	
-				SERVICE: '/share/service'
+				SERVICE: '/share/service',
+				METHOD_GET_SHARE_LIST: '/getShareList',
+				METHOD_CREATE_SHARE: '/createShare',
+				METHOD_DELETE_SHARE: '/deleteShare'
 			});
 																																																																																																			
-shareService.factory('shareService', function(stockService, URL_SHARE_SERVICE) {
+shareService.factory('shareService', function(backendService, stockService, URL_SHARE_SERVICE) {
+	
+	function getShareList(successCallback, errorCallback, config)
+	{	
+		backendService.httpGet(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_GET_BOND_LIST, successCallback, errorCallback, config);
+	}
+	
+	function createShare(successCallback, errorCallback, data, config)
+	{
+		backendService.httpPost(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_CREATE_BOND, successCallback, errorCallback, data, config);
+	}
+	
+	function deleteShare(successCallback, errorCallback, config)
+	{
+		backendService.httpDelete(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_DELETE_BOND, successCallback, errorCallback, config);
+	}
 	
 	function getHistoricalQuotes(successCallback, errorCallback, config)
 	{	
@@ -21,7 +39,10 @@ shareService.factory('shareService', function(stockService, URL_SHARE_SERVICE) {
 	}
 	
 	return{
-		getHistoricalQuotes : getHistoricalQuotes
+		getHistoricalQuotes: getHistoricalQuotes,
+		getShareList: getShareList,
+		createShare: createShare,
+		deleteShare: deleteShare
 	}
 	
 });

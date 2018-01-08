@@ -22,8 +22,8 @@ depotConfig.config(function($routeProvider){
 		templateUrl : 'module/depot/view/depot.view.htm',
 		controller : 'ctrlViewDepot'
 	}).when('/viewAddShare', {
-		templateUrl : 'module/share/view/share.view.htm',
-		controller : 'ctrlViewShare'
+		templateUrl : 'module/share/view/addShare.view.htm',
+		controller : 'ctrlViewAddShare'
 	}).when('/viewAddBond', {
 		templateUrl : 'module/bond/view/addBond.view.htm',
 		controller : 'ctrlViewAddBond'
