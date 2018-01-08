@@ -23,5 +23,9 @@
 	"viewDepot.depot.bond.title": "Anleihen",
 	"viewDepot.depot.bond.col.bondName": "Name",
 	"viewDepot.depot.bond.col.bondIsin": "ISIN",
-	"viewDepot.bondList.notify.error": "Fehler bei der Ermittlung der Anleihenliste. Zum Fehlerprotokoll."
+	"viewDepot.bondList.notify.error": "Fehler bei der Ermittlung der Anleihenliste. Zum Fehlerprotokoll.",
+	"viewDepot.depot.share.title": "Aktien",
+	"viewDepot.depot.share.col.shareName": "Name",
+	"viewDepot.depot.share.col.shareIsin": "ISIN",
+	"viewDepot.shareList.notify.error": "Fehler bei der Ermittlung der Aktienliste. Zum Fehlerprotokoll."
 }

@@ -20,17 +20,17 @@ shareService.factory('shareService', function(backendService, stockService, URL_
 	
 	function getShareList(successCallback, errorCallback, config)
 	{	
-		backendService.httpGet(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_GET_BOND_LIST, successCallback, errorCallback, config);
+		backendService.httpGet(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_GET_SHARE_LIST, successCallback, errorCallback, config);
 	}
 	
 	function createShare(successCallback, errorCallback, data, config)
 	{
-		backendService.httpPost(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_CREATE_BOND, successCallback, errorCallback, data, config);
+		backendService.httpPost(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_CREATE_SHARE, successCallback, errorCallback, data, config);
 	}
 	
 	function deleteShare(successCallback, errorCallback, config)
 	{
-		backendService.httpDelete(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_DELETE_BOND, successCallback, errorCallback, config);
+		backendService.httpDelete(URL_SHARE_SERVICE.SERVICE + URL_SHARE_SERVICE.METHOD_DELETE_SHARE, successCallback, errorCallback, config);
 	}
 	
 	function getHistoricalQuotes(successCallback, errorCallback, config)

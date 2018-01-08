@@ -70,16 +70,12 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 
 	$scope.deleteShare = function(){
 		
-//		accountService.deleteAccount(
-//				function successCallback(response){
-//					 $location.path( '/viewPortfolio' );
-//				}, 
-//				function errorCallback(response){
-//					logService.set('Revenue.Account.Delete', LOGTYPE.ERROR, response.data);
-//					$scope.$emit('notify', {type:'E', msgId:'viewAccount.account.delete.notify.error'});
-//				},
-//				{params: {portfolioId : $scope.selectedPortfolio.id, id : $scope.selectedAccount.id}}
-//		);
+		shareService.deleteShare(function successCallback(response) {
+			$location.path('/viewDepot');
+		}, function errorCallback(response) {
+			logService.set('Revenue.Share.Delete', LOGTYPE.ERROR, response.data);
+			$scope.$emit('notify', {type : 'E', msgId : 'viewShare.share.delete.notify.error'});
+		}, {params : {shareId : $scope.selectedShare.id}});
 
 	}
 	
