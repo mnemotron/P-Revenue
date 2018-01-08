@@ -1,0 +1,47 @@
+<div>
+	<div class="container">
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col">
+				<div class="card text-white mb-3">
+					<div class="card-header bg-primary">
+						<b translate="viewAddShare.form.title"></b>
+					</div>
+					<div class="card-body bg-light">
+						<form name="formAddShare">
+
+							<div class="form-group">
+								<label for="shareName" class="text-dark" translate="viewAddShare.form.label.name"></label> <input ng-model="share.name" required minlength="5" maxlength="25" type="shareName" class="form-control"
+									id="shareName" name="shareName" aria-describedby="shareNameHelp" placeholder="{{ 'viewAddShare.form.input.name.placeholder' | translate }}">
+								<!-- 								<div role="alert"> -->
+								<!-- 									<span class="error" ng-show="formAddBond.bondName.$error.required"> Required!</span> -->
+								<!-- 								</div> -->
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="shareISIN" class="text-dark">ISIN</label> <input ng-model="share.isin" type="shareISIN" minlength="12" maxlength="12" class="form-control" id="shareISIN" placeholder="ISIN">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="shareWKN" class="text-dark">WKN</label> <input ng-model="share.wkn" type="shareWKN" minlength="6" maxlength="6" class="form-control" id="shareWKN" placeholder="WKN">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="shareArea" class="text-dark" translate="viewAddShare.form.label.area"></label> <input ng-model="share.area" type="shareArea" maxlength="255" class="form-control" id="shareArea"
+									aria-describedby="shareAreaHelp" placeholder="{{ 'viewAddShare.form.input.area.placeholder' | translate }}">
+							</div>
+							<div>
+								<br>
+							</div>
+							<div class="form-group">
+								<button ng-disabled="!formAddShare.$valid" ng-click="createShare()" type="submit" class="btn btn-success" translate="viewAddShare.form.button.add"></button>
+								<a class="btn btn-danger" href="#!viewDepot" role="button" translate="viewAddShare.form.button.cancel"></a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
