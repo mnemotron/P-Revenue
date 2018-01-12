@@ -1,9 +1,11 @@
-# ChangeLog
+# Revenue
 
-##[1.0.0-alpha] | YYYY-MM-TT
+## Change Log
+
+###[1.0.0-alpha] | YYYY-MM-TT
 ---
-###ADDED
-+ Basic Revenue Application (incl.: Preferences, Localization, About)
+####ADDED
++ Basic Revenue Application (incl.: Splash Screen, Preferences, Localization, About)
 + Portfolio Management (create, delete)
 + Depot Management (create, delete)
 + Bond Management (create delete)
@@ -12,11 +14,11 @@
 + Revenue Timeline for Depot, Bond
 + API Yahoo Finance
   
-###CHANGED
+####CHANGED
 
-###DEPRECATED
+####DEPRECATED
 
-###REMOVED
+####REMOVED
 
-###FIXED
+####FIXED
 
