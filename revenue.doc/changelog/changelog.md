@@ -12,7 +12,7 @@
 + Share Management (create, delete) incl. quote chart
 + Bank Account Management (create, delete)
 + Revenue Timeline for Depot, Bond
-+ API Yahoo Finance
++ API Yahoo Finance 
   
 ####CHANGED
 
