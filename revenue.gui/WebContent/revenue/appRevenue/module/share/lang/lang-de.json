@@ -1,4 +1,12 @@
 {
+	"viewAddShare.form.title": "Aktie hinzufügen",
+	"viewAddShare.form.label.name": "Name",
+	"viewAddShare.form.input.name.placeholder": "Aktienname eingeben",
+	"viewAddShare.form.label.area": "Bereich",
+	"viewAddShare.form.input.area.placeholder": "Bereich",
+	"viewAddShare.form.button.add": "Hinzufügen",
+	"viewAddShare.form.button.cancel": "Abbrechen",
+	"viewAddShare.form.button.add.notify.error": "Fehler beim Erstellen der Aktie. Zum Fehlerprotokoll.",
 	"viewShare.share.menu.title": "Aktie:",
 	"viewShare.share.menu.admin": "Aktie",
 	"viewShare.share.menu.admin.delete": "Löschen",

@@ -97,6 +97,50 @@
 					</div>
 				</div>
 
+				<!--  SHARE GROUP  -->
+				<div ng-show="shares.length > 0">
+					<ul class="list-group m-1">
+						<li class="list-group-item active">
+
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<b translate="viewDepot.depot.share.title"></b>
+									</div>
+									<div class="col"></div>
+									<div class="col" align="right" valign="middle">
+										<a href="#!viewAddShare"><img src="icon/plus-2x-w.png"></a>
+									</div>
+								</div>
+						</li>
+					</ul>
+
+					<ul class="list-group m-1">
+						<li class="list-group-item active">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col">
+										<b><i translate="viewDepot.depot.share.col.shareName"></i></b>
+									</div>
+									<div class="col">
+										<b><i translate="viewDepot.depot.share.col.shareIsin"></i></b>
+									</div>
+								</div>
+							</div>
+						</li>
+
+						<li ng-repeat="share in shares" class="list-group-item bg-light"><a
+							ng-click="selectShare($index)" href="#!viewShare">
+								<div class="container-fluid">
+									<div class="row text-dark">
+										<div class="col">{{share.name}}</div>
+										<div class="col">{{share.isin}}</div>
+									</div>
+								</div>
+						</a></li>
+					</ul>
+				</div>
+
 				<!--  BOND GROUP  -->
 				<div ng-show="bonds.length > 0">
 					<ul class="list-group m-1">

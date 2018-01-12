@@ -49,7 +49,7 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 				function errorCallback(response){
 					logService.set('Revenue.Depot.Share.Quote', LOGTYPE.ERROR, response.data);
 				},
-				{params: {api: 'API_DY', tickerId : 'BMW.DE', interval: interval, timePeriod: timePeriod}}		
+				{params: {api: 'DY', tickerId : 'BMW.DE', interval: interval, timePeriod: timePeriod}}		
 				
 			);
 	}
@@ -70,16 +70,12 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 
 	$scope.deleteShare = function(){
 		
-//		accountService.deleteAccount(
-//				function successCallback(response){
-//					 $location.path( '/viewPortfolio' );
-//				}, 
-//				function errorCallback(response){
-//					logService.set('Revenue.Account.Delete', LOGTYPE.ERROR, response.data);
-//					$scope.$emit('notify', {type:'E', msgId:'viewAccount.account.delete.notify.error'});
-//				},
-//				{params: {portfolioId : $scope.selectedPortfolio.id, id : $scope.selectedAccount.id}}
-//		);
+		shareService.deleteShare(function successCallback(response) {
+			$location.path('/viewDepot');
+		}, function errorCallback(response) {
+			logService.set('Revenue.Share.Delete', LOGTYPE.ERROR, response.data);
+			$scope.$emit('notify', {type : 'E', msgId : 'viewShare.share.delete.notify.error'});
+		}, {params : {shareId : $scope.selectedShare.id}});
 
 	}
 	
@@ -91,27 +87,29 @@ shareModule.controller('ctrlViewShare', function($scope, storageService, STORAGE
 	
 });
 
-shareModule.controller('ctrlViewCreateShare', function($scope, storageService, logService, shareService, LOGTYPE, STORAGE_SERVICE_KEY, $location, SHARE_LANGUAGE) {
+shareModule.controller('ctrlViewAddShare', function($scope, storageService, logService, shareService, LOGTYPE, STORAGE_SERVICE_KEY, $location, SHARE_LANGUAGE) {
 
-//	//EVENT: translate
-//	$scope.$emit('translate', {part:ACCOUNT_LANGUAGE.PART});
-//	
-//	$scope.createAccount = function() {
-//
-//		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
-//		
-//		$scope.account['portfolioId'] = portfolio.id;
-//		
-//		accountService.createAccount(
-//				function successCallback(response){
-//					$location.path( '/viewPortfolio' );
-//				}, 
-//				function errorCallback(response){
-//					logService.set('Revenue.Account.Create', LOGTYPE.ERROR, response.data);
-//					$scope.$emit('notify', {type:'E', msgId:'viewCreateAccount.form.create.notify.error'});
-//				}, 
-//				$scope.account
-//		);
-//	}
+	//EVENT: translate
+	$scope.$emit('translate', {part:SHARE_LANGUAGE.PART});
+	
+	$scope.createShare = function() {
+
+		var portfolio = storageService.get(STORAGE_SERVICE_KEY.PORTFOLIO);
+		var depot = storageService.get(STORAGE_SERVICE_KEY.DEPOT);
+		
+		$scope.share['portfolioId'] = portfolio.id;
+		$scope.share['depotId'] = depot.id;
+		
+		shareService.createShare(
+				function successCallback(response){
+					$location.path( '/viewDepot' );
+				}, 
+				function errorCallback(response){
+					logService.set('Revenue.Share.Create', LOGTYPE.ERROR, response.data);
+					$scope.$emit('notify', {type:'E', msgId:'viewCreateShare.form.create.notify.error'});
+				}, 
+				$scope.share
+		);
+	}
 
 });

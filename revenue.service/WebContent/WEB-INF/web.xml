@@ -90,6 +90,21 @@
 		<url-pattern>/bond/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- SERVICE: SHARE -->
+	<servlet>
+		<servlet-name>revenue.service.share</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>revenue.service.share</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>revenue.service.share</servlet-name>
+		<url-pattern>/share/*</url-pattern>
+	</servlet-mapping>
+
 	<!-- SERVICE: REVENUE TIMELINE -->
 	<servlet>
 		<servlet-name>revenue.service.revenue.timeline</servlet-name>

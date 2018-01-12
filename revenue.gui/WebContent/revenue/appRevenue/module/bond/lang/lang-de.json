@@ -16,7 +16,7 @@
 	"viewAddBond.form.select.option.interestInterval.quarterly": "quartalsweise",
 	"viewAddBond.form.select.option.interestInterval.monthly": "monatlich",
 	"viewAddBond.form.label.dueDate": "Fälligkeit",
-	"viewAddBond.form.button.add.notify.error": "Fehler beim Erstellen der Anleihe. Zum Fehlerprotokoll",
+	"viewAddBond.form.button.add.notify.error": "Fehler beim Erstellen der Anleihe. Zum Fehlerprotokoll.",
 	"viewBond.bond.header.isin": "ISIN:",
 	"viewBond.bond.header.wkn": "WKN:",
 	"viewBond.bond.header.area": "Bereich:",

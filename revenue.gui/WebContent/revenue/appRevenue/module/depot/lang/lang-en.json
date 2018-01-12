@@ -23,5 +23,9 @@
 	"viewDepot.depot.bond.title": "Bonds",
 	"viewDepot.depot.bond.col.bondName": "Name",
 	"viewDepot.depot.bond.col.bondIsin": "ISIN",
-	"viewDepot.bondList.notify.error": "Error during the bond list determination. Go to error log."
+	"viewDepot.bondList.notify.error": "Error during the bond list determination. Go to error log.",
+	"viewDepot.depot.share.title": "Shares",
+	"viewDepot.depot.share.col.shareName": "Name",
+	"viewDepot.depot.share.col.shareIsin": "ISIN",
+	"viewDepot.shareList.notify.error": "Error during the share list determination. Go to error log."
 }
